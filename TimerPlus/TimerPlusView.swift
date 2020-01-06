@@ -12,34 +12,46 @@ struct TimerPlusView: View {
     
     @ObservedObject var timer = TimerPlus()
     
-    @State var timeRemaining = 10
-    let time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var showingDetail = false
+    
+    @Environment(\.managedObjectContext) var context
     
     var body: some View {
         
         Button(action: {
-            self.timer.title = "Hello there"
+            self.timer.title = "Tapped"
         }) {
             VStack(alignment: .leading) {
-                Text(timer.title ?? "Timer")
+                Text(timer.title ?? "New Timer")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                Text(timer.time ?? "0:00")
+                Text(timer.time ?? "+")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .opacity(0.5)
-                    .onReceive(time) { _ in
-                        if self.timeRemaining > 0 {
-                            self.timeRemaining -= 1
-                            self.timer.time = String(self.timeRemaining)
-                        }
-                    }
                 
             }
         }
         .buttonStyle(BorderlessButtonStyle())
+        .contextMenu {
+            Button(action: {
+                self.context.delete(self.timer)
+            }) {
+                Text("Delete")
+                Image(systemName: "trash")
+            }.foregroundColor(.red)
+
+            Button(action: {
+                self.showingDetail.toggle()
+            }) {
+                Text("Show Info")
+                Image(systemName: "location.circle")
+            }.sheet(isPresented: $showingDetail) {
+                TimerPlusDetailView(timer: self.timer)
+            }
+        }
         
         
         

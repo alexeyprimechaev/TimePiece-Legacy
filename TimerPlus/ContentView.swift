@@ -26,8 +26,8 @@ struct ContentView: View {
                     TimerPlusView(timer: timer)
                     .listRowInsets(EdgeInsets(top: 14, leading: 28, bottom: 14, trailing: 8))
                 }
-            }
-            Button(action: {
+                
+                Button(action: {
                     let timer = TimerPlus(context: self.context)
                     timer.title = "Eggs 🍳"
                     timer.time = "3:29"
@@ -39,11 +39,25 @@ struct ContentView: View {
                     } catch {
                         print(error)
                     }
-                
-            }) {
-                Text("Add Rating")
-                    .fontWeight(.semibold)
-            }.padding(16)
+                }) {
+                    VStack(alignment: .leading) {
+                        Text("+")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        Text("New Timer")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .opacity(0.5)
+                        
+                    }
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                .listRowInsets(EdgeInsets(top: 14, leading: 28, bottom: 14, trailing: 8))
+
+
+            }
         }
     }
 }

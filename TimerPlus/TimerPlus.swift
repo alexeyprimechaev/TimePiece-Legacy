@@ -14,6 +14,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     @NSManaged public var isPaused: NSNumber?
     @NSManaged public var time: String?
     @NSManaged public var title: String?
+    
 }
 
 extension TimerPlus {

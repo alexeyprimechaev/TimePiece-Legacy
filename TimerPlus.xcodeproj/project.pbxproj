@@ -17,6 +17,7 @@
 		80612FFA23C2750900BC03F5 /* TimerPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimerPlusView.swift */; };
 		80612FFC23C2766B00BC03F5 /* TimerPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerPlus.swift */; };
 		8061300023C281A500BC03F5 /* TitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFF23C281A500BC03F5 /* TitleBar.swift */; };
+		8088473B23C2AE79001D1A6E /* TimerPlusDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerPlusDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		80612FF923C2750900BC03F5 /* TimerPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPlusView.swift; sourceTree = "<group>"; };
 		80612FFB23C2766B00BC03F5 /* TimerPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPlus.swift; sourceTree = "<group>"; };
 		80612FFF23C281A500BC03F5 /* TitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBar.swift; sourceTree = "<group>"; };
+		8088473A23C2AE79001D1A6E /* TimerPlusDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPlusDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
 				80612FF923C2750900BC03F5 /* TimerPlusView.swift */,
+				8088473A23C2AE79001D1A6E /* TimerPlusDetailView.swift */,
 				80612FFF23C281A500BC03F5 /* TitleBar.swift */,
 				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
 				80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */,
@@ -165,6 +168,7 @@
 				80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */,
 				80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */,
 				80612FFC23C2766B00BC03F5 /* TimerPlus.swift in Sources */,
+				8088473B23C2AE79001D1A6E /* TimerPlusDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
