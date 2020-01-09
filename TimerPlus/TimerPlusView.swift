@@ -26,7 +26,7 @@ struct TimerPlusView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                Text(timer.time ?? "+")
+                 Text("\(timer.time ?? Date(), formatter: TimerPlus.timeFormatter)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)

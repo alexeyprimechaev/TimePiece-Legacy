@@ -12,16 +12,14 @@ struct TimerPlusDetailView: View {
     
     @ObservedObject var timer = TimerPlus()
     
-    let formatter = RelativeDateTimeFormatter()
-    
     var onDismiss: () -> ()
     
     var body: some View {
         
         NavigationView() {
             List() {
-                Text(timer.time ?? "0:00")
-                Text("\(timer.createdAt ?? Date(), formatter: formatter)")
+                Text("\(timer.time ?? Date(), formatter: TimerPlus.timeFormatter)")
+                Text("\(timer.createdAt ?? Date(), formatter: TimerPlus.dateFormatter)")
             }
             .navigationBarTitle(timer.title ?? "Timer")
             .navigationBarItems(

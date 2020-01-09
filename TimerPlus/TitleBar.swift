@@ -8,16 +8,24 @@
 
 import SwiftUI
 
+let timeCount = TimeCount()
+
 struct TitleBar: View {
+    
+    @State private var currentTime: Date = Date()
+    
     var body: some View {
         HStack {
             Spacer().frame(width:28)
-            Text("Timer+")
+            Text("\(currentTime, formatter: TimerPlus.timeFormatter)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 24)
             Spacer()
         }.frame(height: 75)
+        .onReceive(timeCount.currentTimePublisher) { newCurrentTime in
+          self.currentTime = newCurrentTime
+        }
     }
 }
 
