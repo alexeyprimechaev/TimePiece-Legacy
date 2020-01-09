@@ -49,7 +49,7 @@ struct TimerPlusView: View {
                 Text("Show Info")
                 Image(systemName: "location.circle")
             }.sheet(isPresented: $showingDetail) {
-                TimerPlusDetailView(timer: self.timer)
+                TimerPlusDetailView(timer: self.timer, onDismiss: {self.showingDetail.toggle()})
             }
         }
         

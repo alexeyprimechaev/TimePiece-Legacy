@@ -14,17 +14,36 @@ struct TimerPlusDetailView: View {
     
     let formatter = RelativeDateTimeFormatter()
     
+    var onDismiss: () -> ()
+    
     var body: some View {
-        VStack {
-            Text(timer.title ?? "Timer")
-            Text(timer.time ?? "0:00")
-            Text("\(timer.createdAt ?? Date(), formatter: formatter)")
+        
+        NavigationView() {
+            List() {
+                Text(timer.time ?? "0:00")
+                Text("\(timer.createdAt ?? Date(), formatter: formatter)")
+            }
+            .navigationBarTitle(timer.title ?? "Timer")
+            .navigationBarItems(
+                leading: Button(action: {
+                    self.onDismiss()
+                }, label: {
+                    HStack(alignment: .center) {
+                        Image(systemName: "xmark")
+                        .font(.system(size: 11.0, weight: .heavy))
+                        Text("Dismiss")
+                            .fontWeight(.semibold)
+                    }
+                    .foregroundColor(.black)
+                    
+                })
+            )
         }
     }
 }
 
 struct TimerPlusDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerPlusDetailView()
+        TimerPlusDetailView(onDismiss: {})
     }
 }
