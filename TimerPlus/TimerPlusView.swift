@@ -14,6 +14,8 @@ struct TimerPlusView: View {
     
     @State var showingDetail = false
     
+    @State private var currentTime: Date = Date()
+    
     @Environment(\.managedObjectContext) var context
     
     var body: some View {
@@ -26,11 +28,14 @@ struct TimerPlusView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                 Text("\(timer.time ?? Date(), formatter: TimerPlus.timeFormatter)")
+                Text("\(currentTime.timeIntervalSince(timer.time ?? Date()))")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .opacity(0.5)
+                .onReceive(timeCount.currentTimePublisher) { newCurrentTime in
+                  self.currentTime = newCurrentTime
+                }
                 
             }
         }

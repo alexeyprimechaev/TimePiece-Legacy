@@ -21,10 +21,13 @@ struct ContentView: View {
     var body: some View {
         VStack() {
             TitleBar()
-            List() {
-                ForEach(self.timers) { timer in
-                    TimerPlusView(timer: timer)
-                    .listRowInsets(EdgeInsets(top: 14, leading: 28, bottom: 14, trailing: 8))
+            ScrollView() {
+                VStack(alignment: .leading) {
+                    ForEach(self.timers) { timer in
+                        TimerPlusView(timer: timer)
+                        .listRowInsets(EdgeInsets(top: 14, leading: 28, bottom: 14, trailing: 8))
+                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.topLeading)
+
                 }
                 
                 Button(action: {
