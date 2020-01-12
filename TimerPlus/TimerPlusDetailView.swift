@@ -32,7 +32,7 @@ struct TimerPlusDetailView: View {
                         Text("Dismiss")
                             .fontWeight(.semibold)
                     }
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.primary)
                     
                 })
             )

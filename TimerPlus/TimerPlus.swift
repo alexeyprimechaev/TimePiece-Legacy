@@ -21,14 +21,14 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     static let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SSS"
+        formatter.dateFormat = "HH:mm:ss.S"
         return formatter
     }()
 
 }
 
 class TimeCount {
-    let currentTimePublisher = Timer.TimerPublisher(interval: 0.001, runLoop: .main, mode: .common)
+    let currentTimePublisher = Timer.TimerPublisher(interval: 0.1, runLoop: .main, mode: .common)
     let cancellable: AnyCancellable?
 
     init() {

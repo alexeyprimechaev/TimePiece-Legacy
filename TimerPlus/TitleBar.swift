@@ -12,7 +12,7 @@ let timeCount = TimeCount()
 
 struct TitleBar: View {
     
-    @State private var currentTime: Date = Date()
+    @State private var currentTime = Date()
     
     var body: some View {
         HStack {

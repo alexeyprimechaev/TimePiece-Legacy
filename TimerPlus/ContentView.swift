@@ -15,18 +15,16 @@ struct ContentView: View {
     
     init() {
         UITableView.appearance().tableFooterView = UIView()
-        UITableView.appearance().separatorStyle = .none        
+        UITableView.appearance().separatorStyle = .none
     }
     
     var body: some View {
         VStack() {
             TitleBar()
             List() {
-                ForEach(self.timers) { timer in
+                ForEach(timers) { timer in
                     TimerPlusView(timer: timer)
-                    .listRowInsets(EdgeInsets(top: 14, leading: 28, bottom: 14, trailing: 8))
-                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.topLeading)
-                
+                }
                 Button(action: {
                     let timer = TimerPlus(context: self.context)
                     timer.title = "Eggs 🍳"
@@ -44,20 +42,18 @@ struct ContentView: View {
                         Text("+")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.primary)
                         Text("New Timer")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.primary)
                             .opacity(0.5)
                         
                     }
                 }
                 .buttonStyle(BorderlessButtonStyle())
-                .listRowInsets(EdgeInsets(top: 14, leading: 28, bottom: 14, trailing: 8))
-
-
             }
+   
         }
     }
 }

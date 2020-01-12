@@ -14,38 +14,49 @@ struct TimerPlusView: View {
     
     @State var showingDetail = false
     
-    @State private var currentTime: Date = Date()
+    @State private var currentTime = Date()
     
     @Environment(\.managedObjectContext) var context
     
     var body: some View {
         
+        
         Button(action: {
-            self.timer.title = "Tapped"
+            if(self.timer.isPaused ?? true).boolValue {
+                self.timer.isPaused = false
+            } else {
+                self.timer.isPaused = true
+            }
+            
         }) {
             VStack(alignment: .leading) {
                 Text(timer.title ?? "New Timer")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.black)
-                Text("\(currentTime.timeIntervalSince(timer.time ?? Date()))")
+                    .foregroundColor(Color.primary)
+                Text("\(Int(currentTime.timeIntervalSince(timer.time ?? Date())))")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.primary)
                     .opacity(0.5)
-                .onReceive(timeCount.currentTimePublisher) { newCurrentTime in
-                  self.currentTime = newCurrentTime
-                }
+                    .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { newCurrentTime in
+                        if !(self.timer.isPaused!.boolValue) {
+                            self.currentTime = newCurrentTime
+                        }
+                        
+                    }
                 
             }
         }
         .buttonStyle(BorderlessButtonStyle())
+            
+        .padding(7)
+        
         .contextMenu {
             Button(action: {
                 self.context.delete(self.timer)
             }) {
                 Text("Delete")
-                Image(systemName: "trash")
             }.foregroundColor(.red)
 
             Button(action: {
