@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct TimerPlusView: View {
+struct TimerView: View {
     
     @ObservedObject var timer = TimerPlus()
     
     @State var showingDetail = false
         
     @Environment(\.managedObjectContext) var context
-    
+
     var body: some View {
         
         
@@ -57,33 +57,23 @@ struct TimerPlusView: View {
             }
         }
         .buttonStyle(BorderlessButtonStyle())
-            
         .padding(7)
-        
         .contextMenu {
-            Button(action: {
-                self.context.delete(self.timer)
-            }) {
-                Text("Delete")
-            }.foregroundColor(.red)
-
             Button(action: {
                 self.showingDetail.toggle()
             }) {
-                Text("Show Info")
-                Image(systemName: "location.circle")
+                Text("Show Details")
             }.sheet(isPresented: $showingDetail) {
-                TimerPlusDetailView(timer: self.timer, onDismiss: {self.showingDetail.toggle()})
+                TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail.toggle()})
             }
         }
-        
-        
+    
         
     }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerPlusView()
+        TimerView()
     }
 }

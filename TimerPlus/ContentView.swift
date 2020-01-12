@@ -20,10 +20,9 @@ struct ContentView: View {
     
     var body: some View {
         VStack() {
-            TitleBar()
             List() {
                 ForEach(timers) { timer in
-                    TimerPlusView(timer: timer)
+                    TimerView(timer: timer)
                 }
                 Button(action: {
                     let timer = TimerPlus(context: self.context)
