@@ -18,7 +18,7 @@ struct TimerPlusDetailView: View {
         
         NavigationView() {
             List() {
-                Text("\(timer.time ?? Date(), formatter: TimerPlus.timeFormatter)")
+                Text("\(timer.timeStarted ?? Date(), formatter: TimerPlus.timeFormatter)")
                 Text("\(timer.createdAt ?? Date(), formatter: TimerPlus.dateFormatter)")
             }
             .navigationBarTitle(timer.title ?? "Timer")

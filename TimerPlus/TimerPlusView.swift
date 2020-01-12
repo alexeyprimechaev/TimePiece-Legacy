@@ -13,9 +13,7 @@ struct TimerPlusView: View {
     @ObservedObject var timer = TimerPlus()
     
     @State var showingDetail = false
-    
-    @State private var currentTime = Date()
-    
+        
     @Environment(\.managedObjectContext) var context
     
     var body: some View {
@@ -23,6 +21,10 @@ struct TimerPlusView: View {
         
         Button(action: {
             if(self.timer.isPaused ?? true).boolValue {
+                self.timer.timeStarted = Date()
+                self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
+                print(self.timer.timeStarted)
+                print("\(self.timer.timeFinished)heyy")
                 self.timer.isPaused = false
             } else {
                 self.timer.isPaused = true
@@ -34,14 +36,20 @@ struct TimerPlusView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.primary)
-                Text("\(Int(currentTime.timeIntervalSince(timer.time ?? Date())))")
+                Text("\((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()))")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.primary)
                     .opacity(0.5)
-                    .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { newCurrentTime in
-                        if !(self.timer.isPaused!.boolValue) {
-                            self.currentTime = newCurrentTime
+                    .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { newCurrentTime in
+                        if !(self.timer.isPaused?.boolValue ?? true
+                            ) {
+                            self.timer.timeStarted = newCurrentTime
+                            if (self.timer.time!.doubleValue <= 0) {
+                                self.timer.time = 60
+                            }
+                            self.timer.time = self.timer.time as! Double - 0.015 as NSNumber
+                            
                         }
                         
                     }

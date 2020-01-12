@@ -28,9 +28,12 @@ struct ContentView: View {
                 Button(action: {
                     let timer = TimerPlus(context: self.context)
                     timer.title = "Eggs 🍳"
-                    timer.time = Date()
+                    timer.time = 30
                     timer.createdAt = Date()
-                    timer.isPaused = false
+                    timer.timeStarted = Date()
+                    timer.timeFinished =
+                        timer.timeStarted?.addingTimeInterval(timer.time as! TimeInterval)
+                    timer.isPaused = true
 
                     do {
                         try self.context.save()

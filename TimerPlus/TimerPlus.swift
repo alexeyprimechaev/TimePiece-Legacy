@@ -13,22 +13,23 @@ import CoreData
 public class TimerPlus: NSManagedObject, Identifiable {
     @NSManaged public var createdAt: Date?
     @NSManaged public var isPaused: NSNumber?
-    @NSManaged public var time: Date?
+    @NSManaged public var time: NSNumber?
     @NSManaged public var timeStarted: Date?
+    @NSManaged public var timeFinished: Date?
     @NSManaged public var title: String?
     
     static let dateFormatter = RelativeDateTimeFormatter()
     
     static let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.S"
+        formatter.dateFormat = "HH:mm:ss.SS"
         return formatter
     }()
 
 }
 
 class TimeCount {
-    let currentTimePublisher = Timer.TimerPublisher(interval: 0.1, runLoop: .main, mode: .common)
+    let currentTimePublisher = Timer.TimerPublisher(interval: 0.015, runLoop: .main, mode: .common)
     let cancellable: AnyCancellable?
 
     init() {
