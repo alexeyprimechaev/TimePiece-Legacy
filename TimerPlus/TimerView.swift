@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct TimerView: View {
     
@@ -24,8 +25,11 @@ struct TimerView: View {
                 self.timer.timeStarted = Date()
                 self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
                 self.timer.isPaused = false
-                print("Button: \(self.timer.timeStarted!.timeIntervalSince1970)")
-                print("Button: \(self.timer.timeFinished!.timeIntervalSince1970)")
+                do {
+                    try self.context.save()
+                } catch {
+                    print(error)
+                }
             } else {
 
                 self.timer.timeStarted = Date()
