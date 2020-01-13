@@ -27,7 +27,7 @@ struct ContentView: View {
                 Button(action: {
                     let timer = TimerPlus(context: self.context)
                     timer.title = "Eggs 🍳"
-                    timer.time = 30
+                    timer.time = 5
                     timer.createdAt = Date()
                     timer.timeStarted = Date()
                     timer.timeFinished =

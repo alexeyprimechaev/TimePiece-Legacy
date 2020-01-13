@@ -23,10 +23,12 @@ struct TimerView: View {
             if(self.timer.isPaused ?? true).boolValue {
                 self.timer.timeStarted = Date()
                 self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
-                print(self.timer.timeStarted)
-                print("\(self.timer.timeFinished)heyy")
                 self.timer.isPaused = false
+                print("Button: \(self.timer.timeStarted!.timeIntervalSince1970)")
+                print("Button: \(self.timer.timeFinished!.timeIntervalSince1970)")
             } else {
+                self.timer.timeStarted = Date()
+                self.timer.time = ((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date())) as NSNumber
                 self.timer.isPaused = true
             }
             
@@ -44,11 +46,20 @@ struct TimerView: View {
                     .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { newCurrentTime in
                         if !(self.timer.isPaused?.boolValue ?? true
                             ) {
+                            
+                            print("Timer: \(self.timer.timeStarted!.timeIntervalSince1970)")
+                            print("Timer: \(self.timer.timeFinished!.timeIntervalSince1970)")
+                            
+                            self.timer.time = ((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date())) as NSNumber
                             self.timer.timeStarted = newCurrentTime
                             if (self.timer.time!.doubleValue <= 0) {
-                                self.timer.time = 60
+                                print("fuck")
+                                self.timer.time = 5
+                                self.timer.timeStarted = Date()
+                                self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
+                                self.timer.isPaused = true
                             }
-                            self.timer.time = self.timer.time as! Double - 0.015 as NSNumber
+                            
                             
                         }
                         
