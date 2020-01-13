@@ -27,6 +27,7 @@ struct TimerView: View {
                 print("Button: \(self.timer.timeStarted!.timeIntervalSince1970)")
                 print("Button: \(self.timer.timeFinished!.timeIntervalSince1970)")
             } else {
+
                 self.timer.timeStarted = Date()
                 self.timer.time = ((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date())) as NSNumber
                 self.timer.isPaused = true
@@ -50,8 +51,9 @@ struct TimerView: View {
                             print("Timer: \(self.timer.timeStarted!.timeIntervalSince1970)")
                             print("Timer: \(self.timer.timeFinished!.timeIntervalSince1970)")
                             
-                            self.timer.time = ((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date())) as NSNumber
                             self.timer.timeStarted = newCurrentTime
+                            self.timer.time = ((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date())) as NSNumber
+                            
                             if (self.timer.time!.doubleValue <= 0) {
                                 print("fuck")
                                 self.timer.time = 5
@@ -59,6 +61,7 @@ struct TimerView: View {
                                 self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
                                 self.timer.isPaused = true
                             }
+                            
                             
                             
                         }
