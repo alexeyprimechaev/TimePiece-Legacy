@@ -68,17 +68,14 @@
 		80612FE123C274DB00BC03F5 /* TimerPlus */ = {
 			isa = PBXGroup;
 			children = (
-				80612FE223C274DB00BC03F5 /* AppDelegate.swift */,
-				80612FE423C274DB00BC03F5 /* SceneDelegate.swift */,
+				80D141E523CE175D00FD2B5A /* Delegates */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
-				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
-				8058C33023CBB77C00007463 /* ToggleButton.swift */,
-				80ACD6B623CBE435000C49DC /* MainButton.swift */,
 				80D141E323CE171300FD2B5A /* Timer Views */,
+				80D141E423CE175200FD2B5A /* Button Views */,
+				80D141E623CE176D00FD2B5A /* Data */,
 				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
 				80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */,
 				80612FF323C274DF00BC03F5 /* Info.plist */,
-				80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */,
 				80612FED23C274DF00BC03F5 /* Preview Content */,
 			);
 			path = TimerPlus;
@@ -99,6 +96,33 @@
 				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
 			);
 			path = "Timer Views";
+			sourceTree = "<group>";
+		};
+		80D141E423CE175200FD2B5A /* Button Views */ = {
+			isa = PBXGroup;
+			children = (
+				8058C33023CBB77C00007463 /* ToggleButton.swift */,
+				80ACD6B623CBE435000C49DC /* MainButton.swift */,
+			);
+			path = "Button Views";
+			sourceTree = "<group>";
+		};
+		80D141E523CE175D00FD2B5A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				80612FE223C274DB00BC03F5 /* AppDelegate.swift */,
+				80612FE423C274DB00BC03F5 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		80D141E623CE176D00FD2B5A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
+				80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
