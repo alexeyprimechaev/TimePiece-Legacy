@@ -21,9 +21,20 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     static let dateFormatter = RelativeDateTimeFormatter()
     
-    static let timeFormatter: DateFormatter = {
+    static let currentTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SS"
+        return formatter
+    }()
+    
+    static let timeFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        
+        formatter.numberStyle = .none
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .halfUp
+        
         return formatter
     }()
     

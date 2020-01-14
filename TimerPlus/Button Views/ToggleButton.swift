@@ -42,16 +42,17 @@ struct ToggleButton: View {
             }
         }
         .foregroundColor(Color.primary)
-    .buttonStyle(MyButtonStyle())
+    .buttonStyle(DeepButtonStyle())
             
     }
 }
 
-struct MyButtonStyle: ButtonStyle {
+struct DeepButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .scaleEffect(configuration.isPressed ? 0.94 : 1.0)
+            .opacity(configuration.isPressed ? 0.8 : 1.0)
     }
 
 }

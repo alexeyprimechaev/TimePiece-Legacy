@@ -31,7 +31,7 @@ struct TimerView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.primary)
-                Text("\((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()))")
+                Text("\(TimerPlus.timeFormatter.string(from: NSNumber(value: (self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()))) ?? "hey")")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.primary)
@@ -43,7 +43,7 @@ struct TimerView: View {
                 
             }
         }
-        .buttonStyle(BorderlessButtonStyle())
+        .buttonStyle(DeepButtonStyle())
         .padding(7)
         .contextMenu {
             Button(action: {

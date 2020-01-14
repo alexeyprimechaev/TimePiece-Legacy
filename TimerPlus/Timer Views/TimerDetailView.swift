@@ -23,7 +23,7 @@ struct TimerDetailView: View {
                         Text(timer.title ?? "Timer")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                        Text("\(timer.timeStarted ?? Date(), formatter: TimerPlus.timeFormatter)")
+                        Text("\(timer.timeStarted ?? Date(), formatter: TimerPlus.currentTimeFormatter)")
                         Text("\(timer.createdAt ?? Date(), formatter: TimerPlus.dateFormatter)")
                         Spacer().frame(height: 200)
                         ToggleButton(title: "Notifications", isOn: $timer.isPaused)
