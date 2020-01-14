@@ -12,6 +12,8 @@ struct TimerDetailView: View {
     
     @ObservedObject var timer = TimerPlus()
     
+    @State var name = ""
+    
     var onDismiss: () -> ()
     
     var body: some View {
@@ -20,9 +22,10 @@ struct TimerDetailView: View {
             VStack {
                 ScrollView() {
                     VStack(alignment: .leading, spacing: 14) {
-                        Text(timer.title ?? "Timer")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
+                        TextField(self.timer.title ?? "Timer", text: $name) {
+                            self.timer.title = self.name
+                        }
+                        .font(.system(size: 34, weight: .bold))
                         Text("\(timer.timeStarted ?? Date(), formatter: TimerPlus.currentTimeFormatter)")
                         Text("\(timer.createdAt ?? Date(), formatter: TimerPlus.dateFormatter)")
                         Spacer().frame(height: 200)
