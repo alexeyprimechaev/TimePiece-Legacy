@@ -76,8 +76,7 @@
 				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
 				8058C33023CBB77C00007463 /* ToggleButton.swift */,
 				80ACD6B623CBE435000C49DC /* MainButton.swift */,
-				80612FF923C2750900BC03F5 /* TimerView.swift */,
-				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
+				80D141E323CE171300FD2B5A /* Timer Views */,
 				80612FFF23C281A500BC03F5 /* TitleBar.swift */,
 				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
 				80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */,
@@ -94,6 +93,15 @@
 				80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		80D141E323CE171300FD2B5A /* Timer Views */ = {
+			isa = PBXGroup;
+			children = (
+				80612FF923C2750900BC03F5 /* TimerView.swift */,
+				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
+			);
+			path = "Timer Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
