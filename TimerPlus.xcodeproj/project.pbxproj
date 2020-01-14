@@ -23,7 +23,7 @@
 
 /* Begin PBXFileReference section */
 		8058C33023CBB77C00007463 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
-		80612FDF23C274DB00BC03F5 /* TimerPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimerPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80612FDF23C274DB00BC03F5 /* Timer+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timer+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80612FE223C274DB00BC03F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80612FE423C274DB00BC03F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		80612FE723C274DB00BC03F5 /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		80612FE023C274DB00BC03F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80612FDF23C274DB00BC03F5 /* TimerPlus.app */,
+				80612FDF23C274DB00BC03F5 /* Timer+.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			packageProductDependencies = (
 			);
 			productName = TimerPlus;
-			productReference = 80612FDF23C274DB00BC03F5 /* TimerPlus.app */;
+			productReference = 80612FDF23C274DB00BC03F5 /* Timer+.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -354,7 +354,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimerPlus;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Timer+";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -374,7 +374,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimerPlus;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Timer+";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

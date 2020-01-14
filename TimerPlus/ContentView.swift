@@ -41,7 +41,9 @@ struct ContentView: View {
                     }
                 }
                 .buttonStyle(DeepButtonStyle())
-            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            }
+            .padding(.leading, 21)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         }
     }
 }
