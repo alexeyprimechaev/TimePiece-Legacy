@@ -21,21 +21,9 @@ struct TimerView: View {
         
         
         Button(action: {
-            if(self.timer.isPaused ?? true).boolValue {
-                self.timer.timeStarted = Date()
-                self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
-                self.timer.isPaused = false
-                do {
-                    try self.context.save()
-                } catch {
-                    print(error)
-                }
-            } else {
-
-                self.timer.timeStarted = Date()
-                self.timer.time = ((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date())) as NSNumber
-                self.timer.isPaused = true
-            }
+            
+            self.timer.changeState()
+            
             
         }) {
             VStack(alignment: .leading) {
@@ -48,27 +36,8 @@ struct TimerView: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.primary)
                     .opacity(0.5)
-                    .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { newCurrentTime in
-                        if !(self.timer.isPaused?.boolValue ?? true
-                            ) {
-                            
-                            print("Timer: \(self.timer.timeStarted!.timeIntervalSince1970)")
-                            print("Timer: \(self.timer.timeFinished!.timeIntervalSince1970)")
-                            
-                            self.timer.timeStarted = newCurrentTime
-                            self.timer.time = ((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date())) as NSNumber
-                            
-                            if (self.timer.time!.doubleValue <= 0) {
-                                print("fuck")
-                                self.timer.time = 5
-                                self.timer.timeStarted = Date()
-                                self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
-                                self.timer.isPaused = true
-                            }
-
-                            
-                            
-                        }
+                    .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
+                        self.timer.updateTime()
                         
                     }
                 

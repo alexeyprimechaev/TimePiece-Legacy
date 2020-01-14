@@ -25,20 +25,7 @@ struct ContentView: View {
                     TimerView(timer: timer)
                 }
                 Button(action: {
-                    let timer = TimerPlus(context: self.context)
-                    timer.title = "Eggs 🍳"
-                    timer.time = 30
-                    timer.createdAt = Date()
-                    timer.timeStarted = Date()
-                    timer.timeFinished =
-                        timer.timeStarted?.addingTimeInterval(timer.time as! TimeInterval)
-                    timer.isPaused = true
-
-                    do {
-                        try self.context.save()
-                    } catch {
-                        print(error)
-                    }
+                    TimerPlus.newTimer(totalTime: 10, title: "Eggs 😃", context: self.context)
                 }) {
                     VStack(alignment: .leading) {
                         Text("+")
