@@ -46,7 +46,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
         }
     }
     
-    func changeState() {
+    func togglePause() {
         if(self.isPaused ?? true).boolValue {
             self.timeStarted = Date()
             self.timeFinished = self.timeStarted?.addingTimeInterval(self.currentTime as! TimeInterval)
@@ -78,19 +78,6 @@ public class TimerPlus: NSManagedObject, Identifiable {
         }
     }
 
-}
-
-class TimeCount {
-    let currentTimePublisher = Timer.TimerPublisher(interval: 0.015, runLoop: .main, mode: .common)
-    let cancellable: AnyCancellable?
-
-    init() {
-        self.cancellable = currentTimePublisher.connect() as? AnyCancellable
-    }
-
-    deinit {
-        self.cancellable?.cancel()
-    }
 }
 
 extension TimerPlus {

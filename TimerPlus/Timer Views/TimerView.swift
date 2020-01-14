@@ -22,7 +22,7 @@ struct TimerView: View {
         
         Button(action: {
             
-            self.timer.changeState()
+            self.timer.togglePause()
             
             
         }) {
