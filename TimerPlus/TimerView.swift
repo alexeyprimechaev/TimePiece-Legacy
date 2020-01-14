@@ -65,7 +65,7 @@ struct TimerView: View {
                                 self.timer.timeFinished = self.timer.timeStarted?.addingTimeInterval(self.timer.time as! TimeInterval)
                                 self.timer.isPaused = true
                             }
-                            
+
                             
                             
                         }
@@ -82,7 +82,7 @@ struct TimerView: View {
             }) {
                 Text("Show Details")
             }.sheet(isPresented: $showingDetail) {
-                TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail.toggle()})
+                TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail = false})
             }
         }
     
