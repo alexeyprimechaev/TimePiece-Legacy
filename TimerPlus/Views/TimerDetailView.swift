@@ -39,16 +39,7 @@ struct TimerDetailView: View {
             }
             
             VStack(alignment: .leading, spacing: 14) {
-                
-                TextField("hey", text: $name)
-                .introspectTextField { textField in
-                    textField.becomeFirstResponder()
-                    textField.minimumFontSize = 34
-                    textField.tintColor = UIColor.black
-                    textField.attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSForegroundColorAttributeName: UIColor.black])
-                }
-                .font(.largeTitle)
-                
+            
                 ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                 ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
                 ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
