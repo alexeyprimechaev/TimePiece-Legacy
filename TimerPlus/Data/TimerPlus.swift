@@ -11,6 +11,8 @@ import Combine
 import CoreData
 
 public class TimerPlus: NSManagedObject, Identifiable {
+    
+    // Main Properties
     @NSManaged public var createdAt: Date?
     @NSManaged public var isPaused: NSNumber?
     @NSManaged public var currentTime: NSNumber?
@@ -19,14 +21,23 @@ public class TimerPlus: NSManagedObject, Identifiable {
     @NSManaged public var timeFinished: Date?
     @NSManaged public var title: String?
     
-    static let dateFormatter = RelativeDateTimeFormatter()
+    // Setting Properties
+    @NSManaged public var soundSetting: String?
+    @NSManaged public var precisionSetting: String?
+    @NSManaged public var notificationSetting: String?
     
+    // Setting Collections
+    static let soundSettings = ["Short", "Long"]
+    static let precisionSettings = ["Smart", "On", "Off"]
+    static let notificationSettings = ["On", "Off"]
+    
+    // Time Formatters
+    static let dateFormatter = RelativeDateTimeFormatter()
     static let currentTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SS"
         return formatter
     }()
-    
     static let timeFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         
@@ -41,15 +52,22 @@ public class TimerPlus: NSManagedObject, Identifiable {
     static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext) {
         let timer = TimerPlus(context: context)
         
-        timer.createdAt = Date()
-        timer.totalTime = totalTime as NSNumber
-        timer.currentTime = timer.totalTime
+        // User Input
         timer.title = title
-        timer.isPaused = true
-        timer.timeStarted = Date()
-        timer.timeFinished =
-        timer.timeStarted?.addingTimeInterval(timer.currentTime as! TimeInterval)
+        timer.totalTime = totalTime as NSNumber
         
+        // Defaults
+        timer.isPaused = true
+        timer.currentTime = timer.totalTime
+        timer.timeStarted = Date()
+        timer.timeFinished = timer.timeStarted?.addingTimeInterval(timer.currentTime as! TimeInterval)
+    
+        // Settings
+        timer.soundSetting = soundSettings[0]
+        timer.precisionSetting = precisionSettings[0]
+        timer.notificationSetting = notificationSettings[0]
+        
+        // Saving
         do {
             try context.save()
         } catch {

@@ -52,6 +52,13 @@ struct TimerView: View {
             }.sheet(isPresented: $showingDetail) {
                 TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail = false})
             }
+            Button(action: {
+                self.context.delete(self.timer)
+            }) {
+                Text("Delete")
+            }.sheet(isPresented: $showingDetail) {
+                TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail = false})
+            }
         }
     
         

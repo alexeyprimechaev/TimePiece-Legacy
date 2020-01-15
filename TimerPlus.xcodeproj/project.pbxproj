@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8058C33123CBB77C00007463 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8058C33023CBB77C00007463 /* ToggleButton.swift */; };
+		801FFBB023CF3FED0040A12C /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 801FFBAF23CF3FED0040A12C /* ASCollectionView */; };
+		801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* ToggleButton.swift */; };
+		802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
+		802A027023CFBB6300512B39 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 802A026F23CFBB6300512B39 /* Introspect */; };
 		80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE223C274DB00BC03F5 /* AppDelegate.swift */; };
 		80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE423C274DB00BC03F5 /* SceneDelegate.swift */; };
 		80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */; };
@@ -22,7 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8058C33023CBB77C00007463 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		801FFBB123CF9AF50040A12C /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		802A026C23CFBA5600512B39 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
+		802D429323CFB38C00111641 /* Timer+.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Timer+.entitlements"; sourceTree = "<group>"; };
 		80612FDF23C274DB00BC03F5 /* Timer+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timer+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80612FE223C274DB00BC03F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80612FE423C274DB00BC03F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801FFBB023CF3FED0040A12C /* ASCollectionView in Frameworks */,
+				802A027023CFBB6300512B39 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,10 +75,11 @@
 		80612FE123C274DB00BC03F5 /* TimerPlus */ = {
 			isa = PBXGroup;
 			children = (
+				802D429323CFB38C00111641 /* Timer+.entitlements */,
 				80D141E523CE175D00FD2B5A /* Delegates */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
-				80D141E323CE171300FD2B5A /* Timer Views */,
-				80D141E423CE175200FD2B5A /* Button Views */,
+				80D141E323CE171300FD2B5A /* Views */,
+				80D141E423CE175200FD2B5A /* Buttons */,
 				80D141E623CE176D00FD2B5A /* Data */,
 				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
 				80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */,
@@ -89,22 +97,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		80D141E323CE171300FD2B5A /* Timer Views */ = {
+		80D141E323CE171300FD2B5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
+				802A026C23CFBA5600512B39 /* PropertyView.swift */,
 				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
 			);
-			path = "Timer Views";
+			path = Views;
 			sourceTree = "<group>";
 		};
-		80D141E423CE175200FD2B5A /* Button Views */ = {
+		80D141E423CE175200FD2B5A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				8058C33023CBB77C00007463 /* ToggleButton.swift */,
 				80ACD6B623CBE435000C49DC /* MainButton.swift */,
+				801FFBB123CF9AF50040A12C /* ToggleButton.swift */,
 			);
-			path = "Button Views";
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		80D141E523CE175D00FD2B5A /* Delegates */ = {
@@ -142,6 +151,8 @@
 			);
 			name = TimerPlus;
 			packageProductDependencies = (
+				801FFBAF23CF3FED0040A12C /* ASCollectionView */,
+				802A026F23CFBB6300512B39 /* Introspect */,
 			);
 			productName = TimerPlus;
 			productReference = 80612FDF23C274DB00BC03F5 /* Timer+.app */;
@@ -172,6 +183,8 @@
 			);
 			mainGroup = 80612FD623C274DB00BC03F5;
 			packageReferences = (
+				801FFBAE23CF3FED0040A12C /* XCRemoteSwiftPackageReference "ASCollectionView" */,
+				802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 80612FE023C274DB00BC03F5 /* Products */;
 			projectDirPath = "";
@@ -201,13 +214,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */,
+				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,
+				801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */,
 				80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */,
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
 				80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */,
 				80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */,
 				80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */,
 				80612FFC23C2766B00BC03F5 /* TimerPlus.swift in Sources */,
-				8058C33123CBB77C00007463 /* ToggleButton.swift in Sources */,
 				8088473B23C2AE79001D1A6E /* TimerDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +358,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TimerPlus/Timer+.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerPlus/Preview Content\"";
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
@@ -355,6 +371,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimerPlus;
 				PRODUCT_NAME = "Timer+";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,7 +381,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TimerPlus/Timer+.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerPlus/Preview Content\"";
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
@@ -375,6 +394,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimerPlus;
 				PRODUCT_NAME = "Timer+";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -402,6 +422,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		801FFBAE23CF3FED0040A12C /* XCRemoteSwiftPackageReference "ASCollectionView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
+			};
+		};
+		802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		801FFBAF23CF3FED0040A12C /* ASCollectionView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 801FFBAE23CF3FED0040A12C /* XCRemoteSwiftPackageReference "ASCollectionView" */;
+			productName = ASCollectionView;
+		};
+		802A026F23CFBB6300512B39 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */ = {

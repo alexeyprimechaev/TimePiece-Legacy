@@ -4,12 +4,15 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="currentTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="isPaused" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="notificationSetting" optional="YES" attributeType="String"/>
+        <attribute name="precisionSetting" optional="YES" attributeType="String"/>
+        <attribute name="soundSetting" optional="YES" attributeType="String"/>
         <attribute name="timeFinished" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timeStarted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="totalTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="TimerPlus" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="TimerPlus" positionX="-63" positionY="-18" width="128" height="193"/>
     </elements>
 </model>
