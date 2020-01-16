@@ -12,13 +12,11 @@ struct PropertyView: View {
     
     @State var title = String()
     
-    @Binding var property: String?
-    
-    @State var propertyValue = String()
-    
+    @State var property = String()
+        
     var body: some View {
         HStack(alignment: .bottom, spacing: 7) {
-            Text(propertyValue)
+            Text(property)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .opacity(1)
@@ -28,6 +26,7 @@ struct PropertyView: View {
                 .padding(.bottom, 5)
                 .opacity(0.5)
         }
+        .padding(7)
     }
 }
 

@@ -32,7 +32,11 @@ public class TimerPlus: NSManagedObject, Identifiable {
     static let notificationSettings = ["On", "Off"]
     
     // Time Formatters
-    static let dateFormatter = RelativeDateTimeFormatter()
+    static let dateFormatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd HH:mm"
+        return formatter
+    }()
     static let currentTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SS"

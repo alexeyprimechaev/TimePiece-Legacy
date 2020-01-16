@@ -8,11 +8,12 @@
 
 import SwiftUI
 import Introspect
+import CoreData
 
 struct TimerDetailView: View {
     
     @ObservedObject var timer = TimerPlus()
-    
+        
     @State var name = ""
     
     var onDismiss: () -> ()
@@ -39,6 +40,17 @@ struct TimerDetailView: View {
             }
             
             VStack(alignment: .leading, spacing: 14) {
+                
+                PropertyView(title: "Name", property: timer.title ?? "hey")
+
+                HStack() {
+                    if (timer.totalTime != timer.currentTime) {
+                        PropertyView(title: "Left", property: "\(TimerPlus.timeFormatter.string(from: NSNumber(value: (self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()))) ?? "hey")")
+                    }
+                    PropertyView(title: "Total", property: timer.totalTime?.stringValue ?? "hey")
+                }
+                
+                PropertyView(title: "Created at", property: TimerPlus.dateFormatter.string(from: timer.createdAt ?? Date()))
             
                 ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                 ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
