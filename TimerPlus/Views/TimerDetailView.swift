@@ -41,7 +41,7 @@ struct TimerDetailView: View {
             
             VStack(alignment: .leading, spacing: 14) {
                 
-                PropertyView(title: "Name", property: timer.title ?? "hey")
+                TitlePropertyView(property: $timer.title, title: "Title")
 
                 HStack() {
                     if (timer.totalTime != timer.currentTime) {
@@ -55,7 +55,6 @@ struct TimerDetailView: View {
                 ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                 ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
                 ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
-                TitlePropertyView(title: $timer.title)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .padding(.leading, 21)
