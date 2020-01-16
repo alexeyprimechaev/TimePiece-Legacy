@@ -22,6 +22,7 @@
 		80612FFC23C2766B00BC03F5 /* TimerPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerPlus.swift */; };
 		8088473B23C2AE79001D1A6E /* TimerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerDetailView.swift */; };
 		80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* MainButton.swift */; };
+		80B2096523D0A49800385F87 /* TitlePropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B2096423D0A49800385F87 /* TitlePropertyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		80612FFB23C2766B00BC03F5 /* TimerPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPlus.swift; sourceTree = "<group>"; };
 		8088473A23C2AE79001D1A6E /* TimerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailView.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		80B2096423D0A49800385F87 /* TitlePropertyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitlePropertyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
 				802A026C23CFBA5600512B39 /* PropertyView.swift */,
+				80B2096423D0A49800385F87 /* TitlePropertyView.swift */,
 				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
 			);
 			path = Views;
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */,
+				80B2096523D0A49800385F87 /* TitlePropertyView.swift in Sources */,
 				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,
 				801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */,
 				80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */,

@@ -48,13 +48,14 @@ struct TimerDetailView: View {
                         PropertyView(title: "Left", property: "\(TimerPlus.timeFormatter.string(from: NSNumber(value: (self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()))) ?? "hey")")
                     }
                     PropertyView(title: "Total", property: timer.totalTime?.stringValue ?? "hey")
-                }
+                }.animation(.default)
                 
                 PropertyView(title: "Created at", property: TimerPlus.dateFormatter.string(from: timer.createdAt ?? Date()))
             
                 ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                 ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
                 ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
+                TitlePropertyView(title: $timer.title)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             .padding(.leading, 21)
