@@ -32,23 +32,23 @@ struct ContentView: View {
                     TimerView(timer: timer).padding(.vertical, 2).fixedSize()
                 },
                 ASCollectionViewSection(id: 2) {
-                    TimerButton(onTap: {TimerPlus.newTimer(totalTime: 30, title: "Bacon 🥓", context: self.context)})
+                    TimerButton(onTap: {TimerPlus.newTimer(totalTime: 180, title: "Bacon 🥓", context: self.context)})
                     .padding(.vertical, 2)
                     .contextMenu {
                         Button(action: {
-                             TimerPlus.newTimer(totalTime: 10, title: "Bacon 🥓", context: self.context)
+                             TimerPlus.newTimer(totalTime: 1800, title: "Steak 🥩", context: self.context)
                         }) {
                             Text("10 Seconds")
                         }
                         
                         Button(action: {
-                             TimerPlus.newTimer(totalTime: 120, title: "Soup 🍲", context: self.context)
+                             TimerPlus.newTimer(totalTime: 1200, title: "Soup 🍲", context: self.context)
                         }) {
                             Text("2 Minutes")
                         }
                         
                         Button(action: {
-                             TimerPlus.newTimer(totalTime: 3605, title: "Steak 🥩", context: self.context)
+                             TimerPlus.newTimer(totalTime: 3605, title: "Pie 🥧", context: self.context)
                         }) {
                             Text("1 Hour 2 Secs")
                         }

@@ -44,6 +44,7 @@ struct PropertyView: View {
                 .opacity(0.5)
         }
         .padding(7)
+    
     }
 }
 

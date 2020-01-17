@@ -19,47 +19,49 @@ struct TimerDetailView: View {
     var onDismiss: () -> ()
     
     var body: some View {
-        
-        VStack(spacing:0) {
-            HStack() {
-                Button(action: {
-                    self.onDismiss()
-                }) {
-                    HStack(alignment: .center) {
-                        Image(systemName: "xmark")
-                        .font(.system(size: 11.0, weight: .heavy))
-                        Text("Dismiss")
-                            .fontWeight(.semibold)
-                    }
-                    .foregroundColor(Color.primary)
-                }
-                .frame(height: 52)
-                .padding(.leading, 24)
-                .padding(.trailing, 24)
-                Spacer()
-            }
-            
-            VStack(alignment: .leading, spacing: 14) {
-                
-                PropertyView(title: "Title", timer: timer)
-
+        ScrollView() {
+            VStack(spacing:0) {
                 HStack() {
-                    if (timer.totalTime != timer.currentTime) {
-                        PropertyView(title: "Left", timer: timer)
+                    Button(action: {
+                        self.onDismiss()
+                    }) {
+                        HStack(alignment: .center) {
+                            Image(systemName: "xmark")
+                            .font(.system(size: 11.0, weight: .heavy))
+                            Text("Dismiss")
+                                .fontWeight(.semibold)
+                        }
+                        .foregroundColor(Color.primary)
                     }
-                    PropertyView(title: "Total", timer: timer)
+                    .frame(height: 52)
+                    .padding(.leading, 24)
+                    .padding(.trailing, 24)
+                    Spacer()
                 }
                 
-                PropertyView(title: "Created at", timer: timer)
-            
-                ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
-                ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
-                ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
-            }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-            .padding(.leading, 21)
-            
+                VStack(alignment: .leading, spacing: 14) {
+                    
+                    PropertyView(title: "Title", timer: timer)
 
+                    HStack() {
+                        PropertyView(title: "Total", timer: timer)
+                        
+                        if (timer.totalTime != timer.currentTime) {
+                            PropertyView(title: "Left", timer: timer)
+                        }
+                    }
+                    
+                    PropertyView(title: "Created at", timer: timer)
+                
+                    ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
+                    ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
+                    ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                .padding(.leading, 21)
+                
+
+            }
         }
     }
 }

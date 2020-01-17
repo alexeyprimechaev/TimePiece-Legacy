@@ -14,6 +14,8 @@ struct TimerView: View {
     @ObservedObject var timer = TimerPlus()
     
     @State var showingDetail = false
+    
+    @State var value = String()
         
     @Environment(\.managedObjectContext) var context
 
@@ -23,19 +25,44 @@ struct TimerView: View {
         Button(action: {
             self.timer.togglePause()
         }) {
-            VStack(alignment: .leading) {
-                Text(timer.title ?? "New Timer")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.primary)
-                Text("\((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.primary)
-                    .opacity(0.5)
-                    .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
-                        self.timer.updateTime()
+            ZStack(alignment: .bottomLeading) {
+                VStack(alignment: .leading) {
+                    Text(timer.title ?? "New Timer")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.primary)
+                    Text("\((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.primary)
+                        .opacity(0.5)
+                        .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
+                            self.timer.updateTime()
+                            self.value = "\((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))"
+                    }.onAppear() {
+                        self.value = "\((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))"
                     }
+                    
+                }
+                if (self.value.count == 8) {
+                    Text("88:88:88")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.primary)
+                    .opacity(0)
+                } else if (self.value.count == 5) {
+                    Text("88:88")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.primary)
+                    .opacity(0)
+                } else {
+                    Text("88:88:88.88")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.primary)
+                    .opacity(0)
+                }
                 
             }
         }
