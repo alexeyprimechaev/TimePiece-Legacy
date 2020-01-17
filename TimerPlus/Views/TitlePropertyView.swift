@@ -13,7 +13,7 @@ struct TitlePropertyView: View {
     
     @Environment(\.managedObjectContext) var context
         
-    @Binding var property: String?
+    @Binding var property: String
     
     @State var value = ""
     

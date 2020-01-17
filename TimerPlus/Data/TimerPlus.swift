@@ -28,7 +28,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     // Setting Collections
     static let soundSettings = ["Short", "Long"]
-    static let precisionSettings = ["Smart", "On", "Off"]
+    static let precisionSettings = ["On", "Off", "Smart"]
     static let notificationSettings = ["On", "Off"]
     
     // Time Formatters
@@ -112,6 +112,47 @@ public class TimerPlus: NSManagedObject, Identifiable {
         }
     }
 
+}
+
+extension TimeInterval{
+
+    func stringFromTimeInterval(precisionSetting: String) -> String {
+
+        let time = NSInteger(self)
+
+        let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 100)
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        
+        
+        if(precisionSetting == "Smart") {
+            if (time < 60) {
+                return String(format: "%0.2d.%0.2d",seconds,ms)
+            } else if (time<3600) {
+                return String(format: "%0.2d:%0.2d",minutes,seconds)
+            } else {
+                return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+            }
+        } else if(precisionSetting == "On") {
+            if (time < 60) {
+                return String(format: "%0.2d.%0.2d",seconds,ms)
+            } else if (time<3600) {
+                return String(format: "%0.2d:%0.2d,%0.2d",minutes,seconds,ms)
+            } else {
+                return String(format: "%0.2d:%0.2d:%0.2d.%0.2d",hours,minutes,seconds,ms)
+            }
+        } else {
+            if (time < 60) {
+                return String(format: "%0.2d:%0.2d",minutes,seconds)
+            } else if (time<3600) {
+                return String(format: "%0.2d:%0.2d",minutes,seconds)
+            } else {
+                return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+            }
+        }
+
+    }
 }
 
 extension TimerPlus {

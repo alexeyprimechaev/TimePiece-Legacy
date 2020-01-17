@@ -41,16 +41,16 @@ struct TimerDetailView: View {
             
             VStack(alignment: .leading, spacing: 14) {
                 
-                TitlePropertyView(property: $timer.title, title: "Title")
+                PropertyView(title: "Title", timer: timer)
 
                 HStack() {
                     if (timer.totalTime != timer.currentTime) {
-                        PropertyView(title: "Left", property: "\(TimerPlus.timeFormatter.string(from: NSNumber(value: (self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()))) ?? "hey")")
+                        PropertyView(title: "Left", timer: timer)
                     }
-                    PropertyView(title: "Total", property: timer.totalTime?.stringValue ?? "hey")
-                }.animation(.default)
+                    PropertyView(title: "Total", timer: timer)
+                }
                 
-                PropertyView(title: "Created at", property: TimerPlus.dateFormatter.string(from: timer.createdAt ?? Date()))
+                PropertyView(title: "Created at", timer: timer)
             
                 ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                 ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)

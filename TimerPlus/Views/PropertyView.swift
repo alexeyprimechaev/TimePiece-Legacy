@@ -12,14 +12,31 @@ struct PropertyView: View {
     
     @State var title = String()
     
-    @State var property = String()
+    @ObservedObject var timer = TimerPlus()
         
     var body: some View {
         HStack(alignment: .bottom, spacing: 7) {
-            Text(property)
+            if(title == "Title") {
+                Text(self.timer.title ?? "Title")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .opacity(1)
+            } else if (title == "Created at") {
+                Text(TimerPlus.dateFormatter.string(from: timer.createdAt ?? Date()))
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .opacity(1)
+            } else if (title == "Left"){
+                Text("\((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .opacity(1)
+            } else {
+                Text("\((self.timer.totalTime as! TimeInterval).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .opacity(1)
+            }
             Text(title)
                 .font(.headline)
                 .fontWeight(.semibold)
