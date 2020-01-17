@@ -41,7 +41,7 @@ struct TimerDetailView: View {
             
             VStack(alignment: .leading, spacing: 14) {
                 
-                TitlePropertyView(property: $timer.title, title: "Title").fixedSize()
+                TitlePropertyView(property: $timer.title, title: "Title")
 
                 HStack() {
                     if (timer.totalTime != timer.currentTime) {

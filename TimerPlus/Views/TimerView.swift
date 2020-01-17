@@ -21,10 +21,7 @@ struct TimerView: View {
         
         
         Button(action: {
-            
             self.timer.togglePause()
-            
-            
         }) {
             VStack(alignment: .leading) {
                 Text(timer.title ?? "New Timer")
@@ -44,6 +41,7 @@ struct TimerView: View {
         }
         .buttonStyle(DeepButtonStyle())
         .padding(7)
+        .fixedSize()
         .contextMenu {
             Button(action: {
                 self.showingDetail.toggle()

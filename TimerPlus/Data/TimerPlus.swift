@@ -61,6 +61,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
         timer.totalTime = totalTime as NSNumber
         
         // Defaults
+        timer.createdAt = Date()
         timer.isPaused = true
         timer.currentTime = timer.totalTime
         timer.timeStarted = Date()

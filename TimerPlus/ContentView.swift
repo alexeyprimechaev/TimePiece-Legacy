@@ -14,37 +14,38 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
     
+    let strings = ["Hey"]
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-                ASCollectionView(data: timers, dataID: \.self) { timer, _ in
+        ASCollectionView(
+            sections:
+            [
+                ASCollectionViewSection(id: 0) {
+                    Text("Timer+")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(7)
+                },
+                ASCollectionViewSection(id: 1, data: timers, dataID: \.self) { timer, _ in
                     TimerView(timer: timer)
+                },
+                ASCollectionViewSection(id: 2) {
+                    TimerButton(onTap: {TimerPlus.newTimer(totalTime: 10, title: "Bacon 🥓", context: self.context)})
                 }
-                .layout {
-                    let fl = AlignedFlowLayout()
-                    fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-                    return fl
-                }
-                Button(action: {
-                    TimerPlus.newTimer(totalTime: 20, title: "Eggs 😃", context: self.context)
-                }) {
-                    VStack(alignment: .leading) {
-                        Text("+")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.primary)
-                        Text("New Timer")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.primary)
-                            .opacity(0.5)
-                        
-                    }
-                }
-                .buttonStyle(DeepButtonStyle())
-            }
-            .padding(.leading, 21)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+            ]
+        
+        )
+        .layout {
+            let fl = AlignedFlowLayout()
+            fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            return fl
         }
+        .padding(.leading, 21)
+        
+
+    }
+    
+    
     
 }
 
