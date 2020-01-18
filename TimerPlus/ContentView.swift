@@ -20,6 +20,8 @@ struct ContentView: View {
         ASCollectionView(
             sections:
             [
+                
+                // Title
                 ASCollectionViewSection(id: 0) {
                     Text("Timer+")
                         .font(.largeTitle)
@@ -28,9 +30,13 @@ struct ContentView: View {
                         .padding(.vertical, 12)
                         
                 },
+                
+                // Timers
                 ASCollectionViewSection(id: 1, data: timers, dataID: \.self) { timer, _ in
                     TimerView(timer: timer).padding(.vertical, 2).fixedSize()
                 },
+                
+                // Button
                 ASCollectionViewSection(id: 2) {
                     TimerButton(onTap: {TimerPlus.newTimer(totalTime: 180, title: "Bacon 🥓", context: self.context)})
                     .padding(.vertical, 2)
@@ -38,13 +44,13 @@ struct ContentView: View {
                         Button(action: {
                              TimerPlus.newTimer(totalTime: 1800, title: "Steak 🥩", context: self.context)
                         }) {
-                            Text("10 Seconds")
+                            Text("Steak 🥩")
                         }
                         
                         Button(action: {
                              TimerPlus.newTimer(totalTime: 1200, title: "Soup 🍲", context: self.context)
                         }) {
-                            Text("2 Minutes")
+                            Text("Soup 🍲")
                         }
                         
                         Button(action: {
@@ -54,8 +60,8 @@ struct ContentView: View {
                         }
                     }
                 }
+                
             ]
-        
         )
         .layout {
             let fl = AlignedFlowLayout()
@@ -63,8 +69,6 @@ struct ContentView: View {
             return fl
         }
         .padding(.leading, 21)
-        
-
     }
     
     

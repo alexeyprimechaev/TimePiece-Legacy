@@ -15,6 +15,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     // Main Properties
     @NSManaged public var createdAt: Date?
     @NSManaged public var isPaused: NSNumber?
+    @NSManaged public var isRunning: NSNumber?
     @NSManaged public var currentTime: NSNumber?
     @NSManaged public var totalTime: NSNumber?
     @NSManaged public var timeStarted: Date?
@@ -63,6 +64,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
         // Defaults
         timer.createdAt = Date()
         timer.isPaused = true
+        timer.isRunning = false
         timer.currentTime = timer.totalTime
         timer.timeStarted = Date()
         timer.timeFinished = timer.timeStarted?.addingTimeInterval(timer.currentTime as! TimeInterval)
@@ -81,6 +83,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     }
     
     func togglePause() {
+        self.isRunning = true
         if(self.isPaused ?? true).boolValue {
             self.timeStarted = Date()
             self.timeFinished = self.timeStarted?.addingTimeInterval(self.currentTime as! TimeInterval)
@@ -94,6 +97,14 @@ public class TimerPlus: NSManagedObject, Identifiable {
         }
     }
     
+    func reset() {
+        self.isRunning = false
+        self.isPaused = true
+        self.timeStarted = Date()
+        self.currentTime = self.totalTime
+        self.timeFinished = self.timeStarted?.addingTimeInterval(self.currentTime as! TimeInterval)
+    }
+    
     func updateTime() {
         if !(self.isPaused?.boolValue ?? true
             ) {
@@ -105,6 +116,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
                 self.timeStarted = Date()
                 self.timeFinished = self.timeStarted?.addingTimeInterval(self.currentTime as! TimeInterval)
                 self.isPaused = true
+                self.isRunning = false
             }
 
             
@@ -138,7 +150,7 @@ extension TimeInterval{
             if (time < 60) {
                 return String(format: "%0.2d.%0.2d",seconds,ms)
             } else if (time<3600) {
-                return String(format: "%0.2d:%0.2d,%0.2d",minutes,seconds,ms)
+                return String(format: "%0.2d:%0.2d.%0.2d",minutes,seconds,ms)
             } else {
                 return String(format: "%0.2d:%0.2d:%0.2d.%0.2d",hours,minutes,seconds,ms)
             }

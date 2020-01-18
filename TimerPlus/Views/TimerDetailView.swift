@@ -18,56 +18,68 @@ struct TimerDetailView: View {
     
     var onDismiss: () -> ()
     
+    var delete: () -> ()
+    
     var body: some View {
-        ScrollView() {
-            VStack(spacing:0) {
-                HStack() {
-                    Button(action: {
-                        self.onDismiss()
-                    }) {
-                        HStack(alignment: .center) {
-                            Image(systemName: "xmark")
+        
+        VStack(spacing:0) {
+            HStack() {
+                Button(action: {
+                    self.onDismiss()
+                }) {
+                    HStack(alignment: .center) {
+                        Image(systemName: "xmark")
                             .font(.system(size: 11.0, weight: .heavy))
-                            Text("Dismiss")
-                                .fontWeight(.semibold)
-                        }
-                        .foregroundColor(Color.primary)
+                        Text("Dismiss")
+                            .fontWeight(.semibold)
                     }
-                    .frame(height: 52)
-                    .padding(.leading, 24)
-                    .padding(.trailing, 24)
-                    Spacer()
+                    .padding(.leading, 28)
+                    .padding(.trailing, 128)
+                    .foregroundColor(Color.primary)
                 }
+                .frame(height: 52)
+                Spacer()
+            }
+            
+            ScrollView() {
                 
                 VStack(alignment: .leading, spacing: 14) {
-                    
+                        
                     PropertyView(title: "Title", timer: timer)
 
                     HStack() {
                         PropertyView(title: "Total", timer: timer)
-                        
+                            
                         if (timer.totalTime != timer.currentTime) {
                             PropertyView(title: "Left", timer: timer)
                         }
                     }
-                    
+                        
                     PropertyView(title: "Created at", timer: timer)
-                
+                    
                     ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                     ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
                     ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
-                
 
             }
+            
+            HStack() {
+                Spacer().frame(width:28)
+                MainButton(color: Color.red, isPaused: $timer.isRunning, offTitle: "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill", onTap: {self.timer.reset()}, offTap: {self.delete()})
+                Spacer().frame(width:28)
+                MainButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {self.timer.togglePause()}, offTap: {self.timer.togglePause()})
+                Spacer().frame(width:28)
+            }.padding(.vertical, 7)
         }
     }
+    
 }
 
 struct TimerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerDetailView(onDismiss: {})
+        TimerDetailView(onDismiss: {}, delete: {})
     }
 }

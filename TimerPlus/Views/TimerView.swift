@@ -15,7 +15,7 @@ struct TimerView: View {
     
     @State var showingDetail = false
     
-    @State var value = String()
+    @State var value = "88:88"
         
     @Environment(\.managedObjectContext) var context
 
@@ -39,8 +39,6 @@ struct TimerView: View {
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
                             self.value = "\((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))"
-                    }.onAppear() {
-                        self.value = "\((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))"
                     }
                     
                 }
@@ -74,16 +72,18 @@ struct TimerView: View {
                 self.showingDetail.toggle()
             }) {
                 Text("Show Details")
-            }.sheet(isPresented: $showingDetail) {
-                TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail = false})
             }
             Button(action: {
                 self.context.delete(self.timer)
             }) {
                 Text("Delete")
-            }.sheet(isPresented: $showingDetail) {
-                TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail = false})
             }
+        }
+        .sheet(isPresented: $showingDetail) {
+            TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail = false}, delete: {
+                self.context.delete(self.timer)
+                self.showingDetail = false
+            })
         }
     
         
