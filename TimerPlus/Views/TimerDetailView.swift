@@ -50,17 +50,21 @@ struct TimerDetailView: View {
                     if (((self.timer.totalTime as! TimeInterval).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off")).count + ((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off")).count > 13) {
                         
                         if (timer.totalTime != timer.currentTime) {
-                            TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left")
+                            TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
                         }
-                        TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total")
+                        TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total", update: {
+                            self.timer.currentTime = self.timer.totalTime
+                        })
                     } else {
                         HStack() {
                             
                             if (timer.totalTime != timer.currentTime) {
-                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left")
+                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
                             }
                         
-                            TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total")
+                            TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total", update: {
+                                self.timer.currentTime = self.timer.totalTime
+                            })
                         }
                     }
                         
