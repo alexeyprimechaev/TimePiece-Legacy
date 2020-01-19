@@ -15,9 +15,7 @@ struct TimeView: View {
     @Binding var precisionSetting: String?
     
     @State var title = String()
-    
-    @State var value = String()
-    
+        
     var update: () -> ()?
     
     var body: some View {
@@ -55,22 +53,6 @@ struct TimeView: View {
                 .padding(.bottom, 5)
                 .opacity(0.5)
                 .animation(nil)
-            }
-            if(title == "Total") {
-                    TextField("", text: $value) {
-                        self.time = self.value.stringToNSNumber()
-                        self.update()
-                    }
-                    .introspectTextField { textField in
-                        textField.font = UIFont(name: "AppleColorEmoji", size: 34)
-                        textField.font = .systemFont(ofSize: 34, weight: .bold)
-                        textField.addTarget(self, action: #selector(TextViewHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-                    }
-                    .keyboardType(.numbersAndPunctuation)
-                    .font(.system(size: 34, weight: .bold))
-                    .opacity(1)
-                    .accentColor(Color.secondary)
-                    .foregroundColor(Color.red)
             }
             
         }.padding(7)

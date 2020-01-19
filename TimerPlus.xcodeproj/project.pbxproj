@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		801FFBB023CF3FED0040A12C /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 801FFBAF23CF3FED0040A12C /* ASCollectionView */; };
 		801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* ToggleButton.swift */; };
+		8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
 		802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
 		802A027023CFBB6300512B39 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 802A026F23CFBB6300512B39 /* Introspect */; };
 		80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE223C274DB00BC03F5 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		801FFBB123CF9AF50040A12C /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		8021ADA923D507F50090BA7F /* EditableTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimeView.swift; sourceTree = "<group>"; };
 		802A026C23CFBA5600512B39 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
 		80612FDF23C274DB00BC03F5 /* Timer+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timer+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80612FE223C274DB00BC03F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				80B1F66123D208CB00B4E1D1 /* TimerButton.swift */,
 				802A026C23CFBA5600512B39 /* PropertyView.swift */,
 				807A0F4023D4C66C008B0E24 /* TimeView.swift */,
+				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
 				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
 			);
 			path = Views;
@@ -220,6 +223,7 @@
 				80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */,
 				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,
 				801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */,
+				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,
 				80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */,
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
 				80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */,

@@ -127,15 +127,35 @@ public class TimerPlus: NSManagedObject, Identifiable {
 }
 
 extension String {
-    func stringToNSNumber() -> NSNumber {
+    
+    func stringToTime() -> String {
+        var string = self
         
-        var value: NSNumber
+        if(string.count == 3) {
+            string.insert(":", at: string.index(string.startIndex, offsetBy: 1))
+        } else if (string.count == 4) {
+            string.insert(":", at: string.index(string.startIndex, offsetBy: 2))
+        } else if (string.count == 5) {
+            string.insert(":", at: string.index(string.startIndex, offsetBy: 1))
+            string.insert(":", at: string.index(string.endIndex, offsetBy: -2))
+        } else if (string.count == 6) {
+                string.insert(":", at: string.index(string.startIndex, offsetBy: 2))
+                string.insert(":", at: string.index(string.endIndex, offsetBy: -2))
+        }
+        
+        return string
+    }
+    
+    func calculateTime() -> TimeInterval {
+        print(self)
+        
+        var value: TimeInterval
         
         var seconds = 0
         var minutes = 0
         var hours = 0
         
-        if(self.count == 2) {
+        if(self.count <= 2) {
             seconds = Int(self) ?? 0
         } else if (self.count == 3){
             seconds = Int(String(self.suffix(2))) ?? 0
@@ -153,16 +173,36 @@ extension String {
             minutes = Int(String(String(self.prefix(4)).suffix(2))) ?? 0
         }
         
+        print("seconds:\(seconds)")
+        print("minutes:\(minutes)")
+        print("hours:\(hours)")
+        value = TimeInterval(seconds + 60*minutes + 3600*hours)
         
-        value = NSNumber(value: (seconds + 60*minutes + 3600*hours))
+        print(value)
         
         return value
     }
-    
 }
 
 extension TimeInterval {
-
+    
+    func stringFromNumber() -> String {
+        
+        let time = NSInteger(self)
+        
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        
+        if (hours > 0) {
+            return String(format: "%0.2d%0.2d%0.2d",hours,minutes,seconds)
+        } else if (minutes>0) {
+            return String(format: "%0.2d%0.2d",minutes,seconds)
+        } else {
+            return String(format: "%0.2d",seconds)
+        }
+    }
+    
     func stringFromTimeInterval(precisionSetting: String) -> String {
 
         let time = NSInteger(self)

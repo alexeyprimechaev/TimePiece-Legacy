@@ -40,7 +40,6 @@ struct PropertyView: View {
                     Text("\((self.timer.totalTime as! TimeInterval).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .opacity(1)
                 }
                 Text(title)
                     .font(.headline)
@@ -58,13 +57,13 @@ struct PropertyView: View {
                     .introspectTextField { textField in
                         textField.font = UIFont(name: "AppleColorEmoji", size: 34)
                         textField.font = .systemFont(ofSize: 34, weight: .bold)
-                        textField.addTarget(self, action: #selector(TextViewHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+                        textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
 
                     }
                     .font(.system(size: 34, weight: .bold))
                     .opacity(1)
                     .foregroundColor(Color.clear)
-                    .accentColor(Color.secondary)
+                    .accentColor(Color.primary)
             }
             
             
@@ -74,11 +73,13 @@ struct PropertyView: View {
     }
 }
 
-class TextViewHelper {
+class TitleTextHelper {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         textField.font = UIFont(name: "AppleColorEmoji", size: 34)
         textField.font = .systemFont(ofSize: 34, weight: .bold)
     }
+    
 }
+
 

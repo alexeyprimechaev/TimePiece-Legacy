@@ -52,8 +52,10 @@ struct TimerDetailView: View {
                         if (timer.totalTime != timer.currentTime) {
                             TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
                         }
-                        TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total", update: {
+                        EditableTimeView(time: $timer.totalTime, title: "Total", update: {
+                            self.timer.reset()
                             self.timer.currentTime = self.timer.totalTime
+                            print("fuck")
                         })
                     } else {
                         HStack() {
@@ -62,8 +64,10 @@ struct TimerDetailView: View {
                                 TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
                             }
                         
-                            TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total", update: {
+                            EditableTimeView(time: $timer.totalTime, title: "Total", update: {
+                                self.timer.reset()
                                 self.timer.currentTime = self.timer.totalTime
+                                print("fuck")
                             })
                         }
                     }
