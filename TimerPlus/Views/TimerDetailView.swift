@@ -46,12 +46,21 @@ struct TimerDetailView: View {
                 VStack(alignment: .leading, spacing: 14) {
                         
                     PropertyView(title: "Title", timer: timer)
-
-                    HStack() {
-                        PropertyView(title: "Total", timer: timer)
-                            
+                    
+                    if (((self.timer.totalTime as! TimeInterval).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off")).count + ((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off")).count > 13) {
+                        
                         if (timer.totalTime != timer.currentTime) {
-                            PropertyView(title: "Left", timer: timer)
+                            TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left")
+                        }
+                        TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total")
+                    } else {
+                        HStack() {
+                            
+                            if (timer.totalTime != timer.currentTime) {
+                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left")
+                            }
+                        
+                            TimeView(time: $timer.totalTime, precisionSetting: $timer.precisionSetting, title: "Total")
                         }
                     }
                         

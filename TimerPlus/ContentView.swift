@@ -68,6 +68,7 @@ struct ContentView: View {
             fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return fl
         }
+
         .padding(.leading, 21)
     }
     

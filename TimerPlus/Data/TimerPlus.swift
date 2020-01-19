@@ -126,7 +126,42 @@ public class TimerPlus: NSManagedObject, Identifiable {
 
 }
 
-extension TimeInterval{
+extension String {
+    func stringToNSNumber() -> NSNumber {
+        
+        var value: NSNumber
+        
+        var seconds = 0
+        var minutes = 0
+        var hours = 0
+        
+        if(self.count == 2) {
+            seconds = Int(self) ?? 0
+        } else if (self.count == 3){
+            seconds = Int(String(self.suffix(2))) ?? 0
+            minutes = Int(String(self.prefix(1))) ?? 0
+        } else if (self.count == 4) {
+            seconds = Int(String(self.suffix(2))) ?? 0
+            minutes = Int(String(self.prefix(2))) ?? 0
+        } else if (self.count == 5) {
+            seconds = Int(String(self.suffix(2))) ?? 0
+            hours = Int(String(self.prefix(1))) ?? 0
+            minutes = Int(String(String(self.prefix(3)).suffix(2))) ?? 0
+        } else {
+            seconds = Int(String(self.suffix(2))) ?? 0
+            hours = Int(String(self.prefix(2))) ?? 0
+            minutes = Int(String(String(self.prefix(4)).suffix(2))) ?? 0
+        }
+        
+        
+        value = NSNumber(value: (seconds + 60*minutes + 3600*hours))
+        
+        return value
+    }
+    
+}
+
+extension TimeInterval {
 
     func stringFromTimeInterval(precisionSetting: String) -> String {
 
