@@ -16,23 +16,23 @@ struct EditableTimeView: View {
     
     @State var value = ""
     
+    @State var isFirstResponder = false
+    
     var update: () -> ()
+    
+    
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             HStack(alignment: .bottom, spacing: 5) {
-                Text(value.calculateTime().stringFromTimeInterval(precisionSetting: "Off"))
+                Text(value.count == 0 ? "00:00": value.stringToTime())
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .animation(nil)
                     .onAppear() {
-//                        print("appear")
-//                        print(self.time?.intValue)
                         self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
                         print("value:\(self.value)")
-//                        print(self.value)
-//                        print(self.value.calculateTime())
-//                        print(self.value.calculateTime().stringFromTimeInterval(precisionSetting: "Off"))
+
                 }
                 Text(title)
                 .font(.headline)
@@ -42,21 +42,23 @@ struct EditableTimeView: View {
                 .animation(nil)
             }
             
-            TextField("", text: $value, onEditingChanged: { (editing) in
-                if editing {
-                    self.$value.wrappedValue = ""
-                    self.opacity(0.5)
-                }
+            TextField("00:00", text: $value, onEditingChanged: { _ in
+              print(self.$value)
             }) {
-                print("enter")
-                print(self.value.calculateTime())
+                if(self.value == "") {
+                    self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
+                }
                 self.time = self.value.calculateTime() as NSNumber
+                self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
                 self.update()
             }
             .introspectTextField { textField in
                 textField.font = UIFont(name: "AppleColorEmoji", size: 34)
                 textField.font = .systemFont(ofSize: 34, weight: .bold)
                 textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+                if (self.isFirstResponder) {
+                    textField.becomeFirstResponder()
+                }
 
             }
             .font(.system(size: 34, weight: .bold))

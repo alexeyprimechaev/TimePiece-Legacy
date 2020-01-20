@@ -14,6 +14,12 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
     
+    @State var showingNewTimerView = false
+    
+    func delete() {
+        context.delete(timers[timers.count-1])
+    }
+    
     let strings = ["Hey"]
     
     var body: some View {
@@ -38,7 +44,10 @@ struct ContentView: View {
                 
                 // Button
                 ASCollectionViewSection(id: 2) {
-                    TimerButton(onTap: {TimerPlus.newTimer(totalTime: 180, title: "Bacon 🥓", context: self.context)})
+                    TimerButton(onTap: {
+                        TimerPlus.newTimer(totalTime: 60, title: "Timer", context: self.context)
+                        self.showingNewTimerView = true
+                    })
                     .padding(.vertical, 2)
                     .contextMenu {
                         Button(action: {
@@ -58,6 +67,9 @@ struct ContentView: View {
                         }) {
                             Text("1 Hour 2 Secs")
                         }
+                    }
+                    .sheet(isPresented: $showingNewTimerView) {
+                        NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.delete()})
                     }
                 }
                 

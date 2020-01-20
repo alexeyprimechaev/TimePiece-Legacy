@@ -167,10 +167,12 @@ extension String {
             seconds = Int(String(self.suffix(2))) ?? 0
             hours = Int(String(self.prefix(1))) ?? 0
             minutes = Int(String(String(self.prefix(3)).suffix(2))) ?? 0
-        } else {
+        } else if (self.count == 6) {
             seconds = Int(String(self.suffix(2))) ?? 0
             hours = Int(String(self.prefix(2))) ?? 0
             minutes = Int(String(String(self.prefix(4)).suffix(2))) ?? 0
+        } else {
+            seconds = Int(self) ?? 0
         }
         
         print("seconds:\(seconds)")
