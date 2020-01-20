@@ -31,7 +31,6 @@ struct EditableTimeView: View {
                     .animation(nil)
                     .onAppear() {
                         self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
-                        print("value:\(self.value)")
 
                 }
                 Text(title)
@@ -42,9 +41,7 @@ struct EditableTimeView: View {
                 .animation(nil)
             }
             
-            TextField("00:00", text: $value, onEditingChanged: { _ in
-              print(self.$value)
-            }) {
+            TextField("00:00", text: $value) {
                 if(self.value == "") {
                     self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
                 }

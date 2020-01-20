@@ -147,8 +147,6 @@ extension String {
     }
     
     func calculateTime() -> TimeInterval {
-        print(self)
-        
         var value: TimeInterval
         
         var seconds = 0
@@ -174,13 +172,8 @@ extension String {
         } else {
             seconds = Int(self) ?? 0
         }
-        
-        print("seconds:\(seconds)")
-        print("minutes:\(minutes)")
-        print("hours:\(hours)")
+
         value = TimeInterval(seconds + 60*minutes + 3600*hours)
-        
-        print(value)
         
         return value
     }

@@ -55,7 +55,6 @@ struct TimerDetailView: View {
                         EditableTimeView(time: $timer.totalTime, title: "Total", update: {
                             self.timer.reset()
                             self.timer.currentTime = self.timer.totalTime
-                            print("fuck")
                         })
                     } else {
                         HStack() {
@@ -67,7 +66,6 @@ struct TimerDetailView: View {
                             EditableTimeView(time: $timer.totalTime, title: "Total", update: {
                                 self.timer.reset()
                                 self.timer.currentTime = self.timer.totalTime
-                                print("fuck")
                             })
                         }
                     }

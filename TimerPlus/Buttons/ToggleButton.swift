@@ -47,8 +47,6 @@ struct ToggleButton: View {
         .buttonStyle(DeepButtonStyle())
         .onAppear {
             for i in 0...self.values.count-1 {
-                print(i)
-                print(self.values.count)
                 if (self.value == self.values[i]) {
                     self.index = i
                     break
