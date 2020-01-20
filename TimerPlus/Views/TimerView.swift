@@ -68,15 +68,21 @@ struct TimerView: View {
         .padding(7)
         .fixedSize()
         .contextMenu {
+            
             Button(action: {
-                self.showingDetail.toggle()
+                self.timer.reset()
             }) {
-                Text("Show Details")
+                Text("Stop")
             }
             Button(action: {
                 self.context.delete(self.timer)
             }) {
                 Text("Delete")
+            }
+            Button(action: {
+                self.showingDetail.toggle()
+            }) {
+                Text("Show Details")
             }
         }
         .sheet(isPresented: $showingDetail) {
