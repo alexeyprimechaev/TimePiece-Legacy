@@ -48,7 +48,9 @@ struct PropertyView: View {
                     .opacity(0.5)
             }
             if(title == "Title") {
-                    TextField("", text: $value) {
+                TextField("", text: $value, onEditingChanged: {_ in 
+                    self.timer.title = self.value
+                }) {
                         self.timer.title = self.value
                     }
                     .onAppear() {

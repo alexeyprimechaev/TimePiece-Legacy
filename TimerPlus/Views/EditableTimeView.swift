@@ -41,7 +41,10 @@ struct EditableTimeView: View {
                 .animation(nil)
             }
             
-            TextField("00:00", text: $value) {
+            TextField("00:00", text: $value, onEditingChanged: { _ in
+                self.time = self.value.calculateTime() as NSNumber
+                self.update()
+            }) {
                 if(self.value == "") {
                     self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
                 }

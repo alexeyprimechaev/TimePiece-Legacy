@@ -45,10 +45,10 @@ struct NewTimerView: View {
                                             
                     PropertyView(title: "Title", timer: self.timer ?? TimerPlus(context: self.context))
                     
-                    EditableTimeView(time: $timer.totalTime, title: "Total", isFirstResponder: true, update: {
+                    EditableTimeView(time: $timer.totalTime, title: "Total", isFirstResponder: false, update: {
                         self.timer.reset()
                         self.timer.currentTime = self.timer.totalTime
-                        self.onDismiss()
+                        //self.onDismiss()
                     })
                     
                 }.padding(.leading, 21)
