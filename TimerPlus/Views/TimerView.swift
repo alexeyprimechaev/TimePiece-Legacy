@@ -54,30 +54,6 @@ struct TimerView: View {
         .buttonStyle(DeepButtonStyle())
         .padding(7)
         .fixedSize()
-        .contextMenu {
-            
-            Button(action: {
-                self.timer.reset()
-            }) {
-                Text("Stop")
-            }
-            Button(action: {
-                self.context.delete(self.timer)
-            }) {
-                Text("Delete")
-            }
-            Button(action: {
-                self.showingDetail.toggle()
-            }) {
-                Text("Show Details")
-            }
-        }
-        .sheet(isPresented: $showingDetail) {
-            TimerDetailView(timer: self.timer, onDismiss: {self.showingDetail = false}, delete: {
-                self.context.delete(self.timer)
-                self.showingDetail = false
-            })
-        }
     
         
     }

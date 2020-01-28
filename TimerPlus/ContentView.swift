@@ -15,12 +15,13 @@ struct ContentView: View {
     @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
     
     @State var showingNewTimerView = false
+    @State var showingDetailTimerView = false
+    
+    @State var selectedTimer = 0
     
     func delete() {
         context.delete(timers[timers.count-1])
     }
-    
-    let strings = ["Hey"]
     
     var body: some View {
         ASCollectionView(
@@ -37,8 +38,9 @@ struct ContentView: View {
                 },
                 
                 // Timers
-                ASCollectionViewSection(id: 1, data: timers, dataID: \.self) { timer, _ in
+                ASCollectionViewSection(id: 1, data: timers, dataID: \.self, contextMenuProvider: contextMenuProvider) { timer, _ in
                     TimerView(timer: timer).padding(.vertical, 2).fixedSize()
+                        
                 },
                 
                 // Button
@@ -60,8 +62,47 @@ struct ContentView: View {
             fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return fl
         }
+        .sheet(isPresented: self.$showingDetailTimerView) {
+            TimerDetailView(timer: self.timers[self.selectedTimer], onDismiss: {self.showingDetailTimerView = false}, delete: {
+                self.context.delete(self.timers[self.selectedTimer])
+                    self.showingDetailTimerView = false
+                })
+            }
 
         .padding(.leading, 21)
+    }
+    
+    func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
+            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "arrow.left")) { action in }
+            let deleteConfirmation = UIAction(title: "Delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { action in
+                self.context.delete(timer)
+            }
+
+            // The delete sub-menu is created like the top-level menu, but we also specify an image and options
+            let delete = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+
+            let pause = UIAction(title: timer.isPaused?.boolValue ?? true ? "Play" : "Pause", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "play" : "pause")) { action in
+                timer.togglePause()
+            }
+            
+            let stop = UIAction(title: "Stop", image: UIImage(systemName: "stop"), attributes: .destructive) { action in
+                timer.reset()
+            }
+
+            // The edit menu adds delete as a child, just like an action
+            let edit = UIMenu(title: "Edit...", options: .displayInline, children: [pause, stop])
+
+            let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis.circle")) { action in
+                self.selectedTimer = self.timers.firstIndex(of: timer) ?? 0
+                self.showingDetailTimerView = true
+            }
+
+            // Then we add edit as a child of the main menu
+            let mainMenu = UIMenu(title: "", children: [edit, info])
+            return mainMenu
+        }
+        return configuration
     }
     
     

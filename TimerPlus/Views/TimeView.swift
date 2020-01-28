@@ -26,6 +26,7 @@ struct TimeView: View {
                 ZStack(alignment: .bottomLeading) {
                     Text("\((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off"))")
                         .titleStyle()
+                        .animation(nil)
                     if ((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off").count == 8) {
                         Text("88:88:88")
                         .titleStyle()
