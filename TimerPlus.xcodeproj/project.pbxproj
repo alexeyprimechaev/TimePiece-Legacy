@@ -26,6 +26,7 @@
 		8088473B23C2AE79001D1A6E /* TimerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerDetailView.swift */; };
 		80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* MainButton.swift */; };
 		80B1F66223D208CB00B4E1D1 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B1F66123D208CB00B4E1D1 /* TimerButton.swift */; };
+		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		8088473A23C2AE79001D1A6E /* TimerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailView.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		80B1F66123D208CB00B4E1D1 /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
+		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				8064DA4E23D534CC00F97037 /* Timer+.entitlements */,
 				80D141E523CE175D00FD2B5A /* Delegates */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
+				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
 				80D141E323CE171300FD2B5A /* Views */,
 				80D141E423CE175200FD2B5A /* Buttons */,
 				80D141E623CE176D00FD2B5A /* Data */,
@@ -108,13 +111,12 @@
 		80D141E323CE171300FD2B5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8021ADAB23D51F080090BA7F /* NewTimerView.swift */,
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
-				80B1F66123D208CB00B4E1D1 /* TimerButton.swift */,
+				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
 				802A026C23CFBA5600512B39 /* PropertyView.swift */,
 				807A0F4023D4C66C008B0E24 /* TimeView.swift */,
 				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
-				8021ADAB23D51F080090BA7F /* NewTimerView.swift */,
-				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,6 +124,7 @@
 		80D141E423CE175200FD2B5A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				80B1F66123D208CB00B4E1D1 /* TimerButton.swift */,
 				80ACD6B623CBE435000C49DC /* MainButton.swift */,
 				801FFBB123CF9AF50040A12C /* ToggleButton.swift */,
 			);
@@ -231,6 +234,7 @@
 				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,
 				80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */,
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
+				80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */,
 				80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */,
 				80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */,
 				80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */,

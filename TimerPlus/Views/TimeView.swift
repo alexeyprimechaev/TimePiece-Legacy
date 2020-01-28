@@ -15,6 +15,8 @@ struct TimeView: View {
     @Binding var precisionSetting: String?
     
     @State var title = String()
+    
+    @State var frame = String()
         
     var update: () -> ()?
     
@@ -23,36 +25,26 @@ struct TimeView: View {
             HStack(alignment: .bottom, spacing: 5) {
                 ZStack(alignment: .bottomLeading) {
                     Text("\((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off"))")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .animation(nil)
+                        .titleStyle()
                     if ((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off").count == 8) {
                         Text("88:88:88")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.primary)
+                        .titleStyle()
                         .opacity(0)
                     } else if ((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off").count == 5) {
                         Text("88:88")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.primary)
+                        .titleStyle()
                         .opacity(0)
                     } else {
                         Text("88:88:88.88")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.primary)
+                        .titleStyle()
                         .opacity(0)
                     }
                     
                 }
                 Text(title)
-                .font(.headline)
-                .fontWeight(.semibold)
-                .padding(.bottom, 5)
-                .opacity(0.5)
-                .animation(nil)
+                    .smallTitleStyle()
+                    .padding(.bottom, 5)
+                    .opacity(0.5)
             }
             
         }.padding(7)

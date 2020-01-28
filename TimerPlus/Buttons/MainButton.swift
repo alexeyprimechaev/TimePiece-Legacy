@@ -42,7 +42,7 @@ struct MainButton: View {
                     
                 }
                 .foregroundColor(color)
-                .font(.system(size: 17, weight: .semibold))
+                .smallTitleStyle()
             }.frame(height: 52)
         }
         

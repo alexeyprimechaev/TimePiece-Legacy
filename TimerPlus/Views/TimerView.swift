@@ -28,13 +28,8 @@ struct TimerView: View {
             ZStack(alignment: .bottomLeading) {
                 VStack(alignment: .leading) {
                     Text(timer.title ?? "New Timer")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.primary)
-                    Text("\((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.primary)
+                    
+                    Text("\((timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting ?? "Off"))")
                         .opacity(0.5)
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
@@ -44,26 +39,18 @@ struct TimerView: View {
                 }
                 if (self.value.count == 8) {
                     Text("88:88:88")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.primary)
-                    .opacity(0)
+                        .opacity(0)
                 } else if (self.value.count == 5) {
                     Text("88:88")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.primary)
-                    .opacity(0)
+                        .opacity(0)
                 } else {
                     Text("88:88:88.88")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.primary)
-                    .opacity(0)
+                        .opacity(0)
                 }
                 
             }
         }
+        .titleStyle()
         .buttonStyle(DeepButtonStyle())
         .padding(7)
         .fixedSize()

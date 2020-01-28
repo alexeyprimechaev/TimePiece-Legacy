@@ -30,8 +30,7 @@ struct ContentView: View {
                 // Title
                 ASCollectionViewSection(id: 0) {
                     Text("Timer+")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                        .titleStyle()
                         .padding(7)
                         .padding(.vertical, 12)
                         
@@ -49,25 +48,6 @@ struct ContentView: View {
                         self.showingNewTimerView = true
                     })
                     .padding(.vertical, 2)
-                    .contextMenu {
-                        Button(action: {
-                             TimerPlus.newTimer(totalTime: 1800, title: "Steak 🥩", context: self.context)
-                        }) {
-                            Text("Steak 🥩")
-                        }
-                        
-                        Button(action: {
-                             TimerPlus.newTimer(totalTime: 1200, title: "Soup 🍲", context: self.context)
-                        }) {
-                            Text("Soup 🍲")
-                        }
-                        
-                        Button(action: {
-                             TimerPlus.newTimer(totalTime: 3605, title: "Pie 🥧", context: self.context)
-                        }) {
-                            Text("1 Hour 2 Secs")
-                        }
-                    }
                     .sheet(isPresented: $showingNewTimerView) {
                         NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.delete()})
                     }

@@ -31,16 +31,13 @@ struct ToggleButton: View {
         }) {
             HStack(alignment: .bottom, spacing: 7) {
                 Text(title)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .titleStyle()
                     .opacity(0.5)
                 ForEach(values, id: \.self) { value in
                     Text(value)
-                        .font(.headline)
-                        .fontWeight(.semibold)
                         .padding(.bottom, 5)
                         .opacity(self.value == value ? 1 : 0.5)
-                }
+                }.smallTitleStyle()
                 
             }
         }
@@ -65,7 +62,7 @@ struct DeepButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
-            .opacity(configuration.isPressed ? 0.8 : 1.0)
+            .opacity(configuration.isPressed ? 0.5 : 1.0)
     }
 
 }

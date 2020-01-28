@@ -22,28 +22,20 @@ struct PropertyView: View {
             HStack(alignment: .bottom, spacing: 7) {
                 if(title == "Title") {
                     Text(value)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .opacity(1)
+                        .titleStyle()
                     
                 } else if (title == "Created at") {
                     Text(TimerPlus.dateFormatter.string(from: timer.createdAt ?? Date()))
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .opacity(1)
+                        .titleStyle()
                 } else if (title == "Left"){
                     Text("\((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .opacity(1)
+                        .titleStyle()
                 } else {
                     Text("\((self.timer.totalTime as! TimeInterval).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                        .titleStyle()
                 }
                 Text(title)
-                    .font(.headline)
-                    .fontWeight(.semibold)
+                    .smallTitleStyle()
                     .padding(.bottom, 5)
                     .opacity(0.5)
             }
@@ -62,8 +54,7 @@ struct PropertyView: View {
                         textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
 
                     }
-                    .font(.system(size: 34, weight: .bold))
-                    .opacity(1)
+                    .titleStyle()
                     .foregroundColor(Color.clear)
                     .accentColor(Color.primary)
             }

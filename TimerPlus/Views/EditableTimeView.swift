@@ -26,19 +26,14 @@ struct EditableTimeView: View {
         ZStack(alignment: .topLeading) {
             HStack(alignment: .bottom, spacing: 5) {
                 Text(value.count == 0 ? "00:00": value.stringToTime())
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .animation(nil)
+                    .titleStyle()
                     .onAppear() {
                         self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
-
-                }
+                    }
                 Text(title)
-                .font(.headline)
-                .fontWeight(.semibold)
-                .padding(.bottom, 5)
-                .opacity(0.5)
-                .animation(nil)
+                    .smallTitleStyle()
+                    .opacity(0.5)
+                    .padding(.bottom, 5)
             }
             
             TextField("00:00", text: $value, onEditingChanged: { _ in
@@ -61,8 +56,7 @@ struct EditableTimeView: View {
                 }
 
             }
-            .font(.system(size: 34, weight: .bold))
-            .opacity(1)
+            .titleStyle()
             .foregroundColor(Color.clear)
             .accentColor(Color.clear)
             

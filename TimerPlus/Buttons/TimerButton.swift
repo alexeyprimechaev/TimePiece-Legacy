@@ -18,15 +18,10 @@ struct TimerButton: View {
         }) {
             VStack(alignment: .leading) {
                 Text("New")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.primary)
+                    .titleStyle()
                 Text("+")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.primary)
+                    .titleStyle()
                     .opacity(0.5)
-                
             }
         }
         .buttonStyle(DeepButtonStyle())
