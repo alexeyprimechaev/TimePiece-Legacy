@@ -39,7 +39,7 @@ struct ContentView: View {
                 
                 // Timers
                 ASCollectionViewSection(id: 1, data: timers, dataID: \.self, contextMenuProvider: contextMenuProvider) { timer, _ in
-                    TimerView(timer: timer).padding(.vertical, 2).fixedSize()
+                    TimerView(timer: timer).fixedSize()
                         
                 },
                 
@@ -49,7 +49,6 @@ struct ContentView: View {
                         TimerPlus.newTimer(totalTime: 60, title: "Timer", context: self.context)
                         self.showingNewTimerView = true
                     })
-                    .padding(.vertical, 2)
                     .sheet(isPresented: $showingNewTimerView) {
                         NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.delete()})
                     }
@@ -59,6 +58,9 @@ struct ContentView: View {
         )
         .layout {
             let fl = AlignedFlowLayout()
+            fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
+            fl.minimumInteritemSpacing = 14
+            fl.minimumLineSpacing = 14
             fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return fl
         }
@@ -69,20 +71,25 @@ struct ContentView: View {
                 })
             }
 
-        .padding(.leading, 21)
     }
     
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
-            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "arrow.left")) { action in }
-            let deleteConfirmation = UIAction(title: "Delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { action in
-                self.context.delete(timer)
+            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle.fill")) { action in }
+            let deleteConfirmation = UIAction(title: timer.isPaused?.boolValue ?? true ? "Delete" : "Stop", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "trash.fill" : "stop.fill"), attributes: .destructive) { action in
+                if(timer.isPaused?.boolValue ?? false) {
+                    self.context.delete(timer)
+                    try? self.context.save()
+                } else {
+                    timer.reset()
+                }
+               
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+            let delete = UIMenu(title: timer.isPaused?.boolValue ?? true ? "Delete" : "Stop", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "trash.fill" : "stop.fill"), options: .destructive, children: [deleteCancel, deleteConfirmation])
 
-            let pause = UIAction(title: timer.isPaused?.boolValue ?? true ? "Play" : "Pause", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "play" : "pause")) { action in
+            let pause = UIAction(title: timer.isPaused?.boolValue ?? true ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "play.fill" : "pause.fill")) { action in
                 timer.togglePause()
             }
             
@@ -91,7 +98,7 @@ struct ContentView: View {
             }
 
             // The edit menu adds delete as a child, just like an action
-            let edit = UIMenu(title: "Edit...", options: .displayInline, children: [pause, stop])
+            let edit = UIMenu(title: "Edit...", options: .displayInline, children: [pause, delete])
 
             let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis.circle")) { action in
                 self.selectedTimer = self.timers.firstIndex(of: timer) ?? 0
