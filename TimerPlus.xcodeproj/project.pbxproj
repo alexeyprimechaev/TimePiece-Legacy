@@ -448,8 +448,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.2;
+				branch = dev;
+				kind = branch;
 			};
 		};
 		802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
