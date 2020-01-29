@@ -30,8 +30,12 @@ struct ContentView: View {
                 
                 // Title
                 ASCollectionViewSection(id: 0) {
-                    Text("Timer+")
-                        .titleStyle()
+                    HStack(alignment: .bottom, spacing: 4) {
+                        Text("Timer")
+                            .titleStyle()
+                        Image("PlusIcon")
+                            .padding(.bottom, 9)
+                    }
                         .padding(7)
                         .padding(.vertical, 12)
                         
@@ -48,7 +52,7 @@ struct ContentView: View {
                     TimerButton(onTap: {
                         TimerPlus.newTimer(totalTime: 60, title: "Timer", context: self.context)
                         self.showingNewTimerView = true
-                    })
+                    }).padding(.vertical, 12)
                     .sheet(isPresented: $showingNewTimerView) {
                         NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.delete()})
                     }
@@ -76,8 +80,8 @@ struct ContentView: View {
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle.fill")) { action in }
-            let deleteConfirmation = UIAction(title: timer.isPaused?.boolValue ?? true ? "Delete" : "Stop", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "trash.fill" : "stop.fill"), attributes: .destructive) { action in
-                if(timer.isPaused?.boolValue ?? false) {
+            let deleteConfirmation = UIAction(title: timer.isRunning?.boolValue ?? true ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning?.boolValue ?? true ? "stop.fill" : "trash.fill"), attributes: .destructive) { action in
+                if !(timer.isRunning?.boolValue ?? true) {
                     self.context.delete(timer)
                     try? self.context.save()
                 } else {
@@ -87,7 +91,7 @@ struct ContentView: View {
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isPaused?.boolValue ?? true ? "Delete" : "Stop", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "trash.fill" : "stop.fill"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+            let delete = UIMenu(title: timer.isRunning?.boolValue ?? true ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning?.boolValue ?? true ? "stop.fill" : "trash.fill"), options: .destructive, children: [deleteCancel, deleteConfirmation])
 
             let pause = UIAction(title: timer.isPaused?.boolValue ?? true ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "play.fill" : "pause.fill")) { action in
                 timer.togglePause()

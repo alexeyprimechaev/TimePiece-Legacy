@@ -60,6 +60,7 @@ struct EditableTimeView: View {
             .foregroundColor(Color.clear)
             .accentColor(Color.clear)
             
-        }.padding(7)
+        }.padding(.vertical, 7)
+        .padding(.horizontal, 7)
     }
 }

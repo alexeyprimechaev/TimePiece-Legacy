@@ -57,7 +57,7 @@ struct TimerDetailView: View {
                             self.timer.currentTime = self.timer.totalTime
                         })
                     } else {
-                        HStack() {
+                        HStack(alignment: .top) {
                             
                             if (timer.totalTime != timer.currentTime) {
                                 TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
