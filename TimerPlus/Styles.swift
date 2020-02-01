@@ -40,15 +40,15 @@ struct SmallTitleStyle: ViewModifier {
 }
 
 extension View {
-    func titleStyle(design: Font.Design? = .default) -> some View {
+    func titleStyle(design: Font.Design? = .rounded) -> some View {
         self.modifier(TitleStyle(design: design))
     }
     
-    func secondaryTitleStyle(design: Font.Design? = .default) -> some View {
+    func secondaryTitleStyle(design: Font.Design? = .rounded) -> some View {
         self.modifier(SecondaryTitleStyle(design: design))
     }
     
-    func smallTitleStyle(design: Font.Design? = .default) -> some View {
+    func smallTitleStyle(design: Font.Design? = .rounded) -> some View {
         self.modifier(SmallTitleStyle(design: design))
     }
 }
