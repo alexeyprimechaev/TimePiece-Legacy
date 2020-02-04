@@ -11,17 +11,18 @@ import ASCollectionView
 
 struct ContentView: View {
     
+    // MARK: Core Data Setup
+    
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
     
+    // MARK: State Variables
+    
     @State var showingNewTimerView = false
     @State var showingDetailTimerView = false
-    
     @State var selectedTimer = 0
     
-    func delete() {
-        context.delete(timers[timers.count-1])
-    }
+    // MARK: - Layout
     
     var body: some View {
         ASCollectionView(
@@ -74,8 +75,15 @@ struct ContentView: View {
                     self.showingDetailTimerView = false
                 })
             }
-
     }
+    
+    // MARK: - Supplementary Functions
+    
+    func delete() {
+        context.delete(timers[timers.count-1])
+    }
+    
+    // MARK: CollectionView Functions
     
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
@@ -116,9 +124,9 @@ struct ContentView: View {
         return configuration
     }
     
-    
-    
 }
+
+// MARK: CollectionView Layout
 
 class AlignedFlowLayout: UICollectionViewFlowLayout {
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool
@@ -212,6 +220,8 @@ class AlignedFlowLayout: UICollectionViewFlowLayout {
         return attributes
     }
 }
+
+// MARK: Previews
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
