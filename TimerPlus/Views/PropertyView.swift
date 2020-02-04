@@ -21,7 +21,7 @@ struct PropertyView: View {
         ZStack(alignment: .bottomLeading) {
             HStack(alignment: .bottom, spacing: 7) {
                 if(title == "Title") {
-                    Text(value)
+                    Text(timer.title)
                         .titleStyle()
                     
                 } else if (title == "Created at") {
@@ -40,11 +40,7 @@ struct PropertyView: View {
                     .opacity(0.5)
             }
             if(title == "Title") {
-                TextField("", text: $value, onEditingChanged: {_ in 
-                    self.timer.title = self.value
-                }) {
-                        self.timer.title = self.value
-                    }
+                TextField("", text: $timer.title)
                     .onAppear() {
                         self.value = self.timer.title
                     }
