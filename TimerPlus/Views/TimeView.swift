@@ -29,14 +29,14 @@ struct TimeView: View {
         ZStack(alignment: .topLeading) {
             HStack(alignment: .bottom, spacing: 5) {
                 ZStack(alignment: .bottomLeading) {
-                    Text("\(time.stringFromTimeInterval(precisionSetting: precisionSetting))")
+                    Text(time.stringFromTimeInterval(precisionSetting: precisionSetting))
                         .titleStyle()
                         .animation(nil)
-                    if (time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 8) {
+                    if time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 8 {
                         Text("88:88:88")
                         .titleStyle()
                         .opacity(0)
-                    } else if (time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 5) {
+                    } else if time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 5 {
                         Text("88:88")
                         .titleStyle()
                         .opacity(0)

@@ -206,7 +206,7 @@ extension String {
     func stringToTime() -> String {
         var string = self
         
-        if(string.count == 3) {
+        if string.count == 3 {
             string.insert(":", at: string.index(string.startIndex, offsetBy: 1))
         } else if (string.count == 4) {
             string.insert(":", at: string.index(string.startIndex, offsetBy: 2))
@@ -230,19 +230,19 @@ extension String {
         var minutes = 0
         var hours = 0
         
-        if(self.count <= 2) {
+        if self.count <= 2 {
             seconds = Int(self) ?? 0
-        } else if (self.count == 3){
+        } else if self.count == 3 {
             seconds = Int(String(self.suffix(2))) ?? 0
             minutes = Int(String(self.prefix(1))) ?? 0
-        } else if (self.count == 4) {
+        } else if self.count == 4 {
             seconds = Int(String(self.suffix(2))) ?? 0
             minutes = Int(String(self.prefix(2))) ?? 0
-        } else if (self.count == 5) {
+        } else if self.count == 5 {
             seconds = Int(String(self.suffix(2))) ?? 0
             hours = Int(String(self.prefix(1))) ?? 0
             minutes = Int(String(String(self.prefix(3)).suffix(2))) ?? 0
-        } else if (self.count == 6) {
+        } else if self.count == 6 {
             seconds = Int(String(self.suffix(2))) ?? 0
             hours = Int(String(self.prefix(2))) ?? 0
             minutes = Int(String(String(self.prefix(4)).suffix(2))) ?? 0
@@ -267,7 +267,7 @@ extension TimeInterval {
         let minutes = (time / 60) % 60
         let hours = (time / 3600)
         
-        if (hours > 0) {
+        if hours > 0 {
             return String(format: "%0.2d%0.2d%0.2d",hours,minutes,seconds)
         } else if (minutes>0) {
             return String(format: "%0.2d%0.2d",minutes,seconds)
@@ -288,26 +288,26 @@ extension TimeInterval {
         let hours = (time / 3600)
         
         
-        if(precisionSetting == "Smart") {
-            if (time < 60) {
+        if precisionSetting == "Smart" {
+            if time < 60 {
                 return String(format: "%0.2d.%0.2d",seconds,ms)
-            } else if (time<3600) {
+            } else if time<3600 {
                 return String(format: "%0.2d:%0.2d",minutes,seconds)
             } else {
                 return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
             }
-        } else if(precisionSetting == "On") {
-            if (time < 60) {
+        } else if precisionSetting == "On" {
+            if time < 60 {
                 return String(format: "%0.2d.%0.2d",seconds,ms)
-            } else if (time<3600) {
+            } else if time<3600 {
                 return String(format: "%0.2d:%0.2d.%0.2d",minutes,seconds,ms)
             } else {
                 return String(format: "%0.2d:%0.2d:%0.2d.%0.2d",hours,minutes,seconds,ms)
             }
         } else {
-            if (time < 60) {
+            if time < 60 {
                 return String(format: "%0.2d:%0.2d",minutes,seconds)
-            } else if (time<3600) {
+            } else if time<3600 {
                 return String(format: "%0.2d:%0.2d",minutes,seconds)
             } else {
                 return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)

@@ -47,7 +47,7 @@ struct TimerDetailView: View {
                         
                     PropertyView(title: "Title", timer: timer)
                     
-                    if (self.timer.totalTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count + (self.timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting)).count > 13) {
+                    if timer.totalTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
                         
                         if timer.totalTime != timer.currentTime {
                             TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})

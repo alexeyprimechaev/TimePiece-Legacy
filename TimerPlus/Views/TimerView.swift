@@ -39,18 +39,18 @@ struct TimerView: View {
                 VStack(alignment: .leading) {
                     Text(timer.title)
                     
-                    Text("\(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting))")
+                    Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting))
                         .opacity(0.5)
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
-                            self.value = "\(self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting))"
+                            self.value = self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting)
                     }
                     
                 }
-                if (self.value.count == 8) {
+                if self.value.count == 8 {
                     Text("88:88:88")
                         .opacity(0)
-                } else if (self.value.count == 5) {
+                } else if self.value.count == 5 {
                     Text("88:88")
                         .opacity(0)
                 } else {

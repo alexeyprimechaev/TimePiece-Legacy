@@ -20,18 +20,18 @@ struct PropertyView: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             HStack(alignment: .bottom, spacing: 7) {
-                if(title == "Title") {
+                if title == "Title" {
                     Text(timer.title)
                         .titleStyle()
                     
-                } else if (title == "Created at") {
+                } else if title == "Created at" {
                     Text(TimerPlus.dateFormatter.string(from: timer.createdAt))
                         .titleStyle()
-                } else if (title == "Left"){
-                    Text("\(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))")
+                } else if title == "Left" {
+                    Text(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
                         .titleStyle()
                 } else {
-                    Text("\((timer.totalTime).stringFromTimeInterval(precisionSetting: timer.precisionSetting))")
+                    Text((timer.totalTime).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
                         .titleStyle()
                 }
                 Text(title)
@@ -39,7 +39,7 @@ struct PropertyView: View {
                     .padding(.bottom, 5)
                     .opacity(0.5)
             }
-            if(title == "Title") {
+            if title == "Title" {
                 TextField("", text: $timer.title)
                     .onAppear() {
                         self.value = self.timer.title

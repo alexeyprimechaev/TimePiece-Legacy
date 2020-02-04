@@ -35,7 +35,7 @@ struct MainButton: View {
             
         //MARK: Action
         {
-        if (self.isPaused) {
+        if self.isPaused {
             self.onTap()
         } else {
             self.offTap()

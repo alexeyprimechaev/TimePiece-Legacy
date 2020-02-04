@@ -23,7 +23,7 @@ struct ToggleButton: View {
         //MARK: Action
         {
         
-        if(self.index < self.values.count - 1) {
+        if self.index < self.values.count - 1 {
             self.index += 1
             self.value = self.values[self.index]
         } else {
@@ -57,11 +57,11 @@ struct ToggleButton: View {
         //MARK: On Appear
         .onAppear {
             for i in 0...self.values.count-1 {
-                if (self.value == self.values[i]) {
+                if self.value == self.values[i] {
                     self.index = i
                     break
                 }
-                if (i == self.values.count-1) {
+                if i == self.values.count-1 {
                     self.value = self.values[0]
                 }
             }
