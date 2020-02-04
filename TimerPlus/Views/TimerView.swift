@@ -37,13 +37,13 @@ struct TimerView: View {
         {
             ZStack(alignment: .bottomLeading) {
                 VStack(alignment: .leading) {
-                    Text(timer.titleOpt)
+                    Text(timer.title)
                     
-                    Text("\(timer.currentTimeOpt.stringFromTimeInterval(precisionSetting: timer.precisionSettingOpt))")
+                    Text("\(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting))")
                         .opacity(0.5)
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
-                            self.value = "\(self.timer.currentTimeOpt.stringFromTimeInterval(precisionSetting: self.timer.precisionSettingOpt))"
+                            self.value = "\(self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting))"
                     }
                     
                 }

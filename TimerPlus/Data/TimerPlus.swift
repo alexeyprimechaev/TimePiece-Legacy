@@ -17,19 +17,19 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     
     //MARK: Main Properties
-    @NSManaged public var createdAt: Date?
-    @NSManaged public var isPaused: NSNumber?
-    @NSManaged public var isRunning: NSNumber?
-    @NSManaged public var currentTime: NSNumber?
-    @NSManaged public var totalTime: NSNumber?
-    @NSManaged public var timeStarted: Date?
-    @NSManaged public var timeFinished: Date?
-    @NSManaged public var title: String?
+    @NSManaged public var createdAtStored: Date?
+    @NSManaged public var isPausedStored: NSNumber?
+    @NSManaged public var isRunningStored: NSNumber?
+    @NSManaged public var currentTimeStored: NSNumber?
+    @NSManaged public var totalTimeStored: NSNumber?
+    @NSManaged public var timeStartedStored: Date?
+    @NSManaged public var timeFinishedStored: Date?
+    @NSManaged public var titleStored: String?
     
     //MARK: Setting Properties
-    @NSManaged public var soundSetting: String?
-    @NSManaged public var precisionSetting: String?
-    @NSManaged public var notificationSetting: String?
+    @NSManaged public var soundSettingStored: String?
+    @NSManaged public var precisionSettingStored: String?
+    @NSManaged public var notificationSettingStored: String?
     
     //MARK: Setting Collections
     static let soundSettings = ["Short", "Long"]
@@ -68,7 +68,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
         
         // User Input
         timer.title = title
-        timer.totalTime = totalTime as NSNumber
+        timer.totalTime = totalTime
         
         // Defaults
         timer.createdAt = Date()
@@ -76,7 +76,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
         timer.isRunning = false
         timer.currentTime = timer.totalTime
         timer.timeStarted = Date()
-        timer.timeFinished = timer.timeStarted?.addingTimeInterval(timer.currentTime as! TimeInterval)
+        timer.timeFinished = timer.timeStarted.addingTimeInterval(timer.currentTime)
     
         // Settings
         timer.soundSetting = soundSettings[0]
@@ -95,41 +95,41 @@ public class TimerPlus: NSManagedObject, Identifiable {
     //MARK: Toggle Pause
     func togglePause() {
         isRunning = true
-        if isPausedOpt {
-            timeStartedOpt = Date()
-            timeFinishedOpt = timeStartedOpt.addingTimeInterval(currentTimeOpt)
-            isPausedOpt = false
+        if isPaused {
+            timeStarted = Date()
+            timeFinished = timeStarted.addingTimeInterval(currentTime)
+            isPaused = false
             
         } else {
-            timeStartedOpt = Date()
-            currentTimeOpt = timeFinishedOpt.timeIntervalSince(timeStartedOpt)
-            isPausedOpt = true
+            timeStarted = Date()
+            currentTime = timeFinished.timeIntervalSince(timeStarted)
+            isPaused = true
         }
     }
     
     
     //MARK: Reset
     func reset() {
-        isRunningOpt = false
-        isPausedOpt = true
-        timeStartedOpt = Date()
-        currentTimeOpt = totalTimeOpt
-        timeFinishedOpt = timeStartedOpt.addingTimeInterval(currentTimeOpt)
+        isRunning = false
+        isPaused = true
+        timeStarted = Date()
+        currentTime = totalTime
+        timeFinished = timeStarted.addingTimeInterval(currentTime)
     }
     
     
     //MARK: Update time
     func updateTime() {
-        if !isPausedOpt {
-            timeStartedOpt = Date()
-            currentTimeOpt = timeFinishedOpt.timeIntervalSince(timeStartedOpt)
+        if !isPaused {
+            timeStarted = Date()
+            currentTime = timeFinished.timeIntervalSince(timeStarted)
             
-            if currentTimeOpt <= 0 {
-                currentTimeOpt = totalTimeOpt
-                timeStartedOpt = Date()
-                timeFinishedOpt = timeStartedOpt.addingTimeInterval(currentTimeOpt)
-                isPausedOpt = true
-                isRunningOpt = false
+            if currentTime <= 0 {
+                currentTime = totalTime
+                timeStarted = Date()
+                timeFinished = timeStarted.addingTimeInterval(currentTime)
+                isPaused = true
+                isRunning = false
             }
 
             
@@ -141,59 +141,59 @@ public class TimerPlus: NSManagedObject, Identifiable {
 
 //MARK: - Unwrappers
 extension TimerPlus {
-    var createdAtOpt: Date {
-        get { createdAt ?? Date() }
-        set { createdAt = newValue }
+    var createdAt: Date {
+        get { createdAtStored ?? Date() }
+        set { createdAtStored = newValue }
     }
     
-    var isPausedOpt: Bool {
-        get { isPaused?.boolValue ?? true }
-        set { isPaused = newValue as NSNumber }
+    var isPaused: Bool {
+        get { isPausedStored?.boolValue ?? true }
+        set { isPausedStored = newValue as NSNumber }
     }
     
-    var isRunningOpt: Bool {
-        get { isRunning?.boolValue ?? true }
-        set { isRunning = newValue as NSNumber }
+    var isRunning: Bool {
+        get { isRunningStored?.boolValue ?? true }
+        set { isRunningStored = newValue as NSNumber }
     }
     
-    var currentTimeOpt: TimeInterval {
-        get { currentTime as? TimeInterval ?? 0 }
-        set { currentTime = newValue as NSNumber }
+    var currentTime: TimeInterval {
+        get { currentTimeStored as? TimeInterval ?? 0 }
+        set { currentTimeStored = newValue as NSNumber }
     }
     
-    var totalTimeOpt: TimeInterval {
-        get { totalTime as? TimeInterval ?? 0 }
-        set { totalTime = newValue as NSNumber }
+    var totalTime: TimeInterval {
+        get { totalTimeStored as? TimeInterval ?? 0 }
+        set { totalTimeStored = newValue as NSNumber }
     }
     
-    var timeStartedOpt: Date {
-        get { timeStarted ?? Date() }
-        set { timeStarted = newValue }
+    var timeStarted: Date {
+        get { timeStartedStored ?? Date() }
+        set { timeStartedStored = newValue }
     }
     
-    var timeFinishedOpt: Date {
-        get { timeFinished ?? Date() }
-        set { timeFinished = newValue }
+    var timeFinished: Date {
+        get { timeFinishedStored ?? Date() }
+        set { timeFinishedStored = newValue }
     }
     
-    var titleOpt: String {
-        get { title ?? "Found Nil" }
-        set { title = newValue }
+    var title: String {
+        get { titleStored ?? "Found Nil" }
+        set { titleStored = newValue }
     }
     
-    var soundSettingOpt: String {
-        get { soundSetting ?? TimerPlus.soundSettings[0] }
-        set { soundSetting = newValue }
+    var soundSetting: String {
+        get { soundSettingStored ?? TimerPlus.soundSettings[0] }
+        set { soundSettingStored = newValue }
     }
     
-    var precisionSettingOpt: String {
-        get { precisionSetting ?? TimerPlus.precisionSettings[0] }
-        set { precisionSetting = newValue }
+    var precisionSetting: String {
+        get { precisionSettingStored ?? TimerPlus.precisionSettings[0] }
+        set { precisionSettingStored = newValue }
     }
     
-    var notificationSettingOpt: String {
-        get { notificationSetting ?? TimerPlus.notificationSettings[0] }
-        set { notificationSetting = newValue }
+    var notificationSetting: String {
+        get { notificationSettingStored ?? TimerPlus.notificationSettings[0] }
+        set { notificationSettingStored = newValue }
     }
 }
 
@@ -322,7 +322,7 @@ extension TimerPlus {
     static func getAllTimers() -> NSFetchRequest<TimerPlus> {
         let request: NSFetchRequest<TimerPlus> = TimerPlus.fetchRequest() as! NSFetchRequest<TimerPlus>
         
-        let sortDescriptor = NSSortDescriptor(key: "createdAt", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "createdAtStored", ascending: true)
         
         request.sortDescriptors = [sortDescriptor]
         

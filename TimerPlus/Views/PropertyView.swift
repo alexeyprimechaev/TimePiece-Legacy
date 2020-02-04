@@ -25,13 +25,13 @@ struct PropertyView: View {
                         .titleStyle()
                     
                 } else if (title == "Created at") {
-                    Text(TimerPlus.dateFormatter.string(from: timer.createdAtOpt))
+                    Text(TimerPlus.dateFormatter.string(from: timer.createdAt))
                         .titleStyle()
                 } else if (title == "Left"){
-                    Text("\(timer.timeFinishedOpt.timeIntervalSince(timer.timeStartedOpt).stringFromTimeInterval(precisionSetting: timer.precisionSettingOpt))")
+                    Text("\(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))")
                         .titleStyle()
                 } else {
-                    Text("\((timer.totalTimeOpt).stringFromTimeInterval(precisionSetting: timer.precisionSettingOpt))")
+                    Text("\((timer.totalTime).stringFromTimeInterval(precisionSetting: timer.precisionSetting))")
                         .titleStyle()
                 }
                 Text(title)
@@ -46,7 +46,7 @@ struct PropertyView: View {
                         self.timer.title = self.value
                     }
                     .onAppear() {
-                        self.value = self.timer.titleOpt
+                        self.value = self.timer.title
                     }
                     .introspectTextField { textField in
                         textField.font = UIFont(name: "AppleColorEmoji", size: 34)

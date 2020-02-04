@@ -13,7 +13,7 @@ struct ToggleButton: View {
     //MARK: - Properties
     @State var title = String()
     @State var values = [String]()
-    @Binding var value: String?
+    @Binding var value: String
     @State var index = Int()
     
     //MARK: - View
