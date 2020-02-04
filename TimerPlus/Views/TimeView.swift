@@ -20,7 +20,7 @@ struct TimeView: View {
     @State var title = String()
     @State var frame = String()
     
-    //MARK: Static Properties
+//    MARK: Static Properties
     var update: () -> ()?
     
     

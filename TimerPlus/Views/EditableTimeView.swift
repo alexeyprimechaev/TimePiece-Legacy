@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EditableTimeView: View {
     
-    @Binding var time: NSNumber?
+    @Binding var time: TimeInterval
     
     @State var title = String()
     
@@ -28,7 +28,7 @@ struct EditableTimeView: View {
                 Text(value.count == 0 ? "00:00": value.stringToTime())
                     .titleStyle()
                     .onAppear() {
-                        self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
+                        self.value = self.time.stringFromNumber()
                     }
                 Text(title)
                     .smallTitleStyle()
@@ -37,14 +37,14 @@ struct EditableTimeView: View {
             }
             
             TextField("00:00", text: $value, onEditingChanged: { _ in
-                self.time = self.value.calculateTime() as NSNumber
+                self.time = self.value.calculateTime()
                 self.update()
             }) {
-                if(self.value == "") {
-                    self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
+                if self.value == "" {
+                    self.value = self.time.stringFromNumber()
                 }
-                self.time = self.value.calculateTime() as NSNumber
-                self.value = ((self.time?.doubleValue ?? 0) as TimeInterval).stringFromNumber()
+                self.time = self.value.calculateTime()
+                self.value = self.time.stringFromNumber()
                 self.update()
             }
             .introspectTextField { textField in
