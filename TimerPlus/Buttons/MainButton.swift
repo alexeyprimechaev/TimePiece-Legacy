@@ -10,28 +10,41 @@ import SwiftUI
 
 struct MainButton: View {
     
-    @State var color: Color
+//MARK: - Properties
     
+    
+    
+    //MARK: Dynamic Properties
+    @State var color: Color
     @Binding var isPaused: NSNumber?
     
+    
+    //MARK: Configured Properties
     var offTitle = String()
     var onTitle = String()
     
     var offIcon = String()
     var onIcon = String()
-        
-    var onTap: () -> ()
     
+    var onTap: () -> ()
     var offTap: () -> ()
     
+//MARK: - View
     var body: some View {
-        Button(action: {
-            if (self.isPaused?.boolValue ?? false) {
-                self.onTap()
-            } else {
-                self.offTap()
-            }
-        }) {
+        Button(action:
+            
+        //MARK: Action
+        {
+        if (self.isPaused?.boolValue ?? false) {
+            self.onTap()
+        } else {
+            self.offTap()
+        }
+    })
+            
+            
+        //MARK: Layout
+        {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(Color("button.gray"))

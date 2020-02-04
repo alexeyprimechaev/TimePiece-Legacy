@@ -10,25 +10,32 @@ import SwiftUI
 
 struct ToggleButton: View {
     
+    //MARK: - Properties
     @State var title = String()
-    
     @State var values = [String]()
-    
     @Binding var value: String?
-    
     @State var index = Int()
-            
+    
+    //MARK: - View
     var body: some View {
-        Button(action: {
-            if(self.index < self.values.count - 1) {
-                self.index += 1
-                self.value = self.values[self.index]
-            } else {
-                self.index = 0
-                self.value = self.values[self.index]
-            }
         
-        }) {
+        Button(action:
+        //MARK: Action
+        {
+        
+        if(self.index < self.values.count - 1) {
+            self.index += 1
+            self.value = self.values[self.index]
+        } else {
+            self.index = 0
+            self.value = self.values[self.index]
+        }
+    
+    })
+            
+    
+        //MARK: Layout
+        {
             HStack(alignment: .bottom, spacing: 7) {
                 Text(title)
                     .titleStyle()
@@ -41,7 +48,13 @@ struct ToggleButton: View {
                 
             }
         }
+            
+            
+        //MARK: Styling
         .buttonStyle(DeepButtonStyle())
+            
+            
+        //MARK: On Appear
         .onAppear {
             for i in 0...self.values.count-1 {
                 if (self.value == self.values[i]) {
@@ -57,13 +70,5 @@ struct ToggleButton: View {
     }
 }
 
-struct DeepButtonStyle: ButtonStyle {
 
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
-            .opacity(configuration.isPressed ? 0.5 : 1.0)
-    }
-
-}
 

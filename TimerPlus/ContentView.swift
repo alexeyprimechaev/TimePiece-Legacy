@@ -11,27 +11,27 @@ import ASCollectionView
 
 struct ContentView: View {
     
-// MARK: - Variable Defenition
+//MARK: - Variable Defenition
     
     
 
-    // MARK: Core Data Setup
+    //MARK: Core Data Setup
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
     
     
-    // MARK: State Variables
+    //MARK: State Variables
     @State var showingNewTimerView = false
     @State var showingDetailTimerView = false
     @State var selectedTimer = 0
     
-// MARK: - View
+//MARK: - View
     
     var body: some View {
         ASCollectionView(
             sections:
             [
-        // MARK: Title
+        //MARK: Title
                 ASCollectionViewSection(id: 0) {
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("Timer")
@@ -45,14 +45,14 @@ struct ContentView: View {
                 },
                 
                 
-        // MARK: Timers
+        //MARK: Timers
                 ASCollectionViewSection(id: 1, data: timers, dataID: \.self, contextMenuProvider: contextMenuProvider) { timer, _ in
                     TimerView(timer: timer).fixedSize()
                         
                 },
                 
                 
-        // MARK: Button
+        //MARK: Button
                 ASCollectionViewSection(id: 2) {
                     TimerButton(onTap: {
                         TimerPlus.newTimer(totalTime: 60, title: "Timer", context: self.context)
@@ -65,7 +65,7 @@ struct ContentView: View {
             ]
         )
             
-        // MARK: Layout Configuration
+        //MARK: Layout Configuration
         .layout {
             let fl = AlignedFlowLayout()
             fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
@@ -76,7 +76,7 @@ struct ContentView: View {
         }
         
             
-        // MARK: Sheet
+        //MARK: Sheet
         .sheet(isPresented: self.$showingDetailTimerView) {
             TimerDetailView(timer: self.timers[self.selectedTimer], onDismiss: {self.showingDetailTimerView = false}, delete: {
                 self.context.delete(self.timers[self.selectedTimer])
@@ -85,13 +85,13 @@ struct ContentView: View {
             }
     }
     
-// MARK: - Supplementary Functions
+//MARK: - Supplementary Functions
     
     func delete() {
         context.delete(timers[timers.count-1])
     }
     
-    // MARK: CollectionView Functions
+    //MARK: CollectionView Functions
     
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
@@ -113,9 +113,6 @@ struct ContentView: View {
                 timer.togglePause()
             }
             
-            let stop = UIAction(title: "Stop", image: UIImage(systemName: "stop"), attributes: .destructive) { action in
-                timer.reset()
-            }
 
             // The edit menu adds delete as a child, just like an action
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: [pause, delete])
@@ -134,7 +131,7 @@ struct ContentView: View {
     
 }
 
-// MARK: - CollectionView Layout
+//MARK: - CollectionView Layout
 
 class AlignedFlowLayout: UICollectionViewFlowLayout {
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool
@@ -229,7 +226,7 @@ class AlignedFlowLayout: UICollectionViewFlowLayout {
     }
 }
 
-// MARK: - Previews
+//MARK: - Previews
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

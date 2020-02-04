@@ -10,12 +10,22 @@ import SwiftUI
 
 struct TimerButton: View {
     
+    //MARK: - Properties
     var onTap: () -> ()
     
+    
+    //MARK: - View
     var body: some View {
-        Button(action: {
+        Button(action:
+            
+        //MARK: Action
+        {
             self.onTap()
-        }) {
+        })
+        
+            
+        //MARK: Layout
+        {
             VStack(alignment: .leading) {
                 Text("New")
                     .titleStyle()
@@ -24,6 +34,9 @@ struct TimerButton: View {
                     .opacity(0.5)
             }
         }
+            
+            
+        //MARK: Styling
         .buttonStyle(DeepButtonStyle())
         .padding(7)
         .fixedSize()

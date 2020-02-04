@@ -43,7 +43,7 @@ struct NewTimerView: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
-                    PropertyView(title: "Title", timer: self.timer ?? TimerPlus(context: self.context))
+                    PropertyView(title: "Title", timer: self.timer )
                     
                     EditableTimeView(time: $timer.totalTime, title: "Total", isFirstResponder: false, update: {
                         self.timer.reset()

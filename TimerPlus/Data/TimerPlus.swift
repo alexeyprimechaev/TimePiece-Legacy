@@ -12,11 +12,11 @@ import CoreData
 
 public class TimerPlus: NSManagedObject, Identifiable {
     
-// MARK: - Properties
+//MARK: - Properties
     
     
     
-    // MARK: Main Properties
+    //MARK: Main Properties
     @NSManaged public var createdAt: Date?
     @NSManaged public var isPaused: NSNumber?
     @NSManaged public var isRunning: NSNumber?
@@ -26,17 +26,17 @@ public class TimerPlus: NSManagedObject, Identifiable {
     @NSManaged public var timeFinished: Date?
     @NSManaged public var title: String?
     
-    // MARK: Setting Properties
+    //MARK: Setting Properties
     @NSManaged public var soundSetting: String?
     @NSManaged public var precisionSetting: String?
     @NSManaged public var notificationSetting: String?
     
-    // MARK: Setting Collections
+    //MARK: Setting Collections
     static let soundSettings = ["Short", "Long"]
     static let precisionSettings = ["On", "Off", "Smart"]
     static let notificationSettings = ["On", "Off"]
     
-    // MARK: Formatters
+    //MARK: Formatters
     static let dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
         formatter.dateFormat = "MMM dd HH:mm"
@@ -58,11 +58,11 @@ public class TimerPlus: NSManagedObject, Identifiable {
         return formatter
     }()
     
-// MARK: - Functions
+//MARK: - Functions
     
     
     
-    // MARK: Creation (in context)
+    //MARK: Creation (in context)
     static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext) {
         let timer = TimerPlus(context: context)
         
@@ -92,7 +92,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     }
     
     
-    // MARK: Toggle Pause
+    //MARK: Toggle Pause
     func togglePause() {
         self.isRunning = true
         if(self.isPaused ?? true).boolValue {
@@ -109,7 +109,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     }
     
     
-    // MARK: Reset
+    //MARK: Reset
     func reset() {
         self.isRunning = false
         self.isPaused = true
@@ -119,7 +119,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     }
     
     
-    // MARK: Update time
+    //MARK: Update time
     func updateTime() {
         if !(self.isPaused?.boolValue ?? true
             ) {
@@ -141,11 +141,11 @@ public class TimerPlus: NSManagedObject, Identifiable {
 
 }
 
-// MARK: - Extentions
+//MARK: - Converter Functions
 
 extension String {
     
-    // MARK: String to Time
+    //MARK: String to Time
     func stringToTime() -> String {
         var string = self
         
@@ -165,7 +165,7 @@ extension String {
     }
     
     
-    // MARK: Calculate Time
+    //MARK: Calculate Time
     func calculateTime() -> TimeInterval {
         var value: TimeInterval
         
@@ -201,7 +201,7 @@ extension String {
 
 extension TimeInterval {
     
-    // MARK: String From Number
+    //MARK: String From Number
     func stringFromNumber() -> String {
         
         let time = NSInteger(self)
@@ -220,7 +220,7 @@ extension TimeInterval {
     }
     
     
-    // MARK: String From TimeInterval
+    //MARK: String From TimeInterval
     func stringFromTimeInterval(precisionSetting: String) -> String {
 
         let time = NSInteger(self)
@@ -260,7 +260,7 @@ extension TimeInterval {
     }
 }
 
-// MARK: - CoreData
+//MARK: - CoreData
 extension TimerPlus {
     static func getAllTimers() -> NSFetchRequest<TimerPlus> {
         let request: NSFetchRequest<TimerPlus> = TimerPlus.fetchRequest() as! NSFetchRequest<TimerPlus>
