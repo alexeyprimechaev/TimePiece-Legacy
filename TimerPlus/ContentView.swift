@@ -11,6 +11,8 @@ import ASCollectionView
 
 struct ContentView: View {
     
+    // MARK: - Variable Defenition
+    
     // MARK: Core Data Setup
     
     @Environment(\.managedObjectContext) var context
@@ -126,7 +128,7 @@ struct ContentView: View {
     
 }
 
-// MARK: CollectionView Layout
+// MARK: - CollectionView Layout
 
 class AlignedFlowLayout: UICollectionViewFlowLayout {
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool
@@ -221,7 +223,7 @@ class AlignedFlowLayout: UICollectionViewFlowLayout {
     }
 }
 
-// MARK: Previews
+// MARK: - Previews
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
