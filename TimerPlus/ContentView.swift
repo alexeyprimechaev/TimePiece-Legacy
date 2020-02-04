@@ -30,7 +30,6 @@ struct ContentView: View {
         ASCollectionView(
             sections:
             [
-                
                 // Title
                 ASCollectionViewSection(id: 0) {
                     HStack(alignment: .bottom, spacing: 4) {
@@ -60,9 +59,10 @@ struct ContentView: View {
                         NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.delete()})
                     }
                 }
-                
             ]
         )
+            
+        // Layout
         .layout {
             let fl = AlignedFlowLayout()
             fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
@@ -71,6 +71,8 @@ struct ContentView: View {
             fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return fl
         }
+            
+        // Sheet
         .sheet(isPresented: self.$showingDetailTimerView) {
             TimerDetailView(timer: self.timers[self.selectedTimer], onDismiss: {self.showingDetailTimerView = false}, delete: {
                 self.context.delete(self.timers[self.selectedTimer])
