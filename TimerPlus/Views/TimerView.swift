@@ -10,30 +10,40 @@ import SwiftUI
 import UserNotifications
 
 struct TimerView: View {
+//MARK: - Properties
     
+    //MARK: Dynamic Propertiess
     @ObservedObject var timer = TimerPlus()
-    
     @State var showingDetail = false
-    
     @State var value = "88:88"
-        
+    
+    //MARK: CoreData
     @Environment(\.managedObjectContext) var context
 
+    
+//MARK: - View
     var body: some View {
         
         
-        Button(action: {
+        Button(action:
+            
+        //MARK: Action
+        {
             self.timer.togglePause()
-        }) {
+        })
+            
+            
+        //MARK: Layout
+        {
             ZStack(alignment: .bottomLeading) {
                 VStack(alignment: .leading) {
-                    Text(timer.title ?? "New Timer")
+                    Text(timer.titleOpt)
                     
-                    Text("\((timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting ?? "Off"))")
+                    Text("\(timer.currentTimeOpt.stringFromTimeInterval(precisionSetting: timer.precisionSettingOpt))")
                         .opacity(0.5)
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
-                            self.value = "\((self.timer.timeFinished ?? Date()).timeIntervalSince(self.timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off"))"
+                            self.value = "\(self.timer.currentTimeOpt.stringFromTimeInterval(precisionSetting: self.timer.precisionSettingOpt))"
                     }
                     
                 }
@@ -50,6 +60,9 @@ struct TimerView: View {
                 
             }
         }
+        
+            
+        //MARK: Styling
         .titleStyle()
         .buttonStyle(DeepButtonStyle())
         .padding(7)
@@ -59,6 +72,7 @@ struct TimerView: View {
     }
 }
 
+//MARK: - Previews
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         TimerView()

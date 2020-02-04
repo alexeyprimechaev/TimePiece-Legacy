@@ -11,8 +11,8 @@ import SwiftUI
 struct TimerButton: View {
     
     //MARK: - Properties
-    var onTap: () -> ()
     
+    var onTap: () -> ()
     
     //MARK: - View
     var body: some View {

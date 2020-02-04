@@ -10,28 +10,33 @@ import SwiftUI
 
 struct TimeView: View {
     
-    @Binding var time: NSNumber?
+//MARK: - Properties
     
-    @Binding var precisionSetting: String?
     
+    
+    //MARK: Dynamic Properties
+    @Binding var time: TimeInterval
+    @Binding var precisionSetting: String
     @State var title = String()
-    
     @State var frame = String()
-        
+    
+    //MARK: Static Properties
     var update: () -> ()?
     
+    
+//MARK: - View
     var body: some View {
         ZStack(alignment: .topLeading) {
             HStack(alignment: .bottom, spacing: 5) {
                 ZStack(alignment: .bottomLeading) {
-                    Text("\((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off"))")
+                    Text("\(time.stringFromTimeInterval(precisionSetting: precisionSetting))")
                         .titleStyle()
                         .animation(nil)
-                    if ((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off").count == 8) {
+                    if (time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 8) {
                         Text("88:88:88")
                         .titleStyle()
                         .opacity(0)
-                    } else if ((time as! TimeInterval).stringFromTimeInterval(precisionSetting: precisionSetting ?? "Off").count == 5) {
+                    } else if (time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 5) {
                         Text("88:88")
                         .titleStyle()
                         .opacity(0)

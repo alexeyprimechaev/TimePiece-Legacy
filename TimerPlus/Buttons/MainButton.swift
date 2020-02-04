@@ -16,10 +16,10 @@ struct MainButton: View {
     
     //MARK: Dynamic Properties
     @State var color: Color
-    @Binding var isPaused: NSNumber?
+    @Binding var isPaused: Bool
     
     
-    //MARK: Configured Properties
+    //MARK: Static Properties
     var offTitle = String()
     var onTitle = String()
     
@@ -35,7 +35,7 @@ struct MainButton: View {
             
         //MARK: Action
         {
-        if (self.isPaused?.boolValue ?? false) {
+        if (self.isPaused) {
             self.onTap()
         } else {
             self.offTap()
@@ -49,9 +49,9 @@ struct MainButton: View {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(Color("button.gray"))
                 HStack() {
-                    Image(systemName: isPaused?.boolValue ?? false ? offIcon : onIcon)
-                        .padding(.bottom, onIcon == "trash.fill" && !(isPaused?.boolValue ?? false) ? 3 : 0)
-                    Text(isPaused?.boolValue ?? false ? offTitle : onTitle)
+                    Image(systemName: isPaused ? offIcon : onIcon)
+                        .padding(.bottom, onIcon == "trash.fill" && !isPaused ? 3 : 0)
+                    Text(isPaused ? offTitle : onTitle)
                     
                 }
                 .foregroundColor(color)

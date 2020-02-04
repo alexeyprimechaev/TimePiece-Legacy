@@ -96,8 +96,8 @@ struct ContentView: View {
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle.fill")) { action in }
-            let deleteConfirmation = UIAction(title: timer.isRunning?.boolValue ?? true ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning?.boolValue ?? true ? "stop.fill" : "trash.fill"), attributes: .destructive) { action in
-                if !(timer.isRunning?.boolValue ?? true) {
+            let deleteConfirmation = UIAction(title: timer.isRunningOpt ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunningOpt ? "stop.fill" : "trash.fill"), attributes: .destructive) { action in
+                if !(timer.isRunningOpt) {
                     self.context.delete(timer)
                     try? self.context.save()
                 } else {
@@ -107,9 +107,9 @@ struct ContentView: View {
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isRunning?.boolValue ?? true ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning?.boolValue ?? true ? "stop.fill" : "trash.fill"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+            let delete = UIMenu(title: timer.isRunningOpt ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunningOpt ? "stop.fill" : "trash.fill"), options: .destructive, children: [deleteCancel, deleteConfirmation])
 
-            let pause = UIAction(title: timer.isPaused?.boolValue ?? true ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused?.boolValue ?? true ? "play.fill" : "pause.fill")) { action in
+            let pause = UIAction(title: timer.isPausedOpt ? "Start" : "Pause", image: UIImage(systemName: timer.isPausedOpt ? "play.fill" : "pause.fill")) { action in
                 timer.togglePause()
             }
             

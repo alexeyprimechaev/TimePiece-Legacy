@@ -94,44 +94,42 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     //MARK: Toggle Pause
     func togglePause() {
-        self.isRunning = true
-        if(self.isPaused ?? true).boolValue {
-            self.timeStarted = Date()
-            self.timeFinished = self.timeStarted?.addingTimeInterval(self.currentTime as! TimeInterval)
-            self.isPaused = false
+        isRunning = true
+        if isPausedOpt {
+            timeStartedOpt = Date()
+            timeFinishedOpt = timeStartedOpt.addingTimeInterval(currentTimeOpt)
+            isPausedOpt = false
             
         } else {
-
-            self.timeStarted = Date()
-            self.currentTime = ((self.timeFinished ?? Date()).timeIntervalSince(self.timeStarted ?? Date())) as NSNumber
-            self.isPaused = true
+            timeStartedOpt = Date()
+            currentTimeOpt = timeFinishedOpt.timeIntervalSince(timeStartedOpt)
+            isPausedOpt = true
         }
     }
     
     
     //MARK: Reset
     func reset() {
-        self.isRunning = false
-        self.isPaused = true
-        self.timeStarted = Date()
-        self.currentTime = self.totalTime
-        self.timeFinished = self.timeStarted?.addingTimeInterval(self.currentTime as! TimeInterval)
+        isRunningOpt = false
+        isPausedOpt = true
+        timeStartedOpt = Date()
+        currentTimeOpt = totalTimeOpt
+        timeFinishedOpt = timeStartedOpt.addingTimeInterval(currentTimeOpt)
     }
     
     
     //MARK: Update time
     func updateTime() {
-        if !(self.isPaused?.boolValue ?? true
-            ) {
-            self.timeStarted = Date()
-            self.currentTime = ((self.timeFinished ?? Date()).timeIntervalSince(self.timeStarted ?? Date())) as NSNumber
+        if !isPausedOpt {
+            timeStartedOpt = Date()
+            currentTimeOpt = timeFinishedOpt.timeIntervalSince(timeStartedOpt)
             
-            if (self.currentTime?.doubleValue ?? 0 <= 0) {
-                self.currentTime = self.totalTime
-                self.timeStarted = Date()
-                self.timeFinished = self.timeStarted?.addingTimeInterval(self.currentTime as! TimeInterval)
-                self.isPaused = true
-                self.isRunning = false
+            if currentTimeOpt <= 0 {
+                currentTimeOpt = totalTimeOpt
+                timeStartedOpt = Date()
+                timeFinishedOpt = timeStartedOpt.addingTimeInterval(currentTimeOpt)
+                isPausedOpt = true
+                isRunningOpt = false
             }
 
             
@@ -140,6 +138,65 @@ public class TimerPlus: NSManagedObject, Identifiable {
     }
 
 }
+
+//MARK: - Unwrappers
+extension TimerPlus {
+    var createdAtOpt: Date {
+        get { createdAt ?? Date() }
+        set { createdAt = newValue }
+    }
+    
+    var isPausedOpt: Bool {
+        get { isPaused?.boolValue ?? true }
+        set { isPaused = newValue as NSNumber }
+    }
+    
+    var isRunningOpt: Bool {
+        get { isRunning?.boolValue ?? true }
+        set { isRunning = newValue as NSNumber }
+    }
+    
+    var currentTimeOpt: TimeInterval {
+        get { currentTime as? TimeInterval ?? 0 }
+        set { currentTime = newValue as NSNumber }
+    }
+    
+    var totalTimeOpt: TimeInterval {
+        get { totalTime as? TimeInterval ?? 0 }
+        set { totalTime = newValue as NSNumber }
+    }
+    
+    var timeStartedOpt: Date {
+        get { timeStarted ?? Date() }
+        set { timeStarted = newValue }
+    }
+    
+    var timeFinishedOpt: Date {
+        get { timeFinished ?? Date() }
+        set { timeFinished = newValue }
+    }
+    
+    var titleOpt: String {
+        get { title ?? "Found Nil" }
+        set { title = newValue }
+    }
+    
+    var soundSettingOpt: String {
+        get { soundSetting ?? TimerPlus.soundSettings[0] }
+        set { soundSetting = newValue }
+    }
+    
+    var precisionSettingOpt: String {
+        get { precisionSetting ?? TimerPlus.precisionSettings[0] }
+        set { precisionSetting = newValue }
+    }
+    
+    var notificationSettingOpt: String {
+        get { notificationSetting ?? TimerPlus.notificationSettings[0] }
+        set { notificationSetting = newValue }
+    }
+}
+
 
 //MARK: - Converter Functions
 

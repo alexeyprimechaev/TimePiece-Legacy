@@ -47,10 +47,10 @@ struct TimerDetailView: View {
                         
                     PropertyView(title: "Title", timer: timer)
                     
-                    if (((self.timer.totalTime as! TimeInterval).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off")).count + ((self.timer.timeFinished ?? Date()).timeIntervalSince(timer.timeStarted ?? Date()).stringFromTimeInterval(precisionSetting: self.timer.precisionSetting ?? "Off")).count > 13) {
+                    if (self.timer.totalTimeOpt.stringFromTimeInterval(precisionSetting: self.timer.precisionSettingOpt).count + (self.timer.timeFinishedOpt.timeIntervalSince(timer.timeStartedOpt).stringFromTimeInterval(precisionSetting: self.timer.precisionSettingOpt)).count > 13) {
                         
                         if (timer.totalTime != timer.currentTime) {
-                            TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
+                            TimeView(time: $timer.currentTimeOpt, precisionSetting: $timer.precisionSettingOpt, title: "Left", update: {})
                         }
                         EditableTimeView(time: $timer.totalTime, title: "Total", update: {
                             self.timer.reset()
@@ -60,7 +60,7 @@ struct TimerDetailView: View {
                         HStack(alignment: .top) {
                             
                             if (timer.totalTime != timer.currentTime) {
-                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
+                                TimeView(time: $timer.currentTimeOpt, precisionSetting: $timer.precisionSettingOpt, title: "Left", update: {})
                             }
                         
                             EditableTimeView(time: $timer.totalTime, title: "Total", update: {
@@ -83,9 +83,9 @@ struct TimerDetailView: View {
             
             HStack() {
                 Spacer().frame(width:28)
-                MainButton(color: Color.red, isPaused: $timer.isRunning, offTitle: "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill", onTap: {self.timer.reset()}, offTap: {self.delete()})
+                MainButton(color: Color.red, isPaused: $timer.isRunningOpt, offTitle: "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill", onTap: {self.timer.reset()}, offTap: {self.delete()})
                 Spacer().frame(width:28)
-                MainButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {self.timer.togglePause()}, offTap: {self.timer.togglePause()})
+                MainButton(color: Color.primary, isPaused: $timer.isPausedOpt, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {self.timer.togglePause()}, offTap: {self.timer.togglePause()})
                 Spacer().frame(width:28)
             }.padding(.vertical, 7)
         }
