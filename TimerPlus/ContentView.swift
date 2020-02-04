@@ -11,26 +11,27 @@ import ASCollectionView
 
 struct ContentView: View {
     
-    // MARK: - Variable Defenition
+// MARK: - Variable Defenition
     
+    
+
     // MARK: Core Data Setup
-    
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
     
-    // MARK: State Variables
     
+    // MARK: State Variables
     @State var showingNewTimerView = false
     @State var showingDetailTimerView = false
     @State var selectedTimer = 0
     
-    // MARK: - Layout
+// MARK: - View
     
     var body: some View {
         ASCollectionView(
             sections:
             [
-                // Title
+        // MARK: Title
                 ASCollectionViewSection(id: 0) {
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("Timer")
@@ -43,13 +44,15 @@ struct ContentView: View {
                         
                 },
                 
-                // Timers
+                
+        // MARK: Timers
                 ASCollectionViewSection(id: 1, data: timers, dataID: \.self, contextMenuProvider: contextMenuProvider) { timer, _ in
                     TimerView(timer: timer).fixedSize()
                         
                 },
                 
-                // Button
+                
+        // MARK: Button
                 ASCollectionViewSection(id: 2) {
                     TimerButton(onTap: {
                         TimerPlus.newTimer(totalTime: 60, title: "Timer", context: self.context)
@@ -62,7 +65,7 @@ struct ContentView: View {
             ]
         )
             
-        // Layout
+        // MARK: Layout Configuration
         .layout {
             let fl = AlignedFlowLayout()
             fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
@@ -71,8 +74,9 @@ struct ContentView: View {
             fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return fl
         }
+        
             
-        // Sheet
+        // MARK: Sheet
         .sheet(isPresented: self.$showingDetailTimerView) {
             TimerDetailView(timer: self.timers[self.selectedTimer], onDismiss: {self.showingDetailTimerView = false}, delete: {
                 self.context.delete(self.timers[self.selectedTimer])
@@ -81,7 +85,7 @@ struct ContentView: View {
             }
     }
     
-    // MARK: - Supplementary Functions
+// MARK: - Supplementary Functions
     
     func delete() {
         context.delete(timers[timers.count-1])
