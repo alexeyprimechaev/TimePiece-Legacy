@@ -45,7 +45,7 @@ struct NewTimerView: View {
                                             
                     PropertyView(title: "Title", timer: self.timer )
                     
-                    EditableTimeView(time: $timer.totalTime, title: "Total", isFirstResponder: false, update: {
+                    EditableTimeView(time: $timer.totalTimeOpt, title: "Total", isFirstResponder: false, update: {
                         self.timer.reset()
                         self.timer.currentTime = self.timer.totalTime
                         //self.onDismiss()

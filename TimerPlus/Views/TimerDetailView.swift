@@ -52,7 +52,7 @@ struct TimerDetailView: View {
                         if (timer.totalTime != timer.currentTime) {
                             TimeView(time: $timer.currentTimeOpt, precisionSetting: $timer.precisionSettingOpt, title: "Left", update: {})
                         }
-                        EditableTimeView(time: $timer.totalTime, title: "Total", update: {
+                        EditableTimeView(time: $timer.totalTimeOpt, title: "Total", update: {
                             self.timer.reset()
                             self.timer.currentTime = self.timer.totalTime
                         })
@@ -63,7 +63,7 @@ struct TimerDetailView: View {
                                 TimeView(time: $timer.currentTimeOpt, precisionSetting: $timer.precisionSettingOpt, title: "Left", update: {})
                             }
                         
-                            EditableTimeView(time: $timer.totalTime, title: "Total", update: {
+                            EditableTimeView(time: $timer.totalTimeOpt, title: "Total", update: {
                                 self.timer.reset()
                                 self.timer.currentTime = self.timer.totalTime
                             })
