@@ -59,7 +59,7 @@ struct ContentView: View {
                         self.showingNewTimerView = true
                     }).padding(.vertical, 12)
                     .sheet(isPresented: $showingNewTimerView) {
-                        NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.delete()})
+                        NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.deleteLast()})
                     }
                 }
             ]
@@ -85,14 +85,20 @@ struct ContentView: View {
             }
     }
     
-//MARK: - Supplementary Functions
+//MARK: - Data Functions
     
-    func delete() {
+    
+    
+    //MARK: Delete
+    func deleteLast() {
         context.delete(timers[timers.count-1])
     }
     
-    //MARK: CollectionView Functions
+//MARK: - CollectionView Functions
     
+    
+    
+    //MARK: Context Menu
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle.fill")) { action in }
@@ -128,6 +134,7 @@ struct ContentView: View {
         }
         return configuration
     }
+    
     
 }
 

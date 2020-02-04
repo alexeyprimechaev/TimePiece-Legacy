@@ -36,6 +36,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     static let precisionSettings = ["On", "Off", "Smart"]
     static let notificationSettings = ["On", "Off"]
     
+    
     //MARK: Formatters
     static let dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
@@ -131,9 +132,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
                 isPaused = true
                 isRunning = false
             }
-
-            
-            
+   
         }
     }
 
