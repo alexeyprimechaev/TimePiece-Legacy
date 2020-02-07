@@ -18,6 +18,8 @@ struct EditableTimeView: View {
     
     @State var isFirstResponder = false
     
+    @State var firstAppear = true
+    
     var update: () -> ()
     
     
@@ -30,15 +32,21 @@ struct EditableTimeView: View {
                     .onAppear() {
                         self.value = self.time.stringFromNumber()
                     }
+                .opacity(value.count == 0 ? 0.5: 1)
                 Text(title)
                     .smallTitleStyle()
-                    .opacity(0.5)
+                    .opacity(value.count == 0 ? 1 : 0.5)
                     .padding(.bottom, 5)
+                    .padding(.leading, 5)
             }
             
             TextField("00:00", text: $value, onEditingChanged: { _ in
-                self.time = self.value.calculateTime()
-                self.update()
+                if self.value.count <= 8 {
+                    self.time = self.value.calculateTime()
+                    self.update()
+                } else {
+                    self.value = String(self.value.prefix(self.value.count-1))
+                }
             }) {
                 if self.value == "" {
                     self.value = self.time.stringFromNumber()
@@ -52,15 +60,21 @@ struct EditableTimeView: View {
                 textField.font = .systemFont(ofSize: 34, weight: .bold)
                 textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
                 if self.isFirstResponder {
-                    textField.becomeFirstResponder()
+                    
+                    if self.firstAppear {
+                        self.value = ""
+                        textField.becomeFirstResponder()
+                        self.firstAppear = false
+                    }
+                    
                 }
 
             }
+            .keyboardType(.numberPad)
             .titleStyle()
             .foregroundColor(Color.clear)
             .accentColor(Color.clear)
             
-        }.padding(.vertical, 7)
-        .padding(.horizontal, 7)
+        }.padding(7)
     }
 }

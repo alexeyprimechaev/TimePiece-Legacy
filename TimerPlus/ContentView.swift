@@ -55,11 +55,11 @@ struct ContentView: View {
         //MARK: Button
                 ASCollectionViewSection(id: 2) {
                     TimerButton(onTap: {
-                        TimerPlus.newTimer(totalTime: 60, title: "Timer", context: self.context)
+                        TimerPlus.newTimer(totalTime: 60, title: "", context: self.context)
                         self.showingNewTimerView = true
                     }).padding(.vertical, 12)
-                    .sheet(isPresented: $showingNewTimerView) {
-                        NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {self.deleteLast()})
+                        .sheet(isPresented: $showingNewTimerView, onDismiss: {self.deleteLast()}) {
+                        NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {})
                     }
                 }
             ]
@@ -91,7 +91,7 @@ struct ContentView: View {
     
     //MARK: Delete
     func deleteLast() {
-        context.delete(timers[timers.count-1])
+        context.delete(timers.last ?? timers[timers.count-1])
     }
     
 //MARK: - CollectionView Functions

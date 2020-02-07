@@ -21,8 +21,9 @@ struct PropertyView: View {
         ZStack(alignment: .bottomLeading) {
             HStack(alignment: .bottom, spacing: 7) {
                 if title == "Title" {
-                    Text(timer.title)
+                    Text(timer.title.count == 0 ? "Timer ⏱": timer.title)
                         .titleStyle()
+                        .opacity(timer.title.count == 0 ? 0.6 : 1)
                     
                 } else if title == "Created at" {
                     Text(TimerPlus.dateFormatter.string(from: timer.createdAt))
@@ -37,7 +38,7 @@ struct PropertyView: View {
                 Text(title)
                     .smallTitleStyle()
                     .padding(.bottom, 5)
-                    .opacity(0.5)
+                    .opacity(timer.title.count == 0 ? 1 : 0.5)
             }
             if title == "Title" {
                 TextField("", text: $timer.title)

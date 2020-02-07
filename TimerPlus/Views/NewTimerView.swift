@@ -28,15 +28,29 @@ struct NewTimerView: View {
                     HStack(alignment: .center) {
                         Image(systemName: "xmark")
                             .font(.system(size: 11.0, weight: .heavy))
-                        Text("Cancel")
+                        Text("Discard")
                             .fontWeight(.semibold)
                     }
                     .padding(.leading, 28)
                     .padding(.trailing, 128)
-                    .foregroundColor(Color.primary)
+                    .foregroundColor(Color.red)
                 }
                 .frame(height: 52)
                 Spacer()
+                Button(action: {
+                    self.onDismiss()
+                }) {
+                    HStack(alignment: .center) {
+                        Image(systemName: "plus")
+                            .font(.system(size: 11.0, weight: .heavy))
+                        Text("Add")
+                            .fontWeight(.semibold)
+                    }
+                    .padding(.leading, 64)
+                    .padding(.trailing, 28)
+                    .foregroundColor(Color.primary)
+                }
+                .frame(height: 52)
             }
             
             ScrollView() {
@@ -45,11 +59,12 @@ struct NewTimerView: View {
                                             
                     PropertyView(title: "Title", timer: self.timer )
                     
-                    EditableTimeView(time: $timer.totalTime, title: "Total", isFirstResponder: false, update: {
+                    EditableTimeView(time: $timer.totalTime, title: "Enter Time", isFirstResponder: true, update: {
                         self.timer.reset()
                         self.timer.currentTimeStored = self.timer.totalTimeStored
                         //self.onDismiss()
                     })
+                    
                     
                 }.padding(.leading, 21)
             }
