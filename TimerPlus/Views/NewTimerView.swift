@@ -13,17 +13,18 @@ struct NewTimerView: View {
     @Environment(\.managedObjectContext) var context
     
     @ObservedObject var timer = TimerPlus()
-        
-    var onDismiss: () -> ()
     
-    var delete: () -> ()
+    @Binding var isAdding: Bool
         
+    var discard: () -> ()
+            
     var body: some View {
         VStack(spacing:0) {
             HStack() {
                 Button(action: {
-                    self.delete()
-                    self.onDismiss()
+                    self.isAdding = false
+                    print(self.isAdding)
+                    self.discard()
                 }) {
                     HStack(alignment: .center) {
                         Image(systemName: "xmark")
@@ -38,7 +39,12 @@ struct NewTimerView: View {
                 .frame(height: 52)
                 Spacer()
                 Button(action: {
-                    self.onDismiss()
+                    self.isAdding = true
+                    print(self.isAdding)
+                    if self.timer.title.count == 0 {
+                        self.timer.title = "Timer ⏱"
+                    }
+                    self.discard()
                 }) {
                     HStack(alignment: .center) {
                         Image(systemName: "plus")

@@ -41,10 +41,12 @@ struct EditableTimeView: View {
             }
             
             TextField("00:00", text: $value, onEditingChanged: { _ in
+                print("hello")
                 if self.value.count <= 8 {
                     self.time = self.value.calculateTime()
                     self.update()
                 } else {
+                    print("hello")
                     self.value = String(self.value.prefix(self.value.count-1))
                 }
             }) {

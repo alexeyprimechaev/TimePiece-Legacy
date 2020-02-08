@@ -22,6 +22,8 @@ struct ContentView: View {
     
     //MARK: State Variables
     @State var showingNewTimerView = false
+    @State var isAdding = false
+    
     @State var showingDetailTimerView = false
     @State var selectedTimer = 0
     
@@ -58,8 +60,15 @@ struct ContentView: View {
                         TimerPlus.newTimer(totalTime: 60, title: "", context: self.context)
                         self.showingNewTimerView = true
                     }).padding(.vertical, 12)
-                        .sheet(isPresented: $showingNewTimerView, onDismiss: {self.deleteLast()}) {
-                        NewTimerView(timer: self.timers[self.timers.count-1], onDismiss: {self.showingNewTimerView = false}, delete: {})
+                        .sheet(isPresented: $showingNewTimerView, onDismiss: {
+                            print(self.isAdding)
+                            if self.isAdding {
+                                
+                            } else {
+                                self.deleteLast()
+                            }
+                        }) {
+                            NewTimerView(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerView = false})
                     }
                 }
             ]
