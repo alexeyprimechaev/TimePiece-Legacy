@@ -48,26 +48,30 @@ struct TimerDetailView: View {
                     PropertyView(title: "Title", timer: timer)
                     
                     if timer.totalTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
-                        
-                        if timer.totalTime != timer.currentTime {
-                            TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
-                        }
-                        EditableTimeView(time: $timer.totalTime, title: "Total", update: {
-                            self.timer.reset()
-                            self.timer.currentTime = self.timer.totalTime
-                        })
+                        VStack(alignment: .leading, spacing:14) {
+                            if timer.totalTime != timer.currentTime {
+                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
+                            }
+                            EditableTimeView(time: $timer.totalTime, title: "Total", update: {
+                                self.timer.reset()
+                                self.timer.currentTime = self.timer.totalTime
+                            })
+                            .disabled(timer.isRunning)
+                        }.animation(Animation.default, value: timer.isRunning)
                     } else {
                         HStack(alignment: .top) {
                             
-                            if timer.totalTime != timer.currentTime {
+                            if timer.isRunning {
                                 TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
+
                             }
                         
                             EditableTimeView(time: $timer.totalTime, title: "Total", update: {
                                 self.timer.reset()
                                 self.timer.currentTime = self.timer.totalTime
                             })
-                        }
+                            .disabled(timer.isRunning)
+                        }.animation(Animation.default, value: timer.isRunning)
                     }
                         
                     PropertyView(title: "Created at", timer: timer)
@@ -75,7 +79,7 @@ struct TimerDetailView: View {
                     ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                     ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
                     ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
-                }
+                }.animation(Animation.default, value: timer.isRunning)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
 

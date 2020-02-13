@@ -55,11 +55,22 @@ struct TimerView: View {
                     Rectangle().frame(width:9, height: 40)
                         .foregroundColor(Color(UIColor.systemBackground))
                         .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                        .animation(timer.isRunning && timer.isPaused ? Animation.linear(duration: 0.6).repeatForever().delay(0.2) : Animation.linear, value: timer.isPaused)
-                        .onAppear {
-                            
-                        }
+                    if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 5 {
+                        Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(5).suffix(2))
+                            .opacity(0)
+                        Rectangle().frame(width:8, height: 40)
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
+                    }
+                    if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 8 {
+                        Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(8).suffix(2))
+                            .opacity(0)
+                        Rectangle().frame(width:9, height: 40)
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
+                    }
                 }
+                    .animation(timer.isRunning && timer.isPaused ? Animation.linear(duration: 0.6).repeatForever().delay(0.2) : Animation.linear, value: timer.isPaused)
                 Group {
                     if self.value.count == 8 {
                         Text("88:88:88")

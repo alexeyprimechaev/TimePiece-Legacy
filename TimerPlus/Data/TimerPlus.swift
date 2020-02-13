@@ -203,21 +203,36 @@ extension String {
     
     //MARK: String to Time
     func stringToTime() -> String {
-        var string = self
         
-        if string.count == 3 {
-            string.insert(":", at: string.index(string.startIndex, offsetBy: 1))
-        } else if (string.count == 4) {
-            string.insert(":", at: string.index(string.startIndex, offsetBy: 2))
-        } else if (string.count == 5) {
-            string.insert(":", at: string.index(string.startIndex, offsetBy: 1))
-            string.insert(":", at: string.index(string.endIndex, offsetBy: -2))
-        } else if (string.count == 6) {
-                string.insert(":", at: string.index(string.startIndex, offsetBy: 2))
-                string.insert(":", at: string.index(string.endIndex, offsetBy: -2))
+        var seconds = 0
+        var minutes = 0
+        var hours = 0
+        
+        if self.count <= 2 {
+            seconds = Int(self) ?? 0
+        } else if self.count == 3 {
+            seconds = Int(String(self.suffix(2))) ?? 0
+            minutes = Int(String(self.prefix(1))) ?? 0
+        } else if self.count == 4 {
+            seconds = Int(String(self.suffix(2))) ?? 0
+            minutes = Int(String(self.prefix(2))) ?? 0
+        } else if self.count == 5 {
+            seconds = Int(String(self.suffix(2))) ?? 0
+            hours = Int(String(self.prefix(1))) ?? 0
+            minutes = Int(String(String(self.prefix(3)).suffix(2))) ?? 0
+        } else if self.count == 6 {
+            seconds = Int(String(self.suffix(2))) ?? 0
+            hours = Int(String(self.prefix(2))) ?? 0
+            minutes = Int(String(String(self.prefix(4)).suffix(2))) ?? 0
+        } else {
+            seconds = Int(self) ?? 0
         }
         
-        return string
+        if hours > 0 {
+            return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+        } else {
+            return String(format: "%0.2d:%0.2d",minutes,seconds)
+        }
     }
     
     

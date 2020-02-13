@@ -27,7 +27,6 @@
 		80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* MainButton.swift */; };
 		80B1F66223D208CB00B4E1D1 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B1F66123D208CB00B4E1D1 /* TimerButton.swift */; };
 		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
-		80F5812023E9B15E00B9D2E4 /* TimeViewPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F5811F23E9B15E00B9D2E4 /* TimeViewPro.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +51,6 @@
 		80ACD6B623CBE435000C49DC /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		80B1F66123D208CB00B4E1D1 /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
-		80F5811F23E9B15E00B9D2E4 /* TimeViewPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewPro.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +117,6 @@
 				802A026C23CFBA5600512B39 /* PropertyView.swift */,
 				807A0F4023D4C66C008B0E24 /* TimeView.swift */,
 				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
-				80F5811F23E9B15E00B9D2E4 /* TimeViewPro.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,7 +235,6 @@
 				80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */,
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
 				80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */,
-				80F5812023E9B15E00B9D2E4 /* TimeViewPro.swift in Sources */,
 				80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */,
 				80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */,
 				80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */,
