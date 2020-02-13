@@ -44,6 +44,7 @@ struct NewTimerView: View {
                     if self.timer.title.count == 0 {
                         self.timer.title = "Timer ⏱"
                     }
+                    
                     self.discard()
                 }) {
                     HStack(alignment: .center) {

@@ -44,19 +44,37 @@ struct TimerView: View {
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
                             self.value = self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting)
-                    }
+
+                        }
                     
                 }
-                if self.value.count == 8 {
-                    Text("88:88:88")
+                
+                HStack(spacing: 0) {
+                    Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(2))
                         .opacity(0)
-                } else if self.value.count == 5 {
-                    Text("88:88")
-                        .opacity(0)
-                } else {
-                    Text("88:88:88.88")
-                        .opacity(0)
+                    Rectangle().frame(width:9, height: 40)
+                        .foregroundColor(Color(UIColor.systemBackground))
+                        .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
+                        .animation(timer.isRunning && timer.isPaused ? Animation.linear(duration: 0.6).repeatForever().delay(0.2) : Animation.linear, value: timer.isPaused)
+                        .onAppear {
+                            
+                        }
                 }
+                Group {
+                    if self.value.count == 8 {
+                        Text("88:88:88")
+                            .opacity(0)
+                    } else if self.value.count == 5 {
+                        Text("88:88")
+                            .opacity(0)
+                        
+                    } else {
+                        Text("88:88:88.88")
+                            .opacity(0)
+                    }
+                }
+
+                
                 
             }
         }
