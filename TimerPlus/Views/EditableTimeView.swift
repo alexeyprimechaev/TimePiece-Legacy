@@ -26,6 +26,7 @@ struct EditableTimeView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
+            
             HStack(alignment: .bottom, spacing: 5) {
                 Text(value.count == 0 ? "00:00": value.stringToTime())
                     .titleStyle()

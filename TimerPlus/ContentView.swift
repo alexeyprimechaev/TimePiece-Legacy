@@ -60,7 +60,8 @@ struct ContentView: View {
                         TimerPlus.newTimer(totalTime: 60, title: "", context: self.context)
                         self.showingNewTimerView = true
                     }).padding(.vertical, 12)
-                        .sheet(isPresented: $showingNewTimerView, onDismiss: {
+                    .betterSheetIsModalInPresentation(true)
+                        .betterSheet(isPresented: $showingNewTimerView, onDismiss: {
                             print(self.isAdding)
                             if self.isAdding {
                                 

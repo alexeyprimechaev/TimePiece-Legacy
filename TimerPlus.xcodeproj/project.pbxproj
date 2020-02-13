@@ -13,6 +13,7 @@
 		8021ADAC23D51F080090BA7F /* NewTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerView.swift */; };
 		802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
 		802A027023CFBB6300512B39 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 802A026F23CFBB6300512B39 /* Introspect */; };
+		803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 803B0FD223F6036D00F2EB32 /* BetterSheet */; };
 		80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE223C274DB00BC03F5 /* AppDelegate.swift */; };
 		80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE423C274DB00BC03F5 /* SceneDelegate.swift */; };
 		80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */; };
@@ -60,6 +61,7 @@
 			files = (
 				801FFBB023CF3FED0040A12C /* ASCollectionView in Frameworks */,
 				802A027023CFBB6300512B39 /* Introspect in Frameworks */,
+				803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +170,7 @@
 			packageProductDependencies = (
 				801FFBAF23CF3FED0040A12C /* ASCollectionView */,
 				802A026F23CFBB6300512B39 /* Introspect */,
+				803B0FD223F6036D00F2EB32 /* BetterSheet */,
 			);
 			productName = TimerPlus;
 			productReference = 80612FDF23C274DB00BC03F5 /* Timer+.app */;
@@ -200,6 +203,7 @@
 			packageReferences = (
 				801FFBAE23CF3FED0040A12C /* XCRemoteSwiftPackageReference "ASCollectionView" */,
 				802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */,
 			);
 			productRefGroup = 80612FE023C274DB00BC03F5 /* Products */;
 			projectDirPath = "";
@@ -460,6 +464,14 @@
 				minimumVersion = 0.0.6;
 			};
 		};
+		803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/egeniq/BetterSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -472,6 +484,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		803B0FD223F6036D00F2EB32 /* BetterSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */;
+			productName = BetterSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 

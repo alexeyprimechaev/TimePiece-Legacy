@@ -70,7 +70,7 @@ struct TimerView: View {
                             .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
                     }
                 }
-                    .animation(timer.isRunning && timer.isPaused ? Animation.linear(duration: 0.6).repeatForever().delay(0.2) : Animation.linear, value: timer.isPaused)
+                    .animation(timer.isRunning && timer.isPaused ? Animation.linear(duration: 0.4).repeatForever().delay(0.2) : Animation.linear, value: timer.isPaused)
                 Group {
                     if self.value.count == 8 {
                         Text("88:88:88")
