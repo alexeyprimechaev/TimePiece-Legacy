@@ -36,10 +36,10 @@ struct ContentView: View {
         //MARK: Title
                 ASCollectionViewSection(id: 0) {
                     HStack(alignment: .bottom, spacing: 4) {
-                        Text("Timer")
+                        Text("TimePiece")
                             .titleStyle()
-                        Image("PlusIcon")
-                            .padding(.bottom, 9)
+//                        Image("PlusIcon")
+//                            .padding(.bottom, 9)
                     }
                         .padding(7)
                         .padding(.vertical, 12)
@@ -57,7 +57,7 @@ struct ContentView: View {
         //MARK: Button
                 ASCollectionViewSection(id: 2) {
                     TimerButton(onTap: {
-                        TimerPlus.newTimer(totalTime: 60, title: "", context: self.context)
+                        TimerPlus.newTimer(totalTime: 0, title: "", context: self.context)
                         self.showingNewTimerView = true
                     }).padding(.vertical, 12)
                     .betterSheetIsModalInPresentation(true)

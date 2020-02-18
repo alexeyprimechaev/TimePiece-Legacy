@@ -37,7 +37,7 @@ struct TimerView: View {
         {
             ZStack(alignment: .bottomLeading) {
                 VStack(alignment: .leading) {
-                    Text(timer.title)
+                    Text(timer.title.isEmpty ? "Timer ⏱" : timer.title)
                     
                     Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting))
                         .opacity(0.5)

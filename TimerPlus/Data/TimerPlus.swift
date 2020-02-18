@@ -81,7 +81,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
         // Settings
         timer.soundSetting = soundSettings[0]
-        timer.precisionSetting = precisionSettings[2]
+        timer.precisionSetting = precisionSettings[1]
         timer.notificationSetting = notificationSettings[0]
         
         // Saving

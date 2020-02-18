@@ -41,9 +41,6 @@ struct NewTimerView: View {
                 Button(action: {
                     self.isAdding = true
                     print(self.isAdding)
-                    if self.timer.title.count == 0 {
-                        self.timer.title = "Timer ⏱"
-                    }
                     
                     self.discard()
                 }) {
@@ -75,6 +72,8 @@ struct NewTimerView: View {
                     
                 }.padding(.leading, 21)
             }
+        }.onAppear() {
+            self.isAdding = false
         }
     }
 }

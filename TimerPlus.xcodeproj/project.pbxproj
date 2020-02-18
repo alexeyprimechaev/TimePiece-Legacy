@@ -35,7 +35,7 @@
 		8021ADA923D507F50090BA7F /* EditableTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimeView.swift; sourceTree = "<group>"; };
 		8021ADAB23D51F080090BA7F /* NewTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerView.swift; sourceTree = "<group>"; };
 		802A026C23CFBA5600512B39 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
-		80612FDF23C274DB00BC03F5 /* Timer+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timer+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80612FDF23C274DB00BC03F5 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80612FE223C274DB00BC03F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80612FE423C274DB00BC03F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		80612FE723C274DB00BC03F5 /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		80612FE023C274DB00BC03F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80612FDF23C274DB00BC03F5 /* Timer+.app */,
+				80612FDF23C274DB00BC03F5 /* TimePiece.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 				803B0FD223F6036D00F2EB32 /* BetterSheet */,
 			);
 			productName = TimerPlus;
-			productReference = 80612FDF23C274DB00BC03F5 /* Timer+.app */;
+			productReference = 80612FDF23C274DB00BC03F5 /* TimePiece.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -393,8 +393,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimerPlus;
-				PRODUCT_NAME = "Timer+";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimePiece;
+				PRODUCT_NAME = TimePiece;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -416,8 +416,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimerPlus;
-				PRODUCT_NAME = "Timer+";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimePiece;
+				PRODUCT_NAME = TimePiece;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
