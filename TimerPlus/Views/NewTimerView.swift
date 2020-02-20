@@ -23,7 +23,6 @@ struct NewTimerView: View {
             HStack() {
                 Button(action: {
                     self.isAdding = false
-                    print(self.isAdding)
                     self.discard()
                 }) {
                     HStack(alignment: .center) {
@@ -40,8 +39,6 @@ struct NewTimerView: View {
                 Spacer()
                 Button(action: {
                     self.isAdding = true
-                    print(self.isAdding)
-                    
                     self.discard()
                 }) {
                     HStack(alignment: .center) {
@@ -63,11 +60,11 @@ struct NewTimerView: View {
                                             
                     PropertyView(title: "Title", timer: self.timer )
                     
-                    EditableTimeView(time: $timer.totalTime, title: "Enter Time", isFirstResponder: true, update: {
+                    EditableTimeView(time: $timer.totalTime, title: "Time", isFirstResponder: true, update: {
                         self.timer.reset()
                         self.timer.currentTimeStored = self.timer.totalTimeStored
-                        //self.onDismiss()
                     })
+
                     
                     
                 }.padding(.leading, 21)

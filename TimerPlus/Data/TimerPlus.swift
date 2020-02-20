@@ -19,6 +19,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     //MARK: Main Properties
     @NSManaged public var createdAtStored: Date?
     @NSManaged public var isPausedStored: NSNumber?
+    @NSManaged public var isReusableStored: NSNumber?
     @NSManaged public var isRunningStored: NSNumber?
     @NSManaged public var currentTimeStored: NSNumber?
     @NSManaged public var totalTimeStored: NSNumber?
@@ -75,6 +76,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
         timer.createdAt = Date()
         timer.isPaused = true
         timer.isRunning = false
+        timer.isReusable = false
         timer.currentTime = timer.totalTime
         timer.timeStarted = Date()
         timer.timeFinished = timer.timeStarted.addingTimeInterval(timer.currentTime)
@@ -126,11 +128,9 @@ public class TimerPlus: NSManagedObject, Identifiable {
             currentTime = timeFinished.timeIntervalSince(timeStarted)
             
             if currentTime <= 0 {
-                currentTime = totalTime
-                timeStarted = Date()
-                timeFinished = timeStarted.addingTimeInterval(currentTime)
-                isPaused = true
-                isRunning = false
+               
+                self.togglePause()
+                currentTime = 0
             }
    
         }
@@ -153,6 +153,11 @@ extension TimerPlus {
     var isRunning: Bool {
         get { isRunningStored?.boolValue ?? true }
         set { isRunningStored = newValue as NSNumber }
+    }
+    
+    var isReusable: Bool {
+        get { isReusableStored?.boolValue ?? true }
+        set { isReusableStored = newValue as NSNumber }
     }
     
     var currentTime: TimeInterval {

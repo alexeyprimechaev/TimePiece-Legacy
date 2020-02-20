@@ -29,7 +29,11 @@ struct TimerView: View {
             
         //MARK: Action
         {
-            self.timer.togglePause()
+            if self.timer.currentTime == 0 {
+                self.timer.reset()
+            } else {
+                self.timer.togglePause()
+            }
         })
             
             
@@ -44,33 +48,41 @@ struct TimerView: View {
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
                             self.value = self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting)
+                            print(self.timer.currentTime)
 
                         }
                     
                 }
                 
-                HStack(spacing: 0) {
-                    Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(2))
-                        .opacity(0)
-                    Rectangle().frame(width:9, height: 40)
-                        .foregroundColor(Color(UIColor.systemBackground))
-                        .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                    if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 5 {
-                        Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(5).suffix(2))
-                            .opacity(0)
-                        Rectangle().frame(width:8, height: 40)
-                            .foregroundColor(Color(UIColor.systemBackground))
-                            .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                    }
-                    if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 8 {
-                        Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(8).suffix(2))
+                Rectangle().foregroundColor(Color(UIColor.systemBackground))
+                .frame(width: 100, height: 40)
+                    .opacity(timer.currentTime == 0 ? 0.5 : 0)
+                    .animation(timer.currentTime == 0 ? Animation.easeOut(duration: 0.4).repeatForever() : Animation.linear, value: timer.isPaused)
+                
+                if timer.currentTime != 0 {
+                    HStack(spacing: 0) {
+                        Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(2))
                             .opacity(0)
                         Rectangle().frame(width:9, height: 40)
                             .foregroundColor(Color(UIColor.systemBackground))
                             .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
+                        if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 5 {
+                            Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(5).suffix(2))
+                                .opacity(0)
+                            Rectangle().frame(width:8, height: 40)
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
+                        }
+                        if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 8 {
+                            Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(8).suffix(2))
+                                .opacity(0)
+                            Rectangle().frame(width:9, height: 40)
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
+                        }
                     }
+                    .animation(timer.isRunning && timer.isPaused ? Animation.easeOut(duration: 0.4).delay(0.2).repeatForever() : Animation.linear, value: timer.isPaused)
                 }
-                    .animation(timer.isRunning && timer.isPaused ? Animation.linear(duration: 0.4).repeatForever().delay(0.2) : Animation.linear, value: timer.isPaused)
                 Group {
                     if self.value.count == 8 {
                         Text("88:88:88")

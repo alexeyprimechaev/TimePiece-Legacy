@@ -42,7 +42,6 @@ struct EditableTimeView: View {
             }
             
             TextField("00:00", text: $value, onEditingChanged: { _ in
-                print("hello")
                 self.time = self.value.calculateTime()
                 self.update()
             }) {

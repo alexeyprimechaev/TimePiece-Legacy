@@ -38,8 +38,8 @@ struct ContentView: View {
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("TimePiece")
                             .titleStyle()
-//                        Image("PlusIcon")
-//                            .padding(.bottom, 9)
+                        Image("PlusIcon")
+                            .padding(.bottom, 9)
                     }
                         .padding(7)
                         .padding(.vertical, 12)
@@ -62,7 +62,6 @@ struct ContentView: View {
                     }).padding(.vertical, 12)
                     .betterSheetIsModalInPresentation(true)
                         .betterSheet(isPresented: $showingNewTimerView, onDismiss: {
-                            print(self.isAdding)
                             if self.isAdding {
                                 
                             } else {
