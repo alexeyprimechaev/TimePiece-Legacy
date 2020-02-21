@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import CoreData
+import UserNotifications
 
 public class TimerPlus: NSManagedObject, Identifiable {
     
@@ -26,6 +27,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     @NSManaged public var timeStartedStored: Date?
     @NSManaged public var timeFinishedStored: Date?
     @NSManaged public var titleStored: String?
+    @NSManaged public var notificationIdentifierStored: UUID?
     
     //MARK: Setting Properties
     @NSManaged public var soundSettingStored: String?
@@ -80,6 +82,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
         timer.currentTime = timer.totalTime
         timer.timeStarted = Date()
         timer.timeFinished = timer.timeStarted.addingTimeInterval(timer.currentTime)
+        timer.notificationIdentifier = UUID()
     
         // Settings
         timer.soundSetting = soundSettings[0]
@@ -97,6 +100,12 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     //MARK: Toggle Pause
     func togglePause() {
+        print(self.currentTime)
+        if self.currentTime > 0 {
+            requestNotificationPermisson()
+            scheduleNotification()
+        }
+        
         isRunning = true
         if isPaused {
             timeStarted = Date()
@@ -113,6 +122,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     //MARK: Reset
     func reset() {
+        UNUserNotificationCenter.current().removeNotifications(self.notificationIdentifier.uuidString)
         isRunning = false
         isPaused = true
         timeStarted = Date()
@@ -134,6 +144,37 @@ public class TimerPlus: NSManagedObject, Identifiable {
             }
    
         }
+    }
+    
+    //MARK: Request Notification Permission
+    func requestNotificationPermisson() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("Approved")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func scheduleNotification() {
+        
+        let content = UNMutableNotificationContent()
+        content.title = "\(self.title == "" ? "Timer ⏱" : self.title) is done"
+        content.subtitle = "Tap to view"
+        content.sound = UNNotificationSound.default
+        content.badge = 1
+        
+        if self.isPaused {
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentTime, repeats: false)
+            let request = UNNotificationRequest(identifier: self.notificationIdentifier.uuidString, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request)
+        } else {
+            print("deleted")
+            UNUserNotificationCenter.current()
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [self.notificationIdentifier.uuidString])
+        }
+        
     }
 
 }
@@ -183,6 +224,11 @@ extension TimerPlus {
     var title: String {
         get { titleStored ?? "Found Nil" }
         set { titleStored = newValue }
+    }
+    
+    var notificationIdentifier: UUID {
+        get { notificationIdentifierStored ?? UUID() }
+        set { notificationIdentifierStored = newValue }
     }
     
     var soundSetting: String {
@@ -335,6 +381,7 @@ extension TimeInterval {
 
     }
 }
+
 
 //MARK: - CoreData
 extension TimerPlus {

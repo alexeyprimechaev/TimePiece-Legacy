@@ -48,7 +48,6 @@ struct TimerView: View {
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
                             self.value = self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting)
-                            print(self.timer.currentTime)
 
                         }
                     
@@ -57,7 +56,7 @@ struct TimerView: View {
                 Rectangle().foregroundColor(Color(UIColor.systemBackground))
                 .frame(width: 100, height: 40)
                     .opacity(timer.currentTime == 0 ? 0.5 : 0)
-                    .animation(timer.currentTime == 0 ? Animation.easeOut(duration: 0.4).repeatForever() : Animation.linear, value: timer.isPaused)
+                    .animation(timer.currentTime == 0 ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 
                 if timer.currentTime != 0 {
                     HStack(spacing: 0) {
@@ -81,7 +80,7 @@ struct TimerView: View {
                                 .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
                         }
                     }
-                    .animation(timer.isRunning && timer.isPaused ? Animation.easeOut(duration: 0.4).delay(0.2).repeatForever() : Animation.linear, value: timer.isPaused)
+                    .animation(timer.isRunning && timer.isPaused ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 }
                 Group {
                     if self.value.count == 8 {

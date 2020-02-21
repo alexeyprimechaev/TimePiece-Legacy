@@ -6,6 +6,7 @@
         <attribute name="isPausedStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isReusableStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isRunningStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="notificationIdentifierStored" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="notificationSettingStored" optional="YES" attributeType="String"/>
         <attribute name="precisionSettingStored" optional="YES" attributeType="String"/>
         <attribute name="soundSettingStored" optional="YES" attributeType="String"/>
@@ -15,6 +16,6 @@
         <attribute name="totalTimeStored" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="TimerPlus" positionX="-63" positionY="-18" width="128" height="223"/>
+        <element name="TimerPlus" positionX="-63" positionY="-18" width="128" height="238"/>
     </elements>
 </model>

@@ -92,6 +92,7 @@ struct ContentView: View {
                     self.showingDetailTimerView = false
                 })
             }
+        
     }
     
 //MARK: - Data Functions

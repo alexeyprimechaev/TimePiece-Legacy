@@ -79,3 +79,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UNUserNotificationCenter {
+    func decreaseBadgeCount(by notificationsRemoved: Int? = nil) {
+        let notificationsRemoved = notificationsRemoved ?? 1
+        DispatchQueue.main.async {
+            print(UIApplication.shared.applicationIconBadgeNumber)
+            UIApplication.shared.applicationIconBadgeNumber -= notificationsRemoved
+            print(UIApplication.shared.applicationIconBadgeNumber)
+        }
+    }
+
+    func removeNotifications(_ identifier: String, decreaseBadgeCount: Bool = true) {
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
+        if decreaseBadgeCount {
+            self.decreaseBadgeCount(by: 1)
+        }
+    }
+}
+

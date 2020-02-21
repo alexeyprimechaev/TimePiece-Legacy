@@ -393,7 +393,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimePiece;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.taempisss;
 				PRODUCT_NAME = TimePiece;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -416,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.TimePiece;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.taempisss;
 				PRODUCT_NAME = TimePiece;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
