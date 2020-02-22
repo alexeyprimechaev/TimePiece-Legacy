@@ -121,8 +121,9 @@ public class TimerPlus: NSManagedObject, Identifiable {
     func reset() {
         
         if currentTime <= 0 {
-            print(NotificationManager.badgeCount)
             NotificationManager.removeDeliveredNotification(timer: self)
+        } else {
+            NotificationManager.removePendingNotification(timer: self)
         }
         isRunning = false
         isPaused = true

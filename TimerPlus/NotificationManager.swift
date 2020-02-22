@@ -45,7 +45,7 @@ public class NotificationManager {
         if timer.isPaused {
             
             let content = UNMutableNotificationContent()
-            content.title = "\(timer.title) is done"
+            content.title = "\(timer.title == "" ? "Timer ⏱" : timer.title) is done"
             content.subtitle = "Tap to view"
             content.sound = UNNotificationSound.default
             badgeCount += 1
