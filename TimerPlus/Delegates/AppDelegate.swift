@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        NotificationManager.badgeCount = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        print(NotificationManager.badgeCount)
         return true
     }
 
@@ -80,19 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension UNUserNotificationCenter {
-    func decreaseBadgeCount(by notificationsRemoved: Int? = nil) {
-        let notificationsRemoved = notificationsRemoved ?? 1
+    func setBadgeCount(to value: Int) {
         DispatchQueue.main.async {
-            print(UIApplication.shared.applicationIconBadgeNumber)
-            UIApplication.shared.applicationIconBadgeNumber -= notificationsRemoved
-            print(UIApplication.shared.applicationIconBadgeNumber)
-        }
-    }
-
-    func removeNotifications(_ identifier: String, decreaseBadgeCount: Bool = true) {
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
-        if decreaseBadgeCount {
-            self.decreaseBadgeCount(by: 1)
+            UIApplication.shared.applicationIconBadgeNumber = value
         }
     }
 }

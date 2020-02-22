@@ -25,6 +25,7 @@
 		80612FFC23C2766B00BC03F5 /* TimerPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerPlus.swift */; };
 		807A0F4123D4C66C008B0E24 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A0F4023D4C66C008B0E24 /* TimeView.swift */; };
 		8088473B23C2AE79001D1A6E /* TimerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerDetailView.swift */; };
+		809635642401544D00BF297F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
 		80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* MainButton.swift */; };
 		80B1F66223D208CB00B4E1D1 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B1F66123D208CB00B4E1D1 /* TimerButton.swift */; };
 		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
@@ -49,6 +50,7 @@
 		8064DA4E23D534CC00F97037 /* Timer+.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Timer+.entitlements"; sourceTree = "<group>"; };
 		807A0F4023D4C66C008B0E24 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		8088473A23C2AE79001D1A6E /* TimerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailView.swift; sourceTree = "<group>"; };
+		809635632401544D00BF297F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		80B1F66123D208CB00B4E1D1 /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				80D141E523CE175D00FD2B5A /* Delegates */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
+				809635632401544D00BF297F /* NotificationManager.swift */,
 				80D141E323CE171300FD2B5A /* Views */,
 				80D141E423CE175200FD2B5A /* Buttons */,
 				80D141E623CE176D00FD2B5A /* Data */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */,
+				809635642401544D00BF297F /* NotificationManager.swift in Sources */,
 				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,
 				801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */,
 				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,
@@ -383,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "TimerPlus/Timer+.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerPlus/Preview Content\"";
@@ -393,7 +398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.taempisss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -406,6 +411,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "TimerPlus/Timer+.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerPlus/Preview Content\"";
@@ -416,7 +422,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.taempisss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;

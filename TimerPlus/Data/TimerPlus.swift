@@ -100,11 +100,8 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     //MARK: Toggle Pause
     func togglePause() {
-        print(self.currentTime)
-        if self.currentTime > 0 {
-            requestNotificationPermisson()
-            scheduleNotification()
-        }
+        
+        NotificationManager.scheduleNotification(timer: self)
         
         isRunning = true
         if isPaused {
@@ -122,7 +119,11 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     //MARK: Reset
     func reset() {
-        UNUserNotificationCenter.current().removeNotifications(self.notificationIdentifier.uuidString)
+        
+        if currentTime <= 0 {
+            print(NotificationManager.badgeCount)
+            NotificationManager.removeDeliveredNotification(timer: self)
+        }
         isRunning = false
         isPaused = true
         timeStarted = Date()
@@ -144,37 +145,6 @@ public class TimerPlus: NSManagedObject, Identifiable {
             }
    
         }
-    }
-    
-    //MARK: Request Notification Permission
-    func requestNotificationPermisson() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("Approved")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func scheduleNotification() {
-        
-        let content = UNMutableNotificationContent()
-        content.title = "\(self.title == "" ? "Timer ⏱" : self.title) is done"
-        content.subtitle = "Tap to view"
-        content.sound = UNNotificationSound.default
-        content.badge = 1
-        
-        if self.isPaused {
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.currentTime, repeats: false)
-            let request = UNNotificationRequest(identifier: self.notificationIdentifier.uuidString, content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request)
-        } else {
-            print("deleted")
-            UNUserNotificationCenter.current()
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [self.notificationIdentifier.uuidString])
-        }
-        
     }
 
 }
