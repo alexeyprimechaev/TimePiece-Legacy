@@ -74,6 +74,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		801A18532402FF1E005B4D19 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				8021ADAB23D51F080090BA7F /* NewTimerView.swift */,
+				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		801A18542402FF35005B4D19 /* Infromation Displays */ = {
+			isa = PBXGroup;
+			children = (
+				802A026C23CFBA5600512B39 /* PropertyView.swift */,
+				807A0F4023D4C66C008B0E24 /* TimeView.swift */,
+				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
+			);
+			path = "Infromation Displays";
+			sourceTree = "<group>";
+		};
 		80612FD623C274DB00BC03F5 = {
 			isa = PBXGroup;
 			children = (
@@ -95,11 +114,10 @@
 			children = (
 				8064DA4E23D534CC00F97037 /* Timer+.entitlements */,
 				80D141E523CE175D00FD2B5A /* Delegates */,
-				80612FE923C274DB00BC03F5 /* ContentView.swift */,
-				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
+				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
 				809635632401544D00BF297F /* NotificationManager.swift */,
+				80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */,
 				80D141E323CE171300FD2B5A /* Views */,
-				80D141E423CE175200FD2B5A /* Buttons */,
 				80D141E623CE176D00FD2B5A /* Data */,
 				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
 				80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */,
@@ -120,12 +138,12 @@
 		80D141E323CE171300FD2B5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8021ADAB23D51F080090BA7F /* NewTimerView.swift */,
+				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
-				8088473A23C2AE79001D1A6E /* TimerDetailView.swift */,
-				802A026C23CFBA5600512B39 /* PropertyView.swift */,
-				807A0F4023D4C66C008B0E24 /* TimeView.swift */,
-				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
+				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
+				801A18532402FF1E005B4D19 /* Sheets */,
+				801A18542402FF35005B4D19 /* Infromation Displays */,
+				80D141E423CE175200FD2B5A /* Buttons */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,8 +172,6 @@
 		80D141E623CE176D00FD2B5A /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
-				80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";
