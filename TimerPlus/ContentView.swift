@@ -111,8 +111,8 @@ struct ContentView: View {
     //MARK: Context Menu
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
-            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle.fill")) { action in }
-            let deleteConfirmation = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop.fill" : "trash.fill"), attributes: .destructive) { action in
+            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
+            let deleteConfirmation = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: .destructive) { action in
                 if !(timer.isRunning) {
                     timer.remove(from: self.context)
                     try? self.context.save()
@@ -123,17 +123,22 @@ struct ContentView: View {
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop.fill" : "trash.fill"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+            let delete = UIMenu(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: .destructive, children: [deleteCancel, deleteConfirmation])
+            
 
-            let pause = UIAction(title: timer.isPaused ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused ? "play.fill" : "pause.fill")) { action in
+            let pause = UIAction(title: timer.isPaused ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
                 timer.togglePause()
+            }
+            
+            let makeReusable = UIAction(title: "Make Reusable", image: UIImage(systemName: "arrow.clockwise")) { action in
+                timer.makeReusable()
             }
             
 
             // The edit menu adds delete as a child, just like an action
-            let edit = UIMenu(title: "Edit...", options: .displayInline, children: [pause, delete])
+            let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable])
 
-            let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis.circle")) { action in
+            let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
                 self.selectedTimer = self.timers.firstIndex(of: timer) ?? 0
                 self.showingDetailTimerView = true
             }
