@@ -98,6 +98,16 @@ public class TimerPlus: NSManagedObject, Identifiable {
     }
     
     
+    //MARK: Deletion (from context)
+    
+    func remove(from context: NSManagedObjectContext) {
+        
+        NotificationManager.removeDeliveredNotification(timer: self)
+        NotificationManager.removePendingNotification(timer: self)
+        
+        context.delete(self)
+    }
+    
     //MARK: Toggle Pause
     func togglePause() {
         
@@ -114,6 +124,10 @@ public class TimerPlus: NSManagedObject, Identifiable {
             currentTime = timeFinished.timeIntervalSince(timeStarted)
             isPaused = true
         }
+    }
+    
+    func makeReusable() {
+        isReusable = true
     }
     
     

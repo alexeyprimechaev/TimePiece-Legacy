@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801A18502402CEB6005B4D19 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
+		801A18522402DD9C005B4D19 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A18512402DD9C005B4D19 /* ToggleButton.swift */; };
 		801FFBB023CF3FED0040A12C /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 801FFBAF23CF3FED0040A12C /* ASCollectionView */; };
-		801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* ToggleButton.swift */; };
+		801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
 		8021ADAC23D51F080090BA7F /* NewTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerView.swift */; };
 		802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
@@ -32,7 +34,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		801FFBB123CF9AF50040A12C /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		801A184F2402CEB6005B4D19 /* RegularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularButton.swift; sourceTree = "<group>"; };
+		801A18512402DD9C005B4D19 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		801FFBB123CF9AF50040A12C /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		8021ADA923D507F50090BA7F /* EditableTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimeView.swift; sourceTree = "<group>"; };
 		8021ADAB23D51F080090BA7F /* NewTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerView.swift; sourceTree = "<group>"; };
 		802A026C23CFBA5600512B39 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
@@ -131,7 +135,9 @@
 			children = (
 				80B1F66123D208CB00B4E1D1 /* TimerButton.swift */,
 				80ACD6B623CBE435000C49DC /* MainButton.swift */,
-				801FFBB123CF9AF50040A12C /* ToggleButton.swift */,
+				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
+				801A18512402DD9C005B4D19 /* ToggleButton.swift */,
+				801A184F2402CEB6005B4D19 /* RegularButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -238,7 +244,7 @@
 				80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */,
 				809635642401544D00BF297F /* NotificationManager.swift in Sources */,
 				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,
-				801FFBB223CF9AF50040A12C /* ToggleButton.swift in Sources */,
+				801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */,
 				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,
 				80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */,
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
@@ -248,6 +254,8 @@
 				80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */,
 				8021ADAC23D51F080090BA7F /* NewTimerView.swift in Sources */,
 				80B1F66223D208CB00B4E1D1 /* TimerButton.swift in Sources */,
+				801A18522402DD9C005B4D19 /* ToggleButton.swift in Sources */,
+				801A18502402CEB6005B4D19 /* RegularButton.swift in Sources */,
 				80612FFC23C2766B00BC03F5 /* TimerPlus.swift in Sources */,
 				8088473B23C2AE79001D1A6E /* TimerDetailView.swift in Sources */,
 				807A0F4123D4C66C008B0E24 /* TimeView.swift in Sources */,

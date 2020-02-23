@@ -30,7 +30,11 @@ struct TimerView: View {
         //MARK: Action
         {
             if self.timer.currentTime == 0 {
-                self.timer.reset()
+                if self.timer.isReusable {
+                    self.timer.reset()
+                } else {
+                    self.timer.remove(from: self.context)
+                }
             } else {
                 self.timer.togglePause()
             }
@@ -104,7 +108,7 @@ struct TimerView: View {
             
         //MARK: Styling
         .titleStyle()
-        .buttonStyle(DeepButtonStyle())
+        .buttonStyle(RegularButtonStyle())
         .padding(7)
         .fixedSize()
     

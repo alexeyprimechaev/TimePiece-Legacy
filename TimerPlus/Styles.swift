@@ -66,7 +66,7 @@ extension View {
 
 
 //MARK: - Button Styles
-struct DeepButtonStyle: ButtonStyle {
+struct RegularButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

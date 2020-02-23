@@ -1,74 +1,55 @@
 //
-//  PickerButton.swift
+//  ToggleButton.swift
 //  TimerPlus
 //
-//  Created by Alexey Primechaev on 1/15/20.
+//  Created by Alexey Primechaev on 2/23/20.
 //  Copyright © 2020 Alexey Primechaev. All rights reserved.
 //
 
 import SwiftUI
 
 struct ToggleButton: View {
-    
+        
     //MARK: - Properties
     @State var title = String()
-    @State var values = [String]()
-    @Binding var value: String
-    @State var index = Int()
+    @State var trueTitle = String()
+    @State var falseTitle = String()
     
+    @Binding var value: Bool
+        
     //MARK: - View
     var body: some View {
-        
-        Button(action:
-        //MARK: Action
-        {
-        
-        if self.index < self.values.count - 1 {
-            self.index += 1
-            self.value = self.values[self.index]
-        } else {
-            self.index = 0
-            self.value = self.values[self.index]
-        }
-    
-    })
             
-    
-        //MARK: Layout
-        {
-            HStack(alignment: .bottom, spacing: 7) {
-                Text(title)
-                    .titleStyle()
-                    .opacity(0.5)
-                ForEach(values, id: \.self) { value in
-                    Text(value)
-                        .padding(.bottom, 5)
-                        .opacity(self.value == value ? 1 : 0.5)
-                }.smallTitleStyle()
+            Button(action:
+            //MARK: Action
+            {
+                self.value.toggle()
+            })
                 
-            }
-        }
-            
-            
-        //MARK: Styling
-        .buttonStyle(DeepButtonStyle())
-            
-            
-        //MARK: On Appear
-        .onAppear {
-            for i in 0...self.values.count-1 {
-                if self.value == self.values[i] {
-                    self.index = i
-                    break
+        
+            //MARK: Layout
+            {
+                HStack(alignment: .bottom, spacing: 7) {
+                    Text(title)
+                        .titleStyle()
+                        .opacity(trueTitle == "" && falseTitle == "" && value ? 1 : 0.5)
+                    Text(trueTitle)
+                        .padding(.bottom, 5)
+                        .opacity(value ? 1 : 0.5)
+                        .smallTitleStyle()
+                    Text(falseTitle)
+                        .padding(.bottom, 5)
+                        .opacity(value ? 0.5 : 1)
+                        .smallTitleStyle()
+                    
                 }
-                if i == self.values.count-1 {
-                    self.value = self.values[0]
-                }
             }
+                
+                
+            //MARK: Styling
+            .buttonStyle(RegularButtonStyle())
+            .padding(7)
         }
-        .padding(7)
     }
-}
-
 
 

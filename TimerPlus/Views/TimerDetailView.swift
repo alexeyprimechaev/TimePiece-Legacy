@@ -75,10 +75,16 @@ struct TimerDetailView: View {
                     }
                         
                     PropertyView(title: "Created at", timer: timer)
+                    VStack(alignment: .leading, spacing:14) {
+                        if timer.isReusable {
+                            PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
+                            PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
+                            PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
+                        } else {
+                            RegularButton(title: "Make Reusable", subtitle: "", action: timer.makeReusable)
+                        }
+                    }.animation(Animation.default, value: timer.isReusable)
                     
-                    ToggleButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
-                    ToggleButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
-                    ToggleButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
                 }.animation(Animation.default, value: timer.isRunning)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
@@ -87,10 +93,17 @@ struct TimerDetailView: View {
             
             HStack() {
                 Spacer().frame(width:28)
-                MainButton(color: Color.red, isPaused: $timer.isRunning, offTitle: "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill", onTap: {self.timer.reset()}, offTap: {self.delete()})
+                if timer.isReusable {
+                    MainButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.currentTime == 0 ? "Reset" : "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill", onTap: {self.timer.reset()}, offTap: {self.delete()})
+                } else {
+                    MainButton(color: Color.red, isPaused: $timer.isReusable, offTitle: "Delete", onTitle: "Delete", offIcon: "trash.fill", onIcon: "trash.fill", onTap: {self.delete()}, offTap: {self.delete()})
+                }
+                if timer.currentTime != 0 {
+                    Spacer().frame(width:28)
+                    MainButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {self.timer.togglePause()}, offTap: {self.timer.togglePause()})
+                }
                 Spacer().frame(width:28)
-                MainButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {self.timer.togglePause()}, offTap: {self.timer.togglePause()})
-                Spacer().frame(width:28)
+                
             }.padding(.vertical, 7)
         }
     }

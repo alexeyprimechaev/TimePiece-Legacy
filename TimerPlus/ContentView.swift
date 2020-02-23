@@ -38,8 +38,8 @@ struct ContentView: View {
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("TimePiece")
                             .titleStyle()
-                        Image("PlusIcon")
-                            .padding(.bottom, 9)
+//                        Image("PlusIcon")
+//                            .padding(.bottom, 9)
                     }
                         .padding(7)
                         .padding(.vertical, 12)
@@ -88,9 +88,9 @@ struct ContentView: View {
         //MARK: Sheet
         .sheet(isPresented: self.$showingDetailTimerView) {
             TimerDetailView(timer: self.timers[self.selectedTimer], onDismiss: {self.showingDetailTimerView = false}, delete: {
-                self.context.delete(self.timers[self.selectedTimer])
-                    self.showingDetailTimerView = false
-                })
+                self.timers[self.selectedTimer].remove(from: self.context)
+                self.showingDetailTimerView = false
+            })
             }
         
     }
@@ -101,7 +101,7 @@ struct ContentView: View {
     
     //MARK: Delete
     func deleteLast() {
-        context.delete(timers.last ?? timers[timers.count-1])
+        timers[timers.count - 1].remove(from: context)
     }
     
 //MARK: - CollectionView Functions
@@ -114,7 +114,7 @@ struct ContentView: View {
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle.fill")) { action in }
             let deleteConfirmation = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop.fill" : "trash.fill"), attributes: .destructive) { action in
                 if !(timer.isRunning) {
-                    self.context.delete(timer)
+                    timer.remove(from: self.context)
                     try? self.context.save()
                 } else {
                     timer.reset()

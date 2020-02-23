@@ -21,8 +21,6 @@ public class NotificationManager {
             } else {
                 userDefaults.set(newValue, forKey: "badgeCount")
             }
-            
-            
         }
     }
     
@@ -54,13 +52,8 @@ public class NotificationManager {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timer.currentTime, repeats: false)
             let request = UNNotificationRequest(identifier: timer.notificationIdentifier.uuidString, content: content, trigger: trigger)
             
-            
-            print(content.badge)
             UNUserNotificationCenter.current().add(request)
-            
-            UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { request in
-                print(request[0].identifier)
-            })
+ 
             
         } else {
             if timer.currentTime > 0 {

@@ -37,7 +37,7 @@ struct TimerButton: View {
             
             
         //MARK: Styling
-        .buttonStyle(DeepButtonStyle())
+        .buttonStyle(RegularButtonStyle())
         .padding(7)
         .fixedSize()
     }

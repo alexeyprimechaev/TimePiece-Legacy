@@ -15,6 +15,8 @@ struct NewTimerView: View {
     @ObservedObject var timer = TimerPlus()
     
     @Binding var isAdding: Bool
+    
+    @State var showingOptions = false
         
     var discard: () -> ()
             
@@ -63,6 +65,21 @@ struct NewTimerView: View {
                     EditableTimeView(time: $timer.totalTime, title: "Time", isFirstResponder: true, update: {
                         self.timer.currentTimeStored = self.timer.totalTimeStored
                     })
+                    
+                    ToggleButton(title: "Reusable", trueTitle: "Yes", falseTitle: "No", value: $timer.isReusable)
+                    
+                    VStack(alignment: .leading, spacing: 14) {
+                        
+                        ToggleButton(title: "Options", trueTitle: "", falseTitle: "", value: $showingOptions)
+                    
+                    
+                    if showingOptions {
+                        PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
+                        PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
+                        PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
+                    }
+                    }.animation(.default, value: showingOptions)
+                    
 
                     
                     
