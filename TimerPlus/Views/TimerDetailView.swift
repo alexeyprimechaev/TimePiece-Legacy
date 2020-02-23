@@ -98,10 +98,29 @@ struct TimerDetailView: View {
                 } else {
                     MainButton(color: Color.red, isPaused: $timer.isReusable, offTitle: "Delete", onTitle: "Delete", offIcon: "trash.fill", onIcon: "trash.fill", onTap: {self.delete()}, offTap: {self.delete()})
                 }
-                if timer.currentTime != 0 {
-                    Spacer().frame(width:28)
-                    MainButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {self.timer.togglePause()}, offTap: {self.timer.togglePause()})
-                }
+                Spacer().frame(width:28)
+                MainButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+                        if self.timer.currentTime == 0 {
+                            if self.timer.isReusable {
+                                self.timer.reset()
+                            } else {
+                                self.delete()
+                            }
+                        } else {
+                            self.timer.togglePause()
+                        }
+                    
+                }, offTap: {
+                    if self.timer.currentTime == 0 {
+                        if self.timer.isReusable {
+                            self.timer.reset()
+                        } else {
+                            self.delete()
+                        }
+                    } else {
+                        self.timer.togglePause()
+                    }
+                })
                 Spacer().frame(width:28)
                 
             }.padding(.vertical, 7)
