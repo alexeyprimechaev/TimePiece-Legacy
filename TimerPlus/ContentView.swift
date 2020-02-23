@@ -112,7 +112,7 @@ struct ContentView: View {
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
-            let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop.fill" : "trash"), attributes: .destructive) { action in
+            let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: .destructive) { action in
                 if !(timer.isRunning) {
                     timer.remove(from: self.context)
                     try? self.context.save()
@@ -129,10 +129,10 @@ struct ContentView: View {
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop.fill" : "trash"), options: .destructive, children: [deleteCancel, deleteConfirm])
+            let delete = UIMenu(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: .destructive, children: [deleteCancel, deleteConfirm])
             
 
-            let pause = UIAction(title: timer.isPaused ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused ? "play" : "pause.fill")) { action in
+            let pause = UIAction(title: timer.isPaused ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
                 if timer.currentTime == 0 {
                     if timer.isReusable {
                         timer.reset()
