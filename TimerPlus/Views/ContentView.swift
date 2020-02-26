@@ -26,9 +26,7 @@ struct ContentView: View {
     
     @State var showingDetailTimerView = false
     @State var selectedTimer = 0
-    
-    @State var showingSettingsView = false
-    
+        
 //MARK: - View
     
     var body: some View {
@@ -62,7 +60,7 @@ struct ContentView: View {
                         TimerPlus.newTimer(totalTime: 0, title: "", context: self.context)
                         self.showingNewTimerView = true
                     }).padding(.vertical, 12)
-                    TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {self.showingSettingsView = true})
+                    TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {})
                     .betterSheetIsModalInPresentation(true)
                         .betterSheet(isPresented: $showingNewTimerView, onDismiss: {
                             if self.isAdding {
@@ -94,10 +92,6 @@ struct ContentView: View {
                 self.timers[self.selectedTimer].remove(from: self.context)
                 self.showingDetailTimerView = false
             })
-        }
-        
-        .sheet(isPresented: self.$showingSettingsView) {
-            SettingsView()
         }
         
     }
