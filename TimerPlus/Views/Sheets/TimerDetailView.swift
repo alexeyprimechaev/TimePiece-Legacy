@@ -83,6 +83,7 @@ struct TimerDetailView: View {
                         } else {
                             RegularButton(title: "Make Reusable", subtitle: "", action: timer.makeReusable)
                         }
+
                     }.animation(Animation.default, value: timer.isReusable)
                     
                 }.animation(Animation.default, value: timer.isRunning)
