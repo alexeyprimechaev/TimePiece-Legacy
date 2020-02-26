@@ -2,7 +2,7 @@
 //  TimerButton.swift
 //  TimerPlus
 //
-//  Created by Alexey Primechaev on 1/17/20.
+//  Created by Alexey Primechaev on 2/25/20.
 //  Copyright © 2020 Alexey Primechaev. All rights reserved.
 //
 
@@ -10,35 +10,36 @@ import SwiftUI
 
 struct TimerButton: View {
     
-    //MARK: - Properties
+    @State var title = String()
+    @State var icon = String()
+    @State var sfSymbolIcon = false
+
+    var action: () -> ()
     
-    var onTap: () -> ()
-    
-    //MARK: - View
     var body: some View {
-        Button(action:
-            
-        //MARK: Action
-        {
-            self.onTap()
-        })
         
-            
-        //MARK: Layout
-        {
-            VStack(alignment: .leading) {
-                Text("New")
+        Button(action: {
+            self.action()
+        }) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(title)
                     .titleStyle()
-                Text("+")
+                if sfSymbolIcon {
+                    Spacer().frame(height: 15)
+                    Image(systemName: icon)
+                        .font(.system(size: 21, weight: .bold))
+                        .opacity(0.5)
+                    Spacer().frame(height: 11)
+                } else {
+                    Text(icon)
                     .titleStyle()
                     .opacity(0.5)
-            }
-        }
+                }
             
+            }.padding(7)
             
-        //MARK: Styling
-        .buttonStyle(RegularButtonStyle())
-        .padding(7)
-        .fixedSize()
+        }.buttonStyle(RegularButtonStyle())
+        
     }
 }
+
