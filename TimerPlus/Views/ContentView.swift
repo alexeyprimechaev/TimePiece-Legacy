@@ -21,10 +21,10 @@ struct ContentView: View {
     
     
     //MARK: State Variables
-    @State var showingNewTimerView = false
+    @State var showingNewTimerSheet = false
     @State var isAdding = false
     
-    @State var showingDetailTimerView = false
+    @State var showingTimerSheet = false
     @State var selectedTimer = 0
         
 //MARK: - View
@@ -58,18 +58,18 @@ struct ContentView: View {
                 ASCollectionViewSection(id: 2) {
                     TimerButton(title: "New", icon: "+", action: {
                         TimerPlus.newTimer(totalTime: 0, title: "", context: self.context)
-                        self.showingNewTimerView = true
+                        self.showingNewTimerSheet = true
                     }).padding(.vertical, 12)
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {})
                     .betterSheetIsModalInPresentation(true)
-                        .betterSheet(isPresented: $showingNewTimerView, onDismiss: {
+                        .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
                             if self.isAdding {
                                 
                             } else {
                                 self.deleteLast()
                             }
                         }) {
-                            NewTimerView(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerView = false})
+                            NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet = false})
                     }
                 }
             ]
@@ -87,10 +87,10 @@ struct ContentView: View {
         
             
         //MARK: Sheet
-        .sheet(isPresented: self.$showingDetailTimerView) {
-            TimerDetailView(timer: self.timers[self.selectedTimer], onDismiss: {self.showingDetailTimerView = false}, delete: {
+        .sheet(isPresented: self.$showingTimerSheet) {
+            TimerSheet(timer: self.timers[self.selectedTimer], onDismiss: {self.showingTimerSheet = false}, delete: {
                 self.timers[self.selectedTimer].remove(from: self.context)
-                self.showingDetailTimerView = false
+                self.showingTimerSheet = false
             })
         }
         
@@ -157,7 +157,7 @@ struct ContentView: View {
 
             let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
                 self.selectedTimer = self.timers.firstIndex(of: timer) ?? 0
-                self.showingDetailTimerView = true
+                self.showingTimerSheet = true
             }
 
             // Then we add edit as a child of the main menu

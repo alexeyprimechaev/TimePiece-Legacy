@@ -10,7 +10,7 @@ import SwiftUI
 import Introspect
 import CoreData
 
-struct TimerDetailView: View {
+struct TimerSheet: View {
     
     @ObservedObject var timer = TimerPlus()
         
@@ -132,6 +132,6 @@ struct TimerDetailView: View {
 
 struct TimerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerDetailView(onDismiss: {}, delete: {})
+        TimerSheet(onDismiss: {}, delete: {})
     }
 }

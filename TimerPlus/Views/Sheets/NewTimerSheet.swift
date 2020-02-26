@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct NewTimerView: View {
+struct NewTimerSheet: View {
     
     @Environment(\.managedObjectContext) var context
     

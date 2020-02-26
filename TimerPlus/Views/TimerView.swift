@@ -14,7 +14,6 @@ struct TimerView: View {
     
     //MARK: Dynamic Propertiess
     @ObservedObject var timer = TimerPlus()
-    @State var showingDetail = false
     @State var value = "88:88"
     
     //MARK: CoreData
