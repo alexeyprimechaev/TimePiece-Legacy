@@ -105,7 +105,7 @@
 		80612FD623C274DB00BC03F5 = {
 			isa = PBXGroup;
 			children = (
-				80612FE123C274DB00BC03F5 /* TimerPlus */,
+				80612FE123C274DB00BC03F5 /* TimePiece */,
 				80612FE023C274DB00BC03F5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		80612FE123C274DB00BC03F5 /* TimerPlus */ = {
+		80612FE123C274DB00BC03F5 /* TimePiece */ = {
 			isa = PBXGroup;
 			children = (
 				80D141E523CE175D00FD2B5A /* Delegates */,
@@ -131,7 +131,7 @@
 				80612FF323C274DF00BC03F5 /* Info.plist */,
 				80612FED23C274DF00BC03F5 /* Preview Content */,
 			);
-			path = TimerPlus;
+			path = TimePiece;
 			sourceTree = "<group>";
 		};
 		80612FED23C274DF00BC03F5 /* Preview Content */ = {
@@ -188,9 +188,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80612FDE23C274DB00BC03F5 /* TimerPlus */ = {
+		80612FDE23C274DB00BC03F5 /* TimePiece */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80612FF623C274DF00BC03F5 /* Build configuration list for PBXNativeTarget "TimerPlus" */;
+			buildConfigurationList = 80612FF623C274DF00BC03F5 /* Build configuration list for PBXNativeTarget "TimePiece" */;
 			buildPhases = (
 				80612FDB23C274DB00BC03F5 /* Sources */,
 				80612FDC23C274DB00BC03F5 /* Frameworks */,
@@ -200,7 +200,7 @@
 			);
 			dependencies = (
 			);
-			name = TimerPlus;
+			name = TimePiece;
 			packageProductDependencies = (
 				801FFBAF23CF3FED0040A12C /* ASCollectionView */,
 				802A026F23CFBB6300512B39 /* Introspect */,
@@ -225,8 +225,8 @@
 					};
 				};
 			};
-			buildConfigurationList = 80612FDA23C274DB00BC03F5 /* Build configuration list for PBXProject "TimerPlus" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 80612FDA23C274DB00BC03F5 /* Build configuration list for PBXProject "TimePiece" */;
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -243,7 +243,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80612FDE23C274DB00BC03F5 /* TimerPlus */,
+				80612FDE23C274DB00BC03F5 /* TimePiece */,
 			);
 		};
 /* End PBXProject section */
@@ -422,10 +422,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"TimerPlus/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TimePiece/Preview Content\"";
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = TimerPlus/Info.plist;
+				INFOPLIST_FILE = TimePiece/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,10 +444,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"TimerPlus/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TimePiece/Preview Content\"";
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = TimerPlus/Info.plist;
+				INFOPLIST_FILE = TimePiece/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,7 +463,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		80612FDA23C274DB00BC03F5 /* Build configuration list for PBXProject "TimerPlus" */ = {
+		80612FDA23C274DB00BC03F5 /* Build configuration list for PBXProject "TimePiece" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80612FF423C274DF00BC03F5 /* Debug */,
@@ -472,7 +472,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80612FF623C274DF00BC03F5 /* Build configuration list for PBXNativeTarget "TimerPlus" */ = {
+		80612FF623C274DF00BC03F5 /* Build configuration list for PBXNativeTarget "TimePiece" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80612FF723C274DF00BC03F5 /* Debug */,
