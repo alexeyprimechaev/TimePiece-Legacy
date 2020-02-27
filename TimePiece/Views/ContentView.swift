@@ -19,6 +19,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
     
+    @EnvironmentObject var settings: Settings
     
     //MARK: State Variables
     @State var showingNewTimerSheet = false
@@ -60,7 +61,13 @@ struct ContentView: View {
                         TimerPlus.newTimer(totalTime: 0, title: "", context: self.context)
                         self.showingNewTimerSheet = true
                     }).padding(.vertical, 12)
-                    TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {})
+                    TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
+                        if self.settings.fontDesign == .rounded {
+                        self.settings.fontDesign = .default
+                        } else {
+                            self.settings.fontDesign = .rounded
+                        }
+                    })
                     .betterSheetIsModalInPresentation(true)
                         .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
                             if self.isAdding {

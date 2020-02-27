@@ -15,11 +15,13 @@ import SwiftUI
 //MARK: Title Style
 struct TitleStyle: ViewModifier {
     
+    @EnvironmentObject var settings: Settings
+    
     var design: Font.Design?
     
     func body(content: Content) -> some View {
         content
-            .font(.system(size: 34, weight: .bold, design: design ?? .default))
+            .font(.system(size: 34, weight: .bold, design: settings.fontDesign))
     }
 }
 
