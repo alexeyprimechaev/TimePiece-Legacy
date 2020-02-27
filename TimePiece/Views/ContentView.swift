@@ -64,8 +64,10 @@ struct ContentView: View {
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
                         if self.settings.fontDesign == .rounded {
                         self.settings.fontDesign = .default
+                            print(self.settings.fontDesign)
                         } else {
                             self.settings.fontDesign = .rounded
+                            print(self.settings.fontDesign)
                         }
                     })
                     .betterSheetIsModalInPresentation(true)

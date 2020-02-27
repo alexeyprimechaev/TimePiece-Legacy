@@ -16,37 +16,21 @@ import SwiftUI
 struct TitleStyle: ViewModifier {
     
     @EnvironmentObject var settings: Settings
-    
-    var design: Font.Design?
-    
+        
     func body(content: Content) -> some View {
         content
             .font(.system(size: 34, weight: .bold, design: settings.fontDesign))
     }
 }
 
-
-//MARK: Secondary Title Style
-struct SecondaryTitleStyle: ViewModifier {
-    
-    var design: Font.Design?
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.system(size: 34, weight: .bold, design: design ?? .default))
-            .opacity(0.5)
-    }
-}
-
-
 //MARK: Small Title Style
 struct SmallTitleStyle: ViewModifier {
     
-    var design: Font.Design?
+    @EnvironmentObject var settings: Settings
     
     func body(content: Content) -> some View {
         content
-            .font(.system(size: 17, weight: .semibold, design: design ?? .default))
+            .font(.system(size: 17, weight: .semibold, design: settings.fontDesign))
     }
 }
 
@@ -54,15 +38,11 @@ struct SmallTitleStyle: ViewModifier {
 //MARK: Application Functions
 extension View {
     func titleStyle(design: Font.Design? = .default) -> some View {
-        self.modifier(TitleStyle(design: design))
-    }
-    
-    func secondaryTitleStyle(design: Font.Design? = .default) -> some View {
-        self.modifier(SecondaryTitleStyle(design: design))
+        self.modifier(TitleStyle())
     }
     
     func smallTitleStyle(design: Font.Design? = .default) -> some View {
-        self.modifier(SmallTitleStyle(design: design))
+        self.modifier(SmallTitleStyle())
     }
 }
 

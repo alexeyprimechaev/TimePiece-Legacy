@@ -9,17 +9,16 @@
 import Foundation
 import UserNotifications
 
-public let userDefaults = UserDefaults.standard
-
 public class NotificationManager {
     
     static var badgeCount: Int {
-        get { (userDefaults.value(forKey: "badgeCount") ?? 0) as! Int }
+        
+        get { (defaultsStored.value(forKey: "badgeCount") ?? 0) as! Int }
         set { if newValue < 0 {
                 print("zero")
-                userDefaults.set(0, forKey: "badgeCount")
+                defaultsStored.set(0, forKey: "badgeCount")
             } else {
-                userDefaults.set(newValue, forKey: "badgeCount")
+                defaultsStored.set(newValue, forKey: "badgeCount")
             }
         }
     }
