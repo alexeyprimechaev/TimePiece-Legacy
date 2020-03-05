@@ -31,6 +31,8 @@
 		807A0F4123D4C66C008B0E24 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A0F4023D4C66C008B0E24 /* TimeView.swift */; };
 		8088473B23C2AE79001D1A6E /* TimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerSheet.swift */; };
 		809635642401544D00BF297F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
+		80A14FB52411077000638B64 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
+		80A14FB72411217A00638B64 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB62411217900638B64 /* SettingsSheet.swift */; };
 		80ACD6B723CBE435000C49DC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* MainButton.swift */; };
 		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,8 @@
 		807A0F4023D4C66C008B0E24 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		8088473A23C2AE79001D1A6E /* TimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSheet.swift; sourceTree = "<group>"; };
 		809635632401544D00BF297F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		80A14FB42411077000638B64 /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
+		80A14FB62411217900638B64 /* SettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsSheet.swift; path = TimePiece/SettingsSheet.swift; sourceTree = SOURCE_ROOT; };
 		80ACD6B623CBE435000C49DC /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +84,7 @@
 		801A18532402FF1E005B4D19 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
+				80A14FB62411217900638B64 /* SettingsSheet.swift */,
 				8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */,
 				8088473A23C2AE79001D1A6E /* TimerSheet.swift */,
 			);
@@ -148,6 +153,7 @@
 			children = (
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
 				804E17B124087B71003F5001 /* Settings.swift */,
+				80A14FB42411077000638B64 /* PersonCard.swift */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				8012C7AA24057D4200E7798E /* ListSection.swift */,
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
@@ -275,7 +281,9 @@
 				8012C7A924056C5000E7798E /* TimerButton.swift in Sources */,
 				8012C7AB24057D4200E7798E /* ListSection.swift in Sources */,
 				801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */,
+				80A14FB72411217A00638B64 /* SettingsSheet.swift in Sources */,
 				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,
+				80A14FB52411077000638B64 /* PersonCard.swift in Sources */,
 				80612FE823C274DB00BC03F5 /* TimerPlus.xcdatamodeld in Sources */,
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
 				80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */,

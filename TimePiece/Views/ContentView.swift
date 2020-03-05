@@ -27,6 +27,8 @@ struct ContentView: View {
     
     @State var showingTimerSheet = false
     @State var selectedTimer = 0
+    
+    @State var showingSettingsSheet = false
         
 //MARK: - View
     
@@ -58,17 +60,11 @@ struct ContentView: View {
         //MARK: Button
                 ASCollectionViewSection(id: 2) {
                     TimerButton(title: "New", icon: "+", action: {
-                        TimerPlus.newTimer(totalTime: 0, title: "", context: self.context)
+                        TimerPlus.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault)
                         self.showingNewTimerSheet = true
                     }).padding(.vertical, 12)
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
-                        if self.settings.fontDesign == .rounded {
-                        self.settings.fontDesign = .default
-                            print(self.settings.fontDesign)
-                        } else {
-                            self.settings.fontDesign = .rounded
-                            print(self.settings.fontDesign)
-                        }
+                        self.showingSettingsSheet = true
                     })
                     .betterSheetIsModalInPresentation(true)
                         .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
@@ -101,6 +97,9 @@ struct ContentView: View {
                 self.timers[self.selectedTimer].remove(from: self.context)
                 self.showingTimerSheet = false
             }).environmentObject(self.settings)
+        }
+        .sheet(isPresented: self.$showingSettingsSheet) {
+            SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
         }
         
     }

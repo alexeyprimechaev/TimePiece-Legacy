@@ -38,6 +38,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     static let soundSettings = ["Short", "Long"]
     static let precisionSettings = ["On", "Off", "Smart"]
     static let notificationSettings = ["On", "Off"]
+    static let reusableSettings = ["Yes", "No"]
     
     
     //MARK: Formatters
@@ -67,7 +68,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     
     //MARK: Creation (in context)
-    static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext) {
+    static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String) {
         let timer = TimerPlus(context: context)
         
         // User Input
@@ -78,16 +79,17 @@ public class TimerPlus: NSManagedObject, Identifiable {
         timer.createdAt = Date()
         timer.isPaused = true
         timer.isRunning = false
-        timer.isReusable = false
+        
         timer.currentTime = timer.totalTime
         timer.timeStarted = Date()
         timer.timeFinished = timer.timeStarted.addingTimeInterval(timer.currentTime)
         timer.notificationIdentifier = UUID()
     
         // Settings
-        timer.soundSetting = soundSettings[0]
-        timer.precisionSetting = precisionSettings[1]
-        timer.notificationSetting = notificationSettings[0]
+        timer.isReusable.stringValue = reusableSetting
+        timer.soundSetting = soundSetting
+        timer.precisionSetting = precisionSetting
+        timer.notificationSetting = notificationSetting
         
         // Saving
         do {
@@ -367,6 +369,24 @@ extension TimeInterval {
     }
 }
 
+extension Bool {
+    var stringValue: String {
+        get {
+            if self {
+                return "Yes"
+            } else {
+                return "No"
+            }
+        }
+        set {
+            if newValue == "Yes" {
+                self = true
+            } else {
+                self = false
+            }
+        }
+    }
+}
 
 //MARK: - CoreData
 extension TimerPlus {

@@ -13,11 +13,37 @@ public let defaultsStored = UserDefaults.standard
 
 public class Settings: ObservableObject {
     
-    @Published var fontDesign: Font.Design = (defaultsStored.value(forKey: "fontDesign") as! String).fontDesignValue {
+    @Published var fontDesign: Font.Design = ((defaultsStored.value(forKey: "fontDesign") ?? "Default") as! String).fontDesignValue {
         willSet {
             defaultsStored.set(newValue.string, forKey: "fontDesign")
         }
     }
+    
+    @Published var isReusableDefault: String = (defaultsStored.string(forKey: "isReusableDefault") ?? TimerPlus.reusableSettings[0]) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "isReusableDefault")
+        }
+    }
+    
+    @Published var soundSettingDefault: String = (defaultsStored.string(forKey: "soundSettingDefault") ?? TimerPlus.soundSettings[0]) {
+           willSet {
+               defaultsStored.set(newValue, forKey: "soundSettingDefault")
+           }
+    }
+    
+    @Published var precisionSettingDefault: String = (defaultsStored.string(forKey: "precisionSettingDefault") ?? TimerPlus.precisionSettings[0]) {
+           willSet {
+               defaultsStored.set(newValue, forKey: "precisionSettingDefault")
+           }
+    }
+    
+    @Published var notificationSettingDefault: String = (defaultsStored.string(forKey: "notificationSettingDefault") ?? TimerPlus.notificationSettings[0]) {
+           willSet {
+               defaultsStored.set(newValue, forKey: "notificationSettingDefault")
+           }
+    }
+    
+    
     
 }
 
