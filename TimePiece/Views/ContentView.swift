@@ -50,7 +50,7 @@ struct ContentView: View {
                 
         //MARK: Timers
                 ASCollectionViewSection(id: 1, data: timers, dataID: \.self, contextMenuProvider: contextMenuProvider) { timer, _ in
-                    TimerView(timer: timer).fixedSize()
+                    TimerView(timer: timer).fixedSize().environmentObject(self.settings)
                         
                 },
                 
@@ -78,7 +78,7 @@ struct ContentView: View {
                                 self.deleteLast()
                             }
                         }) {
-                            NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet = false})
+                            NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet = false}).environmentObject(self.settings)
                     }
                 }
             ]
@@ -100,7 +100,7 @@ struct ContentView: View {
             TimerSheet(timer: self.timers[self.selectedTimer], onDismiss: {self.showingTimerSheet = false}, delete: {
                 self.timers[self.selectedTimer].remove(from: self.context)
                 self.showingTimerSheet = false
-            })
+            }).environmentObject(self.settings)
         }
         
     }
