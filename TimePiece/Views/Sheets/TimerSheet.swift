@@ -45,7 +45,7 @@ struct TimerSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                         
-                    PropertyView(title: "Title", timer: timer)
+                    PropertyView(title: "Title", timer: timer).disabled(!timer.isPaused)
                     
                     if timer.totalTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
                         VStack(alignment: .leading, spacing:14) {

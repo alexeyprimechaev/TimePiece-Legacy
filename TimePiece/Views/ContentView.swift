@@ -63,6 +63,9 @@ struct ContentView: View {
                         TimerPlus.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault)
                         self.showingNewTimerSheet = true
                     }).padding(.vertical, 12)
+                    .sheet(isPresented: self.$showingSettingsSheet) {
+                        SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
+                    }
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
                         self.showingSettingsSheet = true
                     })
@@ -98,9 +101,7 @@ struct ContentView: View {
                 self.showingTimerSheet = false
             }).environmentObject(self.settings)
         }
-        .sheet(isPresented: self.$showingSettingsSheet) {
-            SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
-        }
+        
         
     }
     

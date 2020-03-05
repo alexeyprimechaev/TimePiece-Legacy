@@ -40,20 +40,29 @@ struct SettingsSheet: View {
                     
                     Text("Settings").titleStyle().padding(7)
                     
-                    ListSection(title: "Made with love by") {
-                        PersonCard(name: "Alexey Primechaev", description: "Creator, Designer, Developer", link: "", image: "alesha", icon: "twitter")
-                        PersonCard(name: "Igor Dyachuk", description: "Designer", link: "", image: "igor", icon: "twitter")
+                    ListSection(title: "Made in Moscow with ❤️ by") {
+                        PersonCard(name: "Alexey Primechaev", description: "Creator, Designer, Developer", link: "https://twitter.com/numberl6", image: "alesha", icon: "twitter")
+                        PersonCard(name: "Igor Dyachuk", description: "Designer", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
                     }
+                    
                     ListSection(title: "Visuals") {
-                        PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
+                        VStack(alignment: .leading, spacing: -4) {
+                            PremiumBadge()
+                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
+                        }
                     }
                     
                     ListSection(title: "New Timers") {
-                        PickerButton(title: "Reusable", values: TimerPlus.reusableSettings, value: self.$settings.isReusableDefault)
                         PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: self.$settings.notificationSettingDefault)
                         PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: self.$settings.soundSettingDefault)
-                        PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$settings.precisionSettingDefault)
-                        
+                        VStack(alignment: .leading, spacing: -4) {
+                            PremiumBadge()
+                            PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$settings.precisionSettingDefault)
+                        }
+                        VStack(alignment: .leading, spacing: -4) {
+                            PremiumBadge()
+                            PickerButton(title: "Reusable", values: TimerPlus.reusableSettings, value: self.$settings.isReusableDefault)
+                        }
                         
                     }
                     

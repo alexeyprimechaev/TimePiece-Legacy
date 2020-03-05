@@ -34,7 +34,7 @@ struct NewTimerSheet: View {
                             .fontWeight(.semibold)
                     }
                     .padding(.leading, 28)
-                    .padding(.trailing, 128)
+                    .padding(.trailing, 64)
                     .foregroundColor(Color.red)
                 }
                 .frame(height: 52)

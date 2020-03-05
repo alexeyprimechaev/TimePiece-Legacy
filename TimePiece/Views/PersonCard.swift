@@ -22,7 +22,7 @@ struct PersonCard: View {
     
     var body: some View {
         Button(action: {
-            UIApplication.shared.open(URL(string: "https://twitter.com/numberl6")!)
+            UIApplication.shared.open(URL(string: self.link)!)
         }) {
             HStack(alignment: .center, spacing: 7) {
                 Image(image).frame(width: 44, height: 44).cornerRadius(100).overlay(

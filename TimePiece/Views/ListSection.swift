@@ -24,7 +24,9 @@ struct ListSection<Content:View>: View {
                 .padding(.horizontal, 7)
                 .padding(.top, 7)
                 .smallTitleStyle()
-            content
+            VStack(alignment: .leading, spacing: 14) {
+                content
+            }
         }
     }
 }
