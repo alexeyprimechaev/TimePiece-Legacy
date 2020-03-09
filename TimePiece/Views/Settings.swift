@@ -13,9 +13,17 @@ public let defaultsStored = UserDefaults.standard
 
 public class Settings: ObservableObject {
     
+    @Published var showingSubscription: Bool = false
+    
     @Published var fontDesign: Font.Design = ((defaultsStored.value(forKey: "fontDesign") ?? "Default") as! String).fontDesignValue {
         willSet {
             defaultsStored.set(newValue.string, forKey: "fontDesign")
+        }
+    }
+    
+    @Published var isMonochrome: Bool = ((defaultsStored.value(forKey: "isMonochrome") ?? false) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "isMonochrome")
         }
     }
     

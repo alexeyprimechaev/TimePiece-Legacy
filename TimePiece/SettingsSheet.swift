@@ -16,6 +16,7 @@ struct SettingsSheet: View {
             
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
+
             HStack() {
                 Button(action: {
                     self.discard()
@@ -45,13 +46,6 @@ struct SettingsSheet: View {
                         PersonCard(name: "Igor Dyachuk", description: "Designer", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
                     }
                     
-                    ListSection(title: "Visuals") {
-                        VStack(alignment: .leading, spacing: -4) {
-                            PremiumBadge()
-                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
-                        }
-                    }
-                    
                     ListSection(title: "New Timers") {
                         PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: self.$settings.notificationSettingDefault)
                         PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: self.$settings.soundSettingDefault)
@@ -66,11 +60,25 @@ struct SettingsSheet: View {
                         
                     }
                     
+                    ListSection(title: "Visuals") {
+                        VStack(alignment: .leading, spacing: -4) {
+                            PremiumBadge()
+                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
+                        }
+                        VStack(alignment: .leading, spacing: -4) {
+                            PremiumBadge()
+                            PickerButton(title: "Monochrome", values: [true.stringValue, false.stringValue], value: self.$settings.isMonochrome.stringValue)
+                        }
+                        
+                    }
                     
-                }.padding(.leading, 21).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                    
+                }.padding(.leading, 21).padding(.bottom, 28).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
                     
                 }
-            }
+        }.sheet(isPresented: $settings.showingSubscription) {
+            SubscriptionSheet().environmentObject(self.settings)
+        }
         
     }
 }

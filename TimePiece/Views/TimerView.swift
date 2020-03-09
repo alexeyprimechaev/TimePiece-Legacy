@@ -18,6 +18,9 @@ struct TimerView: View {
     
     //MARK: CoreData
     @Environment(\.managedObjectContext) var context
+    
+    @EnvironmentObject var settings: Settings
+    
 
     
 //MARK: - View
@@ -110,6 +113,7 @@ struct TimerView: View {
         .buttonStyle(RegularButtonStyle())
         .padding(7)
         .fixedSize()
+        
     
         
     }

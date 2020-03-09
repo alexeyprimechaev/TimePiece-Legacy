@@ -20,6 +20,7 @@ struct TitleStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 34, weight: .bold, design: settings.fontDesign))
+            .saturation(settings.isMonochrome ? 0 : 1)
     }
 }
 
@@ -31,6 +32,7 @@ struct SmallTitleStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 17, weight: .semibold, design: settings.fontDesign))
+            .saturation(settings.isMonochrome ? 0 : 1)
     }
 }
 

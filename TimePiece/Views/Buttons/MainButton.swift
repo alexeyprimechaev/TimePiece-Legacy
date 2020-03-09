@@ -1,8 +1,8 @@
 //
 //  MainButton.swift
-//  TimerPlus
+//  TimePiece
 //
-//  Created by Alexey Primechaev on 1/13/20.
+//  Created by Alexey Primechaev on 3/9/20.
 //  Copyright © 2020 Alexey Primechaev. All rights reserved.
 //
 
@@ -10,55 +10,29 @@ import SwiftUI
 
 struct MainButton: View {
     
-//MARK: - Properties
+    @State var icon = String()
+    @State var title = String()
     
+    @State var highPriority = false
     
+    var action: () -> ()
     
-    //MARK: Dynamic Properties
-    @State var color: Color
-    @Binding var isPaused: Bool
-    
-    
-    //MARK: Static Properties
-    var offTitle = String()
-    var onTitle = String()
-    
-    var offIcon = String()
-    var onIcon = String()
-    
-    var onTap: () -> ()
-    var offTap: () -> ()
-    
-//MARK: - View
     var body: some View {
-        Button(action:
-            
-        //MARK: Action
-        {
-        if self.isPaused {
-            self.onTap()
-        } else {
-            self.offTap()
-        }
-    })
-            
-            
-        //MARK: Layout
-        {
+        Button(action: {
+            self.action()
+        }) {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .foregroundColor(Color("button.gray"))
+                    .foregroundColor(highPriority ? Color("priority.gray") : Color("button.gray"))
                 HStack() {
-                    Image(systemName: isPaused ? offIcon : onIcon)
-                        .padding(.bottom, onIcon == "trash.fill" && !isPaused ? 3 : 0)
-                    Text(isPaused ? offTitle : onTitle)
-                    
+                    Image(systemName: icon)
+                    Text(title).fixedSize()
                 }
-                .foregroundColor(color)
+                .foregroundColor(highPriority ? Color(UIColor.systemBackground) : Color.primary)
                 .smallTitleStyle()
             }.frame(height: 52)
+               
+            
         }
-        
     }
 }
-

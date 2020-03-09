@@ -30,8 +30,10 @@ struct NewTimerSheet: View {
                     HStack(alignment: .center) {
                         Image(systemName: "xmark")
                             .font(.system(size: 11.0, weight: .heavy))
+                            .smallTitleStyle()
+                            
                         Text("Discard")
-                            .fontWeight(.semibold)
+                            .smallTitleStyle()
                     }
                     .padding(.leading, 28)
                     .padding(.trailing, 64)

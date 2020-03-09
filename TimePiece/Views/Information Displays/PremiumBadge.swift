@@ -15,7 +15,7 @@ struct PremiumBadge: View {
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             Image(systemName: "star.fill").font(.system(size: 9, weight: .semibold, design: settings.fontDesign)).padding(.trailing, 3)
-            Text("PREMIUM").font(.system(size: 13, weight: .semibold, design: settings.fontDesign))
+            Text("PLUS").font(.system(size: 13, weight: .semibold, design: settings.fontDesign))
         }.padding(.leading, 9)
         
     }
