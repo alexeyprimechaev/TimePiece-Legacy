@@ -10,10 +10,13 @@ import SwiftUI
 
 struct SubscriptionSheet: View {
     
+    var discard: () -> ()
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack() {
                 Button(action: {
+                    self.discard()
                 }) {
                     HStack(alignment: .center) {
                         Image(systemName: "xmark")
@@ -47,7 +50,7 @@ struct SubscriptionSheet: View {
                     }
                     Spacer().frame(width:28)
                 }.padding(.bottom, 14)
-                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").font(.system(size: 14, weight: .medium)).padding(7).multilineTextAlignment(.center).padding(.bottom, 14)
+                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryTextStyle().padding(7).padding(.bottom, 14)
                 HStack(spacing: 14) {
                     HStack() {
                         Image(systemName: "doc")
@@ -61,11 +64,5 @@ struct SubscriptionSheet: View {
             }.padding(.leading, 21)
         }
         
-    }
-}
-
-struct SubscriptionSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        SubscriptionSheet()
     }
 }

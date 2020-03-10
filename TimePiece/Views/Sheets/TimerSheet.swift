@@ -30,8 +30,9 @@ struct TimerSheet: View {
                     HStack(alignment: .center) {
                         Image(systemName: "xmark")
                             .font(.system(size: 11.0, weight: .heavy))
+                            .smallTitleStyle()
                         Text("Dismiss")
-                            .fontWeight(.semibold)
+                            .smallTitleStyle()
                     }
                     .padding(.leading, 28)
                     .padding(.trailing, 128)
@@ -79,9 +80,14 @@ struct TimerSheet: View {
                         if timer.isReusable {
                             PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                             PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
-                            PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
+                            PremiumBadge() {
+                                PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$timer.precisionSetting)
+                            }
                         } else {
-                            RegularButton(title: "Make Reusable", subtitle: "", action: timer.makeReusable)
+                            PremiumBadge() {
+                                RegularButton(title: "Make Reusable", subtitle: "", action: self.timer.makeReusable)
+                            }
+                            
                         }
 
                     }.animation(Animation.default, value: timer.isReusable)

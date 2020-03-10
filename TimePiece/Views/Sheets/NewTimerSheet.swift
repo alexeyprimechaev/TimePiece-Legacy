@@ -48,8 +48,9 @@ struct NewTimerSheet: View {
                     HStack(alignment: .center) {
                         Image(systemName: "plus")
                             .font(.system(size: 11.0, weight: .heavy))
+                            .smallTitleStyle()
                         Text("Add")
-                            .fontWeight(.semibold)
+                            .smallTitleStyle()
                     }
                     .padding(.leading, 64)
                     .padding(.trailing, 28)
@@ -67,19 +68,23 @@ struct NewTimerSheet: View {
                     EditableTimeView(time: $timer.totalTime, title: "Time", isFirstResponder: true, update: {
                         self.timer.currentTimeStored = self.timer.totalTimeStored
                     })
-                    
-                    ToggleButton(title: "Reusable", trueTitle: "Yes", falseTitle: "No", value: $timer.isReusable)
-                    
                     VStack(alignment: .leading, spacing: 14) {
                         
                         ToggleButton(title: "Options", trueTitle: "", falseTitle: "", value: $showingOptions)
                     
                     
-                    if showingOptions {
+                    if showingOptions {   
+                        
                         PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                         PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
-                        PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: $timer.precisionSetting)
+                        PremiumBadge() {
+                            PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$timer.precisionSetting)
+                        }
+                        PremiumBadge() {
+                            ToggleButton(title: "Reusable", trueTitle: "Yes", falseTitle: "No", value: self.$timer.isReusable)
+                        }
                     }
+                        
                     }.animation(.default, value: showingOptions)
                     
 

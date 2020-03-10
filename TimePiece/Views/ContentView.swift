@@ -122,7 +122,7 @@ struct ContentView: View {
     func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
-            let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: .destructive) { action in
+            let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
                 if !(timer.isRunning) {
                     timer.remove(from: self.context)
                     try? self.context.save()
@@ -132,14 +132,14 @@ struct ContentView: View {
                
             }
             
-            let deleteConfirmReusable = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+            let deleteConfirmReusable = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
                 timer.remove(from: self.context)
                 try? self.context.save()
                
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: .destructive, children: [deleteCancel, deleteConfirm])
+            let delete = UIMenu(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
             
 
             let pause = UIAction(title: timer.isPaused ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
@@ -158,7 +158,7 @@ struct ContentView: View {
                 timer.makeReusable()
             }
             
-            let deleteReusable = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteCancel, deleteConfirmReusable])
+            let deleteReusable = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
             
 
             // The edit menu adds delete as a child, just like an action

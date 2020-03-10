@@ -25,7 +25,7 @@ struct SettingsSheet: View {
                         Image(systemName: "xmark")
                             .font(.system(size: 11.0, weight: .heavy))
                         Text("Dismiss")
-                            .fontWeight(.semibold)
+                            .smallTitleStyle()
                     }
                     .padding(.leading, 28)
                     .padding(.trailing, 128)
@@ -49,26 +49,25 @@ struct SettingsSheet: View {
                     ListSection(title: "New Timers") {
                         PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: self.$settings.notificationSettingDefault)
                         PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: self.$settings.soundSettingDefault)
-                        VStack(alignment: .leading, spacing: -4) {
-                            PremiumBadge()
+                        PremiumBadge() {
                             PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$settings.precisionSettingDefault)
                         }
-                        VStack(alignment: .leading, spacing: -4) {
-                            PremiumBadge()
+                            
+                        PremiumBadge() {
                             PickerButton(title: "Reusable", values: TimerPlus.reusableSettings, value: self.$settings.isReusableDefault)
                         }
                         
                     }
                     
                     ListSection(title: "Visuals") {
-                        VStack(alignment: .leading, spacing: -4) {
-                            PremiumBadge()
-                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
+                        PremiumBadge() {
+                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string], value: self.$settings.fontDesign.string)
                         }
-                        VStack(alignment: .leading, spacing: -4) {
-                            PremiumBadge()
+                        PremiumBadge() {
                             PickerButton(title: "Monochrome", values: [true.stringValue, false.stringValue], value: self.$settings.isMonochrome.stringValue)
                         }
+                        
+                        ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)
                         
                     }
                     
@@ -76,8 +75,6 @@ struct SettingsSheet: View {
                 }.padding(.leading, 21).padding(.bottom, 28).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
                     
                 }
-        }.sheet(isPresented: $settings.showingSubscription) {
-            SubscriptionSheet().environmentObject(self.settings)
         }
         
     }

@@ -15,6 +15,12 @@ public class Settings: ObservableObject {
     
     @Published var showingSubscription: Bool = false
     
+    @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? false) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "isSubscribed")
+        }
+    }
+    
     @Published var fontDesign: Font.Design = ((defaultsStored.value(forKey: "fontDesign") ?? "Default") as! String).fontDesignValue {
         willSet {
             defaultsStored.set(newValue.string, forKey: "fontDesign")
@@ -39,7 +45,7 @@ public class Settings: ObservableObject {
            }
     }
     
-    @Published var precisionSettingDefault: String = (defaultsStored.string(forKey: "precisionSettingDefault") ?? TimerPlus.precisionSettings[0]) {
+    @Published var precisionSettingDefault: String = (defaultsStored.string(forKey: "precisionSettingDefault") ?? TimerPlus.precisionSettings[1]) {
            willSet {
                defaultsStored.set(newValue, forKey: "precisionSettingDefault")
            }

@@ -36,6 +36,17 @@ struct SmallTitleStyle: ViewModifier {
     }
 }
 
+struct SecondaryTextStyle: ViewModifier {
+    
+    @EnvironmentObject var settings: Settings
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 14, weight: .medium, design: settings.fontDesign)).multilineTextAlignment(.center)
+            .saturation(settings.isMonochrome ? 0 : 1)
+    }
+}
+
 
 //MARK: Application Functions
 extension View {
@@ -45,6 +56,10 @@ extension View {
     
     func smallTitleStyle(design: Font.Design? = .default) -> some View {
         self.modifier(SmallTitleStyle())
+    }
+    
+    func secondaryTextStyle(design: Font.Design? = .default) -> some View {
+        self.modifier(SecondaryTextStyle())
     }
 }
 
