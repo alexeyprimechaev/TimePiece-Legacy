@@ -22,42 +22,15 @@ struct NewTimerSheet: View {
             
     var body: some View {
         VStack(spacing:0) {
-            HStack() {
-                Button(action: {
-                    self.isAdding = false
-                    self.discard()
-                }) {
-                    HStack(alignment: .center) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 11.0, weight: .heavy))
-                            .smallTitleStyle()
-                            
-                        Text("Discard")
-                            .smallTitleStyle()
-                    }
-                    .padding(.leading, 28)
-                    .padding(.trailing, 64)
-                    .foregroundColor(Color.red)
-                }
-                .frame(height: 52)
-                Spacer()
-                Button(action: {
-                    self.isAdding = true
-                    self.discard()
-                }) {
-                    HStack(alignment: .center) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 11.0, weight: .heavy))
-                            .smallTitleStyle()
-                        Text("Add")
-                            .smallTitleStyle()
-                    }
-                    .padding(.leading, 64)
-                    .padding(.trailing, 28)
-                    .foregroundColor(Color.primary)
-                }
-                .frame(height: 52)
-            }
+            HeaderBar(
+            leadingAction: {
+                self.isAdding = false
+                self.discard()
+            }, leadingTitle: "Discard", leadingIcon: "xmark", leadingIsDestructive: true,
+            trailingAction: {
+                self.isAdding = true
+                self.discard()
+            }, trailingTitle: "Add", trailingIcon: "plus")
             
             ScrollView() {
                 

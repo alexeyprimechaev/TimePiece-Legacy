@@ -16,31 +16,18 @@ struct TimerSheet: View {
         
     @State var name = ""
     
-    var onDismiss: () -> ()
+    var discard: () -> ()
     
     var delete: () -> ()
     
     var body: some View {
         
         VStack(spacing:0) {
-            HStack() {
-                Button(action: {
-                    self.onDismiss()
-                }) {
-                    HStack(alignment: .center) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 11.0, weight: .heavy))
-                            .smallTitleStyle()
-                        Text("Dismiss")
-                            .smallTitleStyle()
-                    }
-                    .padding(.leading, 28)
-                    .padding(.trailing, 128)
-                    .foregroundColor(Color.primary)
-                }
-                .frame(height: 52)
-                Spacer()
-            }
+            HeaderBar(
+            leadingAction: {
+                self.discard()
+            }, leadingTitle: "Discard", leadingIcon: "xmark", leadingIsDestructive: true,
+            trailingAction: {})
             
             ScrollView() {
                 
@@ -138,6 +125,6 @@ struct TimerSheet: View {
 
 struct TimerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerSheet(onDismiss: {}, delete: {})
+        TimerSheet(discard: {}, delete: {})
     }
 }

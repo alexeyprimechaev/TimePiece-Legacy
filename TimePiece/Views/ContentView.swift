@@ -96,9 +96,14 @@ struct ContentView: View {
             
         //MARK: Sheet
         .sheet(isPresented: self.$showingTimerSheet) {
-            TimerSheet(timer: self.timers[self.selectedTimer], onDismiss: {self.showingTimerSheet = false}, delete: {
+            TimerSheet(timer: self.timers[self.selectedTimer], discard: {self.showingTimerSheet = false}, delete: {
                 self.timers[self.selectedTimer].remove(from: self.context)
                 self.showingTimerSheet = false
+            }).environmentObject(self.settings)
+        }
+        .betterSheet(isPresented: $settings.showingSubscription) {
+            SubscriptionSheet(discard: {
+                self.settings.showingSubscription = false
             }).environmentObject(self.settings)
         }
         
@@ -155,7 +160,11 @@ struct ContentView: View {
             }
             
             let makeReusable = UIAction(title: "Make Reusable", image: UIImage(systemName: "arrow.clockwise")) { action in
-                timer.makeReusable()
+                if self.settings.isSubscribed {
+                    timer.makeReusable()
+                } else {
+                    self.settings.showingSubscription = true
+                }
             }
             
             let deleteReusable = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])

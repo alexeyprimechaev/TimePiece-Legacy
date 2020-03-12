@@ -14,39 +14,45 @@ struct SubscriptionSheet: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack() {
-                Button(action: {
-                    self.discard()
-                }) {
-                    HStack(alignment: .center) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 11.0, weight: .heavy))
-                        Text("Dismiss")
-                            .fontWeight(.semibold)
-                    }
-                    .padding(.leading, 28)
-                    .padding(.trailing, 128)
-                    .foregroundColor(.primary)
-                    Spacer()
-                }
-                .frame(height: 52)
-            }
+            
+            HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {}, trailingTitle: "Restore", trailingIcon: "arrow.clockwise")
+            
             VStack(alignment: .leading, spacing: 0) {
                 
-                Text("TimePiece").titleStyle().padding(7)
+                HStack(alignment: .bottom, spacing: 4) {
+                    Text("TimePiece")
+                        .titleStyle()
+                    Image("PlusIcon")
+                        .padding(.bottom, 9)
+                }.padding(7)
+                ScrollView() {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Spacer()
+                        SubscriptionBadge(icon: "arrow.clockwise", title: "Reusable Timers. Unlimited.", subtitle: "Tut tozhe tekst", textOffset: 4).offset(x: 3)
+                        Spacer()
+                        SubscriptionBadge(icon: "ellipsis", title: "Higher Precision", subtitle: "Display Milliseconds", textOffset: 3).offset(x: 2)
+                        Spacer()
+                        SubscriptionBadge(icon: "1.circle", title: "Control notifications & sounds", subtitle: "For each timer separately", textOffset: 1).offset(x: 1)
+                        Spacer()
+                        SubscriptionBadge(icon: "wand.and.stars", title: "Change App’s appearance", subtitle: "Pick between fonts and colors")
+                        Spacer()
+                        
+ 
+                    }
+                }
                 Spacer()
                 HStack(spacing: 0) {
                     Spacer().frame(width:7)
                     VStack() {
                         MainButton(icon: "creditcard.fill", title: "Free Trial", highPriority: true, action: {})
                         Text("7 days free,").smallTitleStyle()
-                        Text("then 149 RUB/Month").font(.system(size: 14, weight: .medium))
+                        Text("then 149 RUB/Month").secondaryTextStyle()
                     }
                     Spacer().frame(width:28)
                     VStack() {
                         MainButton(icon: "creditcard.fill", title: "Yearly", action: {})
-                        Text("7 days free,").smallTitleStyle()
-                        Text("then 149 RUB/Month").font(.system(size: 14, weight: .medium))
+                        Text("50% Off").smallTitleStyle()
+                        Text("890 RUB/Year").secondaryTextStyle()
                     }
                     Spacer().frame(width:28)
                 }.padding(.bottom, 14)
@@ -60,7 +66,8 @@ struct SubscriptionSheet: View {
                         Image(systemName: "doc")
                         Text("Terms of Service")
                     }.smallTitleStyle()
-                }.padding(7).padding(.bottom, 21)
+                }.padding(7)
+                Spacer()
             }.padding(.leading, 21)
         }
         

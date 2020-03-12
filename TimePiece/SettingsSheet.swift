@@ -16,24 +16,7 @@ struct SettingsSheet: View {
             
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
-
-            HStack() {
-                Button(action: {
-                    self.discard()
-                }) {
-                    HStack(alignment: .center) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 11.0, weight: .heavy))
-                        Text("Dismiss")
-                            .smallTitleStyle()
-                    }
-                    .padding(.leading, 28)
-                    .padding(.trailing, 128)
-                    .foregroundColor(.primary)
-                    Spacer()
-                }
-                .frame(height: 52)
-            }
+            HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
             
             ScrollView() {
                 
