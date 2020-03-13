@@ -12,13 +12,13 @@
 		801A18502402CEB6005B4D19 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
 		801A18522402DD9C005B4D19 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A18512402DD9C005B4D19 /* ToggleButton.swift */; };
 		801C0E412416D4D1004A17B1 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0E402416D4D1004A17B1 /* MainButton.swift */; };
-		801FFBB023CF3FED0040A12C /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 801FFBAF23CF3FED0040A12C /* ASCollectionView */; };
 		801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
 		8021ADAC23D51F080090BA7F /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
 		802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
 		802A027023CFBB6300512B39 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 802A026F23CFBB6300512B39 /* Introspect */; };
 		803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 803B0FD223F6036D00F2EB32 /* BetterSheet */; };
+		80494C42241B8C8600CC8435 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 80494C41241B8C8600CC8435 /* ASCollectionView */; };
 		804E17B224087B71003F5001 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
 		80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE223C274DB00BC03F5 /* AppDelegate.swift */; };
 		80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE423C274DB00BC03F5 /* SceneDelegate.swift */; };
@@ -82,8 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				801FFBB023CF3FED0040A12C /* ASCollectionView in Frameworks */,
 				802A027023CFBB6300512B39 /* Introspect in Frameworks */,
+				80494C42241B8C8600CC8435 /* ASCollectionView in Frameworks */,
 				803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,20 +105,16 @@
 		801A18542402FF35005B4D19 /* Information Displays */ = {
 			isa = PBXGroup;
 			children = (
+				80612FF923C2750900BC03F5 /* TimerView.swift */,
+				8012C7AA24057D4200E7798E /* ListSection.swift */,
+				80A14FB42411077000638B64 /* PersonCard.swift */,
+				80B6BF1C2418205900815793 /* SubscriptionBadge.swift */,
 				80727C97241136FF0046EE08 /* PremiumBadge.swift */,
 				802A026C23CFBA5600512B39 /* PropertyView.swift */,
 				807A0F4023D4C66C008B0E24 /* TimeView.swift */,
 				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
 			);
 			path = "Information Displays";
-			sourceTree = "<group>";
-		};
-		8022423C24071ADF008DF8F1 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				809635632401544D00BF297F /* NotificationManager.swift */,
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		80612FD623C274DB00BC03F5 = {
@@ -141,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				80D141E523CE175D00FD2B5A /* Delegates */,
-				8022423C24071ADF008DF8F1 /* Managers */,
 				80D141E623CE176D00FD2B5A /* Data */,
 				80D141E323CE171300FD2B5A /* Views */,
 				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
@@ -163,14 +158,8 @@
 		80D141E323CE171300FD2B5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80B6BF1C2418205900815793 /* SubscriptionBadge.swift */,
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
-				804E17B124087B71003F5001 /* Settings.swift */,
-				80A14FB42411077000638B64 /* PersonCard.swift */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
-				8012C7AA24057D4200E7798E /* ListSection.swift */,
-				80F355132418068F009ABFAD /* HeaderBar.swift */,
-				80612FF923C2750900BC03F5 /* TimerView.swift */,
 				801A18532402FF1E005B4D19 /* Sheets */,
 				801A18542402FF35005B4D19 /* Information Displays */,
 				80D141E423CE175200FD2B5A /* Buttons */,
@@ -181,6 +170,7 @@
 		80D141E423CE175200FD2B5A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				80F355132418068F009ABFAD /* HeaderBar.swift */,
 				80ACD6B623CBE435000C49DC /* PauseButton.swift */,
 				801C0E402416D4D1004A17B1 /* MainButton.swift */,
 				8012C7A824056C5000E7798E /* TimerButton.swift */,
@@ -205,6 +195,8 @@
 			children = (
 				80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */,
 				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
+				804E17B124087B71003F5001 /* Settings.swift */,
+				809635632401544D00BF297F /* NotificationManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -226,9 +218,9 @@
 			);
 			name = TimePiece;
 			packageProductDependencies = (
-				801FFBAF23CF3FED0040A12C /* ASCollectionView */,
 				802A026F23CFBB6300512B39 /* Introspect */,
 				803B0FD223F6036D00F2EB32 /* BetterSheet */,
+				80494C41241B8C8600CC8435 /* ASCollectionView */,
 			);
 			productName = TimerPlus;
 			productReference = 80612FDF23C274DB00BC03F5 /* TimePiece.app */;
@@ -259,9 +251,9 @@
 			);
 			mainGroup = 80612FD623C274DB00BC03F5;
 			packageReferences = (
-				801FFBAE23CF3FED0040A12C /* XCRemoteSwiftPackageReference "ASCollectionView" */,
 				802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */,
+				80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */,
 			);
 			productRefGroup = 80612FE023C274DB00BC03F5 /* Products */;
 			projectDirPath = "";
@@ -516,14 +508,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		801FFBAE23CF3FED0040A12C /* XCRemoteSwiftPackageReference "ASCollectionView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
-			requirement = {
-				branch = dev;
-				kind = branch;
-			};
-		};
 		802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/timbersoftware/SwiftUI-Introspect.git";
@@ -540,14 +524,17 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		801FFBAF23CF3FED0040A12C /* ASCollectionView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 801FFBAE23CF3FED0040A12C /* XCRemoteSwiftPackageReference "ASCollectionView" */;
-			productName = ASCollectionView;
-		};
 		802A026F23CFBB6300512B39 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
@@ -557,6 +544,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */;
 			productName = BetterSheet;
+		};
+		80494C41241B8C8600CC8435 /* ASCollectionView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
+			productName = ASCollectionView;
 		};
 /* End XCSwiftPackageProductDependency section */
 
