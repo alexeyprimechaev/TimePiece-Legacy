@@ -14,7 +14,6 @@ struct TimerView: View {
     
     //MARK: Dynamic Propertiess
     @ObservedObject var timer = TimerPlus()
-    @State var value = "88:88"
     
     //MARK: CoreData
     @Environment(\.managedObjectContext) var context
@@ -53,7 +52,6 @@ struct TimerView: View {
                         .opacity(0.5)
                         .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
-                            self.value = self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting)
 
                         }
                     
@@ -89,18 +87,16 @@ struct TimerView: View {
                     .animation(timer.isRunning && timer.isPaused ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 }
                 Group {
-                    if self.value.count == 8 {
+                    if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 8 {
                         Text("88:88:88")
-                            .opacity(0)
-                    } else if self.value.count == 5 {
+                    } else if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 5 {
                         Text("88:88")
-                            .opacity(0)
                         
                     } else {
                         Text("88:88:88.88")
-                            .opacity(0)
                     }
-                }
+                }.opacity(0)
+                
 
                 
                 

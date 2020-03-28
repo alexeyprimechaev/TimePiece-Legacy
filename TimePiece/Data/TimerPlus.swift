@@ -15,7 +15,9 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
 //MARK: - Properties
     
-    
+    public var id: NSManagedObjectID {
+        objectID
+    }
     
     //MARK: Main Properties
     @NSManaged public var createdAtStored: Date?

@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/apptekstudios/ASCollectionView",
         "state": {
           "branch": null,
-          "revision": "49f390ccc0f95d76769ecdde94185665919b2a78",
-          "version": "1.3.1"
+          "revision": "9f08c82f3b96804bc449bb35872241580d92645c",
+          "version": "1.3.2"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/timbersoftware/SwiftUI-Introspect.git",
         "state": {
           "branch": null,
-          "revision": "732316ac5957675eac2ed8ef9c0a5b95a353f9ff",
-          "version": "0.0.6"
+          "revision": "de5c32c15ae169cfcb27397ffb2734dcd0e1e6d5",
+          "version": "0.1.0"
         }
       }
     ]

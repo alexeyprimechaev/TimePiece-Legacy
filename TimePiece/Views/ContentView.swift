@@ -41,17 +41,28 @@ struct ContentView: View {
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("TimePiece")
                             .titleStyle()
-//                        Image("PlusIcon")
-//                            .padding(.bottom, 9)
+                        .betterSheet(isPresented: self.$showingSettingsSheet) {
+                            SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
+                        }
                     }
                         .padding(7)
                         .padding(.vertical, 12)
+                    .betterSheetIsModalInPresentation(true)
+                        .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
+                            if self.isAdding {
+                                
+                            } else {
+                                self.deleteLast()
+                            }
+                        }) {
+                            NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet.toggle()}).environmentObject(self.settings)
+                    }
                         
                 },
                 
                 
         //MARK: Timers
-                ASCollectionViewSection(id: 1, data: timers, dataID: \.self, contextMenuProvider: contextMenuProvider) { timer, _ in
+                ASCollectionViewSection(id: 1, data: timers, contextMenuProvider: contextMenuProvider) { timer, _ in
                     TimerView(timer: timer).fixedSize().environmentObject(self.settings)
                         
                 },
@@ -63,22 +74,9 @@ struct ContentView: View {
                         TimerPlus.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault)
                         self.showingNewTimerSheet = true
                     }).padding(.vertical, 12)
-                    .sheet(isPresented: self.$showingSettingsSheet) {
-                        SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
-                    }
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
                         self.showingSettingsSheet = true
                     })
-                    .betterSheetIsModalInPresentation(true)
-                        .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
-                            if self.isAdding {
-                                
-                            } else {
-                                self.deleteLast()
-                            }
-                        }) {
-                            NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet = false}).environmentObject(self.settings)
-                    }
                 }
             ]
         )
