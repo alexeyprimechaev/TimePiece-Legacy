@@ -31,16 +31,16 @@ struct ToggleButton: View {
             {
                 HStack(alignment: .bottom, spacing: 7) {
                     Text(title)
-                        .titleStyle()
+                        .title()
                         .opacity(trueTitle == "" && falseTitle == "" && value ? 1 : 0.5)
                     Text(trueTitle)
                         .padding(.bottom, 5)
                         .opacity(value ? 1 : 0.5)
-                        .smallTitleStyle()
+                        .smallTitle()
                     Text(falseTitle)
                         .padding(.bottom, 5)
                         .opacity(value ? 0.5 : 1)
-                        .smallTitleStyle()
+                        .smallTitle()
                     
                 }
             }

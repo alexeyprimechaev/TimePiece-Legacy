@@ -30,25 +30,25 @@ struct TimeView: View {
             HStack(alignment: .bottom, spacing: 5) {
                 ZStack(alignment: .bottomLeading) {
                     Text(time.stringFromTimeInterval(precisionSetting: precisionSetting))
-                        .titleStyle()
+                        .title()
                         .animation(nil)
                     if time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 8 {
                         Text("88:88:88")
-                        .titleStyle()
+                        .title()
                         .opacity(0)
                     } else if time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 5 {
                         Text("88:88")
-                        .titleStyle()
+                        .title()
                         .opacity(0)
                     } else {
                         Text("88:88:88.88")
-                        .titleStyle()
+                        .title()
                         .opacity(0)
                     }
                     
                 }
                 Text(title)
-                    .smallTitleStyle()
+                    .smallTitle()
                     .padding(.bottom, 5)
                     .opacity(0.5)
             }

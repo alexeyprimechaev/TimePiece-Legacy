@@ -29,11 +29,11 @@ struct RegularButton: View {
         {
             HStack(alignment: .bottom, spacing: 7) {
                 Text(title)
-                    .titleStyle()
+                    .title()
                     .opacity(isActive ? 1 : 0.5)
                 Text(subtitle)
                     .padding(.bottom, 5)
-                    .smallTitleStyle()
+                    .smallTitle()
                     
             }
         }

@@ -50,15 +50,15 @@ struct SecondaryTextStyle: ViewModifier {
 
 //MARK: Application Functions
 extension View {
-    func titleStyle(design: Font.Design? = .default) -> some View {
+    func title(design: Font.Design? = .default) -> some View {
         self.modifier(TitleStyle())
     }
     
-    func smallTitleStyle(design: Font.Design? = .default) -> some View {
+    func smallTitle(design: Font.Design? = .default) -> some View {
         self.modifier(SmallTitleStyle())
     }
     
-    func secondaryTextStyle(design: Font.Design? = .default) -> some View {
+    func secondaryText(design: Font.Design? = .default) -> some View {
         self.modifier(SecondaryTextStyle())
     }
 }

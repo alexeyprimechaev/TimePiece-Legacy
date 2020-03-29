@@ -29,7 +29,7 @@ struct MainButton: View {
                     Text(title).fixedSize()
                 }
                 .foregroundColor(highPriority ? Color(UIColor.systemBackground) : Color.primary)
-                .smallTitleStyle()
+                .smallTitle()
             }.frame(height: 52)
                
             

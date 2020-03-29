@@ -23,7 +23,7 @@ struct TimerButton: View {
         }) {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title)
-                    .titleStyle()
+                    .title()
                 if sfSymbolIcon {
                     Spacer().frame(height: 15)
                     Image(systemName: icon)
@@ -32,7 +32,7 @@ struct TimerButton: View {
                     Spacer().frame(height: 11)
                 } else {
                     Text(icon)
-                    .titleStyle()
+                    .title()
                     .opacity(0.5)
                 }
             

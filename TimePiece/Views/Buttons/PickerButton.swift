@@ -36,13 +36,13 @@ struct PickerButton: View {
         {
             HStack(alignment: .bottom, spacing: 7) {
                 Text(title)
-                    .titleStyle()
+                    .title()
                     .opacity(0.5)
                 ForEach(values, id: \.self) { value in
                     Text(value)
                         .padding(.bottom, 5)
                         .opacity(self.value == value ? 1 : 0.5)
-                }.smallTitleStyle()
+                }.smallTitle()
                 
             }
         }

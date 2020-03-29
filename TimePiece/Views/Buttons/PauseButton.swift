@@ -55,7 +55,7 @@ struct PauseButton: View {
                     
                 }
                 .foregroundColor(color)
-                .smallTitleStyle()
+                .smallTitle()
             }.frame(height: 52)
         }
         

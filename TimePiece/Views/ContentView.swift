@@ -40,10 +40,15 @@ struct ContentView: View {
                 ASCollectionViewSection(id: 0) {
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("TimePiece")
-                            .titleStyle()
-                        .betterSheet(isPresented: self.$showingSettingsSheet) {
-                            SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
+                            .title()
+                            .betterSheet(isPresented: self.$showingSettingsSheet) {
+                                SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
+                            }
+                        if settings.isSubscribed {
+                            Image("PlusIcon")
+                                .padding(.bottom, 9)
                         }
+                        
                     }
                         .padding(7)
                         .padding(.vertical, 12)

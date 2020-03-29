@@ -22,7 +22,7 @@ struct SettingsSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
-                    Text("Settings").titleStyle().padding(7)
+                    Text("Settings").title().padding(7)
                     
                     ListSection(title: "Made in Moscow with ❤️ by") {
                         PersonCard(name: "Alexey Primechaev", description: "Creator, Designer, Developer", link: "https://twitter.com/numberl6", image: "alesha", icon: "twitter")
@@ -44,7 +44,7 @@ struct SettingsSheet: View {
                     
                     ListSection(title: "Visuals") {
                         PremiumBadge() {
-                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string], value: self.$settings.fontDesign.string)
+                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], value: self.$settings.fontDesign.string)
                         }
                         PremiumBadge() {
                             PickerButton(title: "Monochrome", values: [true.stringValue, false.stringValue], value: self.$settings.isMonochrome.stringValue)

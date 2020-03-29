@@ -21,7 +21,7 @@ struct SubscriptionBadge: View {
         HStack(alignment: .center, spacing: 21) {
             Image(systemName: icon).font(.system(size: 34, weight: .regular)).offset(y: iconOffset)
             VStack(alignment: .leading, spacing: 4) {
-                Text(title).smallTitleStyle()
+                Text(title).smallTitle()
                 if subtitle != String() {
                     Text(subtitle)
                 }

@@ -35,7 +35,7 @@ struct PersonCard: View {
                         Image(icon)
                     }
                     Text(description).opacity(0.5)
-                }.smallTitleStyle()
+                }.smallTitle()
             }
         }.buttonStyle(RegularButtonStyle())
     }

@@ -29,9 +29,9 @@ struct HeaderBar: View {
                     HStack(alignment: .center) {
                         Image(systemName: leadingIcon)
                             .font(.system(size: 11.0, weight: .heavy))
-                            .smallTitleStyle()
+                            .smallTitle()
                         Text(leadingTitle)
-                            .smallTitleStyle()
+                            .smallTitle()
                     }
                     .padding(.horizontal, 28)
                     .foregroundColor(leadingIsDestructive ? .red : .primary)
@@ -47,10 +47,10 @@ struct HeaderBar: View {
                     HStack(alignment: .center) {
                         Image(systemName: trailingIcon)
                             .font(.system(size: 11.0, weight: .heavy))
-                            .smallTitleStyle()
+                            .smallTitle()
                             .padding(.bottom, trailingIcon == "arrow.clockwise" ? 2 : 0)
                         Text(trailingTitle)
-                            .smallTitleStyle()
+                            .smallTitle()
                     }
                     .padding(.horizontal, 28)
                     .foregroundColor(trailingIsDestructive ? .red : .primary)

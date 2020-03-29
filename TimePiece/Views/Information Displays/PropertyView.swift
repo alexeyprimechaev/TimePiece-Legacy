@@ -22,21 +22,21 @@ struct PropertyView: View {
             HStack(alignment: .bottom, spacing: 7) {
                 if title == "Title" {
                     Text(timer.title.count == 0 ? "Timer ⏱": timer.title)
-                        .titleStyle()
+                        .title()
                         .opacity(timer.title.count == 0 ? 0.6 : 1)
                     
                 } else if title == "Created at" {
                     Text(TimerPlus.dateFormatter.string(from: timer.createdAt))
-                        .titleStyle()
+                        .title()
                 } else if title == "Left" {
                     Text(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
-                        .titleStyle()
+                        .title()
                 } else {
                     Text((timer.totalTime).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
-                        .titleStyle()
+                        .title()
                 }
                 Text(title)
-                    .smallTitleStyle()
+                    .smallTitle()
                     .padding(.bottom, 5)
                     .opacity(timer.title.count == 0 ? 1 : 0.5)
             }
@@ -48,7 +48,7 @@ struct PropertyView: View {
                         textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
 
                     }
-                    .titleStyle()
+                    .title()
                     .foregroundColor(Color.clear)
                     .accentColor(Color.primary)
             }

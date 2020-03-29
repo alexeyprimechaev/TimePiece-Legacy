@@ -21,7 +21,8 @@ struct SubscriptionSheet: View {
                 
                 HStack(alignment: .bottom, spacing: 4) {
                     Text("TimePiece")
-                        .titleStyle()
+                        .title()
+                        
                     Image("PlusIcon")
                         .padding(.bottom, 9)
                 }.padding(7)
@@ -45,27 +46,27 @@ struct SubscriptionSheet: View {
                     Spacer().frame(width:7)
                     VStack() {
                         MainButton(icon: "creditcard.fill", title: "Free Trial", highPriority: true, action: {})
-                        Text("7 days free,").smallTitleStyle()
-                        Text("then 149 RUB/Month").secondaryTextStyle()
+                        Text("7 days free,").smallTitle()
+                        Text("then 149 RUB/Month").secondaryText()
                     }
                     Spacer().frame(width:28)
                     VStack() {
                         MainButton(icon: "creditcard.fill", title: "Yearly", action: {})
-                        Text("50% Off").smallTitleStyle()
-                        Text("890 RUB/Year").secondaryTextStyle()
+                        Text("50% Off").smallTitle()
+                        Text("890 RUB/Year").secondaryText()
                     }
                     Spacer().frame(width:28)
                 }.padding(.bottom, 14)
-                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryTextStyle().padding(7).padding(.bottom, 14)
+                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(7).padding(.bottom, 14)
                 HStack(spacing: 14) {
                     HStack() {
                         Image(systemName: "doc")
                         Text("Privacy Policy")
-                    }.smallTitleStyle()
+                    }.smallTitle()
                     HStack() {
                         Image(systemName: "doc")
                         Text("Terms of Service")
-                    }.smallTitleStyle()
+                    }.smallTitle()
                 }.padding(7)
                 Spacer()
             }.padding(.leading, 21)

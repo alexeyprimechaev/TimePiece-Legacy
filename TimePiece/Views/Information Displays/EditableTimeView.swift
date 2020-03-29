@@ -29,19 +29,19 @@ struct EditableTimeView: View {
             
             HStack(alignment: .bottom, spacing: 5) {
                 Text(value.count == 0 ? "00:00": value.stringToTime())
-                    .titleStyle()
+                    .title()
                     .onAppear() {
                         self.value = self.time.stringFromNumber()
                     }
                 .opacity(value.count == 0 ? 0.5: 1)
                 Text(title)
-                    .smallTitleStyle()
+                    .smallTitle()
                     .opacity(value.count == 0 ? 1 : 0.5)
                     .padding(.bottom, 5)
                     .padding(.leading, 5)
             }
             
-            TextField("00:00", text: $value, onEditingChanged: { _ in
+            TextField("", text: $value, onEditingChanged: { _ in
                 self.time = self.value.calculateTime()
                 self.update()
             }) {
@@ -68,7 +68,7 @@ struct EditableTimeView: View {
 
             }
             .keyboardType(.numberPad)
-            .titleStyle()
+            .title()
             .foregroundColor(Color.clear)
             .accentColor(Color.clear)
             
