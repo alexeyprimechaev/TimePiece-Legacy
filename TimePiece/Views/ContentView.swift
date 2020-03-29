@@ -177,8 +177,6 @@ struct ContentView: View {
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
-                print(timer)
-                print(self.timers.lastIndex(of: timer))
                 self.selectedTimer = self.timers.lastIndex(of: timer) ?? 0
                 self.showingTimerSheet = true
             }
