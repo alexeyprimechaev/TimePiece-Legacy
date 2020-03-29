@@ -50,7 +50,7 @@ struct TimerView: View {
                     
                     Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting))
                         .opacity(0.5)
-                        .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
+                        .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
 
                         }
@@ -87,13 +87,13 @@ struct TimerView: View {
                     .animation(timer.isRunning && timer.isPaused ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 }
                 Group {
-                    if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 8 {
+                    if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 11  {
+                        Text("88:88:88:88")
+                    } else if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 8 {
                         Text("88:88:88")
-                    } else if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 5 {
-                        Text("88:88")
                         
                     } else {
-                        Text("88:88:88.88")
+                        Text("88:88")
                     }
                 }.opacity(0)
                 
