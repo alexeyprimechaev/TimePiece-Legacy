@@ -27,19 +27,16 @@ struct SubscriptionSheet: View {
                         .padding(.bottom, 9)
                 }.padding(7)
                 ScrollView() {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Spacer()
-                        SubscriptionBadge(icon: "arrow.clockwise", title: "Reusable Timers. Unlimited.", subtitle: "Tut tozhe tekst", textOffset: 4).offset(x: 3)
-                        Spacer()
-                        SubscriptionBadge(icon: "ellipsis", title: "Higher Precision", subtitle: "Display Milliseconds", textOffset: 3).offset(x: 2)
-                        Spacer()
-                        SubscriptionBadge(icon: "1.circle", title: "Control notifications & sounds", subtitle: "For each timer separately", textOffset: 1).offset(x: 1)
-                        Spacer()
-                        SubscriptionBadge(icon: "wand.and.stars", title: "Change App’s appearance", subtitle: "Pick between fonts and colors")
-                        Spacer()
+                    VStack(alignment: .leading, spacing: 21) {
+                        SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: "Reusable Timers. Unlimited.", subtitle: "Create Timers that don't expire")
+                        SubscriptionBadge(icon: "ellipsis.circle.fill", title: "Higher Precision", subtitle: "Millisecond accuracy")
+                        SubscriptionBadge(icon: "bell.circle.fill", title: "Control notifications & sounds", subtitle: "For each timer separately")
+                        SubscriptionBadge(icon: "star.circle.fill", title: "Customize appearance", subtitle: "Choose colors and fonts")
+                        SubscriptionBadge(icon: "heart.circle.fill", title: "Support the creators", subtitle: "And invest in future features")
                         
  
-                    }
+                    }.padding(.top, 14)
+                    
                 }
                 Spacer()
                 HStack(spacing: 0) {
@@ -56,7 +53,7 @@ struct SubscriptionSheet: View {
                         Text("890 RUB/Year").secondaryText()
                     }
                     Spacer().frame(width:28)
-                }.padding(.bottom, 14)
+                }.padding(.bottom, 21)
                 Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(7).padding(.bottom, 14)
                 HStack(spacing: 14) {
                     HStack() {
@@ -68,7 +65,7 @@ struct SubscriptionSheet: View {
                         Text("Terms of Service")
                     }.smallTitle()
                 }.padding(7)
-                Spacer()
+                Spacer().frame(height: 14)
             }.padding(.leading, 21)
         }
         

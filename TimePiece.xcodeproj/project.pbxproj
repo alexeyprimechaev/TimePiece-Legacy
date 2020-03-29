@@ -39,6 +39,7 @@
 		80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
 		80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
 		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
+		80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80EF121C2430E74A00905780 /* SwiftyStoreKit */; };
 		80F355142418068F009ABFAD /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				802A027023CFBB6300512B39 /* Introspect in Frameworks */,
+				80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */,
 				80494C42241B8C8600CC8435 /* ASCollectionView in Frameworks */,
 				803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */,
 			);
@@ -221,6 +223,7 @@
 				802A026F23CFBB6300512B39 /* Introspect */,
 				803B0FD223F6036D00F2EB32 /* BetterSheet */,
 				80494C41241B8C8600CC8435 /* ASCollectionView */,
+				80EF121C2430E74A00905780 /* SwiftyStoreKit */,
 			);
 			productName = TimerPlus;
 			productReference = 80612FDF23C274DB00BC03F5 /* TimePiece.app */;
@@ -254,6 +257,7 @@
 				802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */,
 				80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */,
+				80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 			);
 			productRefGroup = 80612FE023C274DB00BC03F5 /* Products */;
 			projectDirPath = "";
@@ -532,6 +536,14 @@
 				kind = branch;
 			};
 		};
+		80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -549,6 +561,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
 			productName = ASCollectionView;
+		};
+		80EF121C2430E74A00905780 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
