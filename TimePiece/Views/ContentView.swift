@@ -93,13 +93,13 @@ struct ContentView: View {
         
             
         //MARK: Sheet
-        .betterSheet(isPresented: self.$showingTimerSheet) {
+        .sheet(isPresented: self.$showingTimerSheet) {
             TimerSheet(timer: self.timers[self.selectedTimer], discard: {self.showingTimerSheet = false}, delete: {
                 self.timers[self.selectedTimer].remove(from: self.context)
                 self.showingTimerSheet = false
             }).environmentObject(self.settings)
         }
-        .sheet(isPresented: $settings.showingSubscription) {
+        .betterSheet(isPresented: $settings.showingSubscription) {
             SubscriptionSheet(discard: {
                 self.settings.showingSubscription = false
             }).environmentObject(self.settings)
@@ -172,7 +172,9 @@ struct ContentView: View {
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
-                self.selectedTimer = self.timers.firstIndex(of: timer) ?? 0
+                print(timer)
+                print(self.timers.lastIndex(of: timer))
+                self.selectedTimer = self.timers.lastIndex(of: timer) ?? 0
                 self.showingTimerSheet = true
             }
 

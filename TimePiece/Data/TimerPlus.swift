@@ -170,6 +170,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
 
 //MARK: - Unwrappers
 extension TimerPlus {
+    
     var createdAt: Date {
         get { createdAtStored ?? Date() }
         set { createdAtStored = newValue }
@@ -194,7 +195,7 @@ extension TimerPlus {
         get { currentTimeStored as? TimeInterval ?? 0 }
         set { currentTimeStored = newValue as NSNumber }
     }
-    
+        
     var totalTime: TimeInterval {
         get { totalTimeStored as? TimeInterval ?? 0 }
         set { totalTimeStored = newValue as NSNumber }
@@ -234,6 +235,18 @@ extension TimerPlus {
         get { notificationSettingStored ?? TimerPlus.notificationSettings[0] }
         set { notificationSettingStored = newValue }
     }
+    
+    //MARK: Helpers
+    
+    var currentTimeString: String {
+        get { currentTime.stringFromTimeInterval(precisionSetting: precisionSetting) }
+    }
+    
+    var totalTimeString: String {
+        get { totalTime.stringFromTimeInterval(precisionSetting: precisionSetting) }
+    }
+
+    
 }
 
 

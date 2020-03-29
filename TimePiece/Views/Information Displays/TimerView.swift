@@ -48,11 +48,10 @@ struct TimerView: View {
                 VStack(alignment: .leading) {
                     Text(timer.title.isEmpty ? "Timer ⏱" : timer.title)
                     
-                    Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting))
+                    Text(timer.currentTimeString)
                         .opacity(0.5)
-                        .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
+                        .onReceive(Timer.publish(every: self.timer.precisionSetting==TimerPlus.precisionSettings[1] ? 0.1 : 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
-
                         }
                     
                 }
@@ -62,22 +61,23 @@ struct TimerView: View {
                     .opacity(timer.currentTime == 0 ? 0.5 : 0)
                     .animation(timer.currentTime == 0 ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 
+                // Paused animations
                 if timer.currentTime != 0 {
                     HStack(spacing: 0) {
-                        Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(2))
+                        Text(timer.currentTimeString.prefix(2))
                             .opacity(0)
                         Rectangle().frame(width:9, height: 40)
                             .foregroundColor(Color(UIColor.systemBackground))
                             .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                        if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 5 {
-                            Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(5).suffix(2))
+                        if timer.currentTimeString.count > 5 {
+                            Text(timer.currentTimeString.prefix(5).suffix(2))
                                 .opacity(0)
                             Rectangle().frame(width:8, height: 40)
                                 .foregroundColor(Color(UIColor.systemBackground))
                                 .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
                         }
-                        if timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 8 {
-                            Text(timer.currentTime.stringFromTimeInterval(precisionSetting: timer.precisionSetting).prefix(8).suffix(2))
+                        if timer.currentTimeString.count > 8 {
+                            Text(timer.currentTimeString.prefix(8).suffix(2))
                                 .opacity(0)
                             Rectangle().frame(width:9, height: 40)
                                 .foregroundColor(Color(UIColor.systemBackground))
@@ -86,6 +86,8 @@ struct TimerView: View {
                     }
                     .animation(timer.isRunning && timer.isPaused ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 }
+                
+                // For layout stability
                 Group {
                     if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 11  {
                         Text("88:88:88:88")
