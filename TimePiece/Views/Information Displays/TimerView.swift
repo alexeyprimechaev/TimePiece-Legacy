@@ -39,6 +39,8 @@ struct TimerView: View {
             } else {
                 self.timer.togglePause()
             }
+            
+            try? self.context.save()
         })
             
             
