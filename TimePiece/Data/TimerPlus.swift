@@ -10,6 +10,8 @@ import Foundation
 import Combine
 import CoreData
 import UserNotifications
+import AVFoundation
+
 
 public class TimerPlus: NSManagedObject, Identifiable {
     
@@ -161,6 +163,8 @@ public class TimerPlus: NSManagedObject, Identifiable {
                
                 self.togglePause()
                 currentTime = 0
+                
+                AudioServicesPlaySystemSound(soundSetting == TimerPlus.soundSettings[0] ? 1007 : 1036)
             }
    
         }
