@@ -58,9 +58,17 @@ public class Settings: ObservableObject {
            }
     }
     
-    @Published var monthlyPrice = defaultsStored.string(forKey: "monthlyPrice") ?? "$3"
+    @Published var monthlyPrice = defaultsStored.string(forKey: "monthlyPrice") ?? "$3" {
+        willSet {
+            defaultsStored.set(newValue, forKey: "monthlyPrice")
+        }
+    }
     
-    @Published var yearlyPrice = defaultsStored.string(forKey: "yearlyPrice") ?? "$18"
+    @Published var yearlyPrice = defaultsStored.string(forKey: "yearlyPrice") ?? "$18" {
+        willSet {
+            defaultsStored.set(newValue, forKey: "yearlyPrice")
+        }
+    }
     
     func getMonthlyPrice() {
         SwiftyStoreKit.retrieveProductsInfo(["timepiecesubscription"]) { result in
