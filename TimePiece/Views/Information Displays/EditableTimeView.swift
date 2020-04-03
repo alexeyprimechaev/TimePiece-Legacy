@@ -28,7 +28,7 @@ struct EditableTimeView: View {
         ZStack(alignment: .topLeading) {
             
             HStack(alignment: .bottom, spacing: 5) {
-                Text(value.count == 0 ? "00:00": value.stringToTime())
+                Text(value.count == 0 ? "00:00:00": value.stringToTime(showAllDigits: isFirstResponder))
                     .title()
                     .onAppear() {
                         self.value = self.time.stringFromNumber()
@@ -51,6 +51,9 @@ struct EditableTimeView: View {
                 self.time = self.value.calculateTime()
                 self.value = self.time.stringFromNumber()
                 self.update()
+            }
+            .onReceive(value.publisher.collect()) {
+                self.value = String($0.prefix(6))
             }
             .introspectTextField { textField in
                 textField.font = UIFont(name: "AppleColorEmoji", size: 34)

@@ -259,7 +259,7 @@ extension TimerPlus {
 extension String {
     
     //MARK: String to Time
-    func stringToTime() -> String {
+    func stringToTime(showAllDigits: Bool) -> String {
         
         var seconds = 0
         var minutes = 0
@@ -285,11 +285,16 @@ extension String {
             seconds = Int(self) ?? 0
         }
         
-        if hours > 0 {
-            return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+        if !showAllDigits {
+            if hours > 0 {
+                return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+            } else {
+                return String(format: "%0.2d:%0.2d",minutes,seconds)
+            }
         } else {
-            return String(format: "%0.2d:%0.2d",minutes,seconds)
+            return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
         }
+        
     }
     
     
