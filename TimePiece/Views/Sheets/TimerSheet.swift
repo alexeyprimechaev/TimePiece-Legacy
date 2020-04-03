@@ -13,6 +13,8 @@ import CoreData
 struct TimerSheet: View {
     
     @ObservedObject var timer = TimerPlus()
+    
+    @EnvironmentObject var settings: Settings
         
     @State var name = ""
     
@@ -88,12 +90,22 @@ struct TimerSheet: View {
             HStack() {
                 Spacer().frame(width:28)
                 if timer.isReusable {
-                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.currentTime == 0 ? "Reset" : "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill", onTap: {self.timer.reset()}, offTap: {self.delete()})
+                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.currentTime == 0 ? "Reset" : "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill",
+                                onTap: {
+                                    self.timer.reset()
+                                    mediumHaptic()
+                                },
+                                offTap: {
+                                    self.delete()
+                                    mediumHaptic()
+                                }
+                    )
                 } else {
                     PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: "Delete", onTitle: "Delete", offIcon: "trash.fill", onIcon: "trash.fill", onTap: {self.delete()}, offTap: {self.delete()})
                 }
                 Spacer().frame(width:28)
                 PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+                        regularHaptic()
                         if self.timer.currentTime == 0 {
                             if self.timer.isReusable {
                                 self.timer.reset()
@@ -105,6 +117,7 @@ struct TimerSheet: View {
                         }
                     
                 }, offTap: {
+                    regularHaptic()
                     if self.timer.currentTime == 0 {
                         if self.timer.isReusable {
                             self.timer.reset()

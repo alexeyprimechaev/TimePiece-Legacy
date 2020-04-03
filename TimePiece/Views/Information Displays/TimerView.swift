@@ -30,6 +30,7 @@ struct TimerView: View {
             
         //MARK: Action
         {
+            regularHaptic()
             if self.timer.currentTime == 0 {
                 if self.timer.isReusable {
                     self.timer.reset()

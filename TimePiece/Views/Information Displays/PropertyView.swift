@@ -38,7 +38,7 @@ struct PropertyView: View {
                 Text(title)
                     .smallTitle()
                     .padding(.bottom, 5)
-                    .opacity(timer.title.count == 0 ? 1 : 0.5)
+                    .opacity(timer.title.count == 0 && title == "Title" ? 1 : 0.5)
             }
             if title == "Title" {
                 TextField("", text: $timer.title)

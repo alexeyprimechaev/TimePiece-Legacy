@@ -22,6 +22,7 @@ struct PickerButton: View {
         Button(action:
         //MARK: Action
         {
+            lightHaptic()
             if self.index < self.values.count - 1 {
                 self.index += 1
                 self.value = self.values[self.index]

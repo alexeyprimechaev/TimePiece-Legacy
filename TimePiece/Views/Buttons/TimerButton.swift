@@ -19,6 +19,7 @@ struct TimerButton: View {
     var body: some View {
         
         Button(action: {
+            regularHaptic()
             self.action()
         }) {
             VStack(alignment: .leading, spacing: 0) {

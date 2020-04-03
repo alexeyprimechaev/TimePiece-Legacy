@@ -39,6 +39,7 @@
 		80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
 		80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
 		80C9091F2437A39000939F25 /* KeyboardHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9091E2437A39000939F25 /* KeyboardHost.swift */; };
+		80C909212437BB3E00939F25 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
 		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
 		80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80EF121C2430E74A00905780 /* SwiftyStoreKit */; };
 		80F355142418068F009ABFAD /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
@@ -76,6 +77,7 @@
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 		80B6BF1C2418205900815793 /* SubscriptionBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBadge.swift; sourceTree = "<group>"; };
 		80C9091E2437A39000939F25 /* KeyboardHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHost.swift; sourceTree = "<group>"; };
+		80C909202437BB3E00939F25 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		80F355132418068F009ABFAD /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 		80612FE123C274DB00BC03F5 /* TimePiece */ = {
 			isa = PBXGroup;
 			children = (
+				80C909202437BB3E00939F25 /* Haptics.swift */,
 				80D141E523CE175D00FD2B5A /* Delegates */,
 				80D141E623CE176D00FD2B5A /* Data */,
 				80D141E323CE171300FD2B5A /* Views */,
@@ -299,6 +302,7 @@
 				8012C7AB24057D4200E7798E /* ListSection.swift in Sources */,
 				801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */,
 				80727C98241136FF0046EE08 /* PremiumBadge.swift in Sources */,
+				80C909212437BB3E00939F25 /* Haptics.swift in Sources */,
 				80A14FB72411217A00638B64 /* SettingsSheet.swift in Sources */,
 				80F355142418068F009ABFAD /* HeaderBar.swift in Sources */,
 				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,

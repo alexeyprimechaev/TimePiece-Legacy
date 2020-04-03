@@ -22,6 +22,7 @@ struct PersonCard: View {
     
     var body: some View {
         Button(action: {
+            mediumHaptic()
             UIApplication.shared.open(URL(string: self.link)!)
         }) {
             HStack(alignment: .center, spacing: 7) {

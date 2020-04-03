@@ -24,6 +24,7 @@ struct HeaderBar: View {
         HStack() {
             if leadingTitle != String() {
                 Button(action: {
+                    lightHaptic()
                     self.leadingAction()
                 }) {
                     HStack(alignment: .center) {

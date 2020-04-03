@@ -23,6 +23,7 @@ struct ToggleButton: View {
             Button(action:
             //MARK: Action
             {
+                lightHaptic()
                 self.value.toggle()
             })
                 

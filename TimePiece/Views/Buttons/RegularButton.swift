@@ -21,6 +21,7 @@ struct RegularButton: View {
             
         //MARK: Action
         {
+            regularHaptic()
             self.action()
         })
                 
