@@ -31,7 +31,9 @@ struct SettingsSheet: View {
                     
                     ListSection(title: "New Timers") {
                         PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: self.$settings.notificationSettingDefault)
-                        PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: self.$settings.soundSettingDefault)
+                        PremiumBadge() {
+                            PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: self.$settings.soundSettingDefault)
+                        }
                         PremiumBadge() {
                             PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$settings.precisionSettingDefault)
                         }
@@ -50,7 +52,7 @@ struct SettingsSheet: View {
                             PickerButton(title: "Monochrome", values: [true.stringValue, false.stringValue], value: self.$settings.isMonochrome.stringValue)
                         }
                         
-                        ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)
+                        //ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)
                         
                     }
                     

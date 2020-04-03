@@ -20,7 +20,7 @@ struct SubscriptionSheet: View {
             
             HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {
                 print(self.settings.isSubscribed)
-                self.settings.restorePurchases()
+                self.restorePurchases()
                 print(self.settings.isSubscribed)
             }, trailingTitle: "Restore", trailingIcon: "arrow.clockwise")
             
@@ -50,8 +50,7 @@ struct SubscriptionSheet: View {
                     Spacer().frame(width:7)
                     VStack() {
                         MainButton(icon: "creditcard.fill", title: "Free Trial", highPriority: true, action: {
-                            self.settings.purchaseMonthly()
-                            print(self.settings.isSubscribed)
+                            self.purchaseMonthly()
                         })
                         Text("7 days free,").smallTitle()
                         Spacer().frame(height:4)
@@ -60,8 +59,7 @@ struct SubscriptionSheet: View {
                     Spacer().frame(width:28)
                     VStack() {
                         MainButton(icon: "creditcard.fill", title: "Yearly", action: {
-                            self.settings.purchaseYearly()
-                            print(self.settings.isSubscribed)
+                            self.purchaseYearly()
                         })
                         Text("50% Off").smallTitle()
                         Spacer().frame(height:4)
@@ -84,6 +82,70 @@ struct SubscriptionSheet: View {
             }.padding(.leading, 21)
         }
         
+    }
+    
+    func restorePurchases() {
+        SwiftyStoreKit.restorePurchases(atomically: true) { results in
+            if results.restoreFailedPurchases.count > 0 {
+                print("Restore Failed: \(results.restoreFailedPurchases)")
+            }
+            else if results.restoredPurchases.count > 0 {
+                print("Restore Success: \(results.restoredPurchases)")
+                self.settings.isSubscribed = true
+                self.discard()
+            }
+            else {
+                print("Nothing to Restore")
+            }
+        }
+    }
+    
+    func purchaseMonthly() {
+        SwiftyStoreKit.purchaseProduct("timepiecesubscription", quantity: 1, atomically: true) { result in
+            switch result {
+            case .success(let purchase):
+                print("Purchase Success: \(purchase.productId)")
+                self.settings.isSubscribed = true
+                self.discard()
+            case .error(let error):
+                switch error.code {
+                case .unknown: print("Unknown error. Please contact support")
+                case .clientInvalid: print("Not allowed to make the payment")
+                case .paymentCancelled: break
+                case .paymentInvalid: print("The purchase identifier was invalid")
+                case .paymentNotAllowed: print("The device is not allowed to make the payment")
+                case .storeProductNotAvailable: print("The product is not available in the current storefront")
+                case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
+                case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
+                case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
+                default: print((error as NSError).localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func purchaseYearly() {
+        SwiftyStoreKit.purchaseProduct("timepieceyearly", quantity: 1, atomically: true) { result in
+            switch result {
+            case .success(let purchase):
+                print("Purchase Success: \(purchase.productId)")
+                self.settings.isSubscribed = true
+                self.discard()
+            case .error(let error):
+                switch error.code {
+                case .unknown: print("Unknown error. Please contact support")
+                case .clientInvalid: print("Not allowed to make the payment")
+                case .paymentCancelled: break
+                case .paymentInvalid: print("The purchase identifier was invalid")
+                case .paymentNotAllowed: print("The device is not allowed to make the payment")
+                case .storeProductNotAvailable: print("The product is not available in the current storefront")
+                case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
+                case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
+                case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
+                default: print((error as NSError).localizedDescription)
+                }
+            }
+        }
     }
 
     
