@@ -7,15 +7,22 @@
 //
 
 import SwiftUI
+import SwiftyStoreKit
 
 struct SubscriptionSheet: View {
     
-    var discard: () -> ()
+    @EnvironmentObject var settings: Settings
     
+    var discard: () -> ()
+        
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             
-            HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {}, trailingTitle: "Restore", trailingIcon: "arrow.clockwise")
+            HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {
+                print(self.settings.isSubscribed)
+                self.settings.restorePurchases()
+                print(self.settings.isSubscribed)
+            }, trailingTitle: "Restore", trailingIcon: "arrow.clockwise")
             
             VStack(alignment: .leading, spacing: 0) {
                 
@@ -26,7 +33,7 @@ struct SubscriptionSheet: View {
                     Image("PlusIcon")
                         .padding(.bottom, 9)
                 }.padding(7)
-                ScrollView() {
+                ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 21) {
                         SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: "Reusable Timers. Unlimited.", subtitle: "Create Timers that don't expire")
                         SubscriptionBadge(icon: "ellipsis.circle.fill", title: "Higher Precision", subtitle: "Millisecond accuracy")
@@ -35,22 +42,30 @@ struct SubscriptionSheet: View {
                         SubscriptionBadge(icon: "heart.circle.fill", title: "Support the creators", subtitle: "And invest in future features")
                         
  
-                    }.padding(.top, 14)
+                    }.padding(.top, 14).frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                     
                 }
                 Spacer()
-                HStack(spacing: 0) {
+                HStack(alignment: .top, spacing: 0) {
                     Spacer().frame(width:7)
                     VStack() {
-                        MainButton(icon: "creditcard.fill", title: "Free Trial", highPriority: true, action: {})
+                        MainButton(icon: "creditcard.fill", title: "Free Trial", highPriority: true, action: {
+                            self.settings.purchaseMonthly()
+                            print(self.settings.isSubscribed)
+                        })
                         Text("7 days free,").smallTitle()
-                        Text("then 149 RUB/Month").secondaryText()
+                        Spacer().frame(height:4)
+                        Text("\(settings.monthlyPrice)/Month").secondaryText()
                     }
                     Spacer().frame(width:28)
                     VStack() {
-                        MainButton(icon: "creditcard.fill", title: "Yearly", action: {})
+                        MainButton(icon: "creditcard.fill", title: "Yearly", action: {
+                            self.settings.purchaseYearly()
+                            print(self.settings.isSubscribed)
+                        })
                         Text("50% Off").smallTitle()
-                        Text("890 RUB/Year").secondaryText()
+                        Spacer().frame(height:4)
+                        Text("\(settings.yearlyPrice)/Year").secondaryText()
                     }
                     Spacer().frame(width:28)
                 }.padding(.bottom, 21)
@@ -67,7 +82,12 @@ struct SubscriptionSheet: View {
                 }.padding(7)
                 Spacer().frame(height: 14)
             }.padding(.leading, 21)
+        }.onAppear() {
+            self.settings.getMonthlyPrice()
+            self.settings.getYearlyPrice()
         }
         
     }
+
+    
 }

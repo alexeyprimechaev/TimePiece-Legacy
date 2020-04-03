@@ -8,16 +8,41 @@
 
 import UIKit
 import CoreData
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var settings = Settings()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         NotificationManager.badgeCount = 0
         UIApplication.shared.applicationIconBadgeNumber = 0
         print(NotificationManager.badgeCount)
+        
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    // Unlock content
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                    
+                }
+            }
+        }
+        print("poehali")
+        
+        if settings.isSubscribed {
+            settings.validateSubscription()
+        }
+        
+        
         return true
     }
 
