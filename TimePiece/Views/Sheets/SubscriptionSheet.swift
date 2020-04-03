@@ -67,7 +67,7 @@ struct SubscriptionSheet: View {
                     }
                     Spacer().frame(width:28)
                 }.padding(.bottom, 21)
-                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(7).padding(.bottom, 14)
+                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(7).padding(.bottom, 14).padding(.trailing, 21)
                 HStack(spacing: 14) {
                     HStack() {
                         Image(systemName: "doc")
