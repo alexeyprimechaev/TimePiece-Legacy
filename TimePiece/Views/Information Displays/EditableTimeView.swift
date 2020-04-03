@@ -52,9 +52,6 @@ struct EditableTimeView: View {
                 self.value = self.time.stringFromNumber()
                 self.update()
             }
-            .onReceive(value.publisher.collect()) {
-                self.value = String($0.prefix(6))
-            }
             .introspectTextField { textField in
                 textField.font = UIFont(name: "AppleColorEmoji", size: 34)
                 textField.font = .systemFont(ofSize: 34, weight: .bold)
@@ -69,6 +66,9 @@ struct EditableTimeView: View {
                     
                 }
 
+            }
+            .onReceive(value.publisher.collect()) {
+                self.value = String($0.prefix(6))
             }
             .keyboardType(.numberPad)
             .title()
