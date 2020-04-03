@@ -38,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print("poehali")
         
+        settings.getMonthlyPrice()
+        settings.getYearlyPrice()
+        
         if settings.isSubscribed {
             settings.validateSubscription()
         }

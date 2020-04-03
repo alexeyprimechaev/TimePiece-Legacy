@@ -58,9 +58,9 @@ public class Settings: ObservableObject {
            }
     }
     
-    @Published var monthlyPrice = "$3"
+    @Published var monthlyPrice = defaultsStored.string(forKey: "monthlyPrice") ?? "$3"
     
-    @Published var yearlyPrice = "$18"
+    @Published var yearlyPrice = defaultsStored.string(forKey: "yearlyPrice") ?? "$18"
     
     func getMonthlyPrice() {
         SwiftyStoreKit.retrieveProductsInfo(["timepiecesubscription"]) { result in
@@ -152,16 +152,13 @@ public class Settings: ObservableObject {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
-                print(self.isSubscribed = true)
             }
             else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
                 self.isSubscribed = true
-                print(self.isSubscribed)
             }
             else {
                 print("Nothing to Restore")
-                print(self.isSubscribed = true)
             }
         }
     }

@@ -76,8 +76,10 @@ struct ContentView: View {
         //MARK: Button
                 ASCollectionViewSection(id: 2) {
                     TimerButton(title: "New", icon: "+", action: {
+                        withAnimation(.default) {
                         TimerPlus.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault)
                         self.showingNewTimerSheet = true
+                        }
                     }).padding(.vertical, 12)
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
                         self.showingSettingsSheet = true

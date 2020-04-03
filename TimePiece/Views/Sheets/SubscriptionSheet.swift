@@ -82,9 +82,6 @@ struct SubscriptionSheet: View {
                 }.padding(7)
                 Spacer().frame(height: 14)
             }.padding(.leading, 21)
-        }.onAppear() {
-            self.settings.getMonthlyPrice()
-            self.settings.getYearlyPrice()
         }
         
     }
