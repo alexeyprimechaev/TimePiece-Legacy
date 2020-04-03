@@ -142,9 +142,8 @@
 		80612FE123C274DB00BC03F5 /* TimePiece */ = {
 			isa = PBXGroup;
 			children = (
-				80C909202437BB3E00939F25 /* Haptics.swift */,
 				80D141E523CE175D00FD2B5A /* Delegates */,
-				80D141E623CE176D00FD2B5A /* Data */,
+				80D141E623CE176D00FD2B5A /* Logic */,
 				80D141E323CE171300FD2B5A /* Views */,
 				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
 				80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */,
@@ -198,15 +197,16 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
-		80D141E623CE176D00FD2B5A /* Data */ = {
+		80D141E623CE176D00FD2B5A /* Logic */ = {
 			isa = PBXGroup;
 			children = (
 				80612FE623C274DB00BC03F5 /* TimerPlus.xcdatamodeld */,
 				80612FFB23C2766B00BC03F5 /* TimerPlus.swift */,
 				804E17B124087B71003F5001 /* Settings.swift */,
 				809635632401544D00BF297F /* NotificationManager.swift */,
+				80C909202437BB3E00939F25 /* Haptics.swift */,
 			);
-			path = Data;
+			path = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

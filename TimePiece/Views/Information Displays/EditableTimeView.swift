@@ -53,11 +53,7 @@ struct EditableTimeView: View {
                 self.update()
             }
             .introspectTextField { textField in
-                textField.font = UIFont(name: "AppleColorEmoji", size: 34)
-                textField.font = .systemFont(ofSize: 34, weight: .bold)
-                textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
                 if self.isFirstResponder {
-                    
                     if self.firstAppear {
                         self.value = ""
                         textField.becomeFirstResponder()
@@ -65,6 +61,9 @@ struct EditableTimeView: View {
                     }
                     
                 }
+                textField.font = UIFont(name: "AppleColorEmoji", size: 34)
+                textField.font = .systemFont(ofSize: 34, weight: .bold)
+                textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
 
             }
             .onReceive(value.publisher.collect()) {
