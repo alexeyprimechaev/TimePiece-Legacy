@@ -50,7 +50,7 @@ struct NewTimerSheet: View {
                         
                         PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
                         PremiumBadge() {
-                            PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
+                            PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: self.$timer.soundSetting)
                         }
                         PremiumBadge() {
                             PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$timer.precisionSetting)
