@@ -34,7 +34,7 @@ public class Settings: ObservableObject {
         }
     }
     
-    @Published var isReusableDefault: String = (defaultsStored.string(forKey: "isReusableDefault") ?? TimerPlus.reusableSettings[0]) {
+    @Published var isReusableDefault: String = (defaultsStored.string(forKey: "isReusableDefault") ?? TimerPlus.reusableSettings[1]) {
         willSet {
             defaultsStored.set(newValue, forKey: "isReusableDefault")
         }
