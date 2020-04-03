@@ -38,6 +38,7 @@
 		80A14FB72411217A00638B64 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB62411217900638B64 /* SettingsSheet.swift */; };
 		80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
 		80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
+		80C9091F2437A39000939F25 /* KeyboardHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9091E2437A39000939F25 /* KeyboardHost.swift */; };
 		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
 		80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80EF121C2430E74A00905780 /* SwiftyStoreKit */; };
 		80F355142418068F009ABFAD /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
@@ -74,6 +75,7 @@
 		80A14FB62411217900638B64 /* SettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsSheet.swift; path = TimePiece/SettingsSheet.swift; sourceTree = SOURCE_ROOT; };
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 		80B6BF1C2418205900815793 /* SubscriptionBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBadge.swift; sourceTree = "<group>"; };
+		80C9091E2437A39000939F25 /* KeyboardHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHost.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		80F355132418068F009ABFAD /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 		80D141E323CE171300FD2B5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80C9091E2437A39000939F25 /* KeyboardHost.swift */,
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				801A18532402FF1E005B4D19 /* Sheets */,
@@ -291,6 +294,7 @@
 				809635642401544D00BF297F /* NotificationManager.swift in Sources */,
 				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,
 				801C0E412416D4D1004A17B1 /* MainButton.swift in Sources */,
+				80C9091F2437A39000939F25 /* KeyboardHost.swift in Sources */,
 				8012C7A924056C5000E7798E /* TimerButton.swift in Sources */,
 				8012C7AB24057D4200E7798E /* ListSection.swift in Sources */,
 				801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */,

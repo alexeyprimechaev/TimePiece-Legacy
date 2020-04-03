@@ -32,6 +32,7 @@ struct NewTimerSheet: View {
                 self.discard()
             }, trailingTitle: "Add", trailingIcon: "plus")
             
+            KeyboardHost() {
             ScrollView() {
                 
                 VStack(alignment: .leading, spacing: 14) {
@@ -66,6 +67,7 @@ struct NewTimerSheet: View {
                     
                     
                 }.padding(.leading, 21)
+            }
             }
         }.onAppear() {
             self.isAdding = false
