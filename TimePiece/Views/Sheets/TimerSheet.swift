@@ -12,7 +12,7 @@ import CoreData
 
 struct TimerSheet: View {
     
-    @ObservedObject var timer = TimerPlus()
+    @ObservedObject var timer = TimerItem()
     
     @EnvironmentObject var settings: Settings
         
@@ -67,10 +67,10 @@ struct TimerSheet: View {
                     PropertyView(title: "Created at", timer: timer)
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {
-                            PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
-                            PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: $timer.soundSetting)
+                            PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
+                            PickerButton(title: "Sound", values: TimerItem.soundSettings, value: $timer.soundSetting)
                             PremiumBadge() {
-                                PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$timer.precisionSetting)
+                                PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                             }
                         } else {
                             PremiumBadge() {

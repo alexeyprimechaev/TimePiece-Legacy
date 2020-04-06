@@ -13,7 +13,7 @@ struct TimerView: View {
 //MARK: - Properties
     
     //MARK: Dynamic Propertiess
-    @ObservedObject var timer = TimerPlus()
+    @ObservedObject var timer = TimerItem()
     
     //MARK: CoreData
     @Environment(\.managedObjectContext) var context
@@ -53,7 +53,7 @@ struct TimerView: View {
                     
                     Text(timer.currentTimeString)
                         .opacity(0.5)
-                        .onReceive(Timer.publish(every: self.timer.precisionSetting==TimerPlus.precisionSettings[1] ? 0.1 : 0.015, on: .main, in: .common).autoconnect()) { time in
+                        .onReceive(Timer.publish(every: self.timer.precisionSetting==TimerItem.precisionSettings[1] ? 0.1 : 0.015, on: .main, in: .common).autoconnect()) { time in
                             self.timer.updateTime()
                         }
                     

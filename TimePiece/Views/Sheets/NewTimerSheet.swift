@@ -12,7 +12,7 @@ struct NewTimerSheet: View {
     
     @Environment(\.managedObjectContext) var context
     
-    @ObservedObject var timer = TimerPlus()
+    @ObservedObject var timer = TimerItem()
     
     @Binding var isAdding: Bool
     
@@ -49,12 +49,12 @@ struct NewTimerSheet: View {
                     
                     if showingOptions {   
                         
-                        PickerButton(title: "Notifications", values: TimerPlus.notificationSettings, value: $timer.notificationSetting)
+                        PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
                         PremiumBadge() {
-                            PickerButton(title: "Sound", values: TimerPlus.soundSettings, value: self.$timer.soundSetting)
+                            PickerButton(title: "Sound", values: TimerItem.soundSettings, value: self.$timer.soundSetting)
                         }
                         PremiumBadge() {
-                            PickerButton(title: "Milliseconds", values: TimerPlus.precisionSettings, value: self.$timer.precisionSetting)
+                            PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                         }
                         PremiumBadge() {
                             ToggleButton(title: "Reusable", trueTitle: "Yes", falseTitle: "No", value: self.$timer.isReusable)

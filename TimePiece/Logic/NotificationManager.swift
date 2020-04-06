@@ -34,7 +34,7 @@ public class NotificationManager {
         }
     }
     
-    static func scheduleNotification(timer: TimerPlus) {
+    static func scheduleNotification(timer: TimerItem) {
         print("schedule")
 
         requestNotificationPermisson()
@@ -62,7 +62,7 @@ public class NotificationManager {
         
     }
     
-    static func removePendingNotification(timer: TimerPlus) {
+    static func removePendingNotification(timer: TimerItem) {
         print("pending")
         print(badgeCount)
         badgeCount -= 1
@@ -70,7 +70,7 @@ public class NotificationManager {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [timer.notificationIdentifier.uuidString])
     }
     
-    static func removeDeliveredNotification(timer: TimerPlus) {
+    static func removeDeliveredNotification(timer: TimerItem) {
         print("delivered")
         print(badgeCount)
         

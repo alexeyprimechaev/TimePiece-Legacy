@@ -17,7 +17,7 @@ struct ContentView: View {
 
     //MARK: Core Data Setup
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(fetchRequest: TimerPlus.getAllTimers()) var timers: FetchedResults<TimerPlus>
+    @FetchRequest(fetchRequest: TimerItem.getAllTimers()) var timers: FetchedResults<TimerItem>
     
     @EnvironmentObject var settings: Settings
     
@@ -77,7 +77,7 @@ struct ContentView: View {
                 ASCollectionViewSection(id: 2) {
                     TimerButton(title: "New", icon: "+", action: {
                         withAnimation(.default) {
-                        TimerPlus.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault)
+                        TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault)
                         self.showingNewTimerSheet = true
                         }
                     }).padding(.vertical, 12)
@@ -129,7 +129,7 @@ struct ContentView: View {
     
     
     //MARK: Context Menu
-    func contextMenuProvider(_ timer: TimerPlus) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(_ timer: TimerItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in

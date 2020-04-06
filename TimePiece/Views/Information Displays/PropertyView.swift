@@ -15,7 +15,7 @@ struct PropertyView: View {
     
     @State var value = String()
         
-    @ObservedObject var timer = TimerPlus()
+    @ObservedObject var timer = TimerItem()
         
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -26,7 +26,7 @@ struct PropertyView: View {
                         .opacity(timer.title.count == 0 ? 0.6 : 1)
                     
                 } else if title == "Created at" {
-                    Text(TimerPlus.dateFormatter.string(from: timer.createdAt))
+                    Text(TimerItem.dateFormatter.string(from: timer.createdAt))
                         .title()
                 } else if title == "Left" {
                     Text(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))

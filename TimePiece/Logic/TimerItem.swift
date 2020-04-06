@@ -13,7 +13,7 @@ import UserNotifications
 import AVFoundation
 
 
-public class TimerPlus: NSManagedObject, Identifiable {
+public class TimerItem: NSManagedObject, Identifiable {
     
 //MARK: - Properties
     
@@ -73,7 +73,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
     
     //MARK: Creation (in context)
     static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String) {
-        let timer = TimerPlus(context: context)
+        let timer = TimerItem(context: context)
         
         // User Input
         timer.title = title
@@ -164,7 +164,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
                 self.togglePause()
                 currentTime = 0
                 
-                AudioServicesPlaySystemSound(soundSetting == TimerPlus.soundSettings[0] ? 1007 : 1036)
+                AudioServicesPlaySystemSound(soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }
    
         }
@@ -173,7 +173,7 @@ public class TimerPlus: NSManagedObject, Identifiable {
 }
 
 //MARK: - Unwrappers
-extension TimerPlus {
+extension TimerItem {
     
     var createdAt: Date {
         get { createdAtStored ?? Date() }
@@ -226,17 +226,17 @@ extension TimerPlus {
     }
     
     var soundSetting: String {
-        get { soundSettingStored ?? TimerPlus.soundSettings[0] }
+        get { soundSettingStored ?? TimerItem.soundSettings[0] }
         set { soundSettingStored = newValue }
     }
     
     var precisionSetting: String {
-        get { precisionSettingStored ?? TimerPlus.precisionSettings[0] }
+        get { precisionSettingStored ?? TimerItem.precisionSettings[0] }
         set { precisionSettingStored = newValue }
     }
     
     var notificationSetting: String {
-        get { notificationSettingStored ?? TimerPlus.notificationSettings[0] }
+        get { notificationSettingStored ?? TimerItem.notificationSettings[0] }
         set { notificationSettingStored = newValue }
     }
     
@@ -413,9 +413,9 @@ extension Bool {
 }
 
 //MARK: - CoreData
-extension TimerPlus {
-    static func getAllTimers() -> NSFetchRequest<TimerPlus> {
-        let request: NSFetchRequest<TimerPlus> = TimerPlus.fetchRequest() as! NSFetchRequest<TimerPlus>
+extension TimerItem {
+    static func getAllTimers() -> NSFetchRequest<TimerItem> {
+        let request: NSFetchRequest<TimerItem> = TimerItem.fetchRequest() as! NSFetchRequest<TimerItem>
         
         let sortDescriptor = NSSortDescriptor(key: "createdAtStored", ascending: true)
         
