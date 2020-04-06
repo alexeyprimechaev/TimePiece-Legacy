@@ -21,7 +21,7 @@ public class LogItem: NSManagedObject, Identifiable {
     //MARK: Main Properties
     @NSManaged public var titleStored: String?
     @NSManaged public var timeStartedStored: Date?
-    @NSManaged public var timeEndedStored: Date?
+    @NSManaged public var timeFinishedStored: Date?
     
     
 }
@@ -39,17 +39,17 @@ extension LogItem {
         set { timeStartedStored = newValue }
     }
     
-    var timeEnded: Date {
-        get { timeEndedStored ?? Date() }
-        set { timeEndedStored = newValue }
+    var timeFinished: Date {
+        get { timeFinishedStored ?? Date() }
+        set { timeFinishedStored = newValue }
     }
     
 }
 
 //MARK: - CoreData
-extension TimerItem {
-    static func getAllTimers() -> NSFetchRequest<LogItem> {
-        let request: NSFetchRequest<LogItem> = TimerItem.fetchRequest() as! NSFetchRequest<LogItem>
+extension LogItem {
+    static func getAllLogItems() -> NSFetchRequest<LogItem> {
+        let request: NSFetchRequest<LogItem> = LogItem.fetchRequest() as! NSFetchRequest<LogItem>
         
         let sortDescriptor = NSSortDescriptor(key: "timeStartedStored", ascending: true)
         

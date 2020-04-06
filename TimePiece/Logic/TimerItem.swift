@@ -21,6 +21,8 @@ public class TimerItem: NSManagedObject, Identifiable {
         objectID
     }
     
+    var logItem: LogItem?
+    
     //MARK: Main Properties
     @NSManaged public var createdAtStored: Date?
     @NSManaged public var isPausedStored: NSNumber?
@@ -125,10 +127,19 @@ public class TimerItem: NSManagedObject, Identifiable {
             timeFinished = timeStarted.addingTimeInterval(currentTime)
             isPaused = false
             
+            logItem = LogItem(context: self.managedObjectContext!)
+            print(logItem)
+            logItem?.title = title
+            logItem?.timeStarted = timeStarted
+            print(logItem)
+            
         } else {
             timeStarted = Date()
             currentTime = timeFinished.timeIntervalSince(timeStarted)
             isPaused = true
+            
+            logItem?.timeFinished = Date()
+            logItem = nil
         }
     }
     

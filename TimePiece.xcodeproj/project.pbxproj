@@ -22,6 +22,7 @@
 		804E17B224087B71003F5001 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
 		8055D7A7243B624E00AF516E /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A5243B624E00AF516E /* TimePiece.xcdatamodeld */; };
 		8055D7A9243B627600AF516E /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
+		8055D7AB243B62ED00AF516E /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
 		80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE223C274DB00BC03F5 /* AppDelegate.swift */; };
 		80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE423C274DB00BC03F5 /* SceneDelegate.swift */; };
 		80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
@@ -59,6 +60,7 @@
 		804E17B124087B71003F5001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8055D7A6243B624E00AF516E /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
+		8055D7AA243B62ED00AF516E /* LogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheet.swift; sourceTree = "<group>"; };
 		80612FDF23C274DB00BC03F5 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80612FE223C274DB00BC03F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80612FE423C274DB00BC03F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		801A18532402FF1E005B4D19 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
+				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
 				80A14FB62411217900638B64 /* SettingsSheet.swift */,
 				809D69C42416CB4900896206 /* SubscriptionSheet.swift */,
 				8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				809D69C52416CB4900896206 /* SubscriptionSheet.swift in Sources */,
+				8055D7AB243B62ED00AF516E /* LogSheet.swift in Sources */,
 				80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */,
 				809635642401544D00BF297F /* NotificationManager.swift in Sources */,
 				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,

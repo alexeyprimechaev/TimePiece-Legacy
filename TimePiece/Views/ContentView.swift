@@ -29,6 +29,8 @@ struct ContentView: View {
     @State var selectedTimer = 0
     
     @State var showingSettingsSheet = false
+    
+    @State var showingLogSheet = false
         
 //MARK: - View
     
@@ -73,7 +75,7 @@ struct ContentView: View {
                 },
                 
                 
-        //MARK: Button
+        //MARK: Buttons
                 ASCollectionViewSection(id: 2) {
                     TimerButton(title: "New", icon: "+", action: {
                         withAnimation(.default) {
@@ -81,6 +83,13 @@ struct ContentView: View {
                         self.showingNewTimerSheet = true
                         }
                     }).padding(.vertical, 12)
+                    
+                    TimerButton(title: "Log", icon: "tray.fill", sfSymbolIcon: true, action: {
+                        self.showingLogSheet = true
+                    }).sheet(isPresented: $showingLogSheet) {
+                        LogSheet().environment(\.managedObjectContext, self.context)
+                    }
+                    
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
                         self.showingSettingsSheet = true
                     })
