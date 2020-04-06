@@ -55,7 +55,7 @@ public class TimerItem: NSManagedObject, Identifiable {
     }()
     static let currentTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SS"
+        formatter.dateFormat = "HH:mm"
         return formatter
     }()
     static let timeFormatter: NumberFormatter = {

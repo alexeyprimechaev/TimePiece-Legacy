@@ -7,18 +7,23 @@
 //
 
 import SwiftUI
+import ASCollectionView
 
 struct LogSheet: View {
     
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: LogItem.getAllLogItems()) var logItems: FetchedResults<LogItem>
+
     
     var body: some View {
-        List(logItems) { logItem in
-            Text(logItem.title == "" ? "Timer ⏱" : logItem.title)
-        }.onAppear {
-            dump(self.logItems)
-        }
+        ASTableView(style: .plain, sections: [
+            ASTableViewSection(id: 0, data: logItems) { logItem, _  in
+                LogView(logItem: logItem)
+                
+            }
+            ]).tableViewSeparatorsEnabled(false)
+        
+
     }
 }
 

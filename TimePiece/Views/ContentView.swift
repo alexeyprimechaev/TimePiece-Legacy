@@ -87,7 +87,7 @@ struct ContentView: View {
                     TimerButton(title: "Log", icon: "tray.fill", sfSymbolIcon: true, action: {
                         self.showingLogSheet = true
                     }).sheet(isPresented: $showingLogSheet) {
-                        LogSheet().environment(\.managedObjectContext, self.context)
+                        LogSheet().environment(\.managedObjectContext, self.context).environmentObject(self.settings)
                     }
                     
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
