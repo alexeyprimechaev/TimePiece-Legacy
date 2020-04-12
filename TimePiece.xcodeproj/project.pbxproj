@@ -107,8 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
-				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
 				809D69C42416CB4900896206 /* SubscriptionSheet.swift */,
+				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
 				8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */,
 				8088473A23C2AE79001D1A6E /* TimerSheet.swift */,
 			);
