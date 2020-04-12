@@ -103,10 +103,6 @@ struct SubscriptionSheet: View {
             else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
                 self.settings.isSubscribed = true
-                self.alertText1 = "Success"
-                self.alertText2 = "Subscription is restored"
-                self.showingAlert = true
-                self.discard()
                 self.discard()
             }
             else {
@@ -123,9 +119,6 @@ struct SubscriptionSheet: View {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 self.settings.isSubscribed = true
-                self.alertText1 = "Success"
-                self.alertText2 = "Subscription is active"
-                self.showingAlert = true
                 self.discard()
             case .error(let error):
                 switch error.code {
@@ -150,9 +143,6 @@ struct SubscriptionSheet: View {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 self.settings.isSubscribed = true
-                self.alertText1 = "Success"
-                self.alertText2 = "Subscription is active"
-                self.showingAlert = true
                 self.discard()
             case .error(let error):
                 switch error.code {
