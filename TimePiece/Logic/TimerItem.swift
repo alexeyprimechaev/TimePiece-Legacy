@@ -48,9 +48,14 @@ public class TimerItem: NSManagedObject, Identifiable {
     
     
     //MARK: Formatters
-    static let dateFormatter: DateFormatter = {
+    static let createdAtFormatter: DateFormatter = {
         var formatter = DateFormatter()
         formatter.dateFormat = "MMM dd HH:mm"
+        return formatter
+    }()
+    static let dateFormatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "YYYY MMM dd"
         return formatter
     }()
     static let currentTimeFormatter: DateFormatter = {
@@ -58,6 +63,12 @@ public class TimerItem: NSManagedObject, Identifiable {
         formatter.dateFormat = "HH:mm"
         return formatter
     }()
+    static var shortDateFormatter: RelativeDateTimeFormatter {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.dateTimeStyle = .named
+        formatter.unitsStyle = .full
+        return formatter
+    }
     static let timeFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         

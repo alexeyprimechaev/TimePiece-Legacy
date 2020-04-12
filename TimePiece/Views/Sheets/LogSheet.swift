@@ -12,28 +12,95 @@ import ASCollectionView
 struct LogSheet: View {
     
     @Environment(\.managedObjectContext) var context
+    @EnvironmentObject var settings: Settings
     @FetchRequest(fetchRequest: LogItem.getAllLogItems()) var logItems: FetchedResults<LogItem>
     
     var discard: () -> ()
+    
+    func update(_ result : FetchedResults<LogItem>)-> [[LogItem]]{
+        return  Dictionary(grouping: result){ (element : LogItem)  in
+            TimerItem.dateFormatter.string(from: element.timeStarted)
+        }.values.sorted() { $0[0].timeStarted < $1[0].timeStarted }
+    }
+
+        
+    var sections: [ASTableViewSection<Int>]
+    {
+        update(logItems).enumerated().map
+        { i, section in
+            ASTableViewSection(
+                id: i + 1,
+                data: section,
+                contextMenuProvider: contextMenuProvider)
+            { item, _ in
+                LogView(logItem: item)
+            }
+            .tableViewSetEstimatedSizes(rowHeight: 300, headerHeight: 56) 
+            .sectionHeader
+            {
+               VStack(spacing: 0)
+                {
+                    HStack() {
+                        Text(TimerItem.shortDateFormatter.localizedString(for: section[0].timeStarted, relativeTo: Date())).title().padding(7).padding(.leading, 21).padding(.vertical, 7)
+                        Spacer()
+                    }.background(Color(UIColor.systemBackground))
+                    Divider()
+                }
+            }
+        }
+    }
+    
 
     
     var body: some View {
         VStack(spacing: 0) {
         HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
-        ASTableView(style: .plain, sections: [
-            ASTableViewSection(id: 0, data: logItems) { logItem, _  in
-                LogView(logItem: logItem)
-                
-            }.sectionHeader(content: {
-                HStack() {
-                    Text("Today").title().padding(7).padding(.leading, 21).padding(.vertical, 7)
-                    Spacer()
-                }
-            })
-            ]).tableViewSeparatorsEnabled(true)
+            ASTableView(style: .plain, sections: sections).tableViewSeparatorsEnabled(true)
         
         }
 
     }
+    
+    func contextMenuProvider(_ timer: LogItem) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
+            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
+            let deleteConfirm = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
+
+               
+            }
+            
+            let deleteConfirmReusable = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
+
+               
+            }
+
+            // The delete sub-menu is created like the top-level menu, but we also specify an image and options
+            let delete = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
+            
+
+            
+            
+            
+            
+            let deleteReusable = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
+            
+
+            // The edit menu adds delete as a child, just like an action
+            let edit = UIMenu(title: "Edit...", options: .displayInline, children: [deleteReusable])
+
+            let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
+                
+            }
+
+            // Then we add edit as a child of the main menu
+            let mainMenu = UIMenu(title: "", children: [edit, info])
+            return mainMenu
+        }
+        return configuration
+    }
+    
+    
+    
 }
+
 
