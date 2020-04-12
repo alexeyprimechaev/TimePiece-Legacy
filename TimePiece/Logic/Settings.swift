@@ -34,6 +34,12 @@ public class Settings: ObservableObject {
         }
     }
     
+    @Published var showingDividers: Bool = ((defaultsStored.value(forKey: "showingDividers") ?? false) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "showingDividers")
+        }
+    }
+    
     @Published var isReusableDefault: String = (defaultsStored.string(forKey: "isReusableDefault") ?? TimerItem.reusableSettings[1]) {
         willSet {
             defaultsStored.set(newValue, forKey: "isReusableDefault")

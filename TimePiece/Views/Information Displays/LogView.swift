@@ -20,7 +20,7 @@ struct LogView: View {
                 Spacer().frame(width: 28)
                 Text(logItem.title == "" ? "Timer ⏱" : logItem.title)
                 Spacer()
-                Text("2 Mins").opacity(0.5)
+                Text(logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()).opacity(0.5)
                 Spacer().frame(width: 28)
             }
             Spacer().frame(height: 7)

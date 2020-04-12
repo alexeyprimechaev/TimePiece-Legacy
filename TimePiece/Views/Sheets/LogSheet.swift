@@ -31,6 +31,7 @@ struct LogSheet: View {
             ASTableViewSection(
                 id: i + 1,
                 data: section,
+                onSwipeToDelete: onSwipeToDelete,
                 contextMenuProvider: contextMenuProvider)
             { item, _ in
                 LogView(logItem: item)
@@ -41,10 +42,12 @@ struct LogSheet: View {
                VStack(spacing: 0)
                 {
                     HStack() {
-                        Text(TimerItem.shortDateFormatter.localizedString(for: section[0].timeStarted, relativeTo: Date())).title().padding(7).padding(.leading, 21).padding(.vertical, 7)
+                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).title().padding(7).padding(.leading, 21).padding(.vertical, 7)
                         Spacer()
                     }.background(Color(UIColor.systemBackground))
-                    Divider()
+                    if settings.showingDividers {
+                        Divider()
+                    }
                 }
             }
         }
@@ -55,50 +58,43 @@ struct LogSheet: View {
     var body: some View {
         VStack(spacing: 0) {
         HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
-            ASTableView(style: .plain, sections: sections).tableViewSeparatorsEnabled(true)
+            ASTableView(style: .plain, sections: sections).tableViewSeparatorsEnabled(settings.showingDividers ? true : false)
         
         }
 
     }
     
-    func contextMenuProvider(_ timer: LogItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(_ logItem: LogItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
 
                
             }
-            
-            let deleteConfirmReusable = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
 
-               
-            }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
             let delete = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
             
 
             
-            
-            
-            
-            let deleteReusable = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
-            
-
-            // The edit menu adds delete as a child, just like an action
-            let edit = UIMenu(title: "Edit...", options: .displayInline, children: [deleteReusable])
 
             let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
-                
+                print("fuck")
             }
 
             // Then we add edit as a child of the main menu
-            let mainMenu = UIMenu(title: "", children: [edit, info])
+            let mainMenu = UIMenu(title: "", children: [delete, info])
             return mainMenu
         }
         return configuration
     }
     
+    func onSwipeToDelete(_ logItem: LogItem, completionHandler: (Bool) -> Void) {
+        withAnimation {
+            context.delete(logItem)
+        }
+    }
     
     
 }

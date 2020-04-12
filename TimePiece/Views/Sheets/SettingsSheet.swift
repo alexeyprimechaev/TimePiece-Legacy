@@ -49,7 +49,11 @@ struct SettingsSheet: View {
                             PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
                         }
                         PremiumBadge() {
-                            PickerButton(title: "Monochrome", values: [true.stringValue, false.stringValue], value: self.$settings.isMonochrome.stringValue)
+                            PickerButton(title: "Monochrome", values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
+                        }
+                        
+                        PremiumBadge() {
+                            PickerButton(title: "Dividers", values: [true.yesNo, false.yesNo], value: self.$settings.showingDividers.onOff)
                         }
                         
                         //ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)
