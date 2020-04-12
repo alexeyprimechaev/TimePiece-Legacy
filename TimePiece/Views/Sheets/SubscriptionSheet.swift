@@ -14,6 +14,10 @@ struct SubscriptionSheet: View {
     @EnvironmentObject var settings: Settings
     
     var discard: () -> ()
+    
+    @State var showingAlert = false
+    @State var alertText1 = "Failed"
+    @State var alertText2 = "Nothing to restore"
         
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -23,6 +27,10 @@ struct SubscriptionSheet: View {
                 self.restorePurchases()
                 print(self.settings.isSubscribed)
             }, trailingTitle: "Restore", trailingIcon: "arrow.clockwise")
+                
+                .alert(isPresented: $showingAlert) {
+                Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
+            }
             
             VStack(alignment: .leading, spacing: 0) {
                 
@@ -88,14 +96,23 @@ struct SubscriptionSheet: View {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
+                self.alertText1 = "Restore failed"
+                self.alertText2 = "Some error occured..."
+                self.showingAlert = true
             }
             else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
                 self.settings.isSubscribed = true
+                self.alertText1 = "Success"
+                self.alertText2 = "Subscription is restored"
+                self.showingAlert = true
+                self.discard()
                 self.discard()
             }
             else {
-                print("Nothing to Restore")
+                self.alertText1 = "Restore failed"
+                self.alertText2 = "Nothing to restore"
+                self.showingAlert = true
             }
         }
     }
@@ -106,6 +123,9 @@ struct SubscriptionSheet: View {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 self.settings.isSubscribed = true
+                self.alertText1 = "Success"
+                self.alertText2 = "Subscription is active"
+                self.showingAlert = true
                 self.discard()
             case .error(let error):
                 switch error.code {
@@ -130,6 +150,9 @@ struct SubscriptionSheet: View {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 self.settings.isSubscribed = true
+                self.alertText1 = "Success"
+                self.alertText2 = "Subscription is active"
+                self.showingAlert = true
                 self.discard()
             case .error(let error):
                 switch error.code {
