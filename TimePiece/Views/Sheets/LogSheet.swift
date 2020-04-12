@@ -13,9 +13,13 @@ struct LogSheet: View {
     
     @Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: LogItem.getAllLogItems()) var logItems: FetchedResults<LogItem>
+    
+    var discard: () -> ()
 
     
     var body: some View {
+        VStack() {
+        HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
         ASTableView(style: .plain, sections: [
             ASTableViewSection(id: 0, data: logItems) { logItem, _  in
                 LogView(logItem: logItem)
@@ -23,12 +27,8 @@ struct LogSheet: View {
             }
             ]).tableViewSeparatorsEnabled(false)
         
+        }
 
     }
 }
 
-struct LogSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        LogSheet()
-    }
-}

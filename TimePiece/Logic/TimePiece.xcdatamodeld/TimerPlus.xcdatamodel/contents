@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="LogItem" representedClassName=".LogItem" syncable="YES">
+        <attribute name="timeFinishedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timeStartedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="titleStored" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="TimerItem" representedClassName=".TimerItem" syncable="YES">
         <attribute name="createdAtStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="currentTimeStored" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -17,5 +22,6 @@
     </entity>
     <elements>
         <element name="TimerItem" positionX="160" positionY="192" width="128" height="238"/>
+        <element name="LogItem" positionX="162" positionY="288" width="128" height="88"/>
     </elements>
 </model>

@@ -128,10 +128,8 @@ public class TimerItem: NSManagedObject, Identifiable {
             isPaused = false
             
             logItem = LogItem(context: self.managedObjectContext!)
-            print(logItem)
             logItem?.title = title
             logItem?.timeStarted = timeStarted
-            print(logItem)
             
         } else {
             timeStarted = Date()
