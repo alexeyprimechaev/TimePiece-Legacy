@@ -17,7 +17,7 @@ struct SubscriptionSheet: View {
     
     @State var showingAlert = false
     @State var alertText1 = "Failed"
-    @State var alertText2 = "Nothing to restore"
+    @State var alertText2 = "Some error occured..."
         
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -122,16 +122,34 @@ struct SubscriptionSheet: View {
                 self.discard()
             case .error(let error):
                 switch error.code {
-                case .unknown: print("Unknown error. Please contact support")
-                case .clientInvalid: print("Not allowed to make the payment")
+                case .unknown:
+                    print("Unknown error. Please contact support")
+                    self.showingAlert = true
+                case .clientInvalid:
+                    print("Not allowed to make the payment")
+                    self.showingAlert = true
                 case .paymentCancelled: break
-                case .paymentInvalid: print("The purchase identifier was invalid")
-                case .paymentNotAllowed: print("The device is not allowed to make the payment")
-                case .storeProductNotAvailable: print("The product is not available in the current storefront")
-                case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
-                case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
-                case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
-                default: print((error as NSError).localizedDescription)
+                case .paymentInvalid:
+                    print("The purchase identifier was invalid")
+                    self.showingAlert = true
+                case .paymentNotAllowed:
+                    print("The device is not allowed to make the payment")
+                    self.showingAlert = true
+                case .storeProductNotAvailable:
+                    print("The product is not available in the current storefront")
+                    self.showingAlert = true
+                case .cloudServicePermissionDenied:
+                    print("Access to cloud service information is not allowed")
+                    self.showingAlert = true
+                case .cloudServiceNetworkConnectionFailed:
+                    print("Could not connect to the network")
+                    self.showingAlert = true
+                case .cloudServiceRevoked:
+                    print("User has revoked permission to use this cloud service")
+                    self.showingAlert = true
+                default:
+                    print((error as NSError).localizedDescription)
+                    self.showingAlert = true
                 }
             }
         }
@@ -145,18 +163,36 @@ struct SubscriptionSheet: View {
                 self.settings.isSubscribed = true
                 self.discard()
             case .error(let error):
-                switch error.code {
-                case .unknown: print("Unknown error. Please contact support")
-                case .clientInvalid: print("Not allowed to make the payment")
-                case .paymentCancelled: break
-                case .paymentInvalid: print("The purchase identifier was invalid")
-                case .paymentNotAllowed: print("The device is not allowed to make the payment")
-                case .storeProductNotAvailable: print("The product is not available in the current storefront")
-                case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
-                case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
-                case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
-                default: print((error as NSError).localizedDescription)
-                }
+            switch error.code {
+            case .unknown:
+                print("Unknown error. Please contact support")
+                self.showingAlert = true
+            case .clientInvalid:
+                print("Not allowed to make the payment")
+                self.showingAlert = true
+            case .paymentCancelled: break
+            case .paymentInvalid:
+                print("The purchase identifier was invalid")
+                self.showingAlert = true
+            case .paymentNotAllowed:
+                print("The device is not allowed to make the payment")
+                self.showingAlert = true
+            case .storeProductNotAvailable:
+                print("The product is not available in the current storefront")
+                self.showingAlert = true
+            case .cloudServicePermissionDenied:
+                print("Access to cloud service information is not allowed")
+                self.showingAlert = true
+            case .cloudServiceNetworkConnectionFailed:
+                print("Could not connect to the network")
+                self.showingAlert = true
+            case .cloudServiceRevoked:
+                print("User has revoked permission to use this cloud service")
+                self.showingAlert = true
+            default:
+                print((error as NSError).localizedDescription)
+                self.showingAlert = true
+            }
             }
         }
     }
