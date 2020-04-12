@@ -27,7 +27,7 @@ struct LogView: View {
             HStack(spacing: 0) {
                 Spacer().frame(width: 28)
                 Text(TimerItem.currentTimeFormatter.string(from: logItem.timeStarted))
-                Spacer().frame(width: 14)
+                Text(" – ")
                 Text(TimerItem.currentTimeFormatter.string(from: logItem.timeFinished))
                 Spacer()
             }.opacity(0.5)

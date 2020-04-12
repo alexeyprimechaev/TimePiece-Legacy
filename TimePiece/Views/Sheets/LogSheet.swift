@@ -18,14 +18,19 @@ struct LogSheet: View {
 
     
     var body: some View {
-        VStack() {
+        VStack(spacing: 0) {
         HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
         ASTableView(style: .plain, sections: [
             ASTableViewSection(id: 0, data: logItems) { logItem, _  in
                 LogView(logItem: logItem)
                 
-            }
-            ]).tableViewSeparatorsEnabled(false)
+            }.sectionHeader(content: {
+                HStack() {
+                    Text("Today").title().padding(7).padding(.leading, 21).padding(.vertical, 7)
+                    Spacer()
+                }
+            })
+            ]).tableViewSeparatorsEnabled(true)
         
         }
 

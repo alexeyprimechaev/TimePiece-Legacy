@@ -84,13 +84,13 @@ struct ContentView: View {
                         }
                     }).padding(.vertical, 12)
                     
-                    TimerButton(title: "Log", icon: "tray.fill", sfSymbolIcon: true, action: {
-                        self.showingLogSheet = true
-                    }).sheet(isPresented: $showingLogSheet) {
-                        LogSheet(discard: {
-                            self.showingLogSheet = false
-                        }).environment(\.managedObjectContext, self.context).environmentObject(self.settings)
-                    }
+//                    TimerButton(title: "Log", icon: "tray.fill", sfSymbolIcon: true, action: {
+//                        self.showingLogSheet = true
+//                    }).sheet(isPresented: $showingLogSheet) {
+//                        LogSheet(discard: {
+//                            self.showingLogSheet = false
+//                        }).environment(\.managedObjectContext, self.context).environmentObject(self.settings)
+//                    }
                     
                     TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
                         self.showingSettingsSheet = true
