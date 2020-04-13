@@ -20,7 +20,7 @@ struct LogView: View {
                 Spacer().frame(width: 28)
                 Text(logItem.title == "" ? "Timer ⏱" : logItem.title)
                 Spacer()
-                Text(logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()).opacity(0.5)
+                Text(logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber())
                 Spacer().frame(width: 28)
             }
             Spacer().frame(height: 7)
@@ -30,6 +30,7 @@ struct LogView: View {
                 Text(" – ")
                 Text(TimerItem.currentTimeFormatter.string(from: logItem.timeFinished))
                 Spacer()
+                Spacer().frame(width: 28)
             }.opacity(0.5)
             Spacer().frame(height: 14)
         }.smallTitle()

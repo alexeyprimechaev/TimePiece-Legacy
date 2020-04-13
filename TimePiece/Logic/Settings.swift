@@ -19,6 +19,16 @@ public class Settings: ObservableObject {
     @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? false) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "isSubscribed")
+            
+            if newValue == true {
+                nextCheck = Date().addingTimeInterval(604800)
+            }
+        }
+    }
+    
+    @Published var nextCheck: Date = ((defaultsStored.value(forKey: "nextCheck") ?? Date()) as! Date) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "nextCheck")
         }
     }
     

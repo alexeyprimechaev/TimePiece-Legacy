@@ -149,7 +149,9 @@ public class TimerItem: NSManagedObject, Identifiable {
             currentTime = timeFinished.timeIntervalSince(timeStarted)
             isPaused = true
             
-            logItem?.timeFinished = Date()
+            if currentTime > 0 {
+                logItem?.timeFinished = Date()
+            }
             logItem = nil
         }
     }
@@ -172,6 +174,9 @@ public class TimerItem: NSManagedObject, Identifiable {
         timeStarted = Date()
         currentTime = totalTime
         timeFinished = timeStarted.addingTimeInterval(currentTime)
+         
+        logItem?.timeFinished = Date()
+        logItem = nil
     }
     
     
@@ -381,15 +386,8 @@ extension TimeInterval {
         let seconds = time % 60
         let minutes = (time / 60) % 60
         let hours = (time / 3600)
-        let days = (time / (3600*24))
         
-        let secondsComponent = "\(seconds==0 ? "" : "\(seconds)\(minutes == 0 && hours == 0 ? " Seconds" : " Secs")")"
-        
-        let minutesComponent = "\(minutes==0 ? "" : "\(minutes)\(seconds == 0 && hours == 0 ? " Minutes" : " Mins")")"
-        
-        let hoursComponent = "\(hours==0 ? "" : "\(hours)\(seconds == 0 && minutes == 0 ? " Hours" : " Hrs")")"
-        
-        return hoursComponent+(minutesComponent == "" ? "" : " ")+minutesComponent+(secondsComponent == "" ? "" : " ")+secondsComponent
+        return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
         
     }
     

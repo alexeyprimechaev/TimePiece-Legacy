@@ -53,7 +53,7 @@ struct SettingsSheet: View {
                         }
                         
                         PremiumBadge() {
-                            PickerButton(title: "Dividers", values: [true.yesNo, false.yesNo], value: self.$settings.showingDividers.onOff)
+                            PickerButton(title: "Dividers", values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
                         }
                         
                         //ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)

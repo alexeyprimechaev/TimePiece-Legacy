@@ -93,22 +93,65 @@ struct SubscriptionSheet: View {
     }
     
     func restorePurchases() {
-        SwiftyStoreKit.restorePurchases(atomically: true) { results in
-            if results.restoreFailedPurchases.count > 0 {
-                print("Restore Failed: \(results.restoreFailedPurchases)")
-                self.alertText1 = "Restore failed"
-                self.alertText2 = "Some error occured..."
-                self.showingAlert = true
-            }
-            else if results.restoredPurchases.count > 0 {
-                print("Restore Success: \(results.restoredPurchases)")
-                self.settings.isSubscribed = true
-                self.discard()
-            }
-            else {
-                self.alertText1 = "Restore failed"
-                self.alertText2 = "Nothing to restore"
-                self.showingAlert = true
+        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "b82d97a08dd74422a5116ac3779653e6")
+        SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
+            switch result {
+            case .success(let receipt):
+                let productIdMonthly = "timepiecesubscription"
+                // Verify the purchase of a Subscription
+                let purchaseResultMonthly = SwiftyStoreKit.verifySubscription(
+                    ofType: .autoRenewable, // or .nonRenewing (see below)
+                    productId: productIdMonthly,
+                    inReceipt: receipt)
+                    
+                switch purchaseResultMonthly {
+                    
+                    case .purchased(let expiryDate, let items):
+                        //print("\(productIdMonthly) is valid until \(expiryDate)\n\(items)\n")
+                        self.settings.isSubscribed = true
+                    case .expired(let expiryDate, let items):
+                        //print("\(productIdMonthly) is expired since \(expiryDate)\n\(items)\n")
+                        self.settings.isSubscribed = false
+                        self.alertText1 = "Failed"
+                        self.alertText2 = "Subscription has expired on \(TimerItem.createdAtFormatter.string(from: expiryDate))"
+                        self.showingAlert = true
+                    case .notPurchased:
+                        //print("The user has never purchased \(productIdMonthly)")
+                        self.settings.isSubscribed = false
+                        self.alertText1 = "Failed"
+                        self.alertText2 = "You have never purchased \(productIdMonthly)"
+                        self.showingAlert = true
+                    }
+                
+                let productIdYearly = "timepieceyearly"
+                
+                let purchaseResultYearly = SwiftyStoreKit.verifySubscription(
+                ofType: .autoRenewable, // or .nonRenewing (see below)
+                productId: productIdYearly,
+                inReceipt: receipt)
+                
+                switch purchaseResultYearly {
+                    
+                    case .purchased(let expiryDate, let items):
+                        //print("\(purchaseResultYearly) is valid until \(expiryDate)\n\(items)\n")
+                        self.settings.isSubscribed = true
+                    case .expired(let expiryDate, let items):
+                        //print("\(purchaseResultYearly) is expired since \(expiryDate)\n\(items)\n")
+                        self.settings.isSubscribed = false
+                        self.alertText1 = "Failed"
+                        self.alertText2 = "Subscription has expired on \(TimerItem.createdAtFormatter.string(from: expiryDate))"
+                        self.showingAlert = true
+                    case .notPurchased:
+                        //print("The user has never purchased \(purchaseResultYearly)")
+                        self.settings.isSubscribed = false
+                        self.alertText1 = "Failed"
+                        self.alertText2 = "You have never purchased \(purchaseResultYearly)"
+                        self.showingAlert = true
+                    
+                }
+
+            case .error(let error):
+                print("Receipt verification failed: \(error)")
             }
         }
     }
