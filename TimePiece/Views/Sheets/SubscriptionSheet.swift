@@ -62,7 +62,7 @@ struct SubscriptionSheet: View {
                         })
                         Text("7 days free,").smallTitle()
                         Spacer().frame(height:4)
-                        Text("\(settings.monthlyPrice)/Month").secondaryText()
+                        Text("then \(settings.monthlyPrice)/Month").secondaryText()
                     }
                     Spacer().frame(width:28)
                     VStack() {
