@@ -52,10 +52,10 @@ struct SettingsSheet: View {
                             PickerButton(title: "Monochrome", values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
                         }
                         
-                        PremiumBadge() {
-                            PickerButton(title: "Dividers", values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
-                        }
-                        
+//                        PremiumBadge() {
+//                            PickerButton(title: "Dividers", values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
+//                        }
+//                        
                         //ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)
                         
                     }

@@ -38,6 +38,7 @@
 		809D69C52416CB4900896206 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
 		80A14FB52411077000638B64 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
 		80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
+		80B62E73244DF13C001D4D9E /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
 		80C9091F2437A39000939F25 /* KeyboardHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9091E2437A39000939F25 /* KeyboardHost.swift */; };
 		80C909212437BB3E00939F25 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
@@ -79,6 +80,7 @@
 		809D69C42416CB4900896206 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
 		80A14FB42411077000638B64 /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
+		80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionButton.swift; sourceTree = "<group>"; };
 		80B6BF1C2418205900815793 /* SubscriptionBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBadge.swift; sourceTree = "<group>"; };
 		80C9091E2437A39000939F25 /* KeyboardHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHost.swift; sourceTree = "<group>"; };
 		80C909202437BB3E00939F25 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		80D141E423CE175200FD2B5A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */,
 				80F355132418068F009ABFAD /* HeaderBar.swift */,
 				80ACD6B623CBE435000C49DC /* PauseButton.swift */,
 				801C0E402416D4D1004A17B1 /* MainButton.swift */,
@@ -316,6 +319,7 @@
 				80727C98241136FF0046EE08 /* PremiumBadge.swift in Sources */,
 				80C909212437BB3E00939F25 /* Haptics.swift in Sources */,
 				80F355142418068F009ABFAD /* HeaderBar.swift in Sources */,
+				80B62E73244DF13C001D4D9E /* SubscriptionButton.swift in Sources */,
 				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,
 				80A14FB52411077000638B64 /* PersonCard.swift in Sources */,
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
@@ -470,7 +474,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TimePiece/Preview Content\"";
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
@@ -494,7 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TimePiece/Preview Content\"";
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;

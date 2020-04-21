@@ -42,7 +42,7 @@ struct SubscriptionSheet: View {
                         .padding(.bottom, 9)
                 }.padding(7)
                 ScrollView(.vertical) {
-                    VStack(alignment: .leading, spacing: 21) {
+                    VStack(alignment: .leading, spacing: 14) {
                         SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: "Reusable Timers. Unlimited.", subtitle: "Create Timers that don't expire")
                         SubscriptionBadge(icon: "ellipsis.circle.fill", title: "Higher Precision", subtitle: "Millisecond accuracy")
                         SubscriptionBadge(icon: "bell.circle.fill", title: "Control notifications & sounds", subtitle: "For each timer separately")
@@ -54,28 +54,16 @@ struct SubscriptionSheet: View {
                     
                 }
                 Spacer()
-                HStack(alignment: .top, spacing: 0) {
-                    Spacer().frame(width:7)
-                    VStack() {
-                        MainButton(icon: "creditcard.fill", title: "Free Trial", highPriority: true, action: {
+                VStack(spacing: 14) {
+                        SubscriptionButton(title: "Free trial", promo: "7 days free", price: "then \(settings.monthlyPrice)", duration: "Monthly", isAccent: true, action: {
                             self.purchaseMonthly()
                         })
-                        Text("7 days free,").smallTitle()
-                        Spacer().frame(height:4)
-                        Text("then \(settings.monthlyPrice)/Month").secondaryText()
-                    }
-                    Spacer().frame(width:28)
-                    VStack() {
-                        MainButton(icon: "creditcard.fill", title: "Yearly", action: {
+                        SubscriptionButton(title: "50% Off", promo: "Half the price", price: "\(settings.yearlyPrice)", duration: "Yearly", isAccent: false, action: {
                             self.purchaseYearly()
                         })
-                        Text("50% Off").smallTitle()
-                        Spacer().frame(height:4)
-                        Text("\(settings.yearlyPrice)/Year").secondaryText()
-                    }
-                    Spacer().frame(width:28)
-                }.padding(.bottom, 21)
-                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(7).padding(.bottom, 14).padding(.trailing, 21)
+                }.padding(.trailing, 28)
+                    
+                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(14).padding(.trailing, 14)
                 HStack(spacing: 14) {
                     HStack() {
                         Image(systemName: "doc")
