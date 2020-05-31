@@ -31,7 +31,7 @@ struct SmallTitleStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .font(.system(size: 17, weight: .semibold, design: settings.fontDesign))
+            .font(.system(.headline, design: settings.fontDesign))
             .saturation(settings.isMonochrome ? 0 : 1)
     }
 }

@@ -54,7 +54,6 @@ struct ContentView: View {
                     .betterSheetIsModalInPresentation(true)
                         .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
                             if self.isAdding {
-                                
                             } else {
                                 withAnimation(.default) {
                                     self.deleteLast()

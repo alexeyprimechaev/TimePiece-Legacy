@@ -40,7 +40,7 @@ public class Settings: ObservableObject {
         }
     }
     
-    @Published var showInLogDefault: Bool = ((defaultsStored.value(forKey: "showInLogDefault") ?? false) as! Bool) {
+    @Published var showInLogDefault: Bool = ((defaultsStored.value(forKey: "showInLogDefault") ?? true) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "showInLogDefault")
         }

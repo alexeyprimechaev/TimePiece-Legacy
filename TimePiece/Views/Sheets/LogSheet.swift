@@ -20,7 +20,7 @@ struct LogSheet: View {
     func update(_ result : FetchedResults<LogItem>)-> [[LogItem]]{
         return  Dictionary(grouping: result){ (element : LogItem)  in
             TimerItem.dateFormatter.string(from: element.timeStarted)
-        }.values.sorted() { $0[0].timeStarted < $1[0].timeStarted }
+        }.values.sorted() { $0[0].timeStarted > $1[0].timeStarted }
     }
 
         

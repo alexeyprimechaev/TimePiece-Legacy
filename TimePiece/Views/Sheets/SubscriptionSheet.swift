@@ -45,8 +45,8 @@ struct SubscriptionSheet: View {
                     VStack(alignment: .leading, spacing: 14) {
                         SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: "Reusable Timers. Unlimited.", subtitle: "Create Timers that don't expire")
                         SubscriptionBadge(icon: "bell.circle.fill", title: "Control notifications & sounds", subtitle: "For each timer separately")
+                        SubscriptionBadge(icon: "book.circle.fill", title: "Track the time you've spent", subtitle: "Enable Logging for your Timers")
                         SubscriptionBadge(icon: "star.circle.fill", title: "Customize appearance", subtitle: "Choose colors and fonts")
-                        SubscriptionBadge(icon: "book.circle.fill", title: "Log your Timers", subtitle: "Manage your time effectively")
                         SubscriptionBadge(icon: "ellipsis.circle.fill", title: "Higher Precision", subtitle: "Millisecond accuracy")
                         SubscriptionBadge(icon: "heart.circle.fill", title: "Support the creators", subtitle: "And invest in future features")
                         
