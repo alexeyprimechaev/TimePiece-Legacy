@@ -44,24 +44,45 @@ struct NewTimerSheet: View {
                     })
                     VStack(alignment: .leading, spacing: 14) {
                         
-                        ToggleButton(title: "Options", trueTitle: "", falseTitle: "", value: $showingOptions)
-                    
-                    
-                    if showingOptions {   
-                        
                         PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
                         PremiumBadge() {
-                            PickerButton(title: "Sound", values: TimerItem.soundSettings, value: self.$timer.soundSetting)
+                            PickerButton(title: "Show in Log", values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
+                            
                         }
-                        PremiumBadge() {
-                            PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
-                        }
-                        PremiumBadge() {
-                            ToggleButton(title: "Reusable", trueTitle: "Yes", falseTitle: "No", value: self.$timer.isReusable)
-                        }
-                    }
                         
-                    }.animation(.default, value: showingOptions)
+                        if !showingOptions {
+                            Button(action: {
+                                lightHaptic()
+                                self.showingOptions.toggle()
+                            }) {
+                                HStack(alignment: .center) {
+                                    Image(systemName: "ellipsis.circle")
+                                        .smallTitle()
+                                    Text("More Options")
+                                        .smallTitle()
+                                }
+                                .padding(.horizontal, 7)
+                                .padding(.vertical, 14)
+                                .foregroundColor(.primary)
+                                Spacer()
+                            }
+                        }
+                    
+                        if showingOptions {
+                            
+                            PremiumBadge() {
+                                PickerButton(title: "Sound", values: TimerItem.soundSettings, value: self.$timer.soundSetting)
+                            }
+                            PremiumBadge() {
+                                PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
+                            }
+                            
+                            PremiumBadge() {
+                                ToggleButton(title: "Reusable", trueTitle: "Yes", falseTitle: "No", value: self.$timer.isReusable)
+                            }
+                        }
+                            
+                        }.animation(.default, value: showingOptions)
                     
 
                     

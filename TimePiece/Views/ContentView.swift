@@ -35,6 +35,7 @@ struct ContentView: View {
 //MARK: - View
     
     var body: some View {
+        VStack() {
         ASCollectionView(
             sections:
             [
@@ -46,10 +47,6 @@ struct ContentView: View {
                             .betterSheet(isPresented: self.$showingSettingsSheet) {
                                 SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
                             }
-                        if settings.isSubscribed {
-                            Image("PlusIcon")
-                                .padding(.bottom, 9)
-                        }
                         
                     }
                         .padding(7)
@@ -59,7 +56,9 @@ struct ContentView: View {
                             if self.isAdding {
                                 
                             } else {
-                                self.deleteLast()
+                                withAnimation(.default) {
+                                    self.deleteLast()
+                                }
                             }
                         }) {
                             NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet.toggle()}).environmentObject(self.settings)
@@ -73,31 +72,19 @@ struct ContentView: View {
                     TimerView(timer: timer).fixedSize().environmentObject(self.settings)
                         
                 },
-                
-                
-        //MARK: Buttons
+            
                 ASCollectionViewSection(id: 2) {
-                    TimerButton(title: "New", icon: "+", action: {
-                        withAnimation(.default) {
-                        TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault)
-                        self.showingNewTimerSheet = true
-                        }
-                    }).padding(.vertical, 12)
-                    
-//                    TimerButton(title: "Log", icon: "tray.fill", sfSymbolIcon: true, action: {
-//                        self.showingLogSheet = true
-//                    }).sheet(isPresented: $showingLogSheet) {
-//                        LogSheet(discard: {
-//                            self.showingLogSheet = false
-//                        }).environment(\.managedObjectContext, self.context).environmentObject(self.settings)
-//                    }
-                    
-                    TimerButton(title: "Settings", icon: "ellipsis.circle.fill", sfSymbolIcon: true, action: {
-                        self.showingSettingsSheet = true
-                    })
-                }
+                                    TimerButton(title: "New", icon: "plus.circle.fill", sfSymbolIcon: true, action: {
+                                        withAnimation(.default) {
+                                            TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                                        self.showingNewTimerSheet = true
+                                        }
+                                    }).padding(.vertical, 12)
+                                }
             ]
         )
+            
+        
             
         //MARK: Layout Configuration
         .layout {
@@ -108,12 +95,27 @@ struct ContentView: View {
             fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return fl
         }
+            TabBar(actions: [
+            {
+                withAnimation(.default) {
+                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                self.showingNewTimerSheet = true
+                }
+            },{
+                self.showingLogSheet = true
+            },{
+                self.showingSettingsSheet = true
+                }]).environmentObject(self.settings)
+            
+        }
         
             
         //MARK: Sheet
         .sheet(isPresented: self.$showingTimerSheet) {
             TimerSheet(timer: self.timers[self.selectedTimer], discard: {self.showingTimerSheet = false}, delete: {
-                self.timers[self.selectedTimer].remove(from: self.context)
+                withAnimation(.default) {
+                    self.timers[self.selectedTimer].remove(from: self.context)
+                }
                 self.showingTimerSheet = false
             }).environmentObject(self.settings)
         }
@@ -121,6 +123,9 @@ struct ContentView: View {
             SubscriptionSheet(discard: {
                 self.settings.showingSubscription = false
             }).environmentObject(self.settings)
+        }
+        .betterSheet(isPresented: $showingLogSheet) {
+            LogSheet(discard: {self.showingLogSheet = false}).environmentObject(self.settings).environment(\.managedObjectContext, self.context)
         }
         
         
@@ -140,7 +145,7 @@ struct ContentView: View {
     
     
     //MARK: Context Menu
-    func contextMenuProvider(_ timer: TimerItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(timer: TimerItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in

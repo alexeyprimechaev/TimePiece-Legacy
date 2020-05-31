@@ -64,7 +64,6 @@ struct TimerSheet: View {
                         }.animation(Animation.default, value: timer.isRunning)
                     }
                         
-                    PropertyView(title: "Created at", timer: timer)
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {
                             PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
@@ -72,7 +71,12 @@ struct TimerSheet: View {
                             PremiumBadge() {
                                 PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                             }
+
+                            PremiumBadge() {
+                                PickerButton(title: "Show in Log", values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
+                            }
                         } else {
+                            
                             PremiumBadge() {
                                 RegularButton(title: "Make Reusable", subtitle: "", action: self.timer.makeReusable)
                             }

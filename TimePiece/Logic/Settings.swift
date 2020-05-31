@@ -40,6 +40,12 @@ public class Settings: ObservableObject {
         }
     }
     
+    @Published var showInLogDefault: Bool = ((defaultsStored.value(forKey: "showInLogDefault") ?? false) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "showInLogDefault")
+        }
+    }
+    
     @Published var isReusableDefault: String = (defaultsStored.string(forKey: "isReusableDefault") ?? TimerItem.reusableSettings[1]) {
         willSet {
             defaultsStored.set(newValue, forKey: "isReusableDefault")
@@ -117,6 +123,10 @@ public class Settings: ObservableObject {
     
     func validateSubscription() {
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "b82d97a08dd74422a5116ac3779653e6")
+        
+        var monthly = false
+        var yearly = false
+        
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             switch result {
             case .success(let receipt):
@@ -130,13 +140,28 @@ public class Settings: ObservableObject {
                 switch purchaseResultMonthly {
                 case .purchased(let expiryDate, let items):
                     print("\(productIdMonthly) is valid until \(expiryDate)\n\(items)\n")
-                    self.isSubscribed = true
+                    monthly = true
+                    if monthly || yearly {
+                        self.isSubscribed = true
+                    } else {
+                        self.isSubscribed = false
+                    }
                 case .expired(let expiryDate, let items):
                     print("\(productIdMonthly) is expired since \(expiryDate)\n\(items)\n")
-                    self.isSubscribed = false
+                    monthly = false
+                    if monthly || yearly {
+                        self.isSubscribed = true
+                    } else {
+                        self.isSubscribed = false
+                    }
                 case .notPurchased:
                     print("The user has never purchased \(productIdMonthly)")
-                    self.isSubscribed = false
+                    monthly = false
+                    if monthly || yearly {
+                        self.isSubscribed = true
+                    } else {
+                        self.isSubscribed = false
+                    }
                 }
                 
                 let productIdYearly = "timepieceyearly"
@@ -149,19 +174,35 @@ public class Settings: ObservableObject {
                 switch purchaseResultYearly {
                 case .purchased(let expiryDate, let items):
                     print("\(purchaseResultYearly) is valid until \(expiryDate)\n\(items)\n")
-                    self.isSubscribed = true
+                    yearly = true
+                    if monthly || yearly {
+                        self.isSubscribed = true
+                    } else {
+                        self.isSubscribed = false
+                    }
                 case .expired(let expiryDate, let items):
                     print("\(purchaseResultYearly) is expired since \(expiryDate)\n\(items)\n")
-                    self.isSubscribed = false
+                    yearly = false
+                    if monthly || yearly {
+                        self.isSubscribed = true
+                    } else {
+                        self.isSubscribed = false
+                    }
                 case .notPurchased:
                     print("The user has never purchased \(purchaseResultYearly)")
-                    self.isSubscribed = false
+                    yearly = false
+                    if monthly || yearly {
+                        self.isSubscribed = true
+                    } else {
+                        self.isSubscribed = false
+                    }
                 }
 
             case .error(let error):
                 print("Receipt verification failed: \(error)")
             }
         }
+
     }
 
     

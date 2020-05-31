@@ -12,6 +12,8 @@ struct LogView: View {
     
     @ObservedObject var logItem = LogItem()
     
+    @State var currentTime = Date()
+    
     var body: some View {
         
         VStack(spacing: 0) {
@@ -20,7 +22,7 @@ struct LogView: View {
                 Spacer().frame(width: 28)
                 Text(logItem.title == "" ? "Timer ⏱" : logItem.title)
                 Spacer()
-                Text(logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber())
+                Text(logItem.timeFinished.timeIntervalSince(Date()) < 0 ? logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber() : currentTime.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber())
                 Spacer().frame(width: 28)
             }
             Spacer().frame(height: 7)
@@ -34,7 +36,12 @@ struct LogView: View {
             }.opacity(0.5)
             Spacer().frame(height: 14)
         }.smallTitle()
+        
+        .onReceive(Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()) { time in
+            self.currentTime = Date()
+        }
     }
+    
 }
 
 struct LogView_Previews: PreviewProvider {

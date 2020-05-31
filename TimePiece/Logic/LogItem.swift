@@ -24,6 +24,11 @@ public class LogItem: NSManagedObject, Identifiable {
     @NSManaged public var timeFinishedStored: Date?
     
     
+    
+    
+    
+    
+    
 }
 
 //MARK: - Unwrappers

@@ -39,6 +39,7 @@ public class TimerItem: NSManagedObject, Identifiable {
     @NSManaged public var soundSettingStored: String?
     @NSManaged public var precisionSettingStored: String?
     @NSManaged public var notificationSettingStored: String?
+    @NSManaged public var showInLogStored: NSNumber?
     
     //MARK: Setting Collections
     static let soundSettings = ["Short", "Long"]
@@ -86,7 +87,7 @@ public class TimerItem: NSManagedObject, Identifiable {
     
     
     //MARK: Creation (in context)
-    static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String) {
+    static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool) {
         let timer = TimerItem(context: context)
         
         // User Input
@@ -108,6 +109,7 @@ public class TimerItem: NSManagedObject, Identifiable {
         timer.soundSetting = soundSetting
         timer.precisionSetting = precisionSetting
         timer.notificationSetting = notificationSetting
+        timer.showInLog = showInLog
         
         // Saving
         do {
@@ -139,20 +141,24 @@ public class TimerItem: NSManagedObject, Identifiable {
             timeFinished = timeStarted.addingTimeInterval(currentTime)
             isPaused = false
             
-            logItem = LogItem(context: self.managedObjectContext!)
-            logItem?.title = title
-            logItem?.timeStarted = timeStarted
-            logItem?.timeFinished = timeFinished
+            if showInLog {
+                logItem = LogItem(context: self.managedObjectContext!)
+                logItem?.title = title
+                logItem?.timeStarted = timeStarted
+                logItem?.timeFinished = timeFinished
+            }
             
         } else {
             timeStarted = Date()
             currentTime = timeFinished.timeIntervalSince(timeStarted)
             isPaused = true
             
-            if currentTime > 0 {
-                logItem?.timeFinished = Date()
+            if showInLog {
+                if currentTime > 0 {
+                    logItem?.timeFinished = Date()
+                }
+                logItem = nil
             }
-            logItem = nil
         }
     }
     
@@ -174,9 +180,11 @@ public class TimerItem: NSManagedObject, Identifiable {
         timeStarted = Date()
         currentTime = totalTime
         timeFinished = timeStarted.addingTimeInterval(currentTime)
-         
-        logItem?.timeFinished = Date()
-        logItem = nil
+        
+        if showInLog {
+            logItem?.timeFinished = Date()
+            logItem = nil
+        }
     }
     
     
@@ -220,6 +228,11 @@ extension TimerItem {
     var isReusable: Bool {
         get { isReusableStored?.boolValue ?? true }
         set { isReusableStored = newValue as NSNumber }
+    }
+    
+    var showInLog: Bool {
+        get { showInLogStored?.boolValue ?? true }
+        set { showInLogStored = newValue as NSNumber }
     }
     
     var currentTime: TimeInterval {

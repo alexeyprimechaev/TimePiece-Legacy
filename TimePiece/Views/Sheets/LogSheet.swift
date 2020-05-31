@@ -36,7 +36,7 @@ struct LogSheet: View {
             { item, _ in
                 LogView(logItem: item)
             }
-            .tableViewSetEstimatedSizes(rowHeight: 300, headerHeight: 56) 
+            .tableViewSetEstimatedSizes(rowHeight: 300, headerHeight: 56)
             .sectionHeader
             {
                VStack(spacing: 0)
@@ -58,7 +58,7 @@ struct LogSheet: View {
     var body: some View {
         VStack(spacing: 0) {
         HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
-            ASTableView(style: .plain, sections: sections).tableViewSeparatorsEnabled(settings.showingDividers ? true : false)
+            ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
         
         }
 
@@ -91,7 +91,7 @@ struct LogSheet: View {
     }
     
     func onSwipeToDelete(_ logItem: LogItem, completionHandler: (Bool) -> Void) {
-        withAnimation {
+        withAnimation(.default) {
             context.delete(logItem)
         }
     }

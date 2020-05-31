@@ -5,9 +5,9 @@
         "package": "ASCollectionView",
         "repositoryURL": "https://github.com/apptekstudios/ASCollectionView",
         "state": {
-          "branch": "master",
-          "revision": "d03a4ed416dc7337ee95a08611028ad9d80cf419",
-          "version": null
+          "branch": null,
+          "revision": "91d85a3aec1bdc88fb285b3908ba036ba9d1dd09",
+          "version": "1.5.0"
         }
       },
       {

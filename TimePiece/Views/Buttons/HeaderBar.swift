@@ -29,7 +29,6 @@ struct HeaderBar: View {
                 }) {
                     HStack(alignment: .center) {
                         Image(systemName: leadingIcon)
-                            .font(.system(size: 11.0, weight: .heavy))
                             .smallTitle()
                         Text(leadingTitle)
                             .smallTitle()
@@ -47,7 +46,6 @@ struct HeaderBar: View {
                     Spacer()
                     HStack(alignment: .center) {
                         Image(systemName: trailingIcon)
-                            .font(.system(size: 11.0, weight: .heavy))
                             .smallTitle()
                             .padding(.bottom, trailingIcon == "arrow.clockwise" ? 2 : 0)
                         Text(trailingTitle)

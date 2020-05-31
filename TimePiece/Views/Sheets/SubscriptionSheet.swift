@@ -44,9 +44,10 @@ struct SubscriptionSheet: View {
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 14) {
                         SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: "Reusable Timers. Unlimited.", subtitle: "Create Timers that don't expire")
-                        SubscriptionBadge(icon: "ellipsis.circle.fill", title: "Higher Precision", subtitle: "Millisecond accuracy")
                         SubscriptionBadge(icon: "bell.circle.fill", title: "Control notifications & sounds", subtitle: "For each timer separately")
                         SubscriptionBadge(icon: "star.circle.fill", title: "Customize appearance", subtitle: "Choose colors and fonts")
+                        SubscriptionBadge(icon: "book.circle.fill", title: "Log your Timers", subtitle: "Manage your time effectively")
+                        SubscriptionBadge(icon: "ellipsis.circle.fill", title: "Higher Precision", subtitle: "Millisecond accuracy")
                         SubscriptionBadge(icon: "heart.circle.fill", title: "Support the creators", subtitle: "And invest in future features")
                         
  
@@ -64,16 +65,20 @@ struct SubscriptionSheet: View {
                 }.padding(.trailing, 28)
                     
                 Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(14).padding(.trailing, 14)
-                HStack(spacing: 14) {
-                    HStack() {
-                        Image(systemName: "doc")
-                        Text("Privacy Policy")
-                    }.smallTitle()
-                    HStack() {
-                        Image(systemName: "doc")
-                        Text("Terms of Service")
-                    }.smallTitle()
-                }.padding(7)
+                HStack(spacing: 0) {
+                    Spacer()
+                        Button(action: {
+                            UIApplication.shared.open(URL(string: "https://number16.github.io/timepiece-terms.html")!)
+                        }) {
+                         Text("Privacy Policy & Terms of Service")
+                            .smallTitle()
+                            .foregroundColor(Color.primary)
+                            .padding(7)
+                        }
+                        
+                    Spacer()
+                    Spacer().frame(width: 21)
+                }
                 Spacer().frame(height: 14)
             }.padding(.leading, 21)
         }
@@ -82,6 +87,10 @@ struct SubscriptionSheet: View {
     
     func restorePurchases() {
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "b82d97a08dd74422a5116ac3779653e6")
+        
+        var monthly = false
+        var yearly = true
+        
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             switch result {
             case .success(let receipt):
@@ -96,16 +105,32 @@ struct SubscriptionSheet: View {
                     
                     case .purchased(let expiryDate, let items):
                         //print("\(productIdMonthly) is valid until \(expiryDate)\n\(items)\n")
-                        self.settings.isSubscribed = true
+                        monthly = true
+                        if monthly || yearly {
+                            self.settings.isSubscribed = true
+                        } else {
+                            self.settings.isSubscribed = false
+                        }
+                        
                     case .expired(let expiryDate, let items):
                         //print("\(productIdMonthly) is expired since \(expiryDate)\n\(items)\n")
-                        self.settings.isSubscribed = false
+                        monthly = false
+                        if monthly || yearly {
+                            self.settings.isSubscribed = true
+                        } else {
+                            self.settings.isSubscribed = false
+                        }
                         self.alertText1 = "Failed"
                         self.alertText2 = "Subscription has expired on \(TimerItem.createdAtFormatter.string(from: expiryDate))"
                         self.showingAlert = true
                     case .notPurchased:
                         //print("The user has never purchased \(productIdMonthly)")
-                        self.settings.isSubscribed = false
+                        monthly = false
+                        if monthly || yearly {
+                            self.settings.isSubscribed = true
+                        } else {
+                            self.settings.isSubscribed = false
+                        }
                         self.alertText1 = "Failed"
                         self.alertText2 = "You have never purchased \(productIdMonthly)"
                         self.showingAlert = true
@@ -121,17 +146,30 @@ struct SubscriptionSheet: View {
                 switch purchaseResultYearly {
                     
                     case .purchased(let expiryDate, let items):
-                        //print("\(purchaseResultYearly) is valid until \(expiryDate)\n\(items)\n")
-                        self.settings.isSubscribed = true
+                        yearly = true
+                        if monthly || yearly {
+                            self.settings.isSubscribed = true
+                        } else {
+                            self.settings.isSubscribed = false
+                        }
                     case .expired(let expiryDate, let items):
                         //print("\(purchaseResultYearly) is expired since \(expiryDate)\n\(items)\n")
-                        self.settings.isSubscribed = false
+                        yearly = false
+                        if monthly || yearly {
+                            self.settings.isSubscribed = true
+                        } else {
+                            self.settings.isSubscribed = false
+                        }
                         self.alertText1 = "Failed"
                         self.alertText2 = "Subscription has expired on \(TimerItem.createdAtFormatter.string(from: expiryDate))"
                         self.showingAlert = true
                     case .notPurchased:
-                        //print("The user has never purchased \(purchaseResultYearly)")
-                        self.settings.isSubscribed = false
+                        yearly = false
+                        if monthly || yearly {
+                            self.settings.isSubscribed = true
+                        } else {
+                            self.settings.isSubscribed = false
+                        }
                         self.alertText1 = "Failed"
                         self.alertText2 = "You have never purchased \(purchaseResultYearly)"
                         self.showingAlert = true

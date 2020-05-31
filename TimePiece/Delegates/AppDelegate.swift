@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         settings.getMonthlyPrice()
         settings.getYearlyPrice()
-        
         if settings.isSubscribed {
             settings.validateSubscription()
         }
