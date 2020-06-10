@@ -42,8 +42,19 @@ struct ContentView: View {
         //MARK: Title
                 ASCollectionViewSection(id: 0) {
                     HStack(alignment: .bottom, spacing: 4) {
-                        Text("TimePiece")
-                            .title()
+                        HStack(alignment: .bottom, spacing: 0) {
+                            Text("T").foregroundColor(.red)
+                            Text("i").foregroundColor(.red)
+                            Text("m").foregroundColor(.orange)
+                            Text("e").foregroundColor(.yellow)
+                            Text("P").foregroundColor(.green)
+                            Text("i").foregroundColor(.green)
+                            Text("e").foregroundColor(.blue)
+                            Text("c").foregroundColor(.blue)
+                            Text("e").foregroundColor(.purple)
+                        }.title()
+                        //Text("TimePiece 🏳️‍🌈")
+                            
                             .betterSheet(isPresented: self.$showingSettingsSheet) {
                                 SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
                             }
@@ -54,6 +65,7 @@ struct ContentView: View {
                     .betterSheetIsModalInPresentation(true)
                         .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
                             if self.isAdding {
+                                
                             } else {
                                 withAnimation(.default) {
                                     self.deleteLast()
@@ -83,7 +95,6 @@ struct ContentView: View {
             ]
         )
             
-        
             
         //MARK: Layout Configuration
         .layout {

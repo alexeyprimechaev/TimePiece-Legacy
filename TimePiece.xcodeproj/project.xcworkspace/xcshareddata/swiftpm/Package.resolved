@@ -23,9 +23,9 @@
         "package": "Introspect",
         "repositoryURL": "https://github.com/timbersoftware/SwiftUI-Introspect.git",
         "state": {
-          "branch": null,
-          "revision": "de5c32c15ae169cfcb27397ffb2734dcd0e1e6d5",
-          "version": "0.1.0"
+          "branch": "master",
+          "revision": "18c8c7fb0f22a3b86b34d68cb3a5f4e7351774e1",
+          "version": null
         }
       },
       {

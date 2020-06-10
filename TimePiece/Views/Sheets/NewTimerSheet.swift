@@ -29,8 +29,16 @@ struct NewTimerSheet: View {
             }, leadingTitle: "Discard", leadingIcon: "xmark", leadingIsDestructive: true,
             trailingAction: {
                 self.isAdding = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    if !self.timer.isReusable {
+                        print(self.timer.totalTime)
+                        if self.timer.totalTime > 0 {
+                            self.timer.togglePause()
+                        }
+                    }
+                }
                 self.discard()
-            }, trailingTitle: "Add", trailingIcon: "plus")
+            }, trailingTitle: self.timer.isReusable ? "Add" : "Start", trailingIcon: self.timer.isReusable ? "plus" : "play")
             
             KeyboardHost() {
             ScrollView() {
@@ -44,10 +52,8 @@ struct NewTimerSheet: View {
                     })
                     VStack(alignment: .leading, spacing: 14) {
                         
-                        PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
                         PremiumBadge() {
-                            PickerButton(title: "Show in Log", values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
-                            
+                            PickerButton(title: "Reusable", values: [true.yesNo, false.yesNo], value: self.$timer.isReusable.yesNo)
                         }
                         
                         if !showingOptions {
@@ -70,15 +76,16 @@ struct NewTimerSheet: View {
                     
                         if showingOptions {
                             
+                            PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
+                            
                             PremiumBadge() {
                                 PickerButton(title: "Sound", values: TimerItem.soundSettings, value: self.$timer.soundSetting)
                             }
                             PremiumBadge() {
                                 PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                             }
-                            
                             PremiumBadge() {
-                                ToggleButton(title: "Reusable", trueTitle: "Yes", falseTitle: "No", value: self.$timer.isReusable)
+                                PickerButton(title: "Show in Log", values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
                             }
                         }
                             

@@ -59,6 +59,7 @@ struct LogSheet: View {
         VStack(spacing: 0) {
         HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
             ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
+            .alwaysBounce(true)
         
         }
 

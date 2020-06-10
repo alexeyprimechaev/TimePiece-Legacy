@@ -62,6 +62,20 @@ public class NotificationManager {
         
     }
     
+    static func scheduleRepeatingNotification() {
+        
+        requestNotificationPermisson()
+        
+        let content = UNMutableNotificationContent()
+        
+        content.title = "View how you've spent your time this week in the Log"
+        
+        content.sound = UNNotificationSound.default
+        badgeCount += 1
+        content.badge = NSNumber(value: badgeCount)
+        
+    }
+    
     static func removePendingNotification(timer: TimerItem) {
         print("pending")
         print(badgeCount)

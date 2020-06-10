@@ -114,7 +114,7 @@ struct TimerView: View {
         .buttonStyle(RegularButtonStyle())
         .padding(7)
         .fixedSize()
-        
+
     
         
     }
