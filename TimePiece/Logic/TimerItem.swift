@@ -160,6 +160,8 @@ public class TimerItem: NSManagedObject, Identifiable {
                 logItem = nil
             }
         }
+        
+        try? self.managedObjectContext?.save()
     }
     
     func makeReusable() {
@@ -185,6 +187,8 @@ public class TimerItem: NSManagedObject, Identifiable {
             logItem?.timeFinished = Date()
             logItem = nil
         }
+        
+        try? self.managedObjectContext?.save()
     }
     
     

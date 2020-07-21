@@ -38,6 +38,7 @@
 		8088473B23C2AE79001D1A6E /* TimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerSheet.swift */; };
 		809635642401544D00BF297F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
 		809D69C52416CB4900896206 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
+		809D9F3224C4929200DB4E94 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809D9F3124C4929200DB4E94 /* CloudKit.framework */; };
 		80A14FB52411077000638B64 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
 		80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
 		80B62E73244DF13C001D4D9E /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
@@ -82,6 +83,8 @@
 		8088473A23C2AE79001D1A6E /* TimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSheet.swift; sourceTree = "<group>"; };
 		809635632401544D00BF297F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		809D69C42416CB4900896206 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
+		809D9F2F24C4927D00DB4E94 /* TimePiece.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePiece.entitlements; sourceTree = "<group>"; };
+		809D9F3124C4929200DB4E94 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		80A14FB42411077000638B64 /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 		80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionButton.swift; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				809D9F3224C4929200DB4E94 /* CloudKit.framework in Frameworks */,
 				802A027023CFBB6300512B39 /* Introspect in Frameworks */,
 				80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */,
 				80494C42241B8C8600CC8435 /* ASCollectionView in Frameworks */,
@@ -142,6 +146,7 @@
 			children = (
 				80612FE123C274DB00BC03F5 /* TimePiece */,
 				80612FE023C274DB00BC03F5 /* Products */,
+				809D9F3024C4929200DB4E94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +161,7 @@
 		80612FE123C274DB00BC03F5 /* TimePiece */ = {
 			isa = PBXGroup;
 			children = (
+				809D9F2F24C4927D00DB4E94 /* TimePiece.entitlements */,
 				80D141E523CE175D00FD2B5A /* Delegates */,
 				80D141E623CE176D00FD2B5A /* Logic */,
 				80D141E323CE171300FD2B5A /* Views */,
@@ -173,6 +179,14 @@
 				80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		809D9F3024C4929200DB4E94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				809D9F3124C4929200DB4E94 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		80D141E323CE171300FD2B5A /* Views */ = {
@@ -480,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ApppIconPride;
+				CODE_SIGN_ENTITLEMENTS = TimePiece/TimePiece.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -495,9 +510,9 @@
 				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -505,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ApppIconPride;
+				CODE_SIGN_ENTITLEMENTS = TimePiece/TimePiece.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -520,9 +536,9 @@
 				MARKETING_VERSION = 1.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

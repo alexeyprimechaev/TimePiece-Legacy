@@ -21,12 +21,15 @@ struct ContentView: View {
     
     @EnvironmentObject var settings: Settings
     
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
     //MARK: State Variables
     @State var showingNewTimerSheet = false
     @State var isAdding = false
     
     @State var showingTimerSheet = false
-    @State var selectedTimer = 0
+    @State var selectedTimer = TimerItem()
+    @State var currIndex = 0
     
     @State var showingSettingsSheet = false
     
@@ -35,100 +38,148 @@ struct ContentView: View {
 //MARK: - View
     
     var body: some View {
-        VStack() {
-        ASCollectionView(
-            sections:
-            [
-        //MARK: Title
-                ASCollectionViewSection(id: 0) {
-                    HStack(alignment: .bottom, spacing: 4) {
-                        HStack(alignment: .bottom, spacing: 0) {
-                            Text("T").foregroundColor(.red)
-                            Text("i").foregroundColor(.red)
-                            Text("m").foregroundColor(.orange)
-                            Text("e").foregroundColor(.yellow)
-                            Text("P").foregroundColor(.green)
-                            Text("i").foregroundColor(.green)
-                            Text("e").foregroundColor(.blue)
-                            Text("c").foregroundColor(.blue)
-                            Text("e").foregroundColor(.purple)
-                        }.title()
-                        //Text("TimePiece 🏳️‍🌈")
-                            
-                            .betterSheet(isPresented: self.$showingSettingsSheet) {
-                                SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
-                            }
-                        
-                    }
-                        .padding(7)
-                        .padding(.vertical, 12)
-                    .betterSheetIsModalInPresentation(true)
-                        .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
-                            if self.isAdding {
+        VStack(spacing: 0) {
+        
+            
+        
+            HStack(spacing: 0) {
+        
+            ASCollectionView(
+                sections:
+                [
+            //MARK: Title
+                    ASCollectionViewSection(id: 0) {
+                        HStack(alignment: .bottom, spacing: 4) {
+//                            HStack(alignment: .bottom, spacing: 0) {
+//                                Text("T").foregroundColor(.red)
+//                                Text("i").foregroundColor(.red)
+//                                Text("m").foregroundColor(.orange)
+//                                Text("e").foregroundColor(.yellow)
+//                                Text("P").foregroundColor(.green)
+//                                Text("i").foregroundColor(.green)
+//                                Text("e").foregroundColor(.blue)
+//                                Text("c").foregroundColor(.blue)
+//                                Text("e").foregroundColor(.purple)
+//                            }.title()
+                            Text("TimePiece")
                                 
-                            } else {
-                                withAnimation(.default) {
-                                    self.deleteLast()
+                                .betterSheet(isPresented: self.$showingSettingsSheet) {
+                                    SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
                                 }
+                            
+                        }
+                            .padding(7)
+                            .padding(.vertical, 12)
+                        .betterSheetIsModalInPresentation(true)
+                            .betterSheet(isPresented: $showingNewTimerSheet, onDismiss: {
+                                if self.isAdding {
+                                    
+                                } else {
+                                    withAnimation(.default) {
+                                        self.deleteLast()
+                                    }
+                                }
+                            }) {
+                                NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet.toggle()}).environmentObject(self.settings)
+                        }
+                            
+                    },
+                    
+                    
+            //MARK: Timers
+                    ASCollectionViewSection(id: 1, data: timers, contextMenuProvider: contextMenuProvider) { timer, _ in
+                        TimerView(timer: timer).fixedSize().environmentObject(self.settings)
+                            
+                    },
+                
+                    ASCollectionViewSection(id: 2) {
+                                        TimerButton(title: "New", icon: "plus.circle.fill", sfSymbolIcon: true, action: {
+                                            withAnimation(.default) {
+                                                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                                            self.showingNewTimerSheet = true
+                                            }
+                                        }).padding(.vertical, 12)
+                                    }
+                ]
+                )
+                
+                
+            //MARK: Layout Configuration
+            .layout {
+                let fl = AlignedFlowLayout()
+                fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
+                fl.minimumInteritemSpacing = 14
+                fl.minimumLineSpacing = 14
+                fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+                return fl
+            }
+           
+            if horizontalSizeClass != .compact {
+                if selectedTimer != nil {
+                    if showingTimerSheet {
+                        Divider()
+                        TimerSheet(timer: self.selectedTimer, discard: {self.showingTimerSheet = false}, delete: {
+                            withAnimation(.default) {
+                                self.currIndex = self.timers.firstIndex(of: self.selectedTimer) ?? 0
+                                self.selectedTimer.remove(from: self.context)
+                                if self.currIndex > 0 {
+                                    self.selectedTimer = self.timers[self.currIndex - 1]
+                                } else {
+                                    
+                                }
+                                
                             }
-                        }) {
-                            NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet.toggle()}).environmentObject(self.settings)
+                            if self.currIndex - 1 < 0 {
+                                self.showingTimerSheet = false
+                            }
+                            
+                        }).environmentObject(self.settings).frame(maxWidth: 375)
                     }
-                        
-                },
-                
-                
-        //MARK: Timers
-                ASCollectionViewSection(id: 1, data: timers, contextMenuProvider: contextMenuProvider) { timer, _ in
-                    TimerView(timer: timer).fixedSize().environmentObject(self.settings)
-                        
-                },
-            
-                ASCollectionViewSection(id: 2) {
-                                    TimerButton(title: "New", icon: "plus.circle.fill", sfSymbolIcon: true, action: {
-                                        withAnimation(.default) {
-                                            TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                                        self.showingNewTimerSheet = true
-                                        }
-                                    }).padding(.vertical, 12)
-                                }
-            ]
-        )
-            
-            
-        //MARK: Layout Configuration
-        .layout {
-            let fl = AlignedFlowLayout()
-            fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
-            fl.minimumInteritemSpacing = 14
-            fl.minimumLineSpacing = 14
-            fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            return fl
-        }
-            TabBar(actions: [
-            {
-                withAnimation(.default) {
-                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                self.showingNewTimerSheet = true
                 }
-            },{
-                self.showingLogSheet = true
-            },{
-                self.showingSettingsSheet = true
-                }]).environmentObject(self.settings)
+                
+            }
+        }
+            if horizontalSizeClass != .compact {
+                TabBar(actions: [
+                {
+                    withAnimation(.default) {
+                    TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                    self.showingNewTimerSheet = true
+                    }
+                },{
+                    self.showingLogSheet = true
+                },{
+                    self.showingSettingsSheet = true
+                    }]).environmentObject(self.settings)
+                
+                
+            } else {
+                TabBar(actions: [
+                {
+                    withAnimation(.default) {
+                    TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                    self.showingNewTimerSheet = true
+                    }
+                },{
+                    self.showingLogSheet = true
+                },{
+                    self.showingSettingsSheet = true
+                    }]).environmentObject(self.settings)
+                .sheet(isPresented: self.$showingTimerSheet) {
+                    TimerSheet(timer: self.selectedTimer, discard: {self.showingTimerSheet = false}, delete: {
+                        withAnimation(.default) {
+                            self.selectedTimer.remove(from: self.context)
+                        }
+                        self.showingTimerSheet = false
+                    }).environmentObject(self.settings)
+                }
+            }
             
         }
         
             
         //MARK: Sheet
-        .sheet(isPresented: self.$showingTimerSheet) {
-            TimerSheet(timer: self.timers[self.selectedTimer], discard: {self.showingTimerSheet = false}, delete: {
-                withAnimation(.default) {
-                    self.timers[self.selectedTimer].remove(from: self.context)
-                }
-                self.showingTimerSheet = false
-            }).environmentObject(self.settings)
-        }
+        
         .betterSheet(isPresented: $settings.showingSubscription) {
             SubscriptionSheet(discard: {
                 self.settings.showingSubscription = false
@@ -160,7 +211,10 @@ struct ContentView: View {
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
                 if !(timer.isRunning) {
-                    timer.remove(from: self.context)
+                   withAnimation(.default) {
+                        timer.remove(from: self.context)
+                    }
+                    self.showingTimerSheet = false
                     try? self.context.save()
                 } else {
                     timer.reset()
@@ -205,8 +259,10 @@ struct ContentView: View {
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
-                self.selectedTimer = self.timers.lastIndex(of: timer) ?? 0
-                self.showingTimerSheet = true
+                self.selectedTimer = self.timers[self.timers.lastIndex(of: timer) ?? 0]
+                    self.showingTimerSheet = true
+                print(self.selectedTimer.totalTime)
+                
             }
 
             // Then we add edit as a child of the main menu
@@ -316,8 +372,3 @@ class AlignedFlowLayout: UICollectionViewFlowLayout {
 
 //MARK: - Previews
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
