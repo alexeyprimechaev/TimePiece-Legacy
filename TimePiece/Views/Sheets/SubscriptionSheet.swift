@@ -22,11 +22,11 @@ struct SubscriptionSheet: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             
-            HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {
+            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "xmark", trailingAction: {
                 print(self.settings.isSubscribed)
                 self.restorePurchases()
                 print(self.settings.isSubscribed)
-            }, trailingTitle: "Restore", trailingIcon: "arrow.clockwise")
+            }, trailingTitle: restoreString, trailingIcon: "arrow.clockwise")
                 
                 .alert(isPresented: $showingAlert) {
                 Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
@@ -35,7 +35,7 @@ struct SubscriptionSheet: View {
             VStack(alignment: .leading, spacing: 0) {
                 
                 HStack(alignment: .bottom, spacing: 4) {
-                    Text("TimePiece")
+                    Text(timePieceString)
                         .title()
                         
                     Image("PlusIcon")
@@ -43,12 +43,12 @@ struct SubscriptionSheet: View {
                 }.padding(7)
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 14) {
-                        SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: "Reusable Timers. Unlimited.", subtitle: "Create Timers that don't expire")
-                        SubscriptionBadge(icon: "bell.circle.fill", title: "Control notifications & sounds", subtitle: "For each timer separately")
-                        SubscriptionBadge(icon: "book.circle.fill", title: "Track the time you've spent", subtitle: "Enable Logging for your Timers")
-                        SubscriptionBadge(icon: "star.circle.fill", title: "Customize appearance", subtitle: "Choose colors and fonts")
-                        SubscriptionBadge(icon: "ellipsis.circle.fill", title: "Higher Precision", subtitle: "Millisecond accuracy")
-                        SubscriptionBadge(icon: "heart.circle.fill", title: "Support the creators", subtitle: "And invest in future features")
+                        SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: sellingPoint1String, subtitle: sellingPoint1SecondString)
+                        SubscriptionBadge(icon: "bell.circle.fill", title: sellingPoint2String, subtitle: sellingPoint2SecondString)
+                        SubscriptionBadge(icon: "book.circle.fill", title: sellingPoint3String, subtitle: sellingPoint3SecondString)
+                        SubscriptionBadge(icon: "star.circle.fill", title: sellingPoint4String, subtitle: sellingPoint4SecondString)
+                        SubscriptionBadge(icon: "ellipsis.circle.fill", title: sellingPoint5String, subtitle: sellingPoint5SecondString)
+                        SubscriptionBadge(icon: "heart.circle.fill", title: sellingPoint6String, subtitle: sellingPoint6SecondString)
                         
  
                     }.padding(.top, 14).frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
@@ -56,21 +56,21 @@ struct SubscriptionSheet: View {
                 }
                 Spacer()
                 VStack(spacing: 14) {
-                        SubscriptionButton(title: "Free trial", promo: "7 days free", price: "then \(settings.monthlyPrice)", duration: "Monthly", isAccent: true, action: {
+                    SubscriptionButton(title: subscription1String, promo: subscription1SecondString, price: "\(settings.monthlyPrice)", duration: subscription1PeriodString, isAccent: true, action: {
                             self.purchaseMonthly()
                         })
-                        SubscriptionButton(title: "50% Off", promo: "Half the price", price: "\(settings.yearlyPrice)", duration: "Yearly", isAccent: false, action: {
+                        SubscriptionButton(title: subscription2String, promo: subscription2SecondString, price: "\(settings.yearlyPrice)", duration: subscription2PeriodString, isAccent: false, action: {
                             self.purchaseYearly()
                         })
                 }.padding(.trailing, 28)
                     
-                Text("Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.").secondaryText().padding(14).padding(.trailing, 14)
+                Text(subscriptionDetailsString).secondaryText().padding(14).padding(.trailing, 14)
                 HStack(spacing: 0) {
                     Spacer()
                         Button(action: {
                             UIApplication.shared.open(URL(string: "https://number16.github.io/timepiece-terms.html")!)
                         }) {
-                         Text("Privacy Policy & Terms of Service")
+                         Text(termsDetailsString)
                             .smallTitle()
                             .foregroundColor(Color.primary)
                             .padding(7)

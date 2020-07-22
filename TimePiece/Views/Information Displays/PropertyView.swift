@@ -11,7 +11,7 @@ import Introspect
 
 struct PropertyView: View {
     
-    @State var title = String()
+    @State var title = LocalizedStringKey("")
     
     @State var value = String()
         
@@ -20,15 +20,12 @@ struct PropertyView: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             HStack(alignment: .bottom, spacing: 7) {
-                if title == "Title" {
-                    Text(timer.title.count == 0 ? "Timer ⏱": timer.title)
+                if title == titleString {
+                    Text(timer.title.count == 0 ? timerString : LocalizedStringKey(timer.title))
                         .title()
                         .opacity(timer.title.count == 0 ? 0.6 : 1)
                     
-                } else if title == "Created at" {
-                    Text(TimerItem.createdAtFormatter.string(from: timer.createdAt))
-                        .title()
-                } else if title == "Left" {
+                } else if title == leftString {
                     Text(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
                         .title()
                 } else {
@@ -38,9 +35,9 @@ struct PropertyView: View {
                 Text(title)
                     .smallTitle()
                     .padding(.bottom, 5)
-                    .opacity(timer.title.count == 0 && title == "Title" ? 1 : 0.5)
+                    .opacity(timer.title.count == 0 && title == titleString ? 1 : 0.5)
             }
-            if title == "Title" {
+            if title == titleString {
                 TextField("", text: $timer.title)
                     .introspectTextField { textField in
                         textField.font = UIFont(name: "AppleColorEmoji", size: 34)

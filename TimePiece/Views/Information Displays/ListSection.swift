@@ -10,10 +10,10 @@ import SwiftUI
 
 struct ListSection<Content:View>: View {
     
-    let title: String
+    let title: LocalizedStringKey
     let content: Content
 
-    init(title: String, @ViewBuilder content: @escaping () -> Content) {
+    init(title: LocalizedStringKey, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
         self.content = content()
     }

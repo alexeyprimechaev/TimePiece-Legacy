@@ -28,14 +28,14 @@ struct TimerSheet: View {
             HeaderBar(
             leadingAction: {
                 self.discard()
-            }, leadingTitle: "Dismiss", leadingIcon: "xmark", leadingIsDestructive: false,
+            }, leadingTitle: dismissString, leadingIcon: "xmark", leadingIsDestructive: false,
             trailingAction: {})
             
             ScrollView() {
                 
                 VStack(alignment: .leading, spacing: 14) {
                         
-                    PropertyView(title: "Title", timer: timer).disabled(!timer.isPaused)
+                    PropertyView(title: titleString, timer: timer).disabled(!timer.isPaused)
                     
                     if timer.totalTimeString.count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
                         VStack(alignment: .leading, spacing:14) {
@@ -66,14 +66,14 @@ struct TimerSheet: View {
                         
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {
-                            PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
-                            PickerButton(title: "Sound", values: TimerItem.soundSettings, value: $timer.soundSetting)
+                            PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
+                            PickerButton(title: soundString, values: TimerItem.soundSettings, value: $timer.soundSetting)
                             PremiumBadge() {
-                                PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
+                                PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                             }
 
                             PremiumBadge() {
-                                PickerButton(title: "Show in Log", values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
+                                PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
                             }
                         } else {
                             
@@ -94,7 +94,7 @@ struct TimerSheet: View {
             HStack() {
                 Spacer().frame(width:28)
                 if timer.isReusable {
-                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.currentTime == 0 ? "Reset" : "Stop", onTitle: "Delete", offIcon: "stop.fill", onIcon: "trash.fill",
+                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.currentTime == 0 ? resetString : stopString, onTitle: deleteString, offIcon: "stop.fill", onIcon: "trash.fill",
                                 onTap: {
                                     self.timer.reset()
                                     mediumHaptic()
@@ -105,10 +105,10 @@ struct TimerSheet: View {
                                 }
                     )
                 } else {
-                    PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: "Delete", onTitle: "Delete", offIcon: "trash.fill", onIcon: "trash.fill", onTap: {self.delete()}, offTap: {self.delete()})
+                    PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: deleteString, onTitle: deleteString, offIcon: "trash.fill", onIcon: "trash.fill", onTap: {self.delete()}, offTap: {self.delete()})
                 }
                 Spacer().frame(width:28)
-                PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: "Start", onTitle: "Pause", offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+                PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: startString, onTitle: pauseString, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
                         regularHaptic()
                         if self.timer.currentTime == 0 {
                             if self.timer.isReusable {

@@ -20,8 +20,8 @@ struct PauseButton: View {
     
     
     //MARK: Static Properties
-    var offTitle = String()
-    var onTitle = String()
+    var offTitle = LocalizedStringKey("")
+    var onTitle = LocalizedStringKey("")
     
     var offIcon = String()
     var onIcon = String()

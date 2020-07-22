@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TabItem: View {
     
-    @State var title = "Tab Item"
+    @State var title = LocalizedStringKey("")
     
     @State var icon = "plus"
     

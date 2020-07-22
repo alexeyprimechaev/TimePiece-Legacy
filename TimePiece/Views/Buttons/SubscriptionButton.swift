@@ -11,13 +11,13 @@ import SwiftUI
 struct SubscriptionButton: View {
     
     
-    @State var title = ""
+    @State var title = LocalizedStringKey("")
     
-    @State var promo = ""
+    @State var promo = LocalizedStringKey("")
     
     @State var price = ""
     
-    @State var duration = ""
+    @State var duration = LocalizedStringKey("")
     
     @State var isAccent = false
     

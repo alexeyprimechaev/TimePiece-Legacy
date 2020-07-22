@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  TimePiece
+
+  Created by Alexey Primechaev on 7/22/20.
+  Copyright © 2020 Alexey Primechaev. All rights reserved.
+*/
+
+"timePiece" = "ТаймПис";
+
+"new" = "Новый";
+"log" = "Лог";
+"settings" = "Настройки";
+
+"discard" = "Отменить";
+"dismiss" = "Свернуть";
+"start" = "Старт";
+"pause" = "Пауза";
+"add" = "Добавить";
+"delete" = "Удалить";
+"stop" = "Стоп";
+"reset" = "Ресет";
+"showDetails" = "Показать больше";
+
+
+
+"title" = "Название";
+"time" = "Время";
+"left" = "Осталось";
+"total" = "Всего";
+"moreOptions" = "Больше настроек";
+
+"timer" = "Таймер ⏱";
+"reusable" = "Реюзабл";
+"notification" = "Нотификации";
+"sound" = "Звук";
+"milliseconds" = "Миллисеки";
+"showInLog" = "Логировать";
+ 

@@ -26,7 +26,7 @@ struct NewTimerSheet: View {
             leadingAction: {
                 self.isAdding = false
                 self.discard()
-            }, leadingTitle: "Discard", leadingIcon: "xmark", leadingIsDestructive: true,
+            }, leadingTitle: discardString, leadingIcon: "xmark", leadingIsDestructive: true,
             trailingAction: {
                 self.isAdding = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -38,22 +38,22 @@ struct NewTimerSheet: View {
                     }
                 }
                 self.discard()
-            }, trailingTitle: self.timer.isReusable ? "Add" : "Start", trailingIcon: self.timer.isReusable ? "plus" : "play")
+            }, trailingTitle: self.timer.isReusable ? addString : startString, trailingIcon: self.timer.isReusable ? "plus" : "play")
             
             KeyboardHost() {
             ScrollView() {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
-                    PropertyView(title: "Title", timer: self.timer )
+                    PropertyView(title: titleString, timer: self.timer )
                     
-                    EditableTimeView(time: $timer.totalTime, title: "Time", isFirstResponder: true, update: {
+                    EditableTimeView(time: $timer.totalTime, title: timeString, isFirstResponder: true, update: {
                         self.timer.currentTimeStored = self.timer.totalTimeStored
                     })
                     VStack(alignment: .leading, spacing: 14) {
                         
                         PremiumBadge() {
-                            PickerButton(title: "Reusable", values: [true.yesNo, false.yesNo], value: self.$timer.isReusable.yesNo)
+                            PickerButton(title: reusableString, values: [true.yesNo, false.yesNo], value: self.$timer.isReusable.yesNo)
                         }
                         
                         if !showingOptions {
@@ -76,16 +76,16 @@ struct NewTimerSheet: View {
                     
                         if showingOptions {
                             
-                            PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: $timer.notificationSetting)
+                            PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
                             
                             PremiumBadge() {
-                                PickerButton(title: "Sound", values: TimerItem.soundSettings, value: self.$timer.soundSetting)
+                                PickerButton(title: soundString, values: TimerItem.soundSettings, value: self.$timer.soundSetting)
                             }
                             PremiumBadge() {
-                                PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
+                                PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                             }
                             PremiumBadge() {
-                                PickerButton(title: "Show in Log", values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
+                                PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
                             }
                         }
                             

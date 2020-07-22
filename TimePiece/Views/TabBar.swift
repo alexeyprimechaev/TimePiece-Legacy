@@ -21,8 +21,8 @@ struct TabBar: View {
             Divider()
             HStack(spacing: 0) {
                 Spacer().frame(width: 14)
-                TabItem(title: "New",icon: "plus", action: { self.actions[0]() })
-                TabItem(title: "Log", icon: "tray", action: {
+                TabItem(title: newString,icon: "plus", action: { self.actions[0]() })
+                TabItem(title: logString, icon: "tray", action: {
                     if self.settings.isSubscribed {
                         self.actions[1]()
                     } else {
@@ -31,7 +31,7 @@ struct TabBar: View {
                     }
                     
                 })
-                TabItem(title: "Settings", icon: "ellipsis.circle", action: { self.actions[2]() })
+                TabItem(title: settingsString, icon: "ellipsis.circle", action: { self.actions[2]() })
                 Spacer()
             }
         }.betterSheet(isPresented: $showingSubscriptionSheet) {

@@ -11,8 +11,8 @@ import SwiftUI
 struct SubscriptionBadge: View {
     
     var icon = String()
-    var title = String()
-    var subtitle = String()
+    var title = LocalizedStringKey("")
+    var subtitle = LocalizedStringKey("")
     
     var iconOffset: CGFloat = 0
     var textOffset: CGFloat = 0
@@ -22,7 +22,7 @@ struct SubscriptionBadge: View {
             Image(systemName: icon).font(.system(size: 34, weight: .light)).offset(y: iconOffset)
             VStack(alignment: .leading, spacing: 4) {
                 Text(title).smallTitle()
-                if subtitle != String() {
+                if subtitle != LocalizedStringKey("") {
                     Text(subtitle)
                 }
             }.offset(x: textOffset)

@@ -49,7 +49,7 @@ struct TimerView: View {
         {
             ZStack(alignment: .bottomLeading) {
                 VStack(alignment: .leading) {
-                    Text(timer.title.isEmpty ? "Timer ⏱" : timer.title)
+                    Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
                     
                     Text(timer.currentTimeString)
                         .opacity(0.5)

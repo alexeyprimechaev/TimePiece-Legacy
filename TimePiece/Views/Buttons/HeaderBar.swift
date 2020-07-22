@@ -11,18 +11,18 @@ import SwiftUI
 struct HeaderBar: View {
     
     var leadingAction: () -> ()
-    var leadingTitle = String()
+    var leadingTitle = LocalizedStringKey("")
     var leadingIcon = String()
     var leadingIsDestructive = false
     
     var trailingAction: () -> ()
-    var trailingTitle = String()
+    var trailingTitle = LocalizedStringKey("")
     var trailingIcon = String()
     var trailingIsDestructive = false
     
     var body: some View {
         HStack() {
-            if leadingTitle != String() {
+            if leadingTitle != LocalizedStringKey("") {
                 Button(action: {
                     lightHaptic()
                     self.leadingAction()
@@ -39,7 +39,7 @@ struct HeaderBar: View {
                 }
             }
             
-            if trailingTitle != String() {
+            if trailingTitle != LocalizedStringKey("") {
                 Button(action: {
                     self.trailingAction()
                 }) {

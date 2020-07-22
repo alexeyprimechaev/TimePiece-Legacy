@@ -22,28 +22,28 @@ struct SettingsSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
-                    Text("Settings").title().padding(7)
+                    Text(settingsString).title().padding(7)
                     
-                    ListSection(title: "Made in Moscow with ❤️ by") {
-                        PersonCard(name: "Alexey Primechaev", description: "Creator, Designer, Developer", link: "https://twitter.com/numberl6", image: "alesha", icon: "twitter")
-                        PersonCard(name: "Igor Dyachuk", description: "Designer", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
+                    ListSection(title: madeInMoscowString) {
+                        PersonCard(name: alexeyString, description: "Author", link: "https://twitter.com/numberl6", image: "alesha", icon: "twitter")
+                        PersonCard(name: igorString, description: "Author", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
                     }
                     
                     ListSection(title: "New Timers") {
-                        PickerButton(title: "Notifications", values: TimerItem.notificationSettings, value: self.$settings.notificationSettingDefault)
+                        PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: self.$settings.notificationSettingDefault)
                         PremiumBadge() {
-                            PickerButton(title: "Sound", values: TimerItem.soundSettings, value: self.$settings.soundSettingDefault)
+                            PickerButton(title: soundString, values: TimerItem.soundSettings, value: self.$settings.soundSettingDefault)
                         }
                         PremiumBadge() {
-                            PickerButton(title: "Milliseconds", values: TimerItem.precisionSettings, value: self.$settings.precisionSettingDefault)
+                            PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$settings.precisionSettingDefault)
                         }
                             
                         PremiumBadge() {
-                            PickerButton(title: "Reusable", values: TimerItem.reusableSettings, value: self.$settings.isReusableDefault)
+                            PickerButton(title: reusableString, values: TimerItem.reusableSettings, value: self.$settings.isReusableDefault)
                         }
                         
                         PremiumBadge() {
-                            PickerButton(title: "Show in Log", values: [true.yesNo, false.yesNo], value: self.$settings.showInLogDefault.yesNo)
+                            PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$settings.showInLogDefault.yesNo)
                         }
                         
                     }

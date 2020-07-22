@@ -43,7 +43,7 @@ struct ContentView: View {
                 ASCollectionViewSection(id: 0) {
                     HStack(alignment: .bottom, spacing: 4) {
 
-                        Text("TimePiece").title()
+                        Text(timePieceString).title()
                             
                             .betterSheet(isPresented: self.$showingSettingsSheet) {
                                 SettingsSheet(discard: {self.showingSettingsSheet.toggle()}).environmentObject(self.settings)
@@ -75,7 +75,7 @@ struct ContentView: View {
                 },
             
                 ASCollectionViewSection(id: 2) {
-                                    TimerButton(title: "New", icon: "plus.circle.fill", sfSymbolIcon: true, action: {
+                                    TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
                                         withAnimation(.default) {
                                             TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
                                         self.showingNewTimerSheet = true
@@ -148,7 +148,7 @@ struct ContentView: View {
     func contextMenuProvider(timer: TimerItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
-            let deleteConfirm = UIAction(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
+            let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
                 if !(timer.isRunning) {
                     timer.remove(from: self.context)
                     try? self.context.save()
@@ -158,17 +158,17 @@ struct ContentView: View {
                
             }
             
-            let deleteConfirmReusable = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
+            let deleteConfirmReusable = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
                 timer.remove(from: self.context)
                 try? self.context.save()
                
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isRunning ? "Stop" : "Delete", image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
+            let delete = UIMenu(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
             
 
-            let pause = UIAction(title: timer.isPaused ? "Start" : "Pause", image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
+            let pause = UIAction(title: timer.isPaused ? NSLocalizedString("start", comment: "Start") : NSLocalizedString("pause", comment: "Pause"), image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
                 if timer.currentTime == 0 {
                     if timer.isReusable {
                         timer.reset()
@@ -188,13 +188,13 @@ struct ContentView: View {
                 }
             }
             
-            let deleteReusable = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
+            let deleteReusable = UIMenu(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
             
 
             // The edit menu adds delete as a child, just like an action
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
-            let info = UIAction(title: "Show Details", image: UIImage(systemName: "ellipsis")) { action in
+            let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
                 self.selectedTimer = self.timers.lastIndex(of: timer) ?? 0
                 self.showingTimerSheet = true
             }

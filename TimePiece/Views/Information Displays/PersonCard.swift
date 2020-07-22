@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PersonCard: View {
     
-    @State var name = String()
+    @State var name = LocalizedStringKey("")
     
     @State var description = String()
     

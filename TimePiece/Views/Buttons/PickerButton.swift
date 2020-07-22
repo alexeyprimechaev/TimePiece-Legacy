@@ -11,7 +11,7 @@ import SwiftUI
 struct PickerButton: View {
     
     //MARK: - Properties
-    @State var title = String()
+    @State var title = LocalizedStringKey("")
     @State var values = [String]()
     @Binding var value: String
     @State var index = Int()

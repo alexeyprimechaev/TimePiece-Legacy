@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TimerButton: View {
     
-    @State var title = String()
+    @State var title = LocalizedStringKey("")
     @State var icon = String()
     @State var sfSymbolIcon = false
 

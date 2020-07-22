@@ -12,7 +12,7 @@ struct EditableTimeView: View {
     
     @Binding var time: TimeInterval
     
-    @State var title = String()
+    @State var title = LocalizedStringKey("")
     
     @State var value = ""
     
