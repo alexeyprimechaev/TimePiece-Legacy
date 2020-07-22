@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  TimePiece
+
+  Created by Alexey Primechaev on 7/22/20.
+  Copyright © 2020 Alexey Primechaev. All rights reserved.
+*/
+
+"short" = "Short";
+"long" = "Long";
+
+"on" = "On";
+"off" = "Off";
+
+"yes" = "Yes";
+"no" = "No";
+ 

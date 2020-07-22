@@ -43,6 +43,8 @@
 		80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
 		80B62E73244DF13C001D4D9E /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
+		80B91C8424C8A04F0017F8B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
+		80B91C8824C8A1BE0017F8B9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
 		80C9091F2437A39000939F25 /* KeyboardHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9091E2437A39000939F25 /* KeyboardHost.swift */; };
 		80C909212437BB3E00939F25 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
 		80D343B32443717F00BA76B1 /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */; };
@@ -89,6 +91,8 @@
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 		80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionButton.swift; sourceTree = "<group>"; };
 		80B6BF1C2418205900815793 /* SubscriptionBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBadge.swift; sourceTree = "<group>"; };
+		80B91C8524C8A04F0017F8B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		80B91C8724C8A1BE0017F8B9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		80C9091E2437A39000939F25 /* KeyboardHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHost.swift; sourceTree = "<group>"; };
 		80C909202437BB3E00939F25 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		80D343B22443717F00BA76B1 /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 		80D141E623CE176D00FD2B5A /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				80B91C8624C8A04F0017F8B9 /* Localizable.strings */,
+				80B91C8724C8A1BE0017F8B9 /* Strings.swift */,
 				80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */,
 				80612FFB23C2766B00BC03F5 /* TimerItem.swift */,
 				8055D7A8243B627600AF516E /* LogItem.swift */,
@@ -312,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80612FF223C274DF00BC03F5 /* LaunchScreen.storyboard in Resources */,
+				80B91C8424C8A04F0017F8B9 /* Localizable.strings in Resources */,
 				80612FEF23C274DF00BC03F5 /* Preview Assets.xcassets in Resources */,
 				80612FEC23C274DF00BC03F5 /* Assets.xcassets in Resources */,
 			);
@@ -334,6 +341,7 @@
 				801C0E412416D4D1004A17B1 /* MainButton.swift in Sources */,
 				80C9091F2437A39000939F25 /* KeyboardHost.swift in Sources */,
 				8012C7A924056C5000E7798E /* TimerButton.swift in Sources */,
+				80B91C8824C8A1BE0017F8B9 /* Strings.swift in Sources */,
 				8012C7AB24057D4200E7798E /* ListSection.swift in Sources */,
 				801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */,
 				80727C98241136FF0046EE08 /* PremiumBadge.swift in Sources */,
@@ -371,6 +379,14 @@
 				80612FF123C274DF00BC03F5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		80B91C8624C8A04F0017F8B9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B91C8524C8A04F0017F8B9 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

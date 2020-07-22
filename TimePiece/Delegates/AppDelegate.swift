@@ -36,8 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        print("poehali")
-        
         settings.getMonthlyPrice()
         settings.getYearlyPrice()
         if settings.isSubscribed {
@@ -68,11 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         let container = NSPersistentCloudKitContainer(name: "TimePiece")
         
-        guard let description = container.persistentStoreDescriptions.first else {
-            fatalError("No Descriptions found")
-        }
-        
-        description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+//        guard let description = container.persistentStoreDescriptions.first else {
+//            fatalError("No Descriptions found")
+//        }
+//
+//        description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -80,11 +78,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+//
+//        container.viewContext.automaticallyMergesChangesFromParent = true
+//        container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
         
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
         
         return container
     }()
@@ -105,39 +103,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    @objc
-    func processUpdate(notification: NSNotification) {
-        operatioQueue.addOperation {
-            
-            let context = self.persistentContainer.newBackgroundContext()
-            context.performAndWait {
-                let items: [TimerItem]
-                
-                do {
-                    try items = context.fetch(TimerItem.getAllTimers())
-                } catch {
-                    let nserror = error as NSError
-                    fatalError("Uh oh unexpected error\(nserror)")
-                }
-                
-                if context.hasChanges {
-                    do {
-                        
-                    } catch {
-                        let nserror = error as NSError
-                        fatalError("Uh oh unexpected error\(nserror)")
-                    }
-                }
-                    
-            }
-        }
-    }
+//    @objc
+//    func processUpdate(notification: NSNotification) {
+//        operatioQueue.addOperation {
+//
+//            let context = self.persistentContainer.newBackgroundContext()
+//            context.performAndWait {
+//                let items: [TimerItem]
+//
+//                do {
+//                    try items = context.fetch(TimerItem.getAllTimers())
+//                } catch {
+//                    let nserror = error as NSError
+//                    fatalError("Uh oh unexpected error\(nserror)")
+//                }
+//
+//                if context.hasChanges {
+//                    do {
+//
+//                    } catch {
+//                        let nserror = error as NSError
+//                        fatalError("Uh oh unexpected error\(nserror)")
+//                    }
+//                }
+//
+//            }
+//        }
+//    }
     
-    lazy var operatioQueue: OperationQueue = {
-        var queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
+//    lazy var operatioQueue: OperationQueue = {
+//        var queue = OperationQueue()
+//        queue.maxConcurrentOperationCount = 1
+//        return queue
+//    }()
 
 }
 
