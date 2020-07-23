@@ -12,7 +12,7 @@ struct PersonCard: View {
     
     @State var name = LocalizedStringKey("")
     
-    @State var description = String()
+    @State var description = LocalizedStringKey("")
     
     @State var link = String()
     

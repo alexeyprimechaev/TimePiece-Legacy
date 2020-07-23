@@ -213,20 +213,20 @@ extension Font.Design {
     var string: String {
         get {
             if self == .rounded {
-                return "Rounded"
+                return "rounded"
             } else if self == .serif {
-                return "Serif"
+                return "serif"
             } else if self == .monospaced {
-                return "Mono"
+                return "mono"
             } else {
-                return "Default"
+                return "default"
             }
         } set {
-            if newValue == "Rounded" {
+            if newValue == "rounded" {
                 self = .rounded
-            } else if newValue == "Serif" {
+            } else if newValue == "serif" {
                 self = .serif
-            } else if newValue == "Mono" {
+            } else if newValue == "mono" {
                 self = .monospaced
             } else {
                 self = .default

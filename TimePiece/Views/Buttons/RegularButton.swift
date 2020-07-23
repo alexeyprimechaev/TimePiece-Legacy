@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RegularButton: View {
     
-    @State var title = String()
+    @State var title = LocalizedStringKey("")
     @State var subtitle = String()
     @State var isActive = false
     

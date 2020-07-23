@@ -17,7 +17,7 @@ struct TimeView: View {
     //MARK: Dynamic Properties
     @Binding var time: TimeInterval
     @Binding var precisionSetting: String
-    @State var title = String()
+    @State var title = LocalizedStringKey("")
     @State var frame = String()
     
 //    MARK: Static Properties

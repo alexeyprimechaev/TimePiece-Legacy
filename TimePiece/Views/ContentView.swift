@@ -180,7 +180,7 @@ struct ContentView: View {
                 }
             }
             
-            let makeReusable = UIAction(title: "Make Reusable", image: UIImage(systemName: "arrow.clockwise")) { action in
+            let makeReusable = UIAction(title: NSLocalizedString("makeReusable", comment: "Make Reusable"), image: UIImage(systemName: "arrow.clockwise")) { action in
                 if self.settings.isSubscribed {
                     timer.makeReusable()
                 } else {

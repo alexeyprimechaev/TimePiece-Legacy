@@ -42,10 +42,10 @@ public class TimerItem: NSManagedObject, Identifiable {
     @NSManaged public var showInLogStored: NSNumber?
     
     //MARK: Setting Collections
-    static let soundSettings = ["Short", "Long"]
-    static let precisionSettings = ["On", "Off", "Smart"]
-    static let notificationSettings = ["On", "Off"]
-    static let reusableSettings = ["Yes", "No"]
+    static let soundSettings = ["short", "long"]
+    static let precisionSettings = ["on", "off", "smart"]
+    static let notificationSettings = ["on", "off"]
+    static let reusableSettings = ["yes", "no"]
     
     
     //MARK: Formatters
@@ -420,7 +420,7 @@ extension TimeInterval {
         let hours = (time / 3600)
         
         
-        if precisionSetting == "Smart" {
+        if precisionSetting == "smart" {
             if time < 60 {
                 return String(format: "%0.2d.%0.2d",seconds,ms)
             } else if time<3600 {
@@ -428,7 +428,7 @@ extension TimeInterval {
             } else {
                 return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
             }
-        } else if precisionSetting == "On" {
+        } else if precisionSetting == "on" {
             if time < 60 {
                 return String(format: "%0.2d.%0.2d",seconds,ms)
             } else if time<3600 {
@@ -453,13 +453,13 @@ extension Bool {
     var yesNo: String {
         get {
             if self {
-                return "Yes"
+                return "yes"
             } else {
-                return "No"
+                return "no"
             }
         }
         set {
-            if newValue == "Yes" {
+            if newValue == "yes" {
                 self = true
             } else {
                 self = false
@@ -470,13 +470,13 @@ extension Bool {
     var onOff: String {
         get {
             if self {
-                return "On"
+                return "on"
             } else {
-                return "Off"
+                return "off"
             }
         }
         set {
-            if newValue == "On" {
+            if newValue == "on" {
                 self = true
             } else {
                 self = false

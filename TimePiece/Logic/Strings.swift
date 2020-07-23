@@ -11,6 +11,21 @@ import SwiftUI
 
 let timePieceString: LocalizedStringKey = "timePiece"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let newString: LocalizedStringKey = "new"
 let logString: LocalizedStringKey = "log"
 let settingsString: LocalizedStringKey = "settings"
@@ -25,6 +40,7 @@ let deleteString: LocalizedStringKey = "delete"
 let stopString: LocalizedStringKey = "stop"
 let resetString: LocalizedStringKey = "reset"
 let showDetailsString: LocalizedStringKey = "showDetails"
+let makeReusableString: LocalizedStringKey = "makeReusable"
 
 let titleString: LocalizedStringKey = "title"
 let timeString: LocalizedStringKey = "time"
@@ -39,11 +55,15 @@ let soundString: LocalizedStringKey = "sound"
 let millisecondsString: LocalizedStringKey = "milliseconds"
 let showInLogString: LocalizedStringKey = "showInLog"
 let logSeparatorsString: LocalizedStringKey = "logSeparators"
+let fontString: LocalizedStringKey = "font"
+let monochromeString: LocalizedStringKey = "monochrome"
 
 let madeInMoscowString: LocalizedStringKey = "madeInMoscow"
 
 let alexeyString: LocalizedStringKey = "alexey"
 let igorString: LocalizedStringKey = "igor"
+let alexeyDescriptionString: LocalizedStringKey = "alexeyDescription"
+let igorDescriptionString: LocalizedStringKey = "igorDescription"
 
 let newTimersString: LocalizedStringKey = "newTimers"
 let visualsString: LocalizedStringKey = "visuals"

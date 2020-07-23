@@ -11,6 +11,21 @@
 
 "timePiece" = "Таймпис";
 
+"off" = "Выкл";
+"on" = "Вкл";
+"smart" = "Смарт";
+
+"yes" = "Да";
+"no" = "Нет";
+
+"short" = "Короткий";
+"long" = "Длинный";
+
+"default" = "Стандарт";
+"rounded" = "Скругленный";
+"mono" = "Моно";
+"serif" = "Засечки";
+
 "new" = "Новый";
 "log" = "Лог";
 "settings" = "Настройки";
@@ -25,6 +40,7 @@
 "stop" = "Стоп";
 "reset" = "Ресет";
 "showDetails" = "Показать Детали";
+"makeReusable" = "Сделать Повторяемым";
 
 "title" = "Название";
 "time" = "Время";
@@ -33,20 +49,25 @@
 "moreOptions" = "Больше Настроек";
 
 "timer" = "Таймер ⏱";
-"reusable" = "Реюзабл";
+"reusable" = "Повторяемый";
 "notification" = "Нотификации";
 "sound" = "Звук";
 "milliseconds" = "Миллисеки";
-"showInLog" = "Логировать";
-"logSeparators" = "Лог Сепараторы";
+"showInLog" = "Отмечать в Лог";
+"logSeparators" = "Разделители строк";
+"font" = "Шритф";
+"monochrome" = "Монохром";
  
 "madeInMoscow" = "Сделано в Москве с ❤️";
 
 "alexey" = "Алёша Примечаев";
 "igor" = "Игорь Дячук";
+"alexeyDescription" = "Автор";
 
-"newTimers" = "New Timers";
-"visuals" =  "Visuals";
+"igorDescription" = "Автор";
+
+"newTimers" = "Новые таймеры";
+"visuals" =  "Внешний вид";
 
 "sellingPoint1" = "Ребзабл Таймеры. Анлим.";
 "sellingPoint1Second" = "Создавайте таймеры которые не умирают";

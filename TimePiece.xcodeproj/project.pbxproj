@@ -15,6 +15,8 @@
 		801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
 		8021ADAC23D51F080090BA7F /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
+		8027EDB524C9F01000F9310D /* MultilineHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB424C9F01000F9310D /* MultilineHStack.swift */; };
+		8027EDB724C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
 		802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
 		802A027023CFBB6300512B39 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 802A026F23CFBB6300512B39 /* Introspect */; };
 		803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 803B0FD223F6036D00F2EB32 /* BetterSheet */; };
@@ -63,6 +65,8 @@
 		801FFBB123CF9AF50040A12C /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		8021ADA923D507F50090BA7F /* EditableTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimeView.swift; sourceTree = "<group>"; };
 		8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerSheet.swift; sourceTree = "<group>"; };
+		8027EDB424C9F01000F9310D /* MultilineHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultilineHStack.swift; path = TimePiece/Views/Buttons/MultilineHStack.swift; sourceTree = SOURCE_ROOT; };
+		8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		802A026C23CFBA5600512B39 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
 		804E17B124087B71003F5001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		801A18542402FF35005B4D19 /* Information Displays */ = {
 			isa = PBXGroup;
 			children = (
+				8027EDB424C9F01000F9310D /* MultilineHStack.swift */,
 				8055D7AE243B697800AF516E /* LogView.swift */,
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
 				8012C7AA24057D4200E7798E /* ListSection.swift */,
@@ -200,6 +205,7 @@
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
 				8060E0212482D50600F6F74D /* TabBar.swift */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
+				8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */,
 				801A18532402FF1E005B4D19 /* Sheets */,
 				801A18542402FF35005B4D19 /* Information Displays */,
 				80D141E423CE175200FD2B5A /* Buttons */,
@@ -353,6 +359,7 @@
 				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
 				80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */,
 				80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */,
+				8027EDB524C9F01000F9310D /* MultilineHStack.swift in Sources */,
 				80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */,
 				80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */,
 				80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */,
@@ -361,6 +368,7 @@
 				804E17B224087B71003F5001 /* Settings.swift in Sources */,
 				801A18522402DD9C005B4D19 /* ToggleButton.swift in Sources */,
 				8055D7A9243B627600AF516E /* LogItem.swift in Sources */,
+				8027EDB724C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				801A18502402CEB6005B4D19 /* RegularButton.swift in Sources */,
 				80612FFC23C2766B00BC03F5 /* TimerItem.swift in Sources */,
 				8088473B23C2AE79001D1A6E /* TimerSheet.swift in Sources */,

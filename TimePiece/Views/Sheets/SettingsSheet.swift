@@ -16,7 +16,7 @@ struct SettingsSheet: View {
             
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
-            HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
+            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "xmark", trailingAction: {})
             
             ScrollView() {
                 
@@ -25,11 +25,11 @@ struct SettingsSheet: View {
                     Text(settingsString).title().padding(7)
                     
                     ListSection(title: madeInMoscowString) {
-                        PersonCard(name: alexeyString, description: "Author", link: "https://twitter.com/numberl6", image: "alesha", icon: "twitter")
-                        PersonCard(name: igorString, description: "Author", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
+                        PersonCard(name: alexeyString, description: alexeyDescriptionString, link: "https://twitter.com/numberl6", image: "alesha", icon: "twitter")
+                        PersonCard(name: igorString, description: igorDescriptionString, link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
                     }
                     
-                    ListSection(title: "New Timers") {
+                    ListSection(title: newTimersString) {
                         PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: self.$settings.notificationSettingDefault)
                         PremiumBadge() {
                             PickerButton(title: soundString, values: TimerItem.soundSettings, value: self.$settings.soundSettingDefault)
@@ -48,16 +48,16 @@ struct SettingsSheet: View {
                         
                     }
                     
-                    ListSection(title: "Visuals") {
+                    ListSection(title: visualsString) {
                         PremiumBadge() {
-                            PickerButton(title: "Font", values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
+                            PickerButton(title: fontString, values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
                         }
                         PremiumBadge() {
-                            PickerButton(title: "Monochrome", values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
+                            PickerButton(title: monochromeString, values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
                         }
                         
                         PremiumBadge() {
-                            PickerButton(title: "Log Dividers", values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
+                            PickerButton(title: logSeparatorsString, values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
                         }
                         
                         //ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)
