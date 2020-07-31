@@ -72,6 +72,19 @@
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		8055D7AA243B62ED00AF516E /* LogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheet.swift; sourceTree = "<group>"; };
 		8055D7AE243B697800AF516E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		805DB83424D481C000178B5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		805DB83524D4824300178B5B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		805DB83624D4824300178B5B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		805DB83724D4825200178B5B /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		805DB83824D4825200178B5B /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		805DB83924D4827000178B5B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		805DB83A24D4827000178B5B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		805DB83B24D4827700178B5B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		805DB83C24D4827700178B5B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		805DB83D24D4828100178B5B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		805DB83E24D4828100178B5B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		805DB83F24D482C900178B5B /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		805DB84024D482C900178B5B /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8060E01F2482D12200F6F74D /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		80612FDF23C274DB00BC03F5 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +314,13 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				"zh-Hans",
+				hi,
+				es,
+				fr,
+				ar,
+				bn,
 			);
 			mainGroup = 80612FD623C274DB00BC03F5;
 			packageReferences = (
@@ -385,6 +405,13 @@
 			isa = PBXVariantGroup;
 			children = (
 				80612FF123C274DF00BC03F5 /* Base */,
+				805DB83424D481C000178B5B /* ru */,
+				805DB83524D4824300178B5B /* zh-Hans */,
+				805DB83724D4825200178B5B /* hi */,
+				805DB83924D4827000178B5B /* es */,
+				805DB83B24D4827700178B5B /* fr */,
+				805DB83D24D4828100178B5B /* ar */,
+				805DB83F24D482C900178B5B /* bn */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -393,6 +420,12 @@
 			isa = PBXVariantGroup;
 			children = (
 				80B91C8524C8A04F0017F8B9 /* en */,
+				805DB83624D4824300178B5B /* zh-Hans */,
+				805DB83824D4825200178B5B /* hi */,
+				805DB83A24D4827000178B5B /* es */,
+				805DB83C24D4827700178B5B /* fr */,
+				805DB83E24D4828100178B5B /* ar */,
+				805DB84024D482C900178B5B /* bn */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
