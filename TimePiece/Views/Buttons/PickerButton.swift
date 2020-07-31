@@ -43,14 +43,17 @@ struct PickerButton: View {
                         .title()
                         .lineLimit(1)
                         .opacity(0.5)
+                        .padding(0)
+                        .fixedSize()
                     HStack(spacing: 7) {
                         ForEach(values, id: \.self) { value in
                             Text(NSLocalizedString(value, comment: "value"))
+                                .fixedSize()
                                 .padding(.bottom, 5)
                                 .opacity(self.value == value ? 1 : 0.5)
-                        }.smallTitle()
-                    }
-                    }])
+                        }.smallTitle().fixedSize()
+                    }.fixedSize().padding(0)
+                }])
             .layout {
                 let fl = AlignedCollectionViewFlowLayout()
                 fl.horizontalAlignment = .leading
@@ -61,7 +64,9 @@ struct PickerButton: View {
                 fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
                 return fl
             }
-            .shrinkToContentSize(dimension: .vertical)
+                .shrinkToContentSize(isEnabled: true, dimension: .vertical)
+            .padding(0)
+            .background(Color(.systemBackground))
 
         }
             

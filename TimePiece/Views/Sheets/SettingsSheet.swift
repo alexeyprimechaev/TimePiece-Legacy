@@ -49,9 +49,8 @@ struct SettingsSheet: View {
                     }
                     
                     ListSection(title: visualsString) {
-                        PremiumBadge() {
                             PickerButton(title: fontString, values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
-                        }
+                        
                         PremiumBadge() {
                             PickerButton(title: monochromeString, values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
                         }
