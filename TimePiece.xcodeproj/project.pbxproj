@@ -85,6 +85,7 @@
 		805DB83E24D4828100178B5B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		805DB83F24D482C900178B5B /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		805DB84024D482C900178B5B /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		805DB84124D4831E00178B5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8060E01F2482D12200F6F74D /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		80612FDF23C274DB00BC03F5 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,6 +427,7 @@
 				805DB83C24D4827700178B5B /* fr */,
 				805DB83E24D4828100178B5B /* ar */,
 				805DB84024D482C900178B5B /* bn */,
+				805DB84124D4831E00178B5B /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

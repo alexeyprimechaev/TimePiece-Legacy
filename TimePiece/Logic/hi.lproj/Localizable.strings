@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   TimePiece
 
@@ -9,94 +9,94 @@
 
 
 
-"timePiece" = "Таймпис";
+"timePiece" = "TimePiece";
 
-"off" = "Выкл";
-"on" = "Вкл";
-"smart" = "Смарт";
+"off" = "Off";
+"on" = "On";
+"smart" = "Smart";
 
-"yes" = "Да";
-"no" = "Нет";
+"yes" = "Yes";
+"no" = "No";
 
-"short" = "Короткий";
-"long" = "Длинный";
+"short" = "Short";
+"long" = "Long";
 
-"default" = "Стандарт";
-"rounded" = "Скругленный";
-"mono" = "Моно";
-"serif" = "Засечки";
+"default" = "Default";
+"rounded" = "Rounded";
+"mono" = "Mono";
+"serif" = "Serif";
 
-"new" = "Новый";
-"log" = "Лог";
-"settings" = "Настройки";
+"new" = "New";
+"log" = "Log";
+"settings" = "Settings";
 
-"discard" = "Удалить";
-"dismiss" = "Свернуть";
-"restore" = "Восстановить";
-"start" = "Пуск";
-"pause" = "Пауза";
-"add" = "Добавить";
-"delete" = "Удалить";
-"stop" = "Стоп";
-"reset" = "Ресет";
-"showDetails" = "Показать Детали";
-"makeReusable" = "Сделать Повторяемым";
+"discard" = "Discard";
+"dismiss" = "Dismiss";
+"restore" = "Restore";
+"start" = "Start";
+"pause" = "Pause";
+"add" = "Add";
+"delete" = "Delete";
+"stop" = "Stop";
+"reset" = "Reset";
+"showDetails" = "Show Details";
+"makeReusable" = "Make Reusable";
 
-"title" = "Название";
-"time" = "Время";
-"left" = "Осталось";
-"total" = "Всего";
-"moreOptions" = "Больше Настроек";
+"title" = "Title";
+"time" = "Time";
+"left" = "Left";
+"total" = "Total";
+"moreOptions" = "More Options";
 
-"timer" = "Таймер ⏱";
-"reusable" = "Повторяемый";
-"notification" = "Нотификации";
-"sound" = "Звук";
-"milliseconds" = "Миллисеки";
-"showInLog" = "Отмечать в Лог";
-"logSeparators" = "Разделители строк";
-"font" = "Шритф";
-"monochrome" = "Монохром";
+"timer" = "Timer ⏱";
+"reusable" = "Reusable";
+"notification" = "Notifications";
+"sound" = "Sound";
+"milliseconds" = "Milliseconds";
+"showInLog" = "Show in Log";
+"logSeparators" = "Log Separators";
+"font" = "Font";
+"monochrome" = "Monochrome";
  
-"madeInMoscow" = "Сделано в Москве с ❤️";
+"madeInMoscow" = "Made in Moscow with ❤️";
 
-"alexey" = "Алёша Примечаев";
-"igor" = "Игорь Дячук";
-"alexeyDescription" = "Автор";
+"alexey" = "Alexey Primechaev";
+"igor" = "Igor Dyachuck";
+"alexeyDescription" = "Author";
 
-"igorDescription" = "Автор";
+"igorDescription" = "Author";
 
-"newTimers" = "Новые таймеры";
-"visuals" =  "Внешний вид";
+"newTimers" = "New Timers";
+"visuals" =  "Visuals";
 
-"sellingPoint1" = "Ребзабл Таймеры. Анлим.";
-"sellingPoint1Second" = "Создавайте таймеры которые не умирают";
+"sellingPoint1" = "Reusable Timers. Unlimited";
+"sellingPoint1Second" = "Create Timers that don't expire";
 
-"sellingPoint2" = "Контроллируйте нотификации и звуки";
-"sellingPoint2Second" = "Для каждого таймера отдельно";
+"sellingPoint2" = "Control notifications & sounds";
+"sellingPoint2Second" = "For each Timer separately";
 
-"sellingPoint3" = "Отслеживайте потраченное время";
-"sellingPoint3Second" = "Включите логирование своих таймеров";
+"sellingPoint3" = "Track the time you've spent";
+"sellingPoint3Second" = "Enable Logging for your Timers";
 
-"sellingPoint4" = "Настройте внешний вид";
-"sellingPoint4Second" = "Выберите цвета и шрифты";
+"sellingPoint4" = "Customize Appearence";
+"sellingPoint4Second" = "Choose colors and fonts";
 
-"sellingPoint5" = "Увеличьте точность";
-"sellingPoint5Second" = "Точность до миллисеки";
+"sellingPoint5" = "Higher Precision";
+"sellingPoint5Second" = "Millisecond accuracy";
 
-"sellingPoint6" = "Поддержите разработчиков";
-"sellingPoint6Second" = "И инвестируйте в будущее";
+"sellingPoint6" = "Support the creators";
+"sellingPoint6Second" = "And invest in upcoming features";
 
-"subscription1" = "Пробная версия";
-"subscription1Second" = "7 дней бесплатно";
-"subscription1Price" = "потом";
-"subscription1Period" = "Ежемесячно";
+"subscription1" = "Free Trial";
+"subscription1Second" = "7 days free";
+"subscription1Price" = "then";
+"subscription1Period" = "Monthly";
 
-"subscription2" = "25% скидка";
-"subscription2Second" = "75% цены";
+"subscription2" = "25% Off";
+"subscription2Second" = "Pay Less, Get more";
 "subscription2Price" = "";
-"subscription2Period" = "Ежегодно";
+"subscription2Period" = "Yearly";
 
 "subscriptionDetails" = "Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.";
-"termsDetails" = "Приваси полиси и термс оф сервис";
+"termsDetails" = "Privacy Policy & Terms of Service";
 

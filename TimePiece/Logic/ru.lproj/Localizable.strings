@@ -6,34 +6,97 @@
   Copyright © 2020 Alexey Primechaev. All rights reserved.
 */
 
-"timePiece" = "ТаймПис";
+
+
+
+"timePiece" = "Таймпис";
+
+"off" = "Выкл";
+"on" = "Вкл";
+"smart" = "Смарт";
+
+"yes" = "Да";
+"no" = "Нет";
+
+"short" = "Короткий";
+"long" = "Длинный";
+
+"default" = "Стандарт";
+"rounded" = "Скругленный";
+"mono" = "Моно";
+"serif" = "Засечки";
 
 "new" = "Новый";
 "log" = "Лог";
 "settings" = "Настройки";
 
-"discard" = "Отменить";
+"discard" = "Удалить";
 "dismiss" = "Свернуть";
-"start" = "Старт";
+"restore" = "Восстановить";
+"start" = "Пуск";
 "pause" = "Пауза";
 "add" = "Добавить";
 "delete" = "Удалить";
 "stop" = "Стоп";
 "reset" = "Ресет";
-"showDetails" = "Показать больше";
-
-
+"showDetails" = "Показать Детали";
+"makeReusable" = "Сделать Повторяемым";
 
 "title" = "Название";
 "time" = "Время";
 "left" = "Осталось";
 "total" = "Всего";
-"moreOptions" = "Больше настроек";
+"moreOptions" = "Больше Настроек";
 
 "timer" = "Таймер ⏱";
-"reusable" = "Реюзабл";
+"reusable" = "Повторяемый";
 "notification" = "Нотификации";
 "sound" = "Звук";
 "milliseconds" = "Миллисеки";
-"showInLog" = "Логировать";
+"showInLog" = "Отмечать в Лог";
+"logSeparators" = "Разделители строк";
+"font" = "Шритф";
+"monochrome" = "Монохром";
  
+"madeInMoscow" = "Сделано в Москве с ❤️";
+
+"alexey" = "Алёша Примечаев";
+"igor" = "Игорь Дячук";
+"alexeyDescription" = "Автор";
+
+"igorDescription" = "Автор";
+
+"newTimers" = "Новые таймеры";
+"visuals" =  "Внешний вид";
+
+"sellingPoint1" = "Ребзабл Таймеры. Анлим.";
+"sellingPoint1Second" = "Создавайте таймеры которые не умирают";
+
+"sellingPoint2" = "Контроллируйте нотификации и звуки";
+"sellingPoint2Second" = "Для каждого таймера отдельно";
+
+"sellingPoint3" = "Отслеживайте потраченное время";
+"sellingPoint3Second" = "Включите логирование своих таймеров";
+
+"sellingPoint4" = "Настройте внешний вид";
+"sellingPoint4Second" = "Выберите цвета и шрифты";
+
+"sellingPoint5" = "Увеличьте точность";
+"sellingPoint5Second" = "Точность до миллисеки";
+
+"sellingPoint6" = "Поддержите разработчиков";
+"sellingPoint6Second" = "И инвестируйте в будущее";
+
+"subscription1" = "Пробная версия";
+"subscription1Second" = "7 дней бесплатно";
+"subscription1Price" = "потом";
+"subscription1Period" = "Ежемесячно";
+
+"subscription2" = "25% скидка";
+"subscription2Second" = "75% цены";
+"subscription2Price" = "";
+"subscription2Period" = "Ежегодно";
+
+"subscriptionDetails" = "Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.";
+"termsDetails" = "Приваси полиси и термс оф сервис";
+
