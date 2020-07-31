@@ -15,6 +15,8 @@ struct LogSheet: View {
     @EnvironmentObject var settings: Settings
     @FetchRequest(fetchRequest: LogItem.getAllLogItems()) var logItems: FetchedResults<LogItem>
     
+    @State private var selectedScreen = 0
+    
     var discard: () -> ()
     
     func update(_ result : FetchedResults<LogItem>)-> [[LogItem]]{
@@ -44,11 +46,12 @@ struct LogSheet: View {
                     HStack() {
                         Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).title().padding(7).padding(.leading, 21).padding(.vertical, 7)
                         Spacer()
-                    }.background(Color(UIColor.systemBackground))
+                    }
+                    
                     if settings.showingDividers {
                         Divider()
                     }
-                }
+               }.background(Color(UIColor.systemBackground))
             }
         }
     }
@@ -58,8 +61,37 @@ struct LogSheet: View {
     var body: some View {
         VStack(spacing: 0) {
         HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
-            ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
-            .alwaysBounce(true)
+            Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
+                Text("Insights").tag(0)
+                Text("History").tag(1)
+            }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 28).padding(.vertical, 7)
+            if selectedScreen == 0 {
+                VStack(spacing: 0)
+                 {
+                     HStack() {
+                         Text("This Week").title().padding(7).padding(.leading, 21).padding(.vertical, 7)
+                         Spacer()
+                     }
+                    
+                     
+                     if settings.showingDividers {
+                         Divider()
+                     }
+                    VStack(spacing: 14) {
+                        Spacer().frame(height: 14)
+                        InsightView(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: "16 Hours 33 Minutes", subtitle: "Good job tracking your time this week! You're 17% up compared to the last week. Great!")
+                        InsightView(icon: "bookmark.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: "Bacon 🥓", value: "Ran 11 Times", subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productiove.")
+                        InsightView(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: "3 Hours 11 Minutes", subtitle: "Looks like you have good average productivity. Well done, mate!")
+                        InsightView(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: "73", subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
+                        Spacer()
+                    }.padding(.leading, 21)
+                }.background(Color(UIColor.systemBackground))
+                
+            } else {
+                ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
+                .alwaysBounce(true)
+            }
+            
         
         }
 

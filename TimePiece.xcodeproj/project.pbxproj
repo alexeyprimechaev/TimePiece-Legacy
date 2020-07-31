@@ -52,6 +52,7 @@
 		80D343B32443717F00BA76B1 /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */; };
 		80D343B52443723800BA76B1 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B42443723800BA76B1 /* SettingsSheet.swift */; };
 		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
+		80E6DD5024D49F0900B0DC78 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6DD4F24D49F0900B0DC78 /* InsightView.swift */; };
 		80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80EF121C2430E74A00905780 /* SwiftyStoreKit */; };
 		80F355142418068F009ABFAD /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		80D343B22443717F00BA76B1 /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
 		80D343B42443723800BA76B1 /* SettingsSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSheet.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		80E6DD4F24D49F0900B0DC78 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = SOURCE_ROOT; };
 		80F355132418068F009ABFAD /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 		801A18542402FF35005B4D19 /* Information Displays */ = {
 			isa = PBXGroup;
 			children = (
+				80E6DD4F24D49F0900B0DC78 /* InsightView.swift */,
 				8027EDB424C9F01000F9310D /* MultilineHStack.swift */,
 				8055D7AE243B697800AF516E /* LogView.swift */,
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
@@ -397,6 +400,7 @@
 				80612FFC23C2766B00BC03F5 /* TimerItem.swift in Sources */,
 				8088473B23C2AE79001D1A6E /* TimerSheet.swift in Sources */,
 				8060E0202482D12200F6F74D /* TabItem.swift in Sources */,
+				80E6DD5024D49F0900B0DC78 /* InsightView.swift in Sources */,
 				807A0F4123D4C66C008B0E24 /* TimeView.swift in Sources */,
 				8060E0222482D50600F6F74D /* TabBar.swift in Sources */,
 			);
