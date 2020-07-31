@@ -11,92 +11,92 @@
 
 "timePiece" = "TimePiece";
 
-"off" = "Off";
-"on" = "On";
-"smart" = "Smart";
+"off" = "Apagado";
+"on" = "Encender";
+"smart" = "Inteligente";
 
-"yes" = "Yes";
+"yes" = "Si";
 "no" = "No";
 
-"short" = "Short";
-"long" = "Long";
+"short" = "Corto";
+"long" = "Largo";
 
-"default" = "Default";
-"rounded" = "Rounded";
-"mono" = "Mono";
+"default" = "Defecto";
+"rounded" = "Redondeado";
+"mono" = "Monoespacio";
 "serif" = "Serif";
 
-"new" = "New";
+"new" = "Nuevo";
 "log" = "Log";
-"settings" = "Settings";
+"settings" = "Configuraciones";
 
-"discard" = "Discard";
-"dismiss" = "Dismiss";
-"restore" = "Restore";
-"start" = "Start";
-"pause" = "Pause";
-"add" = "Add";
-"delete" = "Delete";
-"stop" = "Stop";
-"reset" = "Reset";
-"showDetails" = "Show Details";
-"makeReusable" = "Make Reusable";
+"discard" = "Descarte";
+"dismiss" = "Descartar";
+"restore" = "Restaurar";
+"start" = "Comienzo";
+"pause" = "Pausa";
+"add" = "Añadir";
+"delete" = "Eliminar";
+"stop" = "Detener";
+"reset" = "Reiniciar";
+"showDetails" = "Mostrar Detalles";
+"makeReusable" = "Hacer Reutilizables";
 
-"title" = "Title";
-"time" = "Time";
-"left" = "Left";
+"title" = "Título";
+"time" = "Hora";
+"left" = "Izquierdo";
 "total" = "Total";
-"moreOptions" = "More Options";
+"moreOptions" = "Mas Opciones";
 
-"timer" = "Timer ⏱";
-"reusable" = "Reusable";
-"notification" = "Notifications";
-"sound" = "Sound";
-"milliseconds" = "Milliseconds";
-"showInLog" = "Show in Log";
-"logSeparators" = "Log Separators";
-"font" = "Font";
-"monochrome" = "Monochrome";
+"timer" = "Temporizador ⏱";
+"reusable" = "Reutilizable";
+"notification" = "Notificaciones";
+"sound" = "Sonido";
+"milliseconds" = "Milisegundos";
+"showInLog" = "Mostrar en el Log";
+"logSeparators" = "Separadores de Log";
+"font" = "Fuente";
+"monochrome" = "Monocromo";
  
-"madeInMoscow" = "Made in Moscow with ❤️";
+"madeInMoscow" = "Hecho en Moscú con ❤️";
 
 "alexey" = "Alexey Primechaev";
 "igor" = "Igor Dyachuck";
-"alexeyDescription" = "Author";
+"alexeyDescription" = "Autor";
 
-"igorDescription" = "Author";
+"igorDescription" = "Autor";
 
-"newTimers" = "New Timers";
-"visuals" =  "Visuals";
+"newTimers" = "Nuevos Temporizadores";
+"visuals" =  "Visuales";
 
-"sellingPoint1" = "Reusable Timers. Unlimited";
-"sellingPoint1Second" = "Create Timers that don't expire";
+"sellingPoint1" = "Temporizadores reutilizables. Ilimitado.";
+"sellingPoint1Second" = "Crea Temporizadores que no caduquen";
 
-"sellingPoint2" = "Control notifications & sounds";
-"sellingPoint2Second" = "For each Timer separately";
+"sellingPoint2" = "Control de notificaciones y sonidos";
+"sellingPoint2Second" = "Para cada Temporizador por separado";
 
-"sellingPoint3" = "Track the time you've spent";
-"sellingPoint3Second" = "Enable Logging for your Timers";
+"sellingPoint3" = "Sigue el tiempo que has pasadot";
+"sellingPoint3Second" = "Habilite el Logo para sus Temporizadores";
 
-"sellingPoint4" = "Customize Appearence";
-"sellingPoint4Second" = "Choose colors and fonts";
+"sellingPoint4" = "Personaliza la apariencia";
+"sellingPoint4Second" = "Elige colores y fuentes";
 
-"sellingPoint5" = "Higher Precision";
-"sellingPoint5Second" = "Millisecond accuracy";
+"sellingPoint5" = "Mayor precisión";
+"sellingPoint5Second" = "Precisión de milisegundos";
 
-"sellingPoint6" = "Support the creators";
-"sellingPoint6Second" = "And invest in upcoming features";
+"sellingPoint6" = "Apoya a los creadores";
+"sellingPoint6Second" = "E invierta en las próximas funciones";
 
-"subscription1" = "Free Trial";
-"subscription1Second" = "7 days free";
-"subscription1Price" = "then";
-"subscription1Period" = "Monthly";
+"subscription1" = "Prueba gratis";
+"subscription1Second" = "7 días gratis";
+"subscription1Price" = "luego";
+"subscription1Period" = "Mensual";
 
-"subscription2" = "25% Off";
-"subscription2Second" = "Pay Less, Get more";
+"subscription2" = "25% de descuento";
+"subscription2Second" = "Pague menos, obtenga más";
 "subscription2Price" = "";
-"subscription2Period" = "Yearly";
+"subscription2Period" = "Anual";
 
-"subscriptionDetails" = "Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.";
-"termsDetails" = "Privacy Policy & Terms of Service";
+"subscriptionDetails" = "El pago se cargará a la cuenta de iTunes en la confirmación de la compra. La suscripción se renueva automáticamente a menos que la renovación automática se desactive al menos 24 horas antes del final del período actual.";
+"termsDetails" = "Política de privacidad y términos de servicio";
 

@@ -44,8 +44,8 @@ let makeReusableString: LocalizedStringKey = "makeReusable"
 
 let titleString: LocalizedStringKey = "title"
 let timeString: LocalizedStringKey = "time"
-let leftString: LocalizedStringKey = "Left"
-let totalString: LocalizedStringKey = "Total"
+let leftString: LocalizedStringKey = "left"
+let totalString: LocalizedStringKey = "total"
 let moreOptionsString: LocalizedStringKey = "More Options"
 
 let timerString: LocalizedStringKey = "timer"

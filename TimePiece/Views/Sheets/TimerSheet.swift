@@ -52,7 +52,7 @@ struct TimerSheet: View {
                         HStack(alignment: .top) {
                             
                             if timer.isRunning {
-                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: "Left", update: {})
+                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: leftString, update: {})
 
                             }
                         

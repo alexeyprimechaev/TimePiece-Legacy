@@ -9,94 +9,94 @@
 
 
 
-"timePiece" = "TimePiece";
+"timePiece" = "ساعة";
 
-"off" = "Off";
-"on" = "On";
-"smart" = "Smart";
+"off" = "إيقاف";
+"on" = "على";
+"smart" = "ذكي";
 
-"yes" = "Yes";
-"no" = "No";
+"yes" = "نعم";
+"no" = "لا";
 
-"short" = "Short";
-"long" = "Long";
+"short" = "قصيرة";
+"long" = "طويل";
 
-"default" = "Default";
-"rounded" = "Rounded";
-"mono" = "Mono";
+"default" = "إفتراضي";
+"rounded" = "مدور";
+"mono" = "أحادي المسافة";
 "serif" = "Serif";
 
-"new" = "New";
-"log" = "Log";
-"settings" = "Settings";
+"new" = "جديد";
+"log" = "سجل";
+"settings" = "الإعدادات";
 
-"discard" = "Discard";
-"dismiss" = "Dismiss";
-"restore" = "Restore";
-"start" = "Start";
-"pause" = "Pause";
-"add" = "Add";
-"delete" = "Delete";
-"stop" = "Stop";
-"reset" = "Reset";
-"showDetails" = "Show Details";
-"makeReusable" = "Make Reusable";
+"discard" = "تجاهل";
+"dismiss" = "تجاهل";
+"restore" = "استعادة";
+"start" = "بداية";
+"pause" = "وقفة";
+"add" = "أضف";
+"delete" = "حذف";
+"stop" = "قف";
+"reset" = "إعادة تعيين";
+"showDetails" = "اظهر التفاصيل";
+"makeReusable" = "جعل قابلة لإعادة الاستخدام";
 
-"title" = "Title";
-"time" = "Time";
-"left" = "Left";
-"total" = "Total";
-"moreOptions" = "More Options";
+"title" = "عنوان";
+"time" = "زمن";
+"left" = "اليسار";
+"total" = "مجموع";
+"moreOptions" = "المزيد من الخيارات";
 
-"timer" = "Timer ⏱";
-"reusable" = "Reusable";
-"notification" = "Notifications";
-"sound" = "Sound";
-"milliseconds" = "Milliseconds";
-"showInLog" = "Show in Log";
-"logSeparators" = "Log Separators";
-"font" = "Font";
-"monochrome" = "Monochrome";
+"timer" = "⏱ مؤقت";
+"reusable" = "قابلة لإعادة الاستخدام";
+"notification" = "إشعارات";
+"sound" = "صوت";
+"milliseconds" = "مللي ثانية";
+"showInLog" = "إظهار في السجل";
+"logSeparators" = "فواصل السجل";
+"font" = "الخط";
+"monochrome" = "أحادية اللون";
  
-"madeInMoscow" = "Made in Moscow with ❤️";
+"madeInMoscow" = "صنع في موسكو مع ❤️";
 
-"alexey" = "Alexey Primechaev";
-"igor" = "Igor Dyachuck";
-"alexeyDescription" = "Author";
+"alexey" = "أليكسي بريميشيف";
+"igor" = "إيغور دياتشوك";
+"alexeyDescription" = "مؤلف";
 
-"igorDescription" = "Author";
+"igorDescription" = "مؤلف";
 
-"newTimers" = "New Timers";
-"visuals" =  "Visuals";
+"newTimers" = "مؤقتات جديدة";
+"visuals" =  "مرئيات";
 
-"sellingPoint1" = "Reusable Timers. Unlimited";
-"sellingPoint1Second" = "Create Timers that don't expire";
+"sellingPoint1" = "مؤقتات قابلة لإعادة الاستخدام. غير محدود";
+"sellingPoint1Second" = "إنشاء مؤقتات لا تنتهي صلاحيتها";
 
-"sellingPoint2" = "Control notifications & sounds";
-"sellingPoint2Second" = "For each Timer separately";
+"sellingPoint2" = "التحكم في الإخطارات والأصوات";
+"sellingPoint2Second" = "لكل مؤقت بشكل منفصل";
 
-"sellingPoint3" = "Track the time you've spent";
-"sellingPoint3Second" = "Enable Logging for your Timers";
+"sellingPoint3" = "تتبع الوقت الذي قضيته";
+"sellingPoint3Second" = "تمكين التسجيل للمؤقتات الخاصة بك";
 
-"sellingPoint4" = "Customize Appearence";
-"sellingPoint4Second" = "Choose colors and fonts";
+"sellingPoint4" = "تخصيص مظهر";
+"sellingPoint4Second" = "اختر الألوان والخطوط";
 
-"sellingPoint5" = "Higher Precision";
-"sellingPoint5Second" = "Millisecond accuracy";
+"sellingPoint5" = "دقة أعلى";
+"sellingPoint5Second" = "دقة المللي ثانية";
 
-"sellingPoint6" = "Support the creators";
-"sellingPoint6Second" = "And invest in upcoming features";
+"sellingPoint6" = "دعم المبدعين";
+"sellingPoint6Second" = "واستثمر في الميزات القادمة";
 
-"subscription1" = "Free Trial";
-"subscription1Second" = "7 days free";
-"subscription1Price" = "then";
-"subscription1Period" = "Monthly";
+"subscription1" = "تجربة مجانية";
+"subscription1Second" = "7 أيام مجانًا";
+"subscription1Price" = "ثم";
+"subscription1Period" = "شهريا";
 
-"subscription2" = "25% Off";
-"subscription2Second" = "Pay Less, Get more";
+"subscription2" = "خصم 25٪";
+"subscription2Second" = "ادفع أقل ، احصل على المزيد";
 "subscription2Price" = "";
-"subscription2Period" = "Yearly";
+"subscription2Period" = "سنوي";
 
-"subscriptionDetails" = "Payment will be charged to iTunes Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.";
-"termsDetails" = "Privacy Policy & Terms of Service";
+"subscriptionDetails" = "سيتم فرض الدفع على حساب iTunes عند تأكيد الشراء. يتم تجديد الاشتراك تلقائيًا ما لم يتم إيقاف التجديد التلقائي قبل 24 ساعة على الأقل من نهاية الفترة الحالية.";
+"termsDetails" = "سياسة الخصوصية وشروط الخدمة";
 
