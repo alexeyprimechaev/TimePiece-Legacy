@@ -191,6 +191,10 @@ public class TimerItem: NSManagedObject, Identifiable {
         }
         isRunning = false
         isPaused = true
+        
+        timer?.invalidate()
+        timer = nil
+        
         timeStarted = Date()
         currentTime = totalTime
         timeFinished = timeStarted.addingTimeInterval(currentTime)
