@@ -34,7 +34,7 @@ public class Settings: ObservableObject {
         }
     }
     
-    @Published var showingDividers: Bool = ((defaultsStored.value(forKey: "showingDividers") ?? false) as! Bool) {
+    @Published var showingDividers: Bool = ((defaultsStored.value(forKey: "showingDividers") ?? true) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "showingDividers")
         }

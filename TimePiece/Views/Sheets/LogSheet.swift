@@ -17,6 +17,12 @@ struct LogSheet: View {
     
     @State private var selectedScreen = 0
     
+    @State private var totalTimeSpent = "00:00"
+    @State private var mostPopularTimer = "No Timer"
+    @State private var mostPopularTimerCount = "Ran 0 Times"
+    @State private var dailyAverage = "00:00"
+    @State private var totalTimersRun = "0"
+    
     var discard: () -> ()
     
     func update(_ result : FetchedResults<LogItem>)-> [[LogItem]]{
@@ -77,14 +83,16 @@ struct LogSheet: View {
                      if settings.showingDividers {
                          Divider()
                      }
+                    ScrollView() {
                     VStack(spacing: 14) {
                         Spacer().frame(height: 14)
-                        InsightView(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: "16 Hours 33 Minutes", subtitle: "Good job tracking your time this week! You're 17% up compared to the last week. Great!")
-                        InsightView(icon: "bookmark.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: "Bacon 🥓", value: "Ran 11 Times", subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productiove.")
-                        InsightView(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: "3 Hours 11 Minutes", subtitle: "Looks like you have good average productivity. Well done, mate!")
-                        InsightView(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: "73", subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
+                        InsightView(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")
+                        InsightView(icon: "heart.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: $mostPopularTimer, value: $mostPopularTimerCount, showingValue: true, subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productive.")
+                        InsightView(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: $dailyAverage, value: $mostPopularTimerCount, subtitle: "Looks like you have good average productivity. Well done, mate!")
+                        InsightView(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: $totalTimersRun, value: $mostPopularTimerCount, subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
                         Spacer()
                     }.padding(.leading, 21)
+                    }
                 }.background(Color(UIColor.systemBackground))
                 
             } else {
@@ -93,6 +101,8 @@ struct LogSheet: View {
             }
             
         
+        }.onAppear {
+            self.calculateValues(logItems: self.logItems)
         }
 
     }
@@ -128,6 +138,61 @@ struct LogSheet: View {
             context.delete(logItem)
         }
     }
+    
+    func calculateValues(logItems: FetchedResults<LogItem>) {
+        let logItemsThisWeek = logItems.filter({
+            $0.timeFinished > Date().addingTimeInterval(-604800)
+        })
+        
+        totalTimersRun = String(logItemsThisWeek.count)
+        
+        mostPopularTimer = mostFrequent(array: logItemsThisWeek)?.value ?? ""
+        mostPopularTimerCount = "Ran \(String(mostFrequent(array: logItemsThisWeek)?.count ?? 0)) Times"
+        
+        totalTimeSpent = totalTime(array: logItemsThisWeek)
+        
+        dailyAverage = averageTime(array: logItemsThisWeek)
+        
+        // logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
+        
+        
+        
+        
+    }
+    
+
+    func mostFrequent(array: [LogItem]) -> (value: String, count: Int)? {
+
+        let counts = array.reduce(into: [:]) { $0[$1.title, default: 0] += 1 }
+
+        if let (value, count) = counts.max(by: { $0.1 < $1.1 }) {
+            return (value, count)
+        }
+
+        // array was empty
+        return nil
+    }
+    
+    func totalTime(array: [LogItem]) -> String {
+        var sum: TimeInterval = 0
+        
+        for i in 0...array.count-1 {
+            sum += array[i].timeFinished.timeIntervalSince(array[i].timeStarted)
+        }
+        
+        return sum.relativeStringFromNumber()
+    }
+    
+    func averageTime(array: [LogItem]) -> String {
+        var sum: TimeInterval = 0
+        
+        for i in 0...array.count-1 {
+            sum += array[i].timeFinished.timeIntervalSince(array[i].timeStarted)
+        }
+        
+        return (sum/7).relativeStringFromNumber()
+    }
+
     
     
 }

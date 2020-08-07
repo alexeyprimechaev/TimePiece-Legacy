@@ -17,7 +17,7 @@ struct ContentView: View {
 
     //MARK: Core Data Setup
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(fetchRequest: TimerItem.getAllTimers()) var timers: FetchedResults<TimerItem>
+    @FetchRequest(fetchRequest: TimerItem.getAllTimers()) var timerItems: FetchedResults<TimerItem>
     
     @EnvironmentObject var settings: Settings
     
@@ -62,14 +62,14 @@ struct ContentView: View {
                                 }
                             }
                         }) {
-                            NewTimerSheet(timer: self.timers[self.timers.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet.toggle()}).environmentObject(self.settings)
+                            NewTimerSheet(timer: self.timerItems[self.timerItems.count-1], isAdding: self.$isAdding, discard: {self.showingNewTimerSheet.toggle()}).environmentObject(self.settings)
                     }
                         
                 },
                 
                 
         //MARK: Timers
-                ASCollectionViewSection(id: 1, data: timers, contextMenuProvider: contextMenuProvider) { timer, _ in
+                ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
                     TimerView(timer: timer).fixedSize().environmentObject(self.settings)
                         
                 },
@@ -112,9 +112,9 @@ struct ContentView: View {
             
         //MARK: Sheet
         .sheet(isPresented: self.$showingTimerSheet) {
-            TimerSheet(timer: self.timers[self.selectedTimer], discard: {self.showingTimerSheet = false}, delete: {
+            TimerSheet(timer: self.timerItems[self.selectedTimer], discard: {self.showingTimerSheet = false}, delete: {
                 withAnimation(.default) {
-                    self.timers[self.selectedTimer].remove(from: self.context)
+                    self.timerItems[self.selectedTimer].remove(from: self.context)
                 }
                 self.showingTimerSheet = false
             }).environmentObject(self.settings)
@@ -137,7 +137,7 @@ struct ContentView: View {
     
     //MARK: Delete
     func deleteLast() {
-        timers[timers.count - 1].remove(from: context)
+        timerItems[timerItems.count - 1].remove(from: context)
     }
     
 //MARK: - CollectionView Functions
@@ -195,7 +195,7 @@ struct ContentView: View {
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-                self.selectedTimer = self.timers.lastIndex(of: timer) ?? 0
+                self.selectedTimer = self.timerItems.lastIndex(of: timer) ?? 0
                 self.showingTimerSheet = true
             }
 

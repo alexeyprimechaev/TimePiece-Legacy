@@ -13,8 +13,9 @@ struct InsightView: View {
     @State var icon = "clock.fill"
     @State var color = Color.black
     @State var title = "Most Spent"
-    @State var item = "Eggs"
-    @State var value = ""
+    @Binding var item: String
+    @Binding var value: String
+    @State var showingValue = false
     @State var subtitle = "Eggs"
     
     var body: some View {
@@ -26,7 +27,10 @@ struct InsightView: View {
                     Text(title).foregroundColor(color).smallTitle()
                     HStack(spacing: 14) {
                         Text(item).smallTitle()
-                        Text(value).smallTitle().opacity(0.5)
+                        if showingValue {
+                            Text(value).smallTitle().opacity(0.5)
+                        }
+                        
                     }
                     Text(subtitle).multilineTextAlignment(.leading).secondaryText().opacity(0.5)
                 }
@@ -34,11 +38,5 @@ struct InsightView: View {
             }.padding(7)
         }
         
-    }
-}
-
-struct InsightView_Previews: PreviewProvider {
-    static var previews: some View {
-        InsightView()
     }
 }

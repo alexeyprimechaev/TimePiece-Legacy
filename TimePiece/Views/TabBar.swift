@@ -23,12 +23,7 @@ struct TabBar: View {
                 Spacer().frame(width: 14)
                 TabItem(title: newString,icon: "plus", action: { self.actions[0]() })
                 TabItem(title: logString, icon: "tray", action: {
-                    if self.settings.isSubscribed {
-                        self.actions[1]()
-                    } else {
-                        self.showingSubscriptionSheet = true
-                        print("oi mate")
-                    }
+                    self.actions[1]()
                     
                 })
                 TabItem(title: settingsString, icon: "ellipsis.circle", action: { self.actions[2]() })

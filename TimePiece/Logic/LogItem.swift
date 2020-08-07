@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import SwiftUI
+
 
 
 public class LogItem: NSManagedObject, Identifiable {
@@ -22,10 +24,6 @@ public class LogItem: NSManagedObject, Identifiable {
     @NSManaged public var titleStored: String?
     @NSManaged public var timeStartedStored: Date?
     @NSManaged public var timeFinishedStored: Date?
-    
-    
-    
-    
     
     
     
@@ -59,6 +57,7 @@ extension LogItem {
         let sortDescriptor = NSSortDescriptor(key: "timeStartedStored", ascending: true)
         
         request.sortDescriptors = [sortDescriptor]
+        
         
         return request
     }
