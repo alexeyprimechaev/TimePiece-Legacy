@@ -28,7 +28,6 @@ public class TimerItem: NSManagedObject, Identifiable {
     @NSManaged public var isPausedStored: NSNumber?
     @NSManaged public var isReusableStored: NSNumber?
     @NSManaged public var isRunningStored: NSNumber?
-    @NSManaged public var isStopwatchStored: NSNumber?
     @NSManaged public var currentTimeStored: NSNumber?
     @NSManaged public var totalTimeStored: NSNumber?
     @NSManaged public var timeStartedStored: Date?
@@ -233,11 +232,6 @@ extension TimerItem {
     var isReusable: Bool {
         get { isReusableStored?.boolValue ?? true }
         set { isReusableStored = newValue as NSNumber }
-    }
-    
-    var isStopwatch: Bool {
-        get { isStopwatchStored?.boolValue ?? true }
-        set { isStopwatchStored = newValue as NSNumber }
     }
     
     var showInLog: Bool {
