@@ -95,6 +95,7 @@ struct ContentView: View {
             fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             return fl
         }
+        .alwaysBounceVertical(true)
             TabBar(actions: [
             {
                 withAnimation(.default) {

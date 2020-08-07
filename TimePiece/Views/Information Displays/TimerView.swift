@@ -53,9 +53,6 @@ struct TimerView: View {
                     
                     Text(timer.currentTimeString)
                         .opacity(0.5)
-                        .onReceive(Timer.publish(every: self.timer.precisionSetting==TimerItem.precisionSettings[1] ? 0.1 : 0.015, on: .main, in: .common).autoconnect()) { time in
-                            self.timer.updateTime()
-                        }
                     
                 }
                 
