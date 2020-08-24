@@ -68,7 +68,7 @@ struct LogSheet: View {
         VStack(spacing: 0) {
         HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
             Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
-                Text("Insights").tag(0)
+                Text("Trends").tag(0)
                 Text("History").tag(1)
             }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 28).padding(.vertical, 7)
             if selectedScreen == 0 {
@@ -176,7 +176,7 @@ struct LogSheet: View {
     func totalTime(array: [LogItem]) -> String {
         var sum: TimeInterval = 0
         
-        for i in 0...array.count-1 {
+        for i in 0..<array.count {
             sum += array[i].timeFinished.timeIntervalSince(array[i].timeStarted)
         }
         
@@ -186,7 +186,7 @@ struct LogSheet: View {
     func averageTime(array: [LogItem]) -> String {
         var sum: TimeInterval = 0
         
-        for i in 0...array.count-1 {
+        for i in 0..<array.count {
             sum += array[i].timeFinished.timeIntervalSince(array[i].timeStarted)
         }
         

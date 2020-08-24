@@ -22,11 +22,11 @@ struct TabBar: View {
             HStack(spacing: 0) {
                 Spacer().frame(width: 14)
                 TabItem(title: newString,icon: "plus", action: { self.actions[0]() })
-                TabItem(title: logString, icon: "tray", action: {
+                TabItem(title: logString, icon: "bolt", action: {
                     self.actions[1]()
                     
                 })
-                TabItem(title: settingsString, icon: "ellipsis.circle", action: { self.actions[2]() })
+                TabItem(title: settingsString, icon: "gear", action: { self.actions[2]() })
                 Spacer()
             }
         }.betterSheet(isPresented: $showingSubscriptionSheet) {
