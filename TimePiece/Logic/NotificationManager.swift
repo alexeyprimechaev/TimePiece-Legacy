@@ -93,4 +93,27 @@ public class NotificationManager {
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [timer.notificationIdentifier.uuidString])
         UNUserNotificationCenter.current().setBadgeCount(to: badgeCount)
     }
+    
+    static func createRepeatingNotification() {
+            var date = DateComponents()
+        
+            date.hour = 10
+            date.minute = 00
+            date.weekday = 7
+        
+            print("fuck")
+        
+            let content = UNMutableNotificationContent()
+            content.title = "Check how you've been spending your time this week"
+//            content.body = "Don't forget to log your mood"
+            content.sound = UNNotificationSound.default
+            badgeCount += 1
+            content.badge = NSNumber(value: badgeCount)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+            let request = UNNotificationRequest(identifier: "openApp", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+          
+        })
+    }
 }

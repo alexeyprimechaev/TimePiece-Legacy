@@ -25,7 +25,9 @@ struct TabBar: View {
                 TabItem(title: logString, icon: "bolt", action: {
                     self.actions[1]()
                     
-                })
+                    }).overlay(
+                        Circle().frame(width: 7, height: 7).foregroundColor(.red).padding(.top, 7).padding(.leading, 26).opacity(settings.hasSeenTrends ? 0 : 1)
+                    , alignment: .topLeading)
                 TabItem(title: settingsString, icon: "gear", action: { self.actions[2]() })
                 Spacer()
             }

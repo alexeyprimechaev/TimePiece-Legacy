@@ -16,6 +16,18 @@ public class Settings: ObservableObject {
     
     @Published var showingSubscription: Bool = false
     
+    @Published var nextNotificationDate: Date = ((defaultsStored.value(forKey: "nextNotificationDate") ?? Date().addingTimeInterval(36000)) as! Date) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "nextNotificationDate")
+        }
+    }
+    
+    @Published var hasSeenTrends: Bool = ((defaultsStored.value(forKey: "hasSeenTrends") ?? true) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "hasSeenTrends")
+        }
+    }
+    
     @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? false) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "isSubscribed")
@@ -81,7 +93,7 @@ public class Settings: ObservableObject {
             defaultsStored.set(newValue, forKey: "yearlyPrice")
         }
     }
-    
+
     func getMonthlyPrice() {
         SwiftyStoreKit.retrieveProductsInfo(["timepiecesubscription"]) { result in
             if let product = result.retrievedProducts.first {

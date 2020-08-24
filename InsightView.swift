@@ -26,7 +26,7 @@ struct InsightView: View {
                 VStack(alignment: .leading, spacing: 7) {
                     Text(title).foregroundColor(color).smallTitle()
                     HStack(spacing: 14) {
-                        Text(item).smallTitle()
+                        Text(item == "" ? "Timer ⏱" : item).smallTitle()
                         if showingValue {
                             Text(value).smallTitle().opacity(0.5)
                         }

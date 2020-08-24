@@ -102,6 +102,7 @@ struct LogSheet: View {
             
         
         }.onAppear {
+            self.settings.hasSeenTrends = true
             self.calculateValues(logItems: self.logItems)
         }
 

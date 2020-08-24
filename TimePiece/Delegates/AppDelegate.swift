@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         print(NotificationManager.badgeCount)
         
+        
+        
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
             for purchase in purchases {
                 switch purchase.transaction.transactionState {
@@ -36,6 +38,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["openApp"])
+        NotificationManager.createRepeatingNotification()
+        
+        let calendar = Calendar(identifier: .gregorian)
+
+        // Weekday units are the numbers 1 through n, where n is the number of days in the week.
+        // For example, in the Gregorian calendar, n is 7 and Sunday is represented by 1.
+       var date = DateComponents()
+        
+            date.hour = 10
+            date.minute = 00
+            date.weekday = 7
+            date.calendar = calendar
+        
+        
+        let nextSunday = calendar.nextDate(after: Date(), matching: date, matchingPolicy: .nextTimePreservingSmallerComponents) // "Jan 14, 2018 at 12:00 AM"
+        
+        settings.nextNotificationDate = nextSunday ?? Date().addingTimeInterval(3600)
+        
+        if Date() > settings.nextNotificationDate {
+            settings.hasSeenTrends = false
+        }
+        
         settings.getMonthlyPrice()
         settings.getYearlyPrice()
         if settings.isSubscribed {
