@@ -91,7 +91,7 @@ public class NotificationManager {
         badgeCount -= 1
         
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [timer.notificationIdentifier.uuidString])
-        UNUserNotificationCenter.current().setBadgeCount(to: badgeCount)
+        //UNUserNotificationCenter.current().setBadgeCount(to: badgeCount)
     }
     
     static func createRepeatingNotification() {

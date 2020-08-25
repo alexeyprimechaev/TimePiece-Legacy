@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/timbersoftware/SwiftUI-Introspect.git",
         "state": {
           "branch": "master",
-          "revision": "18c8c7fb0f22a3b86b34d68cb3a5f4e7351774e1",
+          "revision": "5c501bf4a581e683b96a4915bb2566e88a264c95",
           "version": null
         }
       },
@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/bizz84/SwiftyStoreKit.git",
         "state": {
           "branch": "master",
-          "revision": "56987846e38183d06db958f165247f8eec893c18",
+          "revision": "e518abea746857ea2b3348ade9e9143d88d7e431",
           "version": null
         }
       }

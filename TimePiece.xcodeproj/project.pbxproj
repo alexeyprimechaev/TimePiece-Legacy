@@ -7,65 +7,114 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8012C7A924056C5000E7798E /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7A824056C5000E7798E /* TimerButton.swift */; };
-		8012C7AB24057D4200E7798E /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
-		801A18502402CEB6005B4D19 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
-		801A18522402DD9C005B4D19 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A18512402DD9C005B4D19 /* ToggleButton.swift */; };
-		801C0E412416D4D1004A17B1 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0E402416D4D1004A17B1 /* MainButton.swift */; };
-		801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
-		8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
-		8021ADAC23D51F080090BA7F /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
-		8027EDB524C9F01000F9310D /* MultilineHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB424C9F01000F9310D /* MultilineHStack.swift */; };
-		8027EDB724C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
-		802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
-		802A027023CFBB6300512B39 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 802A026F23CFBB6300512B39 /* Introspect */; };
-		803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 803B0FD223F6036D00F2EB32 /* BetterSheet */; };
-		80494C42241B8C8600CC8435 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 80494C41241B8C8600CC8435 /* ASCollectionView */; };
-		804E17B224087B71003F5001 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
-		8055D7A9243B627600AF516E /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
-		8055D7AB243B62ED00AF516E /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
-		8055D7AF243B697800AF516E /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogView.swift */; };
-		8060E0202482D12200F6F74D /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E01F2482D12200F6F74D /* TabItem.swift */; };
-		8060E0222482D50600F6F74D /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E0212482D50600F6F74D /* TabBar.swift */; };
-		80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE223C274DB00BC03F5 /* AppDelegate.swift */; };
-		80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE423C274DB00BC03F5 /* SceneDelegate.swift */; };
-		80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
-		80612FEC23C274DF00BC03F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
-		80612FEF23C274DF00BC03F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */; };
-		80612FF223C274DF00BC03F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */; };
-		80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimerView.swift */; };
-		80612FFC23C2766B00BC03F5 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerItem.swift */; };
-		80727C98241136FF0046EE08 /* PremiumBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80727C97241136FF0046EE08 /* PremiumBadge.swift */; };
-		807A0F4123D4C66C008B0E24 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A0F4023D4C66C008B0E24 /* TimeView.swift */; };
-		8088473B23C2AE79001D1A6E /* TimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerSheet.swift */; };
-		809635642401544D00BF297F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
-		809D69C52416CB4900896206 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
-		809D9F3224C4929200DB4E94 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809D9F3124C4929200DB4E94 /* CloudKit.framework */; };
-		80A14FB52411077000638B64 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
-		80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
-		80B62E73244DF13C001D4D9E /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
-		80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
-		80B91C8424C8A04F0017F8B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
-		80B91C8824C8A1BE0017F8B9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
-		80C909212437BB3E00939F25 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
-		80D343B32443717F00BA76B1 /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */; };
-		80D343B52443723800BA76B1 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B42443723800BA76B1 /* SettingsSheet.swift */; };
-		80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
-		80E6DD5024D49F0900B0DC78 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6DD4F24D49F0900B0DC78 /* InsightView.swift */; };
-		80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80EF121C2430E74A00905780 /* SwiftyStoreKit */; };
-		80F355142418068F009ABFAD /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
+		80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
+		80150D7D24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
+		80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
+		80150D8124F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
+		80150D8224F58BDD00C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80150D6A24F58BDC00C740B3 /* Assets.xcassets */; };
+		80150D8324F58BDD00C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80150D6A24F58BDC00C740B3 /* Assets.xcassets */; };
+		80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
+		80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
+		80150DCF24F58E7300C740B3 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
+		80150DD024F58E7300C740B3 /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
+		80150DD124F58E7300C740B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
+		80150DD224F58E7300C740B3 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
+		80150DD324F58E7300C740B3 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimerView.swift */; };
+		80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B42443723800BA76B1 /* SettingsSheet.swift */; };
+		80150DD524F58E7300C740B3 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
+		80150DD624F58E7300C740B3 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
+		80150DD724F58E7300C740B3 /* PremiumBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80727C97241136FF0046EE08 /* PremiumBadge.swift */; };
+		80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
+		80150DD924F58E7300C740B3 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E0212482D50600F6F74D /* TabBar.swift */; };
+		80150DDA24F58E7300C740B3 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7A824056C5000E7798E /* TimerButton.swift */; };
+		80150DDB24F58E7300C740B3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
+		80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
+		80150DDD24F58E7300C740B3 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6DD4F24D49F0900B0DC78 /* InsightView.swift */; };
+		80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
+		80150DDF24F58E7300C740B3 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A0F4023D4C66C008B0E24 /* TimeView.swift */; };
+		80150DE024F58E7300C740B3 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E01F2482D12200F6F74D /* TabItem.swift */; };
+		80150DE124F58E7300C740B3 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0E402416D4D1004A17B1 /* MainButton.swift */; };
+		80150DE224F58E7300C740B3 /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
+		80150DE324F58E7300C740B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
+		80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
+		80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
+		80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
+		80150DE724F58E7300C740B3 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A18512402DD9C005B4D19 /* ToggleButton.swift */; };
+		80150DE824F58E7300C740B3 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
+		80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
+		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
+		80150DEB24F58E7300C740B3 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerItem.swift */; };
+		80150DEC24F58E7300C740B3 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
+		80150DED24F58E7300C740B3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogView.swift */; };
+		80150DEE24F58E7300C740B3 /* TimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerSheet.swift */; };
+		80150E0124F58E7500C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
+		80150E0224F58E7500C740B3 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
+		80150E0324F58E7500C740B3 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
+		80150E0424F58E7500C740B3 /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
+		80150E0524F58E7500C740B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
+		80150E0624F58E7500C740B3 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
+		80150E0724F58E7500C740B3 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimerView.swift */; };
+		80150E0824F58E7500C740B3 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B42443723800BA76B1 /* SettingsSheet.swift */; };
+		80150E0924F58E7500C740B3 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
+		80150E0A24F58E7500C740B3 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
+		80150E0B24F58E7500C740B3 /* PremiumBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80727C97241136FF0046EE08 /* PremiumBadge.swift */; };
+		80150E0C24F58E7500C740B3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
+		80150E0D24F58E7500C740B3 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E0212482D50600F6F74D /* TabBar.swift */; };
+		80150E0E24F58E7500C740B3 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7A824056C5000E7798E /* TimerButton.swift */; };
+		80150E0F24F58E7500C740B3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
+		80150E1024F58E7500C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
+		80150E1124F58E7500C740B3 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6DD4F24D49F0900B0DC78 /* InsightView.swift */; };
+		80150E1224F58E7500C740B3 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
+		80150E1324F58E7500C740B3 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A0F4023D4C66C008B0E24 /* TimeView.swift */; };
+		80150E1424F58E7500C740B3 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E01F2482D12200F6F74D /* TabItem.swift */; };
+		80150E1524F58E7500C740B3 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0E402416D4D1004A17B1 /* MainButton.swift */; };
+		80150E1624F58E7500C740B3 /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
+		80150E1724F58E7500C740B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
+		80150E1824F58E7500C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
+		80150E1924F58E7500C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
+		80150E1A24F58E7500C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
+		80150E1B24F58E7500C740B3 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A18512402DD9C005B4D19 /* ToggleButton.swift */; };
+		80150E1C24F58E7500C740B3 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
+		80150E1D24F58E7500C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
+		80150E1E24F58E7500C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
+		80150E1F24F58E7500C740B3 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerItem.swift */; };
+		80150E2024F58E7500C740B3 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
+		80150E2124F58E7500C740B3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogView.swift */; };
+		80150E2224F58E7500C740B3 /* TimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerSheet.swift */; };
+		80150E2524F5900400C740B3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2424F5900400C740B3 /* Introspect */; };
+		80150E2724F5903200C740B3 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2624F5903200C740B3 /* BetterSheet */; };
+		80150E2924F5903700C740B3 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2824F5903700C740B3 /* ASCollectionView */; };
+		80150E2B24F5903C00C740B3 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2A24F5903C00C740B3 /* SwiftyStoreKit */; };
+		80150E2D24F5904800C740B3 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2C24F5904800C740B3 /* BetterSheet */; };
+		80150E2F24F5904A00C740B3 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2E24F5904A00C740B3 /* ASCollectionView */; };
+		80150E3124F5904D00C740B3 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E3024F5904D00C740B3 /* SwiftyStoreKit */; };
+		80150E3324F5905000C740B3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E3224F5905000C740B3 /* Introspect */; };
+		80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */; };
+		80150E3524F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */; };
+		80150E3624F5938F00C740B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
+		80150E3724F5938F00C740B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
+		80150E3824F593A500C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
+		80150E3924F593A600C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8012C7A824056C5000E7798E /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		8012C7AA24057D4200E7798E /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
+		80150D6724F58BD900C740B3 /* TimePieceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceApp.swift; sourceTree = "<group>"; };
+		80150D6824F58BD900C740B3 /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
+		80150D6924F58BD900C740B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		80150D6A24F58BDC00C740B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		80150D6F24F58BDC00C740B3 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80150D7124F58BDC00C740B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80150D7624F58BDD00C740B3 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80150D7824F58BDD00C740B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80150D7924F58BDD00C740B3 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		801A184F2402CEB6005B4D19 /* RegularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularButton.swift; sourceTree = "<group>"; };
 		801A18512402DD9C005B4D19 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		801C0E402416D4D1004A17B1 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		801FFBB123CF9AF50040A12C /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		8021ADA923D507F50090BA7F /* EditableTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimeView.swift; sourceTree = "<group>"; };
 		8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerSheet.swift; sourceTree = "<group>"; };
-		8027EDB424C9F01000F9310D /* MultilineHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultilineHStack.swift; path = TimePiece/Views/Buttons/MultilineHStack.swift; sourceTree = SOURCE_ROOT; };
 		8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		802A026C23CFBA5600512B39 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
 		804E17B124087B71003F5001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -78,9 +127,6 @@
 		805DB84324D485F600178B5B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8060E01F2482D12200F6F74D /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		80612FDF23C274DB00BC03F5 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		80612FE223C274DB00BC03F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		80612FE423C274DB00BC03F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		80612FE923C274DB00BC03F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -110,21 +156,61 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		80612FDC23C274DB00BC03F5 /* Frameworks */ = {
+		80150D6C24F58BDC00C740B3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				809D9F3224C4929200DB4E94 /* CloudKit.framework in Frameworks */,
-				802A027023CFBB6300512B39 /* Introspect in Frameworks */,
-				80EF121D2430E74A00905780 /* SwiftyStoreKit in Frameworks */,
-				80494C42241B8C8600CC8435 /* ASCollectionView in Frameworks */,
-				803B0FD323F6036D00F2EB32 /* BetterSheet in Frameworks */,
+				80150E2724F5903200C740B3 /* BetterSheet in Frameworks */,
+				80150E2B24F5903C00C740B3 /* SwiftyStoreKit in Frameworks */,
+				80150E2924F5903700C740B3 /* ASCollectionView in Frameworks */,
+				80150E2524F5900400C740B3 /* Introspect in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80150D7324F58BDC00C740B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80150E3124F5904D00C740B3 /* SwiftyStoreKit in Frameworks */,
+				80150E3324F5905000C740B3 /* Introspect in Frameworks */,
+				80150E2D24F5904800C740B3 /* BetterSheet in Frameworks */,
+				80150E2F24F5904A00C740B3 /* ASCollectionView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80150D6424F58BD900C740B3 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				80612FE123C274DB00BC03F5 /* TimePiece */,
+				80150D6724F58BD900C740B3 /* TimePieceApp.swift */,
+				80150D6824F58BD900C740B3 /* ContentView2.swift */,
+				80150D6924F58BD900C740B3 /* Persistence.swift */,
+				80150D6A24F58BDC00C740B3 /* Assets.xcassets */,
+				80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		80150D7024F58BDC00C740B3 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				80150D7124F58BDC00C740B3 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		80150D7724F58BDD00C740B3 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				80150D7824F58BDD00C740B3 /* Info.plist */,
+				80150D7924F58BDD00C740B3 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
 		801A18532402FF1E005B4D19 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				80E6DD4F24D49F0900B0DC78 /* InsightView.swift */,
-				8027EDB424C9F01000F9310D /* MultilineHStack.swift */,
 				8055D7AE243B697800AF516E /* LogView.swift */,
 				80612FF923C2750900BC03F5 /* TimerView.swift */,
 				8012C7AA24057D4200E7798E /* ListSection.swift */,
@@ -158,7 +243,9 @@
 		80612FD623C274DB00BC03F5 = {
 			isa = PBXGroup;
 			children = (
-				80612FE123C274DB00BC03F5 /* TimePiece */,
+				80150D6424F58BD900C740B3 /* Shared */,
+				80150D7024F58BDC00C740B3 /* iOS */,
+				80150D7724F58BDD00C740B3 /* macOS */,
 				80612FE023C274DB00BC03F5 /* Products */,
 				809D9F3024C4929200DB4E94 /* Frameworks */,
 			);
@@ -167,7 +254,8 @@
 		80612FE023C274DB00BC03F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80612FDF23C274DB00BC03F5 /* TimePiece.app */,
+				80150D6F24F58BDC00C740B3 /* TimePiece.app */,
+				80150D7624F58BDD00C740B3 /* TimePiece.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,8 +324,6 @@
 		80D141E523CE175D00FD2B5A /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				80612FE223C274DB00BC03F5 /* AppDelegate.swift */,
-				80612FE423C274DB00BC03F5 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -247,7 +333,6 @@
 			children = (
 				80B91C8624C8A04F0017F8B9 /* Localizable.strings */,
 				80B91C8724C8A1BE0017F8B9 /* Strings.swift */,
-				80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */,
 				80612FFB23C2766B00BC03F5 /* TimerItem.swift */,
 				8055D7A8243B627600AF516E /* LogItem.swift */,
 				804E17B124087B71003F5001 /* Settings.swift */,
@@ -260,27 +345,50 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80612FDE23C274DB00BC03F5 /* TimePiece */ = {
+		80150D6E24F58BDC00C740B3 /* TimePiece (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80612FF623C274DF00BC03F5 /* Build configuration list for PBXNativeTarget "TimePiece" */;
+			buildConfigurationList = 80150D8424F58BDD00C740B3 /* Build configuration list for PBXNativeTarget "TimePiece (iOS)" */;
 			buildPhases = (
-				80612FDB23C274DB00BC03F5 /* Sources */,
-				80612FDC23C274DB00BC03F5 /* Frameworks */,
-				80612FDD23C274DB00BC03F5 /* Resources */,
+				80150D6B24F58BDC00C740B3 /* Sources */,
+				80150D6C24F58BDC00C740B3 /* Frameworks */,
+				80150D6D24F58BDC00C740B3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TimePiece;
+			name = "TimePiece (iOS)";
 			packageProductDependencies = (
-				802A026F23CFBB6300512B39 /* Introspect */,
-				803B0FD223F6036D00F2EB32 /* BetterSheet */,
-				80494C41241B8C8600CC8435 /* ASCollectionView */,
-				80EF121C2430E74A00905780 /* SwiftyStoreKit */,
+				80150E2424F5900400C740B3 /* Introspect */,
+				80150E2624F5903200C740B3 /* BetterSheet */,
+				80150E2824F5903700C740B3 /* ASCollectionView */,
+				80150E2A24F5903C00C740B3 /* SwiftyStoreKit */,
 			);
-			productName = TimerPlus;
-			productReference = 80612FDF23C274DB00BC03F5 /* TimePiece.app */;
+			productName = "TimePieceApp (iOS)";
+			productReference = 80150D6F24F58BDC00C740B3 /* TimePiece.app */;
+			productType = "com.apple.product-type.application";
+		};
+		80150D7524F58BDC00C740B3 /* TimePiece (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80150D8724F58BDD00C740B3 /* Build configuration list for PBXNativeTarget "TimePiece (macOS)" */;
+			buildPhases = (
+				80150D7224F58BDC00C740B3 /* Sources */,
+				80150D7324F58BDC00C740B3 /* Frameworks */,
+				80150D7424F58BDC00C740B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TimePiece (macOS)";
+			packageProductDependencies = (
+				80150E2C24F5904800C740B3 /* BetterSheet */,
+				80150E2E24F5904A00C740B3 /* ASCollectionView */,
+				80150E3024F5904D00C740B3 /* SwiftyStoreKit */,
+				80150E3224F5905000C740B3 /* Introspect */,
+			);
+			productName = "TimePieceApp (macOS)";
+			productReference = 80150D7624F58BDD00C740B3 /* TimePiece.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -289,12 +397,15 @@
 		80612FD723C274DB00BC03F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Alexey Primechaev";
 				TargetAttributes = {
-					80612FDE23C274DB00BC03F5 = {
-						CreatedOnToolsVersion = 11.3;
+					80150D6E24F58BDC00C740B3 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					80150D7524F58BDC00C740B3 = {
+						CreatedOnToolsVersion = 12.0;
 					};
 				};
 			};
@@ -310,77 +421,130 @@
 			);
 			mainGroup = 80612FD623C274DB00BC03F5;
 			packageReferences = (
-				802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */,
 				80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */,
 				80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 80612FE023C274DB00BC03F5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80612FDE23C274DB00BC03F5 /* TimePiece */,
+				80150D6E24F58BDC00C740B3 /* TimePiece (iOS) */,
+				80150D7524F58BDC00C740B3 /* TimePiece (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		80612FDD23C274DB00BC03F5 /* Resources */ = {
+		80150D6D24F58BDC00C740B3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80612FF223C274DF00BC03F5 /* LaunchScreen.storyboard in Resources */,
-				80B91C8424C8A04F0017F8B9 /* Localizable.strings in Resources */,
-				80612FEF23C274DF00BC03F5 /* Preview Assets.xcassets in Resources */,
-				80612FEC23C274DF00BC03F5 /* Assets.xcassets in Resources */,
+				80150D8224F58BDD00C740B3 /* Assets.xcassets in Resources */,
+				80150E3824F593A500C740B3 /* Assets.xcassets in Resources */,
+				80150E3624F5938F00C740B3 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80150D7424F58BDC00C740B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80150D8324F58BDD00C740B3 /* Assets.xcassets in Resources */,
+				80150E3924F593A600C740B3 /* Assets.xcassets in Resources */,
+				80150E3724F5938F00C740B3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		80612FDB23C274DB00BC03F5 /* Sources */ = {
+		80150D6B24F58BDC00C740B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				809D69C52416CB4900896206 /* SubscriptionSheet.swift in Sources */,
-				8055D7AB243B62ED00AF516E /* LogSheet.swift in Sources */,
-				80612FFA23C2750900BC03F5 /* TimerView.swift in Sources */,
-				80D343B32443717F00BA76B1 /* TimePiece.xcdatamodeld in Sources */,
-				809635642401544D00BF297F /* NotificationManager.swift in Sources */,
-				802A026D23CFBA5600512B39 /* PropertyView.swift in Sources */,
-				8055D7AF243B697800AF516E /* LogView.swift in Sources */,
-				801C0E412416D4D1004A17B1 /* MainButton.swift in Sources */,
-				8012C7A924056C5000E7798E /* TimerButton.swift in Sources */,
-				80B91C8824C8A1BE0017F8B9 /* Strings.swift in Sources */,
-				8012C7AB24057D4200E7798E /* ListSection.swift in Sources */,
-				801FFBB223CF9AF50040A12C /* PickerButton.swift in Sources */,
-				80727C98241136FF0046EE08 /* PremiumBadge.swift in Sources */,
-				80C909212437BB3E00939F25 /* Haptics.swift in Sources */,
-				80F355142418068F009ABFAD /* HeaderBar.swift in Sources */,
-				80B62E73244DF13C001D4D9E /* SubscriptionButton.swift in Sources */,
-				8021ADAA23D507F50090BA7F /* EditableTimeView.swift in Sources */,
-				80A14FB52411077000638B64 /* PersonCard.swift in Sources */,
-				80612FE323C274DB00BC03F5 /* AppDelegate.swift in Sources */,
-				80DC3ECE23DF271A00C43A23 /* Styles.swift in Sources */,
-				80ACD6B723CBE435000C49DC /* PauseButton.swift in Sources */,
-				8027EDB524C9F01000F9310D /* MultilineHStack.swift in Sources */,
-				80612FEA23C274DB00BC03F5 /* ContentView.swift in Sources */,
-				80612FE523C274DB00BC03F5 /* SceneDelegate.swift in Sources */,
-				80B6BF1D2418205900815793 /* SubscriptionBadge.swift in Sources */,
-				8021ADAC23D51F080090BA7F /* NewTimerSheet.swift in Sources */,
-				80D343B52443723800BA76B1 /* SettingsSheet.swift in Sources */,
-				804E17B224087B71003F5001 /* Settings.swift in Sources */,
-				801A18522402DD9C005B4D19 /* ToggleButton.swift in Sources */,
-				8055D7A9243B627600AF516E /* LogItem.swift in Sources */,
-				8027EDB724C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift in Sources */,
-				801A18502402CEB6005B4D19 /* RegularButton.swift in Sources */,
-				80612FFC23C2766B00BC03F5 /* TimerItem.swift in Sources */,
-				8088473B23C2AE79001D1A6E /* TimerSheet.swift in Sources */,
-				8060E0202482D12200F6F74D /* TabItem.swift in Sources */,
-				80E6DD5024D49F0900B0DC78 /* InsightView.swift in Sources */,
-				807A0F4123D4C66C008B0E24 /* TimeView.swift in Sources */,
-				8060E0222482D50600F6F74D /* TabBar.swift in Sources */,
+				80150DE224F58E7300C740B3 /* NewTimerSheet.swift in Sources */,
+				80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */,
+				80150DD624F58E7300C740B3 /* Styles.swift in Sources */,
+				80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */,
+				80150DDD24F58E7300C740B3 /* InsightView.swift in Sources */,
+				80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */,
+				80150DE124F58E7300C740B3 /* MainButton.swift in Sources */,
+				80150DDA24F58E7300C740B3 /* TimerButton.swift in Sources */,
+				80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */,
+				80150DDB24F58E7300C740B3 /* Strings.swift in Sources */,
+				80150DE724F58E7300C740B3 /* ToggleButton.swift in Sources */,
+				80150DD224F58E7300C740B3 /* SubscriptionBadge.swift in Sources */,
+				80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */,
+				80150DEE24F58E7300C740B3 /* TimerSheet.swift in Sources */,
+				80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */,
+				80150DEB24F58E7300C740B3 /* TimerItem.swift in Sources */,
+				80150DD924F58E7300C740B3 /* TabBar.swift in Sources */,
+				80150DE324F58E7300C740B3 /* ContentView.swift in Sources */,
+				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
+				80150DD324F58E7300C740B3 /* TimerView.swift in Sources */,
+				80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */,
+				80150DE824F58E7300C740B3 /* Haptics.swift in Sources */,
+				80150DED24F58E7300C740B3 /* LogView.swift in Sources */,
+				80150DE024F58E7300C740B3 /* TabItem.swift in Sources */,
+				80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
+				80150DEC24F58E7300C740B3 /* SubscriptionSheet.swift in Sources */,
+				80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */,
+				80150DD524F58E7300C740B3 /* LogItem.swift in Sources */,
+				80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */,
+				80150DD024F58E7300C740B3 /* EditableTimeView.swift in Sources */,
+				80150DD124F58E7300C740B3 /* Settings.swift in Sources */,
+				80150DDF24F58E7300C740B3 /* TimeView.swift in Sources */,
+				80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */,
+				80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */,
+				80150DD724F58E7300C740B3 /* PremiumBadge.swift in Sources */,
+				80150DCF24F58E7300C740B3 /* PropertyView.swift in Sources */,
+				80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80150D7224F58BDC00C740B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80150E1624F58E7500C740B3 /* NewTimerSheet.swift in Sources */,
+				80150E0824F58E7500C740B3 /* SettingsSheet.swift in Sources */,
+				80150E0A24F58E7500C740B3 /* Styles.swift in Sources */,
+				80150E1824F58E7500C740B3 /* SubscriptionButton.swift in Sources */,
+				80150E1124F58E7500C740B3 /* InsightView.swift in Sources */,
+				80150E3524F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */,
+				80150E1524F58E7500C740B3 /* MainButton.swift in Sources */,
+				80150E0E24F58E7500C740B3 /* TimerButton.swift in Sources */,
+				80150D8124F58BDD00C740B3 /* Persistence.swift in Sources */,
+				80150E0F24F58E7500C740B3 /* Strings.swift in Sources */,
+				80150E1B24F58E7500C740B3 /* ToggleButton.swift in Sources */,
+				80150E0624F58E7500C740B3 /* SubscriptionBadge.swift in Sources */,
+				80150D7D24F58BDD00C740B3 /* TimePieceApp.swift in Sources */,
+				80150E2224F58E7500C740B3 /* TimerSheet.swift in Sources */,
+				80150E0C24F58E7500C740B3 /* NotificationManager.swift in Sources */,
+				80150E1F24F58E7500C740B3 /* TimerItem.swift in Sources */,
+				80150E0D24F58E7500C740B3 /* TabBar.swift in Sources */,
+				80150E1724F58E7500C740B3 /* ContentView.swift in Sources */,
+				80150E0224F58E7500C740B3 /* PersonCard.swift in Sources */,
+				80150E0724F58E7500C740B3 /* TimerView.swift in Sources */,
+				80150E1A24F58E7500C740B3 /* PauseButton.swift in Sources */,
+				80150E1C24F58E7500C740B3 /* Haptics.swift in Sources */,
+				80150E2124F58E7500C740B3 /* LogView.swift in Sources */,
+				80150E1424F58E7500C740B3 /* TabItem.swift in Sources */,
+				80150E1024F58E7500C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
+				80150E2024F58E7500C740B3 /* SubscriptionSheet.swift in Sources */,
+				80150E1E24F58E7500C740B3 /* PickerButton.swift in Sources */,
+				80150E0924F58E7500C740B3 /* LogItem.swift in Sources */,
+				80150E1224F58E7500C740B3 /* RegularButton.swift in Sources */,
+				80150E0424F58E7500C740B3 /* EditableTimeView.swift in Sources */,
+				80150E0524F58E7500C740B3 /* Settings.swift in Sources */,
+				80150E1324F58E7500C740B3 /* TimeView.swift in Sources */,
+				80150E1D24F58E7500C740B3 /* LogSheet.swift in Sources */,
+				80150E1924F58E7500C740B3 /* HeaderBar.swift in Sources */,
+				80150E0B24F58E7500C740B3 /* PremiumBadge.swift in Sources */,
+				80150E0324F58E7500C740B3 /* PropertyView.swift in Sources */,
+				80150E0124F58E7500C740B3 /* ListSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +574,107 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		80150D8524F58BDD00C740B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W7F94ZP22K;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
+				PRODUCT_NAME = TimePiece;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		80150D8624F58BDD00C740B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W7F94ZP22K;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
+				PRODUCT_NAME = TimePiece;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80150D8824F58BDD00C740B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = W7F94ZP22K;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
+				PRODUCT_NAME = TimePiece;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		80150D8924F58BDD00C740B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = W7F94ZP22K;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
+				PRODUCT_NAME = TimePiece;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		80612FF423C274DF00BC03F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -526,61 +791,27 @@
 			};
 			name = Release;
 		};
-		80612FF723C274DF00BC03F5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TimePiece/TimePiece.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TimePiece/Preview Content\"";
-				DEVELOPMENT_TEAM = W7F94ZP22K;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = TimePiece/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
-				PRODUCT_NAME = TimePiece;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		80612FF823C274DF00BC03F5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TimePiece/TimePiece.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TimePiece/Preview Content\"";
-				DEVELOPMENT_TEAM = W7F94ZP22K;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = TimePiece/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
-				PRODUCT_NAME = TimePiece;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		80150D8424F58BDD00C740B3 /* Build configuration list for PBXNativeTarget "TimePiece (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80150D8524F58BDD00C740B3 /* Debug */,
+				80150D8624F58BDD00C740B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80150D8724F58BDD00C740B3 /* Build configuration list for PBXNativeTarget "TimePiece (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80150D8824F58BDD00C740B3 /* Debug */,
+				80150D8924F58BDD00C740B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		80612FDA23C274DB00BC03F5 /* Build configuration list for PBXProject "TimePiece" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -590,19 +821,10 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80612FF623C274DF00BC03F5 /* Build configuration list for PBXNativeTarget "TimePiece" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				80612FF723C274DF00BC03F5 /* Debug */,
-				80612FF823C274DF00BC03F5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+		80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/timbersoftware/SwiftUI-Introspect.git";
 			requirement = {
@@ -637,25 +859,45 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		802A026F23CFBB6300512B39 /* Introspect */ = {
+		80150E2424F5900400C740B3 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 802A026E23CFBB6300512B39 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			package = 80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
 		};
-		803B0FD223F6036D00F2EB32 /* BetterSheet */ = {
+		80150E2624F5903200C740B3 /* BetterSheet */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */;
 			productName = BetterSheet;
 		};
-		80494C41241B8C8600CC8435 /* ASCollectionView */ = {
+		80150E2824F5903700C740B3 /* ASCollectionView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
 			productName = ASCollectionView;
 		};
-		80EF121C2430E74A00905780 /* SwiftyStoreKit */ = {
+		80150E2A24F5903C00C740B3 /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
+		};
+		80150E2C24F5904800C740B3 /* BetterSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */;
+			productName = BetterSheet;
+		};
+		80150E2E24F5904A00C740B3 /* ASCollectionView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
+			productName = ASCollectionView;
+		};
+		80150E3024F5904D00C740B3 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
+		80150E3224F5905000C740B3 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 

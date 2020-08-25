@@ -31,7 +31,7 @@ struct TabBar: View {
                 TabItem(title: settingsString, icon: "gear", action: { self.actions[2]() })
                 Spacer()
             }
-        }.betterSheet(isPresented: $showingSubscriptionSheet) {
+        }.sheet(isPresented: $showingSubscriptionSheet) {
             SubscriptionSheet(discard: {self.showingSubscriptionSheet = false}).environmentObject(self.settings)
         }
     }
