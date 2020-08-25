@@ -36,35 +36,22 @@ struct PickerButton: View {
     
         //MARK: Layout
         {
-            ASCollectionView(
-            sections:
-                [ASCollectionViewSection(id: 0) {
-                    Text(title)
-                        .title()
-                        .lineLimit(1)
-                        .opacity(0.5)
-                        .padding(0)
-                        .fixedSize()
-                    HStack(spacing: 7) {
-                        ForEach(values, id: \.self) { value in
-                            Text(NSLocalizedString(value, comment: "value"))
-                                .fixedSize()
-                                .padding(.bottom, 5)
-                                .opacity(self.value == value ? 1 : 0.5)
-                        }.smallTitle().fixedSize()
-                    }.fixedSize().padding(0)
-                }])
-            .layout {
-                let fl = AlignedCollectionViewFlowLayout()
-                fl.horizontalAlignment = .leading
-                fl.verticalAlignment = .bottom
-                fl.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                fl.minimumInteritemSpacing = 7
-                fl.minimumLineSpacing = 7
-                fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-                return fl
+            HStack(alignment: .bottom, spacing: 7) {
+                Text(title)
+                    .title()
+                    .lineLimit(1)
+                    .opacity(0.5)
+                    .padding(0)
+                    .fixedSize()
+                HStack(spacing: 7) {
+                    ForEach(values, id: \.self) { value in
+                        Text(NSLocalizedString(value, comment: "value"))
+                            .fixedSize()
+                            .padding(.bottom, 5)
+                            .opacity(self.value == value ? 1 : 0.5)
+                    }.smallTitle().fixedSize()
+                }.fixedSize().padding(0)
             }
-                .shrinkToContentSize(isEnabled: true, dimension: .vertical)
             .padding(0)
             .background(Color(.systemBackground))
 

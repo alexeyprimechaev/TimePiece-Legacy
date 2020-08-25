@@ -136,16 +136,11 @@ public class TimerItem: NSManagedObject, Identifiable {
         NotificationManager.scheduleNotification(timer: self)
         
         isRunning = true
-        if isPaused || timer == nil {
+        if isPaused {
             timeStarted = Date()
             timeFinished = timeStarted.addingTimeInterval(currentTime)
             isPaused = false
             
-            let newTimer = Timer(timeInterval: 0.015, repeats: true, block: step)
-            RunLoop.current.add(newTimer, forMode: .common)
-            
-            timer = newTimer
-                        
             if showInLog {
                 logItem = LogItem(context: self.managedObjectContext!)
                 logItem?.title = title
@@ -158,9 +153,6 @@ public class TimerItem: NSManagedObject, Identifiable {
             currentTime = timeFinished.timeIntervalSince(timeStarted)
             isPaused = true
             
-            timer?.invalidate()
-            timer = nil
-            
             if showInLog {
                 if currentTime > 0 {
                     logItem?.timeFinished = Date()
@@ -170,10 +162,6 @@ public class TimerItem: NSManagedObject, Identifiable {
         }
         
         try? self.managedObjectContext?.save()
-    }
-    
-    func step(_ timer: Timer) {
-        updateTime()
     }
     
     func makeReusable() {
@@ -191,9 +179,6 @@ public class TimerItem: NSManagedObject, Identifiable {
         }
         isRunning = false
         isPaused = true
-        
-        timer?.invalidate()
-        timer = nil
         
         timeStarted = Date()
         currentTime = totalTime

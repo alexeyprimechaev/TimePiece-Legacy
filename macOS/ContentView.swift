@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import ASCollectionView
 
 enum ActiveSheet {
    case timer, newTimer, settings, trends, subscription
@@ -37,54 +36,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack() {
-        ASCollectionView(
-            sections:
-            [
-        //MARK: Title
-                ASCollectionViewSection(id: 0) {
-                    HStack(alignment: .bottom, spacing: 4) {
-
-                        Text(timePieceString).title()
-                            
-                            
-                        
-                    }
-                        .padding(7)
-                        .padding(.vertical, 12)
-                        
-                        
-                },
-                
-                
-        //MARK: Timers
-                ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
-                    TimerView(timer: timer).fixedSize().environmentObject(self.settings)
-                        
-                },
-            
-                ASCollectionViewSection(id: 2) {
-                                    TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
-                                        withAnimation(.default) {
-                                            TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                                            activeSheet = .newTimer
-                                            showingSheet = true
-                                        }
-                                    }).padding(.vertical, 12)
-                                }
-            ]
-        )
-            
-            
-        //MARK: Layout Configuration
-        .layout {
-            let fl = AlignedFlowLayout()
-            fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
-            fl.minimumInteritemSpacing = 14
-            fl.minimumLineSpacing = 14
-            fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            return fl
-        }
-        .alwaysBounceVertical(true)
+            NavigationView {
+                List()
+            }
+        
             TabBar(actions: [
             {
                 withAnimation(.default) {

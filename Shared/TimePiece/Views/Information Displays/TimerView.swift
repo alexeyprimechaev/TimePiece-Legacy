@@ -103,6 +103,9 @@ struct TimerView: View {
                 
                 
             }
+            .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
+                self.timer.updateTime()
+            }
         }
         
             

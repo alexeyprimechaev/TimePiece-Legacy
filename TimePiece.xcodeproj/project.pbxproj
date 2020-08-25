@@ -11,8 +11,6 @@
 		80150D7D24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
 		80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
 		80150D8124F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
-		80150D8224F58BDD00C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80150D6A24F58BDC00C740B3 /* Assets.xcassets */; };
-		80150D8324F58BDD00C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80150D6A24F58BDC00C740B3 /* Assets.xcassets */; };
 		80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
 		80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
 		80150DCF24F58E7300C740B3 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
@@ -62,31 +60,23 @@
 		80150E0D24F58E7500C740B3 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E0212482D50600F6F74D /* TabBar.swift */; };
 		80150E0E24F58E7500C740B3 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7A824056C5000E7798E /* TimerButton.swift */; };
 		80150E0F24F58E7500C740B3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
-		80150E1024F58E7500C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
 		80150E1124F58E7500C740B3 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6DD4F24D49F0900B0DC78 /* InsightView.swift */; };
 		80150E1224F58E7500C740B3 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
 		80150E1324F58E7500C740B3 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A0F4023D4C66C008B0E24 /* TimeView.swift */; };
 		80150E1424F58E7500C740B3 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E01F2482D12200F6F74D /* TabItem.swift */; };
 		80150E1524F58E7500C740B3 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0E402416D4D1004A17B1 /* MainButton.swift */; };
 		80150E1624F58E7500C740B3 /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
-		80150E1724F58E7500C740B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
 		80150E1824F58E7500C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80150E1924F58E7500C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 		80150E1A24F58E7500C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
 		80150E1B24F58E7500C740B3 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A18512402DD9C005B4D19 /* ToggleButton.swift */; };
-		80150E1C24F58E7500C740B3 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
-		80150E1D24F58E7500C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
-		80150E1E24F58E7500C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		80150E1F24F58E7500C740B3 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerItem.swift */; };
 		80150E2024F58E7500C740B3 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
 		80150E2124F58E7500C740B3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogView.swift */; };
 		80150E2224F58E7500C740B3 /* TimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerSheet.swift */; };
 		80150E2524F5900400C740B3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2424F5900400C740B3 /* Introspect */; };
-		80150E2724F5903200C740B3 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2624F5903200C740B3 /* BetterSheet */; };
 		80150E2924F5903700C740B3 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2824F5903700C740B3 /* ASCollectionView */; };
 		80150E2B24F5903C00C740B3 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2A24F5903C00C740B3 /* SwiftyStoreKit */; };
-		80150E2D24F5904800C740B3 /* BetterSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2C24F5904800C740B3 /* BetterSheet */; };
-		80150E2F24F5904A00C740B3 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2E24F5904A00C740B3 /* ASCollectionView */; };
 		80150E3124F5904D00C740B3 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E3024F5904D00C740B3 /* SwiftyStoreKit */; };
 		80150E3324F5905000C740B3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E3224F5905000C740B3 /* Introspect */; };
 		80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */; };
@@ -95,20 +85,20 @@
 		80150E3724F5938F00C740B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
 		80150E3824F593A500C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
 		80150E3924F593A600C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
+		80150E3B24F5996900C740B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150E3A24F5995E00C740B3 /* ContentView.swift */; };
+		80150E3C24F59A5600C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8012C7A824056C5000E7798E /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		8012C7AA24057D4200E7798E /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		80150D6724F58BD900C740B3 /* TimePieceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceApp.swift; sourceTree = "<group>"; };
-		80150D6824F58BD900C740B3 /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
 		80150D6924F58BD900C740B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		80150D6A24F58BDC00C740B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80150D6F24F58BDC00C740B3 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80150D7124F58BDC00C740B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80150D7624F58BDD00C740B3 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80150D7824F58BDD00C740B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80150D7924F58BDD00C740B3 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		80150E3A24F5995E00C740B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		801A184F2402CEB6005B4D19 /* RegularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularButton.swift; sourceTree = "<group>"; };
 		801A18512402DD9C005B4D19 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		801C0E402416D4D1004A17B1 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
@@ -121,16 +111,13 @@
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		8055D7AA243B62ED00AF516E /* LogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheet.swift; sourceTree = "<group>"; };
 		8055D7AE243B697800AF516E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
-		805DB83424D481C000178B5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		805DB84124D4831E00178B5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		805DB84224D485F600178B5B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		805DB84324D485F600178B5B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8060E01F2482D12200F6F74D /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		80612FE923C274DB00BC03F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		80612FF123C274DF00BC03F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80612FF323C274DF00BC03F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80612FF923C2750900BC03F5 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		80612FFB23C2766B00BC03F5 /* TimerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerItem.swift; sourceTree = "<group>"; };
@@ -160,7 +147,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80150E2724F5903200C740B3 /* BetterSheet in Frameworks */,
 				80150E2B24F5903C00C740B3 /* SwiftyStoreKit in Frameworks */,
 				80150E2924F5903700C740B3 /* ASCollectionView in Frameworks */,
 				80150E2524F5900400C740B3 /* Introspect in Frameworks */,
@@ -173,8 +159,6 @@
 			files = (
 				80150E3124F5904D00C740B3 /* SwiftyStoreKit in Frameworks */,
 				80150E3324F5905000C740B3 /* Introspect in Frameworks */,
-				80150E2D24F5904800C740B3 /* BetterSheet in Frameworks */,
-				80150E2F24F5904A00C740B3 /* ASCollectionView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,10 +170,11 @@
 			children = (
 				80612FE123C274DB00BC03F5 /* TimePiece */,
 				80150D6724F58BD900C740B3 /* TimePieceApp.swift */,
-				80150D6824F58BD900C740B3 /* ContentView2.swift */,
+				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
 				80150D6924F58BD900C740B3 /* Persistence.swift */,
-				80150D6A24F58BDC00C740B3 /* Assets.xcassets */,
+				80B91C8624C8A04F0017F8B9 /* Localizable.strings */,
 				80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */,
+				809D9F2F24C4927D00DB4E94 /* TimePiece.entitlements */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -197,6 +182,8 @@
 		80150D7024F58BDC00C740B3 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				80C909202437BB3E00939F25 /* Haptics.swift */,
+				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				80150D7124F58BDC00C740B3 /* Info.plist */,
 			);
 			path = iOS;
@@ -205,8 +192,8 @@
 		80150D7724F58BDD00C740B3 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				80150E3A24F5995E00C740B3 /* ContentView.swift */,
 				80150D7824F58BDD00C740B3 /* Info.plist */,
-				80150D7924F58BDD00C740B3 /* macOS.entitlements */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -264,12 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */,
-				809D9F2F24C4927D00DB4E94 /* TimePiece.entitlements */,
-				80D141E523CE175D00FD2B5A /* Delegates */,
 				80D141E623CE176D00FD2B5A /* Logic */,
 				80D141E323CE171300FD2B5A /* Views */,
-				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
-				80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */,
 				80612FF323C274DF00BC03F5 /* Info.plist */,
 				80612FED23C274DF00BC03F5 /* Preview Content */,
 			);
@@ -297,7 +280,6 @@
 			children = (
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
 				8060E0212482D50600F6F74D /* TabBar.swift */,
-				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				801A18532402FF1E005B4D19 /* Sheets */,
 				801A18542402FF35005B4D19 /* Information Displays */,
 				80D141E423CE175200FD2B5A /* Buttons */,
@@ -309,35 +291,26 @@
 			isa = PBXGroup;
 			children = (
 				8060E01F2482D12200F6F74D /* TabItem.swift */,
+				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
 				80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */,
 				80F355132418068F009ABFAD /* HeaderBar.swift */,
 				80ACD6B623CBE435000C49DC /* PauseButton.swift */,
 				801C0E402416D4D1004A17B1 /* MainButton.swift */,
 				8012C7A824056C5000E7798E /* TimerButton.swift */,
-				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
 				801A18512402DD9C005B4D19 /* ToggleButton.swift */,
 				801A184F2402CEB6005B4D19 /* RegularButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		80D141E523CE175D00FD2B5A /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Delegates;
-			sourceTree = "<group>";
-		};
 		80D141E623CE176D00FD2B5A /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				80B91C8624C8A04F0017F8B9 /* Localizable.strings */,
 				80B91C8724C8A1BE0017F8B9 /* Strings.swift */,
 				80612FFB23C2766B00BC03F5 /* TimerItem.swift */,
 				8055D7A8243B627600AF516E /* LogItem.swift */,
 				804E17B124087B71003F5001 /* Settings.swift */,
 				809635632401544D00BF297F /* NotificationManager.swift */,
-				80C909202437BB3E00939F25 /* Haptics.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -360,7 +333,6 @@
 			name = "TimePiece (iOS)";
 			packageProductDependencies = (
 				80150E2424F5900400C740B3 /* Introspect */,
-				80150E2624F5903200C740B3 /* BetterSheet */,
 				80150E2824F5903700C740B3 /* ASCollectionView */,
 				80150E2A24F5903C00C740B3 /* SwiftyStoreKit */,
 			);
@@ -382,8 +354,6 @@
 			);
 			name = "TimePiece (macOS)";
 			packageProductDependencies = (
-				80150E2C24F5904800C740B3 /* BetterSheet */,
-				80150E2E24F5904A00C740B3 /* ASCollectionView */,
 				80150E3024F5904D00C740B3 /* SwiftyStoreKit */,
 				80150E3224F5905000C740B3 /* Introspect */,
 			);
@@ -398,7 +368,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Alexey Primechaev";
 				TargetAttributes = {
 					80150D6E24F58BDC00C740B3 = {
@@ -421,7 +391,6 @@
 			);
 			mainGroup = 80612FD623C274DB00BC03F5;
 			packageReferences = (
-				803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */,
 				80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */,
 				80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
@@ -441,7 +410,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80150D8224F58BDD00C740B3 /* Assets.xcassets in Resources */,
 				80150E3824F593A500C740B3 /* Assets.xcassets in Resources */,
 				80150E3624F5938F00C740B3 /* Localizable.strings in Resources */,
 			);
@@ -451,7 +419,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80150D8324F58BDD00C740B3 /* Assets.xcassets in Resources */,
 				80150E3924F593A600C740B3 /* Assets.xcassets in Resources */,
 				80150E3724F5938F00C740B3 /* Localizable.strings in Resources */,
 			);
@@ -519,28 +486,25 @@
 				80150D8124F58BDD00C740B3 /* Persistence.swift in Sources */,
 				80150E0F24F58E7500C740B3 /* Strings.swift in Sources */,
 				80150E1B24F58E7500C740B3 /* ToggleButton.swift in Sources */,
+				80150E3B24F5996900C740B3 /* ContentView.swift in Sources */,
 				80150E0624F58E7500C740B3 /* SubscriptionBadge.swift in Sources */,
 				80150D7D24F58BDD00C740B3 /* TimePieceApp.swift in Sources */,
 				80150E2224F58E7500C740B3 /* TimerSheet.swift in Sources */,
 				80150E0C24F58E7500C740B3 /* NotificationManager.swift in Sources */,
 				80150E1F24F58E7500C740B3 /* TimerItem.swift in Sources */,
 				80150E0D24F58E7500C740B3 /* TabBar.swift in Sources */,
-				80150E1724F58E7500C740B3 /* ContentView.swift in Sources */,
 				80150E0224F58E7500C740B3 /* PersonCard.swift in Sources */,
 				80150E0724F58E7500C740B3 /* TimerView.swift in Sources */,
 				80150E1A24F58E7500C740B3 /* PauseButton.swift in Sources */,
-				80150E1C24F58E7500C740B3 /* Haptics.swift in Sources */,
 				80150E2124F58E7500C740B3 /* LogView.swift in Sources */,
 				80150E1424F58E7500C740B3 /* TabItem.swift in Sources */,
-				80150E1024F58E7500C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
+				80150E3C24F59A5600C740B3 /* PickerButton.swift in Sources */,
 				80150E2024F58E7500C740B3 /* SubscriptionSheet.swift in Sources */,
-				80150E1E24F58E7500C740B3 /* PickerButton.swift in Sources */,
 				80150E0924F58E7500C740B3 /* LogItem.swift in Sources */,
 				80150E1224F58E7500C740B3 /* RegularButton.swift in Sources */,
 				80150E0424F58E7500C740B3 /* EditableTimeView.swift in Sources */,
 				80150E0524F58E7500C740B3 /* Settings.swift in Sources */,
 				80150E1324F58E7500C740B3 /* TimeView.swift in Sources */,
-				80150E1D24F58E7500C740B3 /* LogSheet.swift in Sources */,
 				80150E1924F58E7500C740B3 /* HeaderBar.swift in Sources */,
 				80150E0B24F58E7500C740B3 /* PremiumBadge.swift in Sources */,
 				80150E0324F58E7500C740B3 /* PropertyView.swift in Sources */,
@@ -551,16 +515,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		80612FF023C274DF00BC03F5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80612FF123C274DF00BC03F5 /* Base */,
-				805DB83424D481C000178B5B /* ru */,
-				805DB84224D485F600178B5B /* de */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		80B91C8624C8A04F0017F8B9 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -630,6 +584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
@@ -656,6 +611,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
@@ -702,6 +658,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -763,6 +720,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -832,14 +790,6 @@
 				kind = branch;
 			};
 		};
-		803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/egeniq/BetterSheet";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
@@ -864,11 +814,6 @@
 			package = 80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
 		};
-		80150E2624F5903200C740B3 /* BetterSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */;
-			productName = BetterSheet;
-		};
 		80150E2824F5903700C740B3 /* ASCollectionView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
@@ -878,16 +823,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
-		};
-		80150E2C24F5904800C740B3 /* BetterSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 803B0FD123F6036D00F2EB32 /* XCRemoteSwiftPackageReference "BetterSheet" */;
-			productName = BetterSheet;
-		};
-		80150E2E24F5904A00C740B3 /* ASCollectionView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */;
-			productName = ASCollectionView;
 		};
 		80150E3024F5904D00C740B3 /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
