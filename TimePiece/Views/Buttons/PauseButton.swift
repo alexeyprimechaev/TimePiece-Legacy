@@ -48,12 +48,7 @@ struct PauseButton: View {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(Color("button.gray"))
-                HStack() {
-                    Image(systemName: isPaused ? offIcon : onIcon)
-                        .padding(.bottom, onIcon == "trash.fill" && !isPaused ? 3 : 0)
-                    Text(isPaused ? offTitle : onTitle)
-                    
-                }
+                Label(isPaused ? offTitle : onTitle, systemImage: isPaused ? offIcon : onIcon)
                 .foregroundColor(color)
                 .smallTitle()
             }.frame(height: 52)

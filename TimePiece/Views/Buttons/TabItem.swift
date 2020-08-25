@@ -21,10 +21,8 @@ struct TabItem: View {
             self.action()
             regularHaptic()
         }) {
-            HStack() {
-                Image(systemName: icon)
-                Text(title)
-            }.padding(14)
+            Label(title, systemImage: icon)
+            .padding(14)
         
         }.smallTitle().foregroundColor(.primary)
         

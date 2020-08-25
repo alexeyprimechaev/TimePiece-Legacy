@@ -40,7 +40,6 @@ struct NewTimerSheet: View {
                 self.discard()
             }, trailingTitle: self.timer.isReusable ? addString : startString, trailingIcon: self.timer.isReusable ? "plus" : "play")
             
-            KeyboardHost() {
             ScrollView() {
                 
                 VStack(alignment: .leading, spacing: 14) {
@@ -61,16 +60,12 @@ struct NewTimerSheet: View {
                                 lightHaptic()
                                 self.showingOptions.toggle()
                             }) {
-                                HStack(alignment: .center) {
-                                    Image(systemName: "ellipsis.circle")
-                                        .smallTitle()
-                                    Text("More Options")
-                                        .smallTitle()
-                                }
+                                Label("More Options", systemImage: "ellipsis.circle")
+                                .smallTitle()
                                 .padding(.horizontal, 7)
                                 .padding(.vertical, 14)
                                 .foregroundColor(.primary)
-                                Spacer()
+                                
                             }
                         }
                     
@@ -95,7 +90,6 @@ struct NewTimerSheet: View {
                     
                     
                 }.padding(.leading, 21)
-            }
             }
         }.onAppear() {
             self.isAdding = false

@@ -24,10 +24,7 @@ struct MainButton: View {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(highPriority ? Color("priority.gray") : Color("button.gray"))
-                HStack() {
-                    Image(systemName: icon)
-                    Text(title).fixedSize()
-                }
+                Label(title, systemImage: icon)
                 .foregroundColor(highPriority ? Color(UIColor.systemBackground) : Color.primary)
                 .smallTitle()
             }.frame(height: 52)

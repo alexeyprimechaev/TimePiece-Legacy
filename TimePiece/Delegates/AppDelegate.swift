@@ -88,9 +88,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentCloudKitContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
                 
-        let container = NSPersistentCloudKitContainer(name: "TimePiece")
+        let container = NSPersistentContainer(name: "TimePiece")
         
 //        guard let description = container.persistentStoreDescriptions.first else {
 //            fatalError("No Descriptions found")

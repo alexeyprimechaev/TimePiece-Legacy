@@ -27,10 +27,9 @@ struct ContentView: View {
     
     //MARK: State Variables
     @State var showingSheet = false
-    @State var activeSheet: ActiveSheet = .newTimer
+    @State var activeSheet: ActiveSheet = .settings
     
     @State var isAdding = false
-    
     @State var selectedTimer = 0
         
         
@@ -105,7 +104,6 @@ struct ContentView: View {
         
             
         //MARK: Sheet
-        
         .sheet(isPresented: $showingSheet, onDismiss: {
             if activeSheet == .newTimer {
                 if self.isAdding {
@@ -119,30 +117,29 @@ struct ContentView: View {
             
         }) {
             switch activeSheet {
+    
+                case .timer:
+                    TimerSheet(timer: self.timerItems[self.selectedTimer], discard: {showingSheet = false}, delete: {
+                        withAnimation(.default) {
+                            self.timerItems[self.selectedTimer].remove(from: self.context)
+                        }
+                        showingSheet = false
+                    }).environmentObject(self.settings)
+                    
+                case .newTimer:
+                    NewTimerSheet(timer: self.timerItems[self.timerItems.count-1], isAdding: self.$isAdding, discard: {showingSheet = false}).environmentObject(self.settings)
+                    
+                case .settings:
+                    SettingsSheet(discard: {showingSheet = false}).environmentObject(self.settings)
+                case .trends:
+                    LogSheet(discard: {showingSheet = false}).environmentObject(self.settings).environment(\.managedObjectContext, self.context)
+                case .subscription:
+                    SubscriptionSheet(discard: {
+                        showingSheet = false
+                        self.settings.showingSubscription = false
+                    }).environmentObject(self.settings)
+                }
             
-            case .timer:
-                TimerSheet(timer: self.timerItems[self.selectedTimer], discard: {showingSheet = false}, delete: {
-                    withAnimation(.default) {
-                        self.timerItems[self.selectedTimer].remove(from: self.context)
-                    }
-                    showingSheet = false
-                }).environmentObject(self.settings)
-                
-            case .newTimer:
-                NewTimerSheet(timer: self.timerItems[self.timerItems.count-1], isAdding: self.$isAdding, discard: {showingSheet = false}).environmentObject(self.settings)
-                
-            case .settings:
-                SettingsSheet(discard: {showingSheet = false}).environmentObject(self.settings)
-            case .trends:
-                LogSheet(discard: {showingSheet = false}).environmentObject(self.settings).environment(\.managedObjectContext, self.context)
-            case .subscription:
-                SubscriptionSheet(discard: {
-                    showingSheet = false
-                    self.settings.showingSubscription = false
-                }).environmentObject(self.settings)
-            }
-            
-                
         }
 
         

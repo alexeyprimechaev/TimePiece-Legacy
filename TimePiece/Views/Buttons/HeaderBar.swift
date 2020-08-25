@@ -27,12 +27,8 @@ struct HeaderBar: View {
                     lightHaptic()
                     self.leadingAction()
                 }) {
-                    HStack(alignment: .center) {
-                        Image(systemName: leadingIcon)
-                            .smallTitle()
-                        Text(leadingTitle)
-                            .smallTitle()
-                    }
+                    Label(leadingTitle, systemImage: leadingIcon)
+                    .smallTitle()
                     .padding(.horizontal, 28)
                     .foregroundColor(leadingIsDestructive ? .red : .primary)
                     Spacer()
@@ -44,13 +40,8 @@ struct HeaderBar: View {
                     self.trailingAction()
                 }) {
                     Spacer()
-                    HStack(alignment: .center) {
-                        Image(systemName: trailingIcon)
-                            .smallTitle()
-                            .padding(.bottom, trailingIcon == "arrow.clockwise" ? 2 : 0)
-                        Text(trailingTitle)
-                            .smallTitle()
-                    }
+                    Label(trailingTitle, systemImage: trailingIcon)
+                    .smallTitle()
                     .padding(.horizontal, 28)
                     .foregroundColor(trailingIsDestructive ? .red : .primary)
                 }
