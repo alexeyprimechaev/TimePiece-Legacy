@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Introspect
+import AVFoundation
 import CoreData
 
 struct TimerSheet: View {
@@ -17,6 +18,8 @@ struct TimerSheet: View {
     @EnvironmentObject var settings: Settings
         
     @State var name = ""
+    
+    @State var currentTime: String = "00:00"
     
     var discard: () -> ()
     
@@ -40,7 +43,7 @@ struct TimerSheet: View {
                     if timer.totalTimeString.count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
                         VStack(alignment: .leading, spacing:14) {
                             if timer.totalTime != timer.currentTime {
-                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: leftString, update: {})
+                                TimeView(time: $currentTime, title: leftString, update: {})
                             }
                             EditableTimeView(time: $timer.totalTime, title: totalString, update: {
                                 self.timer.reset()
@@ -52,7 +55,7 @@ struct TimerSheet: View {
                         HStack(alignment: .top) {
                             
                             if timer.isRunning {
-                                TimeView(time: $timer.currentTime, precisionSetting: $timer.precisionSetting, title: leftString, update: {})
+                                TimeView(time: $currentTime, title: leftString, update: {})
 
                             }
                         
@@ -88,6 +91,9 @@ struct TimerSheet: View {
                 }.animation(Animation.default, value: timer.isRunning)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
+                .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
+                    self.updateTime()
+                }
 
             }
             
@@ -136,6 +142,24 @@ struct TimerSheet: View {
                 
             }.padding(.vertical, 7)
         }
+    }
+    
+    func updateTime() {
+        
+        if !timer.isPaused {
+            currentTime = timer.timeFinished.timeIntervalSince(Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting)
+            
+            if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
+               
+                timer.togglePause()
+                
+                timer.currentTime = 0
+
+                AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
+            }
+   
+        }
+        
     }
     
 }

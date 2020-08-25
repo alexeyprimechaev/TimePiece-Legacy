@@ -15,8 +15,7 @@ struct TimeView: View {
     
     
     //MARK: Dynamic Properties
-    @Binding var time: TimeInterval
-    @Binding var precisionSetting: String
+    @Binding var time: String
     @State var title = LocalizedStringKey("")
     @State var frame = String()
     
@@ -29,14 +28,14 @@ struct TimeView: View {
         ZStack(alignment: .topLeading) {
             HStack(alignment: .bottom, spacing: 5) {
                 ZStack(alignment: .bottomLeading) {
-                    Text(time.stringFromTimeInterval(precisionSetting: precisionSetting))
+                    Text(time)
                         .title()
                         .animation(nil)
-                    if time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 8 {
+                    if time.count == 8 {
                         Text("88:88:88")
                         .title()
                         .opacity(0)
-                    } else if time.stringFromTimeInterval(precisionSetting: precisionSetting).count == 5 {
+                    } else if time.count == 5 {
                         Text("88:88")
                         .title()
                         .opacity(0)

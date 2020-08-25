@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UserNotifications
+import AVFoundation
 
 struct TimerView: View {
 //MARK: - Properties
@@ -20,7 +21,7 @@ struct TimerView: View {
     
     @EnvironmentObject var settings: Settings
     
-
+    @State var currentTime: String = "00:00"
     
 //MARK: - View
     var body: some View {
@@ -51,7 +52,7 @@ struct TimerView: View {
                 VStack(alignment: .leading) {
                     Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
                     
-                    Text(timer.currentTimeString)
+                    Text(currentTime)
                         .opacity(0.5)
                     
                 }
@@ -104,8 +105,12 @@ struct TimerView: View {
                 
             }
             .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
-                self.timer.updateTime()
+                self.updateTime()
             }
+            .onAppear {
+                currentTime = timer.currentTimeString
+            }
+            .animation(nil)
         }
         
             
@@ -116,6 +121,24 @@ struct TimerView: View {
         .fixedSize()
 
     
+        
+    }
+    
+    func updateTime() {
+        
+        if !timer.isPaused {
+            currentTime = timer.timeFinished.timeIntervalSince(Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting)
+            
+            if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
+               
+                timer.togglePause()
+                
+                timer.currentTime = 0
+
+                AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
+            }
+   
+        }
         
     }
 }
