@@ -225,7 +225,15 @@ extension TimerItem {
     
     var remainingTime: TimeInterval {
         get { remainingTimeStored as? TimeInterval ?? 0 }
-        set { remainingTimeStored = newValue as NSNumber }
+        set {
+            if newValue >= 0 {
+                remainingTimeStored = newValue as NSNumber
+            } else {
+                self.remainingTime = 0
+            }
+            
+            
+        }
     }
         
     var totalTime: TimeInterval {

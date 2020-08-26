@@ -107,14 +107,11 @@ struct TimerView: View {
             .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                 self.updateTime()
             }
-            .onChange(of: timer.isPaused) { newValue in
-                currentTime = timer.remainingTimeString
-                if !timer.isRunning {
-                    currentTime = timer.totalTimeString
-                }
-            }
             .onAppear {
                 currentTime = timer.remainingTimeString
+            }
+            .onChange(of: timer.remainingTimeString) { newValue in
+                currentTime = newValue
             }
             .animation(nil)
         }
@@ -133,7 +130,7 @@ struct TimerView: View {
     func updateTime() {
         
         if !timer.isPaused {
-            currentTime = timer.timeFinished.timeIntervalSince(Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting)
+            
             
             if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
                
@@ -143,6 +140,8 @@ struct TimerView: View {
 
                 AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }
+            
+            currentTime = timer.timeFinished.timeIntervalSince(Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting)
    
         }
         
