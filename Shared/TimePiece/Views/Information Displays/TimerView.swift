@@ -32,7 +32,7 @@ struct TimerView: View {
         //MARK: Action
         {
             regularHaptic()
-            if self.timer.currentTime == 0 {
+            if self.timer.remainingTime == 0 {
                 if self.timer.isReusable {
                     self.timer.reset()
                 } else {
@@ -59,26 +59,26 @@ struct TimerView: View {
                 
                 Rectangle().foregroundColor(Color(UIColor.systemBackground))
                 .frame(width: 100, height: 40)
-                    .opacity(timer.currentTime == 0 ? 0.5 : 0)
-                    .animation(timer.currentTime == 0 ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
+                    .opacity(timer.remainingTime == 0 ? 0.5 : 0)
+                    .animation(timer.remainingTime == 0 ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 
                 // Paused animations
-                if timer.currentTime != 0 {
+                if timer.remainingTime != 0 {
                     HStack(spacing: 0) {
-                        Text(timer.currentTimeString.prefix(2))
+                        Text(timer.remainingTimeString.prefix(2))
                             .opacity(0)
                         Rectangle().frame(width:9, height: 40)
                             .foregroundColor(Color(UIColor.systemBackground))
                             .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                        if timer.currentTimeString.count > 5 {
-                            Text(timer.currentTimeString.prefix(5).suffix(2))
+                        if timer.remainingTimeString.count > 5 {
+                            Text(timer.remainingTimeString.prefix(5).suffix(2))
                                 .opacity(0)
                             Rectangle().frame(width:8, height: 40)
                                 .foregroundColor(Color(UIColor.systemBackground))
                                 .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
                         }
-                        if timer.currentTimeString.count > 8 {
-                            Text(timer.currentTimeString.prefix(8).suffix(2))
+                        if timer.remainingTimeString.count > 8 {
+                            Text(timer.remainingTimeString.prefix(8).suffix(2))
                                 .opacity(0)
                             Rectangle().frame(width:9, height: 40)
                                 .foregroundColor(Color(UIColor.systemBackground))
@@ -90,9 +90,9 @@ struct TimerView: View {
                 
                 // For layout stability
                 Group {
-                    if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 11  {
+                    if self.timer.remainingTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 11  {
                         Text("88:88:88:88")
-                    } else if self.timer.currentTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 8 {
+                    } else if self.timer.remainingTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 8 {
                         Text("88:88:88")
                         
                     } else {
@@ -107,8 +107,14 @@ struct TimerView: View {
             .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                 self.updateTime()
             }
+            .onChange(of: timer.isPaused) { newValue in
+                currentTime = timer.remainingTimeString
+                if !timer.isRunning {
+                    currentTime = timer.totalTimeString
+                }
+            }
             .onAppear {
-                currentTime = timer.currentTimeString
+                currentTime = timer.remainingTimeString
             }
             .animation(nil)
         }
@@ -133,7 +139,7 @@ struct TimerView: View {
                
                 timer.togglePause()
                 
-                timer.currentTime = 0
+                timer.remainingTime = 0
 
                 AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }

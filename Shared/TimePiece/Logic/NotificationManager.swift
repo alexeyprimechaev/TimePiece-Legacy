@@ -48,14 +48,14 @@ public class NotificationManager {
             badgeCount += 1
             content.badge = NSNumber(value: badgeCount)
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timer.currentTime, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timer.remainingTime, repeats: false)
             let request = UNNotificationRequest(identifier: timer.notificationIdentifier.uuidString, content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request)
  
             
         } else {
-            if timer.currentTime > 0 {
+            if timer.remainingTime > 0 {
                 removePendingNotification(timer: timer)
             }
         }

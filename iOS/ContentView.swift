@@ -27,7 +27,7 @@ struct ContentView: View {
     
     //MARK: State Variables
     @State var showingSheet = false
-    @State var activeSheet: ActiveSheet = .newTimer
+    @State var activeSheet: ActiveSheet = .settings
     
     @State var isAdding = false
     @State var selectedTimer = 0
@@ -36,7 +36,7 @@ struct ContentView: View {
 //MARK: - View
     
     var body: some View {
-        VStack() {
+        VStack(spacing: 0) {
         ASCollectionView(
             sections:
             [
@@ -185,7 +185,7 @@ struct ContentView: View {
             
 
             let pause = UIAction(title: timer.isPaused ? NSLocalizedString("start", comment: "Start") : NSLocalizedString("pause", comment: "Pause"), image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
-                if timer.currentTime == 0 {
+                if timer.remainingTime == 0 {
                     if timer.isReusable {
                         timer.reset()
                     } else {

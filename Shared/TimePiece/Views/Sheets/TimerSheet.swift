@@ -42,12 +42,12 @@ struct TimerSheet: View {
                     
                     if timer.totalTimeString.count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
                         VStack(alignment: .leading, spacing:14) {
-                            if timer.totalTime != timer.currentTime {
+                            if timer.totalTime != timer.remainingTime {
                                 TimeView(time: $currentTime, title: leftString, update: {})
                             }
                             EditableTimeView(time: $timer.totalTime, title: totalString, update: {
                                 self.timer.reset()
-                                self.timer.currentTime = self.timer.totalTime
+                                self.timer.remainingTime = self.timer.totalTime
                             })
                             .disabled(timer.isRunning)
                         }.animation(Animation.default, value: timer.isRunning)
@@ -61,7 +61,7 @@ struct TimerSheet: View {
                         
                             EditableTimeView(time: $timer.totalTime, title: totalString, update: {
                                 self.timer.reset()
-                                self.timer.currentTime = self.timer.totalTime
+                                self.timer.remainingTime = self.timer.totalTime
                             })
                             .disabled(timer.isRunning)
                         }.animation(Animation.default, value: timer.isRunning)
@@ -92,11 +92,11 @@ struct TimerSheet: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
                 .onAppear {
-                    currentTime = timer.currentTimeString
+                    currentTime = timer.remainingTimeString
                 }
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                     self.updateTime()
-                    print(timer.currentTime)
+                    print(timer.remainingTime)
                 }
 
             }
@@ -104,7 +104,7 @@ struct TimerSheet: View {
             HStack() {
                 Spacer().frame(width:28)
                 if timer.isReusable {
-                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.currentTime == 0 ? resetString : stopString, onTitle: deleteString, offIcon: "stop.fill", onIcon: "trash.fill",
+                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? resetString : stopString, onTitle: deleteString, offIcon: "stop.fill", onIcon: "trash.fill",
                                 onTap: {
                                     self.timer.reset()
                                     mediumHaptic()
@@ -120,7 +120,7 @@ struct TimerSheet: View {
                 Spacer().frame(width:28)
                 PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: startString, onTitle: pauseString, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
                         regularHaptic()
-                        if self.timer.currentTime == 0 {
+                        if self.timer.remainingTime == 0 {
                             if self.timer.isReusable {
                                 self.timer.reset()
                             } else {
@@ -132,7 +132,7 @@ struct TimerSheet: View {
                     
                 }, offTap: {
                     regularHaptic()
-                    if self.timer.currentTime == 0 {
+                    if self.timer.remainingTime == 0 {
                         if self.timer.isReusable {
                             self.timer.reset()
                         } else {
@@ -157,7 +157,7 @@ struct TimerSheet: View {
                
                 timer.togglePause()
                 
-                timer.currentTime = 0
+                timer.remainingTime = 0
 
                 AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }

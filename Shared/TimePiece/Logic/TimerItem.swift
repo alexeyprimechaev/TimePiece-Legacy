@@ -28,7 +28,7 @@ public class TimerItem: NSManagedObject, Identifiable {
     @NSManaged public var isPausedStored: NSNumber?
     @NSManaged public var isReusableStored: NSNumber?
     @NSManaged public var isRunningStored: NSNumber?
-    @NSManaged public var currentTimeStored: NSNumber?
+    @NSManaged public var remainingTimeStored: NSNumber?
     @NSManaged public var totalTimeStored: NSNumber?
     @NSManaged public var timeStartedStored: Date?
     @NSManaged public var timeFinishedStored: Date?
@@ -99,9 +99,9 @@ public class TimerItem: NSManagedObject, Identifiable {
         timer.isPaused = true
         timer.isRunning = false
         
-        timer.currentTime = timer.totalTime
+        timer.remainingTime = timer.totalTime
         timer.timeStarted = Date()
-        timer.timeFinished = timer.timeStarted.addingTimeInterval(timer.currentTime)
+        timer.timeFinished = timer.timeStarted.addingTimeInterval(timer.remainingTime)
         timer.notificationIdentifier = UUID()
     
         // Settings
@@ -138,7 +138,7 @@ public class TimerItem: NSManagedObject, Identifiable {
         isRunning = true
         if isPaused {
             timeStarted = Date()
-            timeFinished = timeStarted.addingTimeInterval(currentTime)
+            timeFinished = timeStarted.addingTimeInterval(remainingTime)
             isPaused = false
             
             if showInLog {
@@ -150,11 +150,11 @@ public class TimerItem: NSManagedObject, Identifiable {
             
         } else {
             timeStarted = Date()
-            currentTime = timeFinished.timeIntervalSince(timeStarted)
+            remainingTime = timeFinished.timeIntervalSince(timeStarted)
             isPaused = true
             
             if showInLog {
-                if currentTime > 0 {
+                if remainingTime > 0 {
                     logItem?.timeFinished = Date()
                 }
                 logItem = nil
@@ -172,7 +172,7 @@ public class TimerItem: NSManagedObject, Identifiable {
     //MARK: Reset
     func reset() {
         
-        if currentTime <= 0 {
+        if remainingTime <= 0 {
             NotificationManager.removeDeliveredNotification(timer: self)
         } else {
             NotificationManager.removePendingNotification(timer: self)
@@ -181,8 +181,8 @@ public class TimerItem: NSManagedObject, Identifiable {
         isPaused = true
         
         timeStarted = Date()
-        currentTime = totalTime
-        timeFinished = timeStarted.addingTimeInterval(currentTime)
+        remainingTime = totalTime
+        timeFinished = timeStarted.addingTimeInterval(remainingTime)
         
         if showInLog {
             logItem?.timeFinished = Date()
@@ -192,23 +192,6 @@ public class TimerItem: NSManagedObject, Identifiable {
         try? self.managedObjectContext?.save()
     }
     
-    
-    //MARK: Update time
-    func updateTime() {
-        if !isPaused {
-            timeStarted = Date()
-            currentTime = timeFinished.timeIntervalSince(timeStarted)
-            
-            if currentTime <= 0 {
-               
-                self.togglePause()
-                currentTime = 0
-                
-                AudioServicesPlaySystemSound(soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
-            }
-   
-        }
-    }
 
 }
 
@@ -240,9 +223,9 @@ extension TimerItem {
         set { showInLogStored = newValue as NSNumber }
     }
     
-    var currentTime: TimeInterval {
-        get { currentTimeStored as? TimeInterval ?? 0 }
-        set { currentTimeStored = newValue as NSNumber }
+    var remainingTime: TimeInterval {
+        get { remainingTimeStored as? TimeInterval ?? 0 }
+        set { remainingTimeStored = newValue as NSNumber }
     }
         
     var totalTime: TimeInterval {
@@ -287,8 +270,8 @@ extension TimerItem {
     
     //MARK: Helpers
     
-    var currentTimeString: String {
-        get { currentTime.stringFromTimeInterval(precisionSetting: precisionSetting) }
+    var remainingTimeString: String {
+        get { remainingTime.stringFromTimeInterval(precisionSetting: precisionSetting) }
     }
     
     var totalTimeString: String {
