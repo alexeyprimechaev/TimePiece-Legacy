@@ -47,7 +47,7 @@ struct NewTimerSheet: View {
                     PropertyView(title: titleString, timer: self.timer )
                     
                     EditableTimeView(time: $timer.totalTime, title: timeString, isFirstResponder: true, update: {
-                        self.timer.currentTimeStored = self.timer.totalTimeStored
+                        self.timer.currentTime = self.timer.totalTime
                     })
                     VStack(alignment: .leading, spacing: 14) {
                         

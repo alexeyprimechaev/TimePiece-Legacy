@@ -91,8 +91,12 @@ struct TimerSheet: View {
                 }.animation(Animation.default, value: timer.isRunning)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
+                .onAppear {
+                    currentTime = timer.currentTimeString
+                }
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                     self.updateTime()
+                    print(timer.currentTime)
                 }
 
             }

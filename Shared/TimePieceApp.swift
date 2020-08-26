@@ -25,6 +25,7 @@ struct TimePieceApp: App {
                 .environmentObject(settings)
                 .onChange(of: scenePhase) { phase in
                     if phase == .active {
+                        print("start")
                         let calendar = Calendar(identifier: .gregorian)
 
                         // Weekday units are the numbers 1 through n, where n is the number of days in the week.
@@ -66,6 +67,8 @@ struct TimePieceApp: App {
     class AppDelegate: NSObject, UIApplicationDelegate {
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
             
+            print("appdelegate")
+            
             NotificationManager.badgeCount = 0
             UIApplication.shared.applicationIconBadgeNumber = 0
             print(NotificationManager.badgeCount)
@@ -95,4 +98,5 @@ struct TimePieceApp: App {
             return true
         }
     }
+
 }

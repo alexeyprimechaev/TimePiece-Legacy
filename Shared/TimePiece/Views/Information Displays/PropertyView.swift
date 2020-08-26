@@ -45,6 +45,9 @@ struct PropertyView: View {
                         textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
 
                     }
+                    .onChange(of: timer.title) { newValue in
+                        try? timer.managedObjectContext?.save()
+                    }
                     .title()
                     .foregroundColor(Color.clear)
                     .accentColor(Color.primary)
