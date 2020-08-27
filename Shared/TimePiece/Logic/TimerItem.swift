@@ -252,7 +252,7 @@ extension TimerItem {
     }
     
     var title: String {
-        get { titleStored ?? "Found Nil" }
+        get { titleStored ?? " " }
         set { titleStored = newValue }
     }
     

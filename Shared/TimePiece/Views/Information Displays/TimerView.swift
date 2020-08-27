@@ -52,7 +52,7 @@ struct TimerView: View {
                 VStack(alignment: .leading) {
                     Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
                     
-                    Text(currentTime)
+                    Text(timer.remainingTimeStored == nil ? " " : currentTime)
                         .opacity(0.5)
                     
                 }
@@ -118,7 +118,6 @@ struct TimerView: View {
         
             
         //MARK: Styling
-        .background(Color(.systemBackground))
         .title()
         .buttonStyle(RegularButtonStyle())
         .padding(7)

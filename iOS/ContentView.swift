@@ -39,33 +39,25 @@ struct ContentView: View {
     
     var body: some View {
             VStack(spacing: 0) {
-                HStack() {
-                    if isLarge {
-                        Text(timePieceString).title().padding(28)
-                        Spacer()
-                    } else {
-                        Text(timePieceString).smallTitle().padding(14)
-                    }
-                    
-                    
-                }.animation(.default)
-                if isLarge {
-
-                } else {
-                    Divider()
-                }
-                
+                Group {
+                    Text(timePieceString).smallTitle().opacity(isLarge ? 0 : 1).padding(14)
+                    Divider().opacity(isLarge ? 0 : 1)
+                }.animation(.easeOut(duration: 0.2))
                 
             ASCollectionView(
                 sections:
                 [
+                    
+                    ASCollectionViewSection(id: 0) {
+                        Text(timePieceString).title().padding(.bottom, 14).padding(.leading, 7)
+                    },
             //MARK: Timers
-                    ASCollectionViewSection(id: 0, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
+                    ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
                         TimerView(timer: timer).fixedSize().environmentObject(self.settings)
                             
                     },
                 
-                    ASCollectionViewSection(id: 1) {
+                    ASCollectionViewSection(id: 2) {
                                         TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
                                             withAnimation(.default) {
                                                 TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
@@ -88,9 +80,9 @@ struct ContentView: View {
                 return fl
             }
             .onScroll() { scroll, _ in
-                if scroll.y > 88 {
+                if scroll.y >= 48 {
                     isLarge = false
-                } else if scroll.y < 88  {
+                } else if scroll.y < 48  {
                     isLarge = true
                 }
             }
