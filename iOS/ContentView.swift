@@ -31,76 +31,87 @@ struct ContentView: View {
     
     @State var isAdding = false
     @State var selectedTimer = 0
+    
+    @State var isLarge = true
         
         
 //MARK: - View
     
     var body: some View {
-        VStack(spacing: 0) {
-        ASCollectionView(
-            sections:
-            [
-        //MARK: Title
-                ASCollectionViewSection(id: 0) {
-                    HStack(alignment: .bottom, spacing: 4) {
-
-                        Text(timePieceString).title()
-                            
-                            
-                        
+            VStack(spacing: 0) {
+                HStack() {
+                    if isLarge {
+                        Text(timePieceString).title().padding(28)
+                        Spacer()
+                    } else {
+                        Text(timePieceString).smallTitle().padding(14)
                     }
-                        .padding(7)
-                        .padding(.vertical, 12)
-                        
-                        
-                },
-                
-                
-        //MARK: Timers
-                ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
-                    TimerView(timer: timer).fixedSize().environmentObject(self.settings)
-                        
-                },
-            
-                ASCollectionViewSection(id: 2) {
-                                    TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
-                                        withAnimation(.default) {
-                                            TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                                            activeSheet = .newTimer
-                                            showingSheet = true
-                                        }
-                                    }).padding(.vertical, 12)
-                                }
-            ]
-        )
-            
-            
-        //MARK: Layout Configuration
-        .layout {
-            let fl = AlignedFlowLayout()
-            fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
-            fl.minimumInteritemSpacing = 14
-            fl.minimumLineSpacing = 14
-            fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            return fl
-        }
-        .alwaysBounceVertical(true)
-            TabBar(actions: [
-            {
-                withAnimation(.default) {
-                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                    activeSheet = .newTimer
-                    showingSheet = true
+                    
+                    
+                }.animation(.default)
+                if isLarge {
+
+                } else {
+                    Divider()
                 }
-            },{
-                activeSheet = .trends
-                showingSheet = true
-            },{
-                activeSheet = .settings
-                showingSheet = true
-                }]).environmentObject(self.settings)
-            
-        }
+                
+                
+            ASCollectionView(
+                sections:
+                [
+            //MARK: Timers
+                    ASCollectionViewSection(id: 0, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
+                        TimerView(timer: timer).fixedSize().environmentObject(self.settings)
+                            
+                    },
+                
+                    ASCollectionViewSection(id: 1) {
+                                        TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
+                                            withAnimation(.default) {
+                                                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                                                activeSheet = .newTimer
+                                                showingSheet = true
+                                            }
+                                        }).padding(.vertical, 12)
+                                    }
+                ]
+            )
+                
+                
+            //MARK: Layout Configuration
+            .layout {
+                let fl = AlignedFlowLayout()
+                fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
+                fl.minimumInteritemSpacing = 14
+                fl.minimumLineSpacing = 14
+                fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+                return fl
+            }
+            .onScroll() { scroll, _ in
+                if scroll.y > 88 {
+                    isLarge = false
+                } else if scroll.y < 88  {
+                    isLarge = true
+                }
+            }
+            .alwaysBounceVertical(true)
+                TabBar(actions: [
+                {
+                    withAnimation(.default) {
+                    TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                        activeSheet = .newTimer
+                        showingSheet = true
+                    }
+                },{
+                    activeSheet = .trends
+                    showingSheet = true
+                },{
+                    activeSheet = .settings
+                    showingSheet = true
+                    }]).environmentObject(self.settings)
+                
+            }.animation(.default)
+        
         
             
         //MARK: Sheet

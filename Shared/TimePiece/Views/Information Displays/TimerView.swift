@@ -118,6 +118,7 @@ struct TimerView: View {
         
             
         //MARK: Styling
+        .background(Color(.systemBackground))
         .title()
         .buttonStyle(RegularButtonStyle())
         .padding(7)
