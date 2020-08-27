@@ -285,6 +285,11 @@ extension TimerItem {
     var totalTimeString: String {
         get { totalTime.stringFromTimeInterval(precisionSetting: precisionSetting) }
     }
+    
+    var editableTimeString: String {
+        get { totalTime.editableString() }
+        set { totalTime = newValue.stringToTimeInterval() }
+    }
 
     
 }
@@ -293,6 +298,34 @@ extension TimerItem {
 //MARK: - Converter Functions
 
 extension String {
+    
+    func stringToTimeInterval() -> TimeInterval {
+        var seconds: TimeInterval = 0
+        var minutes: TimeInterval = 0
+        var hours: TimeInterval = 0
+        
+        if self.count <= 2 {
+            seconds = TimeInterval(self) ?? 0
+        } else if self.count == 3 {
+            seconds = TimeInterval(String(self.suffix(2))) ?? 0
+            minutes = TimeInterval(String(self.prefix(1))) ?? 0
+        } else if self.count == 4 {
+            seconds = TimeInterval(String(self.suffix(2))) ?? 0
+            minutes = TimeInterval(String(self.prefix(2))) ?? 0
+        } else if self.count == 5 {
+            seconds = TimeInterval(String(self.suffix(2))) ?? 0
+            hours = TimeInterval(String(self.prefix(1))) ?? 0
+            minutes = TimeInterval(String(String(self.prefix(3)).suffix(2))) ?? 0
+        } else if self.count == 6 {
+            seconds = TimeInterval(String(self.suffix(2))) ?? 0
+            hours = TimeInterval(String(self.prefix(2))) ?? 0
+            minutes = TimeInterval(String(String(self.prefix(4)).suffix(2))) ?? 0
+        } else {
+            seconds = TimeInterval(self) ?? 0
+        }
+        
+        return seconds + (minutes*60) + (hours*3600)
+    }
     
     //MARK: String to Time
     func stringToTime(showAllDigits: Bool) -> String {
@@ -388,7 +421,20 @@ extension TimeInterval {
         }
     }
     
+    
     func relativeStringFromNumber() -> String {
+        
+        let time = NSInteger(self)
+        
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        
+        return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+        
+    }
+    
+    func editableString() -> String {
         
         let time = NSInteger(self)
         

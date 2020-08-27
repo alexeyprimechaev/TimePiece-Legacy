@@ -43,7 +43,7 @@ struct TimerSheet: View {
                     if timer.totalTimeString.count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
                         VStack(alignment: .leading, spacing:14) {
                             if timer.totalTime != timer.remainingTime {
-                                TimeView(time: $currentTime, title: leftString, update: {})
+                                LegacyTimeView(time: $currentTime, title: leftString, update: {})
                             }
                             EditableTimeView(time: $timer.totalTime, title: totalString, update: {
                                 self.timer.reset()
@@ -55,7 +55,7 @@ struct TimerSheet: View {
                         HStack(alignment: .top) {
                             
                             if timer.isRunning {
-                                TimeView(time: $currentTime, title: leftString, update: {})
+                                LegacyTimeView(time: $currentTime, title: leftString, update: {})
 
                             }
                         

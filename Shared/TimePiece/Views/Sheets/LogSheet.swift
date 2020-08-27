@@ -44,7 +44,6 @@ struct LogSheet: View {
             { item, _ in
                 LogView(logItem: item)
             }
-            .tableViewSetEstimatedSizes(rowHeight: 300, headerHeight: 56)
             .sectionHeader
             {
                VStack(spacing: 0)
@@ -108,7 +107,7 @@ struct LogSheet: View {
 
     }
     
-    func contextMenuProvider(_ logItem: LogItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(int: Int, logItem: LogItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
@@ -134,7 +133,7 @@ struct LogSheet: View {
         return configuration
     }
     
-    func onSwipeToDelete(_ logItem: LogItem, completionHandler: (Bool) -> Void) {
+    func onSwipeToDelete(int: Int, logItem: LogItem, completionHandler: (Bool) -> Void) {
         withAnimation(.default) {
             context.delete(logItem)
         }

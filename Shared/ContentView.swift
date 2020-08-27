@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ASCollectionView
 
 enum ActiveSheet {
    case timer, newTimer, settings, trends, subscription
@@ -30,32 +31,93 @@ struct ContentView: View {
     
     @State var isAdding = false
     @State var selectedTimer = 0
+    
+    @State var isLarge = true
+    
+    @State var string = "000000"
         
         
 //MARK: - View
     
     var body: some View {
-        VStack() {
-            NavigationView {
-                List()
-            }
         
-            TabBar(actions: [
-            {
-                withAnimation(.default) {
-                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                    activeSheet = .newTimer
-                    showingSheet = true
-                }
-            },{
-                activeSheet = .trends
-                showingSheet = true
-            },{
-                activeSheet = .settings
-                showingSheet = true
-                }]).environmentObject(self.settings)
-            
-        }
+        TimeView(timeString: $string)
+            .onChange(of: string) { newValue in
+                print(newValue)
+            }
+//            VStack(spacing: 0) {
+//                VStack(spacing: 0) {
+//                    HStack {
+//
+//                        Text(timePieceString).smallTitle().opacity(isLarge ? 0 : 1).padding(14)
+//
+//
+//                    }
+//
+//                    Divider().opacity(isLarge ? 0 : 1)
+//                }.animation(.easeOut(duration: 0.2))
+//
+//            ASCollectionView(
+//                sections:
+//                [
+//
+//                    ASCollectionViewSection(id: 0) {
+//                        Text(timePieceString).title().padding(.bottom, 14).padding(.leading, 7)
+//                    },
+//            //MARK: Timers
+//                    ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
+//                        TimerView(timer: timer).fixedSize().environmentObject(self.settings)
+//
+//                    },
+//
+//                    ASCollectionViewSection(id: 2) {
+//                                        TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
+//                                            withAnimation(.default) {
+//                                                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+//                                                activeSheet = .newTimer
+//                                                showingSheet = true
+//                                            }
+//                                        }).padding(.vertical, 12)
+//                                    }
+//                ]
+//            )
+//
+//
+//            //MARK: Layout Configuration
+//            .layout {
+//                let fl = AlignedFlowLayout()
+//                fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
+//                fl.minimumInteritemSpacing = 14
+//                fl.minimumLineSpacing = 14
+//                fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//                return fl
+//            }
+//            .onScroll() { scroll, _ in
+//                if scroll.y >= 48 {
+//                    isLarge = false
+//                } else if scroll.y < 48  {
+//                    isLarge = true
+//                }
+//            }
+//            .alwaysBounceVertical(true)
+//                TabBar(actions: [
+//                {
+//                    withAnimation(.default) {
+//                    TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+//                        activeSheet = .newTimer
+//                        showingSheet = true
+//                    }
+//                },{
+//                    activeSheet = .trends
+//                    showingSheet = true
+//                },{
+//                    activeSheet = .settings
+//                    showingSheet = true
+//                    }]).environmentObject(self.settings)
+//
+//            }
+//    .animation(.default)
+        
         
             
         //MARK: Sheet
@@ -116,7 +178,7 @@ struct ContentView: View {
     
     
     //MARK: Context Menu
-    func contextMenuProvider(timer: TimerItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(int: Int, timer: TimerItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
@@ -140,7 +202,7 @@ struct ContentView: View {
             
 
             let pause = UIAction(title: timer.isPaused ? NSLocalizedString("start", comment: "Start") : NSLocalizedString("pause", comment: "Pause"), image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
-                if timer.currentTime == 0 {
+                if timer.remainingTime == 0 {
                     if timer.isReusable {
                         timer.reset()
                     } else {

@@ -46,6 +46,7 @@ struct NewTimerSheet: View {
                                             
                     PropertyView(title: titleString, timer: self.timer )
                     
+                    TimeView(timeString: $timer.editableTimeString)
                     EditableTimeView(time: $timer.totalTime, title: timeString, isFirstResponder: true, update: {
                         self.timer.remainingTime = self.timer.totalTime
                     })

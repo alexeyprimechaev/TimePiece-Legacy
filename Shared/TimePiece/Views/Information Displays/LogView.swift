@@ -11,6 +11,7 @@ import SwiftUI
 struct LogView: View {
     
     @ObservedObject var logItem = LogItem()
+    @EnvironmentObject var settings: Settings
     
     @State var currentTime = Date()
     
