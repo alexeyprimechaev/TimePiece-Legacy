@@ -33,26 +33,27 @@ struct TimeView: View {
                 HStack(spacing: 0) {
                     Text(hours)
                         .frame(width:46, alignment: .topTrailing)
-                        .opacity(keyboardMode == 1 ? 1 : 0.5)
+                        .opacity(keyboardMode == 1 || keyboardMode == 0 ? 1 : 0.5)
 
                     Dots()
                     Text(minutes)
                         .frame(width:46, alignment: .topTrailing)
-                        .opacity(keyboardMode == 2 ? 1 : 0.5)
+                        .opacity(keyboardMode == 2 || keyboardMode == 0 ? 1 : 0.5)
                     Dots()
                     Text(seconds)
                         .frame(width:46, alignment: .topTrailing)
-                        .opacity(keyboardMode == 3 ? 1 : 0.5)
+                        .opacity(keyboardMode == 3 || keyboardMode == 0 ? 1 : 0.5)
                 }.title().padding(7)
                 .overlay(
-                    TextField("", text: $string, onCommit:  {
+                    TextField("", text: $string) {
                         fixNumbers()
-                    })
+                    }
                         .introspectTextField { textField in
                             self.textField = textField
 
                         }
-                    .scaleEffect(0.01)
+                        .scaleEffect(0.01)
+                        .frame(width: 1, height: 1)
                         .accentColor(.clear)
                         .foregroundColor(.clear)
                         .opacity(0)
@@ -60,45 +61,85 @@ struct TimeView: View {
                             keyboardMode = 0
                         }
                         .onChange(of: string) { newValue in
-                            if isProtected {
-                                print("hello")
-                                string = String(newValue.suffix(1))
-                                print(string)
-                            }
-
                             switch keyboardMode {
                             case 1:
                                 if string.count > 2 {
-                                    string = String(newValue.suffix(2))
-                                    hours = string
+                                    if isProtected {
+                                        string = String(newValue.suffix(1))
+                                        hours = string
+                                        isProtected = false
+                                    } else {
+                                        string = String(newValue.suffix(2))
+                                        hours = string
+                                    }
                                 } else {
                                     hours = string
                                 }
                                 timeString = hours + minutes + seconds
                             case 2:
                                 if string.count > 2 {
-                                    string = String(newValue.suffix(2))
-                                    minutes = string
+                                    if isProtected {
+                                        string = String(newValue.suffix(1))
+                                        minutes = string
+                                        isProtected = false
+                                    } else {
+                                        string = String(newValue.suffix(2))
+                                        minutes = string
+                                    }
                                 } else {
                                     minutes = string
                                 }
                                 timeString = hours + minutes + seconds
                             case 3:
                                 if string.count > 2 {
-                                    string = String(newValue.suffix(2))
-                                    seconds = string
+                                    if isProtected {
+                                        string = String(newValue.suffix(1))
+                                        seconds = string
+                                        isProtected = false
+                                    } else {
+                                        string = String(newValue.suffix(2))
+                                        seconds = string
+                                    }
                                 } else {
                                     seconds = string
                                 }
                                 timeString = hours + minutes + seconds
                             default:
                                 if newValue.count > 6 {
-                                    timeString = String(newValue.suffix(6))
+                                    if isProtected {
+                                        string = String(newValue.suffix(1))
+                                        isProtected = false
+                                    } else {
+                                        string = String(string.suffix(6))
+                                    }
+                                    timeString = string
                                 } else {
                                     timeString = string
                                 }
+                                switch string.count {
+                                case 1,2:
+                                    seconds = string
+                                    minutes = ""
+                                    hours = ""
+                                case 3:
+                                    seconds = String(string.suffix(2))
+                                    minutes = String(string.prefix(1))
+                                    hours = ""
+                                case 4:
+                                    seconds = String(string.suffix(2))
+                                    minutes = String(string.prefix(2))
+                                    hours = ""
+                                case 5:
+                                    seconds = String(string.suffix(2))
+                                    minutes = String(string.prefix(3).suffix(2))
+                                    hours = String(string.prefix(1))
+                                
+                                default:
+                                    seconds = String(string.suffix(2))
+                                    minutes = String(string.prefix(4).suffix(2))
+                                    hours = String(string.prefix(2))
+                                }
                             }
-                            isProtected = false
                             
                             
                             
@@ -125,39 +166,67 @@ struct TimeView: View {
     //            }.opacity(timeString.count == 0 ? 0.5 : 0).title())
                 HStack(spacing: 0) {
                     Button(action: {
-                        isProtected = true
-                        if textField.isEditing {
-                            keyboardMode = 1
+                        if keyboardMode == 1 {
                             fixNumbers()
-                        } else {
+                            string = timeString
                             keyboardMode = 0
+                        } else {
+                            string = hours
+                            if textField.isEditing {
+                                keyboardMode = 1
+                                fixNumbers()
+                            } else {
+                                fixNumbers()
+                                string = timeString
+                                keyboardMode = 0
+                            }
                         }
+                        
+                        isProtected = true
                         textField.becomeFirstResponder()
                         
                     }) {
                         Rectangle().frame(width: 54, height: 46).opacity(0)
                     }
                     Button(action: {
-                        isProtected = true
-                        if textField.isEditing {
-                            keyboardMode = 2
+                        if keyboardMode == 2 {
                             fixNumbers()
-                        } else {
+                            string = timeString
                             keyboardMode = 0
+                        } else {
+                            string = minutes
+                            if textField.isEditing {
+                                keyboardMode = 2
+                                fixNumbers()
+                            } else {
+                                fixNumbers()
+                                string = timeString
+                                keyboardMode = 0
+                            }
                         }
+                        
+                        isProtected = true
                         textField.becomeFirstResponder()
                     }) {
                         Rectangle().frame(width: 54, height: 46).opacity(0)
                     }
                     Button(action: {
-                        isProtected = true
-                        if textField.isEditing {
-                            keyboardMode = 3
+                        if keyboardMode == 3 {
                             fixNumbers()
-                        } else {
+                            string = timeString
                             keyboardMode = 0
+                        } else {
+                            string = seconds
+                            if textField.isEditing {
+                                keyboardMode = 3
+                                fixNumbers()
+                            } else {
+                                fixNumbers()
+                                string = timeString
+                                keyboardMode = 0
+                            }
                         }
-                        
+                        isProtected = true
                         textField.becomeFirstResponder()
                     }) {
                         Rectangle().frame(width: 54, height: 46).opacity(0)
@@ -190,6 +259,7 @@ struct TimeView: View {
         while seconds.count < 2 {
             seconds = "0" + seconds
         }
+        timeString = hours + minutes + seconds
     }
     
 }
