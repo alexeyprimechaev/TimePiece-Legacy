@@ -20,6 +20,8 @@ struct TimeView: View {
     
     @State var string = ""
     
+    @State var isProtected = false
+    
     
     @State var seconds = ""
     @State var minutes = ""
@@ -41,60 +43,68 @@ struct TimeView: View {
                     Text(seconds)
                         .frame(width:46, alignment: .topTrailing)
                         .opacity(keyboardMode == 3 ? 1 : 0.5)
-                }.title()
+                }.title().padding(7)
                 .overlay(
-                    TextField("", text: $string) {
+                    TextField("", text: $string, onCommit:  {
                         fixNumbers()
-                    }
+                    })
                         .introspectTextField { textField in
                             self.textField = textField
 
                         }
-                        .title()
+                    .scaleEffect(0.01)
                         .accentColor(.clear)
                         .foregroundColor(.clear)
+                        .opacity(0)
                         .onTapGesture {
-                            timeString = ""
+                            keyboardMode = 0
                         }
                         .onChange(of: string) { newValue in
-                            
+                            if isProtected {
+                                print("hello")
+                                string = String(newValue.suffix(1))
+                                print(string)
+                            }
+
                             switch keyboardMode {
                             case 1:
-                                if newValue.count > 2 {
+                                if string.count > 2 {
                                     string = String(newValue.suffix(2))
                                     hours = string
                                 } else {
-                                    hours = newValue
+                                    hours = string
                                 }
                                 timeString = hours + minutes + seconds
                             case 2:
-                                if newValue.count > 2 {
+                                if string.count > 2 {
                                     string = String(newValue.suffix(2))
                                     minutes = string
                                 } else {
-                                    minutes = newValue
+                                    minutes = string
                                 }
                                 timeString = hours + minutes + seconds
                             case 3:
-                                if newValue.count > 2 {
+                                if string.count > 2 {
                                     string = String(newValue.suffix(2))
                                     seconds = string
                                 } else {
-                                    seconds = newValue
+                                    seconds = string
                                 }
                                 timeString = hours + minutes + seconds
                             default:
                                 if newValue.count > 6 {
                                     timeString = String(newValue.suffix(6))
                                 } else {
-                                    timeString = newValue
+                                    timeString = string
                                 }
                             }
+                            isProtected = false
                             
                             
                             
-                            print(string)
-                            print(timeString)
+                            
+                            
+
                         }
                     .onAppear {
                         hours = String(timeString.prefix(2))
@@ -115,45 +125,42 @@ struct TimeView: View {
     //            }.opacity(timeString.count == 0 ? 0.5 : 0).title())
                 HStack(spacing: 0) {
                     Button(action: {
+                        isProtected = true
                         if textField.isEditing {
                             keyboardMode = 1
-                            print(keyboardMode)
                             fixNumbers()
-                            string = ""
                         } else {
                             keyboardMode = 0
                         }
                         textField.becomeFirstResponder()
                         
                     }) {
-                        Rectangle().frame(width: 50, height: 36).opacity(0)
+                        Rectangle().frame(width: 54, height: 46).opacity(0)
                     }
                     Button(action: {
+                        isProtected = true
                         if textField.isEditing {
                             keyboardMode = 2
                             fixNumbers()
-                            print(keyboardMode)
-                            string = ""
                         } else {
                             keyboardMode = 0
                         }
                         textField.becomeFirstResponder()
                     }) {
-                        Rectangle().frame(width: 50, height: 36).opacity(0)
+                        Rectangle().frame(width: 54, height: 46).opacity(0)
                     }
                     Button(action: {
+                        isProtected = true
                         if textField.isEditing {
                             keyboardMode = 3
                             fixNumbers()
-                            print(keyboardMode)
-                            string = ""
                         } else {
                             keyboardMode = 0
                         }
                         
                         textField.becomeFirstResponder()
                     }) {
-                        Rectangle().frame(width: 50, height: 36).opacity(0)
+                        Rectangle().frame(width: 54, height: 46).opacity(0)
                     }
                 }
             }
@@ -164,6 +171,7 @@ struct TimeView: View {
             Text("seconds: \(seconds)")
             Text("string: \(string)")
             Text("keyboardMode: \(keyboardMode)")
+            Text("isProtected: \(isProtected.description)")
             
         }
         

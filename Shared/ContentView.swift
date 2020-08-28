@@ -42,9 +42,6 @@ struct ContentView: View {
     var body: some View {
         
         TimeView(timeString: $string)
-            .onChange(of: string) { newValue in
-                print(newValue)
-            }
 //            VStack(spacing: 0) {
 //                VStack(spacing: 0) {
 //                    HStack {
