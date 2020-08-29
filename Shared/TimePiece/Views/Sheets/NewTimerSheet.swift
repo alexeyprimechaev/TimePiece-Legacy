@@ -45,11 +45,11 @@ struct NewTimerSheet: View {
                 VStack(alignment: .leading, spacing: 14) {
                                             
                     PropertyView(title: titleString, timer: self.timer )
+                    HStack(alignment: .bottom, spacing: 7) {
+                        TimeView(timeString: $timer.editableTimeString, becomeFirstResponder: true)
+                        Text("Time").smallTitle().padding(.bottom, 5)
+                    }
                     
-                    TimeView(timeString: $timer.editableTimeString)
-                    EditableTimeView(time: $timer.totalTime, title: timeString, isFirstResponder: true, update: {
-                        self.timer.remainingTime = self.timer.totalTime
-                    })
                     VStack(alignment: .leading, spacing: 14) {
                         
                         PremiumBadge() {

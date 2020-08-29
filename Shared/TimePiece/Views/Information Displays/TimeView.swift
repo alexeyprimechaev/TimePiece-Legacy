@@ -22,6 +22,9 @@ struct TimeView: View {
     
     @State var isProtected = false
     
+    @State var becomeFirstResponder = false
+    @State var showOutline = false
+    
     
     @State var seconds = ""
     @State var minutes = ""
@@ -29,12 +32,12 @@ struct TimeView: View {
     
     var body: some View {
         VStack() {
-            ZStack(alignment: .topLeading) {
+            ZStack(alignment: .center) {
+                Text("88").title().padding(7).opacity(0)
                 HStack(spacing: 0) {
                     Text(hours)
                         .frame(width:46, alignment: .topTrailing)
                         .opacity(keyboardMode == 1 || keyboardMode == 0 ? 1 : 0.5)
-
                     Dots()
                     Text(minutes)
                         .frame(width:46, alignment: .topTrailing)
@@ -43,13 +46,24 @@ struct TimeView: View {
                     Text(seconds)
                         .frame(width:46, alignment: .topTrailing)
                         .opacity(keyboardMode == 3 || keyboardMode == 0 ? 1 : 0.5)
-                }.title().padding(7)
+                }.title().padding(7).fixedSize(horizontal: true, vertical: true)
                 .overlay(
-                    TextField("", text: $string) {
+                    TextField("", text: $string, onEditingChanged: { (editingChanged) in
+                        if editingChanged {
+                            showOutline = true
+                        } else {
+                            fixNumbers()
+                            showOutline = false
+                        }
+                    }, onCommit:  {
                         fixNumbers()
-                    }
+                    })
                         .introspectTextField { textField in
                             self.textField = textField
+                            if becomeFirstResponder {
+                                textField.becomeFirstResponder()
+                                becomeFirstResponder = false
+                            }
 
                         }
                         .scaleEffect(0.01)
@@ -59,6 +73,12 @@ struct TimeView: View {
                         .opacity(0)
                         .onTapGesture {
                             keyboardMode = 0
+                        }
+                        .onChange(of: textField.isEditing) { newValue in
+                            fixNumbers()
+                            if newValue == false {
+                                keyboardMode = 0
+                            }
                         }
                         .onChange(of: string) { newValue in
                             switch keyboardMode {
@@ -233,6 +253,11 @@ struct TimeView: View {
                     }
                 }
             }
+            .background(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .foregroundColor(Color("button.gray"))
+                    .opacity(textField.isFirstResponder || showOutline ? 1 : 0))
+
             
             Text("timeString: \(timeString)")
             Text("hours: \(hours)")

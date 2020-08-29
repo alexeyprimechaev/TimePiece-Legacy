@@ -50,6 +50,7 @@
 		80150E3624F5938F00C740B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
 		80150E3824F593A500C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
 		8043381D24F6836A00958666 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809D9F3124C4929200DB4E94 /* CloudKit.framework */; };
+		808854CE24FA533400F7BCDC /* TitleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808854CD24FA533400F7BCDC /* TitleEditor.swift */; };
 		80B4137924F80FFB0089BF7A /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		80727C97241136FF0046EE08 /* PremiumBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBadge.swift; sourceTree = "<group>"; };
 		807A0F4023D4C66C008B0E24 /* LegacyTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTimeView.swift; sourceTree = "<group>"; };
 		8088473A23C2AE79001D1A6E /* TimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSheet.swift; sourceTree = "<group>"; };
+		808854CD24FA533400F7BCDC /* TitleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleEditor.swift; sourceTree = "<group>"; };
 		809635632401544D00BF297F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		809D69C42416CB4900896206 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
 		809D9F2F24C4927D00DB4E94 /* TimePiece.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePiece.entitlements; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				802A026C23CFBA5600512B39 /* PropertyView.swift */,
 				807A0F4023D4C66C008B0E24 /* LegacyTimeView.swift */,
 				80B4137824F80FFB0089BF7A /* TimeView.swift */,
+				808854CD24FA533400F7BCDC /* TitleEditor.swift */,
 				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
 			);
 			path = "Information Displays";
@@ -361,6 +364,7 @@
 				80150DEB24F58E7300C740B3 /* TimerItem.swift in Sources */,
 				80150DD924F58E7300C740B3 /* TabBar.swift in Sources */,
 				80150DE324F58E7300C740B3 /* ContentView.swift in Sources */,
+				808854CE24FA533400F7BCDC /* TitleEditor.swift in Sources */,
 				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
 				80B4137924F80FFB0089BF7A /* TimeView.swift in Sources */,
 				80150DD324F58E7300C740B3 /* TimerView.swift in Sources */,
