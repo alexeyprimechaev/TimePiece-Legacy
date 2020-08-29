@@ -45,10 +45,7 @@ struct TimerSheet: View {
                             if timer.totalTime != timer.remainingTime {
                                 LegacyTimeView(time: $currentTime, title: leftString, update: {})
                             }
-                            EditableTimeView(time: $timer.totalTime, title: totalString, update: {
-                                self.timer.reset()
-                                self.timer.remainingTime = self.timer.totalTime
-                            })
+                            TimeView(timeString: $timer.editableTimeString)
                             .disabled(timer.isRunning)
                         }.animation(Animation.default, value: timer.isRunning)
                     } else {
@@ -59,10 +56,7 @@ struct TimerSheet: View {
 
                             }
                         
-                            EditableTimeView(time: $timer.totalTime, title: totalString, update: {
-                                self.timer.reset()
-                                self.timer.remainingTime = self.timer.totalTime
-                            })
+                            TimeView(timeString: $timer.editableTimeString)
                             .disabled(timer.isRunning)
                         }.animation(Animation.default, value: timer.isRunning)
                     }

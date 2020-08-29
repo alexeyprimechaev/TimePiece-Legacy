@@ -31,7 +31,6 @@ struct TimeView: View {
     @State var hours = ""
     
     var body: some View {
-        VStack() {
             ZStack(alignment: .center) {
                 Text("88").title().padding(7).opacity(0)
                 HStack(spacing: 0) {
@@ -259,15 +258,6 @@ struct TimeView: View {
                     .opacity(textField.isFirstResponder || showOutline ? 1 : 0))
 
             
-            Text("timeString: \(timeString)")
-            Text("hours: \(hours)")
-            Text("minutes: \(minutes)")
-            Text("seconds: \(seconds)")
-            Text("string: \(string)")
-            Text("keyboardMode: \(keyboardMode)")
-            Text("isProtected: \(isProtected.description)")
-            
-        }
         
         
         
