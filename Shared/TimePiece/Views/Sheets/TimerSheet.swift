@@ -40,26 +40,13 @@ struct TimerSheet: View {
                         
                     PropertyView(title: titleString, timer: timer).disabled(!timer.isPaused)
                     
-                    if timer.totalTimeString.count + timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting).count > 13 {
-                        VStack(alignment: .leading, spacing:14) {
-                            if timer.totalTime != timer.remainingTime {
-                                LegacyTimeView(time: $currentTime, title: leftString, update: {})
-                            }
-                            TimeView(timeString: $timer.editableTimeString)
-                            .disabled(timer.isRunning)
-                        }.animation(Animation.default, value: timer.isRunning)
-                    } else {
-                        HStack(alignment: .top) {
-                            
-                            if timer.isRunning {
-                                LegacyTimeView(time: $currentTime, title: leftString, update: {})
-
-                            }
-                        
-                            TimeView(timeString: $timer.editableTimeString)
-                            .disabled(timer.isRunning)
-                        }.animation(Animation.default, value: timer.isRunning)
-                    }
+                    VStack(alignment: .leading, spacing:14) {
+                        if timer.isRunning {
+                            LegacyTimeView(time: $currentTime, title: leftString, update: {})
+                        }
+                        TimeEditor(timeString: $timer.editableTimeString)
+                        .disabled(timer.isRunning)
+                    }.animation(Animation.default, value: timer.isRunning)
                         
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {

@@ -52,8 +52,7 @@ struct TimerView: View {
                 VStack(alignment: .leading) {
                     Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
                     
-                    Text(timer.remainingTimeStored == nil ? " " : currentTime)
-                        .opacity(0.5)
+                    TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()})
                     
                 }
                 
@@ -63,42 +62,9 @@ struct TimerView: View {
                     .animation(timer.remainingTime == 0 ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 
                 // Paused animations
-                if timer.remainingTime != 0 {
-                    HStack(spacing: 0) {
-                        Text(timer.remainingTimeString.prefix(2))
-                            .opacity(0)
-                        Rectangle().frame(width:9, height: 40)
-                            .foregroundColor(Color(UIColor.systemBackground))
-                            .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                        if timer.remainingTimeString.count > 5 {
-                            Text(timer.remainingTimeString.prefix(5).suffix(2))
-                                .opacity(0)
-                            Rectangle().frame(width:8, height: 40)
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                        }
-                        if timer.remainingTimeString.count > 8 {
-                            Text(timer.remainingTimeString.prefix(8).suffix(2))
-                                .opacity(0)
-                            Rectangle().frame(width:9, height: 40)
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .opacity(timer.isRunning && timer.isPaused ? 0.7 : 0)
-                        }
-                    }
-                    .animation(timer.isRunning && timer.isPaused ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
-                }
+
                 
                 // For layout stability
-                Group {
-                    if self.timer.remainingTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 11  {
-                        Text("88:88:88:88")
-                    } else if self.timer.remainingTime.stringFromTimeInterval(precisionSetting: self.timer.precisionSetting).count >= 8 {
-                        Text("88:88:88")
-                        
-                    } else {
-                        Text("88:88")
-                    }
-                }.opacity(0)
                 
 
                 
@@ -141,7 +107,9 @@ struct TimerView: View {
                 AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }
             
-            currentTime = timer.timeFinished.timeIntervalSince(Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting)
+            currentTime = timer.timeFinished.timeIntervalSince(Date()).editableString()
+            print(currentTime)
+            print(timer.remainingTimeString)
    
         }
         

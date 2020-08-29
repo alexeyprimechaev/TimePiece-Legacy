@@ -90,13 +90,14 @@ struct ContentView: View {
                 return fl
             }
             .onScroll() { scroll, _ in
-                if scroll.y >= 48 {
+                if scroll.y >= 36 {
                     isLarge = false
-                } else if scroll.y < 48  {
+                } else if scroll.y < 36  {
                     isLarge = true
                 }
             }
             .alwaysBounceVertical(true)
+            .animation(.default)
                 TabBar(actions: [
                 {
                     withAnimation(.default) {
@@ -113,7 +114,6 @@ struct ContentView: View {
                     }]).environmentObject(self.settings)
 
             }
-    .animation(.default)
         
         
             

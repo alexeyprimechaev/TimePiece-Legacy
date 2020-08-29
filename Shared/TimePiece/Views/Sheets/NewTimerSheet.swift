@@ -44,11 +44,9 @@ struct NewTimerSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
-                    PropertyView(title: titleString, timer: self.timer )
-                    HStack(alignment: .bottom, spacing: 7) {
-                        TimeView(timeString: $timer.editableTimeString, becomeFirstResponder: true)
-                        Text("Time").smallTitle().padding(.bottom, 5)
-                    }
+                    PropertyView(title: titleString, timer: self.timer)
+                    
+                    TimeEditor(timeString: $timer.editableTimeString, becomeFirstResponder: true)
                     
                     VStack(alignment: .leading, spacing: 14) {
                         

@@ -279,7 +279,7 @@ extension TimerItem {
     //MARK: Helpers
     
     var remainingTimeString: String {
-        get { remainingTime.stringFromTimeInterval(precisionSetting: precisionSetting) }
+        get { remainingTime.editableString() }
     }
     
     var totalTimeString: String {

@@ -279,11 +279,14 @@ struct TimeEditor: View {
     
 }
 
-fileprivate struct Dots: View {
+struct Dots: View {
+    
+    @State var isMilliseconds = false
+    
     var body: some View {
-        VStack(spacing: 4) {
-            Circle().frame(width: 5, height: 5)
-            Circle().frame(width: 5, height: 5)
+        VStack(spacing: 6) {
+            Circle().frame(width: 5, height: 5).opacity(isMilliseconds ? 0 : 1)
+            Circle().frame(width: 5, height: 5).padding(.top, isMilliseconds ? 8 : 0)
         }.padding(.vertical, 8).padding(.horizontal, 1)
     }
 }
