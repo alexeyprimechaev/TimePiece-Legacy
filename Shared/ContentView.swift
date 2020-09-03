@@ -63,19 +63,22 @@ struct ContentView: View {
                     },
             //MARK: Timers
                     ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
-                        TimerView(timer: timer).fixedSize().environmentObject(self.settings)
+                        TimerView(timer: timer).environmentObject(self.settings)
 
                     },
-
+                    
                     ASCollectionViewSection(id: 2) {
-                                        TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
-                                            withAnimation(.default) {
-                                                TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                                                activeSheet = .newTimer
-                                                showingSheet = true
-                                            }
-                                        }).padding(.vertical, 12)
-                                    }
+                        if timerItems.count == 0 {
+                            TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
+                                withAnimation(.default) {
+                                    TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                                            activeSheet = .newTimer
+                                            showingSheet = true
+                                }
+                            }).padding(.vertical, 12).fixedSize()
+                        }
+                        
+                    }
                 ]
             )
 
@@ -90,9 +93,9 @@ struct ContentView: View {
                 return fl
             }
             .onScroll() { scroll, _ in
-                if scroll.y >= 36 {
+                if scroll.y >= 32 {
                     isLarge = false
-                } else if scroll.y < 36  {
+                } else if scroll.y < 32  {
                     isLarge = true
                 }
             }
@@ -116,7 +119,9 @@ struct ContentView: View {
             }
         
         
-            
+        .onAppear {
+            activeSheet = .trends
+        }
         //MARK: Sheet
         .sheet(isPresented: $showingSheet, onDismiss: {
             if activeSheet == .newTimer {

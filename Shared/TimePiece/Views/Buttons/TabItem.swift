@@ -22,6 +22,7 @@ struct TabItem: View {
             regularHaptic()
         }) {
             Label(title, systemImage: icon)
+            .lineLimit(1)
             .padding(14)
         
         }.smallTitle().foregroundColor(.primary)

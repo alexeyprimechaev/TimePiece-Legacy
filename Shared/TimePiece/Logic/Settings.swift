@@ -14,6 +14,7 @@ public let defaultsStored = UserDefaults.standard
 
 public class Settings: ObservableObject {
     
+    
     @Published var showingSubscription: Bool = false
     
     @Published var nextNotificationDate: Date = ((defaultsStored.value(forKey: "nextNotificationDate") ?? Date().addingTimeInterval(36000)) as! Date) {
@@ -36,6 +37,7 @@ public class Settings: ObservableObject {
     
     @Published var fontDesign: Font.Design = ((defaultsStored.value(forKey: "fontDesign") ?? "Default") as! String).fontDesignValue {
         willSet {
+
             defaultsStored.set(newValue.string, forKey: "fontDesign")
         }
     }

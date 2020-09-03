@@ -48,18 +48,30 @@ struct TimerView: View {
             
         //MARK: Layout
         {
-            ZStack(alignment: .bottomLeading) {
-                VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                     Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
-                    
+                ZStack(alignment: .topLeading) {
+
                     TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()})
-                    
+                    HStack(spacing: 0) {
+                        if currentTime.prefix(2) != "00" {
+                            Text("88").animation(nil)
+                            Dots()
+                        }
+                        Text("88")
+                        Dots()
+                        Text("88")
+            //            Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
+            //            Text(seconds).animation(nil)
+            //                .opacity(0.5)
+                    }.animation(nil).opacity(0)
                 }
+                    
+
+                    
+                    
+            }
                 
-                Rectangle().foregroundColor(Color(UIColor.systemBackground))
-                .frame(width: 100, height: 40)
-                    .opacity(timer.remainingTime == 0 ? 0.5 : 0)
-                    .animation(timer.remainingTime == 0 ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: timer.isPaused)
                 
                 // Paused animations
 
@@ -69,7 +81,6 @@ struct TimerView: View {
 
                 
                 
-            }
             .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                 self.updateTime()
             }

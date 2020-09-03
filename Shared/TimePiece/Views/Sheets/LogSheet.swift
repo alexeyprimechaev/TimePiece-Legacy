@@ -95,8 +95,9 @@ struct LogSheet: View {
                 }.background(Color(UIColor.systemBackground))
                 
             } else {
-                ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
-                .alwaysBounce(true)
+                Text("Under construction 🏗")
+                //ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
+                //.alwaysBounce(true)
             }
             
         
