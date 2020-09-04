@@ -50,10 +50,46 @@
 		80150E3624F5938F00C740B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
 		80150E3824F593A500C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
 		8043381D24F6836A00958666 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809D9F3124C4929200DB4E94 /* CloudKit.framework */; };
+		807C15AD250185710055227D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807C15AC250185710055227D /* WidgetKit.framework */; };
+		807C15AF250185710055227D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807C15AE250185710055227D /* SwiftUI.framework */; };
+		807C15B4250185730055227D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 807C15B3250185730055227D /* Assets.xcassets */; };
+		807C15B8250185730055227D /* TimePieceWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 807C15AB250185710055227D /* TimePieceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		807C15BE250185840055227D /* TimePieceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C15BD250185840055227D /* TimePieceWidget.swift */; };
+		807C15BF2501858A0055227D /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerItem.swift */; };
+		807C15C02501858D0055227D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
+		807C15C12501858F0055227D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
+		807C15C2250185910055227D /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
+		807C15C42501859F0055227D /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 807C15C32501859F0055227D /* SwiftyStoreKit */; };
+		807C15C5250186220055227D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
+		807C15C625018A8F0055227D /* TimePiece.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */; };
 		808854CE24FA533400F7BCDC /* TitleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808854CD24FA533400F7BCDC /* TitleEditor.swift */; };
 		80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DA024FAB08400C55895 /* TimeDisplay.swift */; };
 		80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeEditor.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		807C15B6250185730055227D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80612FD723C274DB00BC03F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 807C15AA250185710055227D;
+			remoteInfo = TimePieceWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		807C15B9250185730055227D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				807C15B8250185730055227D /* TimePieceWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8012C7A824056C5000E7798E /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
@@ -87,6 +123,12 @@
 		80612FFB23C2766B00BC03F5 /* TimerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerItem.swift; sourceTree = "<group>"; };
 		80727C97241136FF0046EE08 /* PremiumBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBadge.swift; sourceTree = "<group>"; };
 		807A0F4023D4C66C008B0E24 /* LegacyTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTimeView.swift; sourceTree = "<group>"; };
+		807C15AB250185710055227D /* TimePieceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimePieceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		807C15AC250185710055227D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		807C15AE250185710055227D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		807C15B3250185730055227D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		807C15B5250185730055227D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		807C15BD250185840055227D /* TimePieceWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePieceWidget.swift; sourceTree = "<group>"; };
 		8088473A23C2AE79001D1A6E /* TimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSheet.swift; sourceTree = "<group>"; };
 		808854CD24FA533400F7BCDC /* TitleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleEditor.swift; sourceTree = "<group>"; };
 		80888DA024FAB08400C55895 /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
@@ -118,6 +160,16 @@
 				8043381D24F6836A00958666 /* CloudKit.framework in Frameworks */,
 				80150E2924F5903700C740B3 /* ASCollectionView in Frameworks */,
 				80150E2524F5900400C740B3 /* Introspect in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		807C15A8250185710055227D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				807C15C42501859F0055227D /* SwiftyStoreKit in Frameworks */,
+				807C15AF250185710055227D /* SwiftUI.framework in Frameworks */,
+				807C15AD250185710055227D /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +238,7 @@
 				8043381C24F6836700958666 /* TimePiece.entitlements */,
 				80150D6424F58BD900C740B3 /* Shared */,
 				80150D7024F58BDC00C740B3 /* iOS */,
+				807C15B0250185710055227D /* TimePieceWidget */,
 				80612FE023C274DB00BC03F5 /* Products */,
 				809D9F3024C4929200DB4E94 /* Frameworks */,
 			);
@@ -195,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				80150D6F24F58BDC00C740B3 /* TimePiece.app */,
+				807C15AB250185710055227D /* TimePieceWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,10 +273,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		807C15B0250185710055227D /* TimePieceWidget */ = {
+			isa = PBXGroup;
+			children = (
+				807C15BD250185840055227D /* TimePieceWidget.swift */,
+				807C15B3250185730055227D /* Assets.xcassets */,
+				807C15B5250185730055227D /* Info.plist */,
+			);
+			path = TimePieceWidget;
+			sourceTree = "<group>";
+		};
 		809D9F3024C4929200DB4E94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				809D9F3124C4929200DB4E94 /* CloudKit.framework */,
+				807C15AC250185710055227D /* WidgetKit.framework */,
+				807C15AE250185710055227D /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -277,10 +343,12 @@
 				80150D6B24F58BDC00C740B3 /* Sources */,
 				80150D6C24F58BDC00C740B3 /* Frameworks */,
 				80150D6D24F58BDC00C740B3 /* Resources */,
+				807C15B9250185730055227D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				807C15B7250185730055227D /* PBXTargetDependency */,
 			);
 			name = "TimePiece (iOS)";
 			packageProductDependencies = (
@@ -291,6 +359,26 @@
 			productName = "TimePieceApp (iOS)";
 			productReference = 80150D6F24F58BDC00C740B3 /* TimePiece.app */;
 			productType = "com.apple.product-type.application";
+		};
+		807C15AA250185710055227D /* TimePieceWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 807C15BC250185730055227D /* Build configuration list for PBXNativeTarget "TimePieceWidgetExtension" */;
+			buildPhases = (
+				807C15A7250185710055227D /* Sources */,
+				807C15A8250185710055227D /* Frameworks */,
+				807C15A9250185710055227D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimePieceWidgetExtension;
+			packageProductDependencies = (
+				807C15C32501859F0055227D /* SwiftyStoreKit */,
+			);
+			productName = TimePieceWidgetExtension;
+			productReference = 807C15AB250185710055227D /* TimePieceWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -303,6 +391,9 @@
 				ORGANIZATIONNAME = "Alexey Primechaev";
 				TargetAttributes = {
 					80150D6E24F58BDC00C740B3 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					807C15AA250185710055227D = {
 						CreatedOnToolsVersion = 12.0;
 					};
 				};
@@ -328,6 +419,7 @@
 			projectRoot = "";
 			targets = (
 				80150D6E24F58BDC00C740B3 /* TimePiece (iOS) */,
+				807C15AA250185710055227D /* TimePieceWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -339,6 +431,14 @@
 			files = (
 				80150E3824F593A500C740B3 /* Assets.xcassets in Resources */,
 				80150E3624F5938F00C740B3 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		807C15A9250185710055227D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				807C15B4250185730055227D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +492,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		807C15A7250185710055227D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				807C15C2250185910055227D /* LogItem.swift in Sources */,
+				807C15C02501858D0055227D /* NotificationManager.swift in Sources */,
+				807C15BF2501858A0055227D /* TimerItem.swift in Sources */,
+				807C15C5250186220055227D /* Persistence.swift in Sources */,
+				807C15C625018A8F0055227D /* TimePiece.xcdatamodeld in Sources */,
+				807C15C12501858F0055227D /* Settings.swift in Sources */,
+				807C15BE250185840055227D /* TimePieceWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		807C15B7250185730055227D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 807C15AA250185710055227D /* TimePieceWidgetExtension */;
+			targetProxy = 807C15B6250185730055227D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		80B91C8624C8A04F0017F8B9 /* Localizable.strings */ = {
@@ -411,6 +533,7 @@
 		80150D8524F58BDD00C740B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -437,6 +560,7 @@
 		80150D8624F58BDD00C740B3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -581,6 +705,48 @@
 			};
 			name = Release;
 		};
+		807C15BA250185730055227D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W7F94ZP22K;
+				INFOPLIST_FILE = TimePieceWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		807C15BB250185730055227D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W7F94ZP22K;
+				INFOPLIST_FILE = TimePieceWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -598,6 +764,15 @@
 			buildConfigurations = (
 				80612FF423C274DF00BC03F5 /* Debug */,
 				80612FF523C274DF00BC03F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		807C15BC250185730055227D /* Build configuration list for PBXNativeTarget "TimePieceWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				807C15BA250185730055227D /* Debug */,
+				807C15BB250185730055227D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -643,6 +818,11 @@
 			productName = ASCollectionView;
 		};
 		80150E2A24F5903C00C740B3 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
+		807C15C32501859F0055227D /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;

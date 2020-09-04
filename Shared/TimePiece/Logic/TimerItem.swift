@@ -24,22 +24,22 @@ public class TimerItem: NSManagedObject, Identifiable {
     var logItem: LogItem?
     
     //MARK: Main Properties
-    @NSManaged public var createdAtStored: Date?
-    @NSManaged public var isPausedStored: NSNumber?
-    @NSManaged public var isReusableStored: NSNumber?
-    @NSManaged public var isRunningStored: NSNumber?
-    @NSManaged public var remainingTimeStored: NSNumber?
-    @NSManaged public var totalTimeStored: NSNumber?
-    @NSManaged public var timeStartedStored: Date?
-    @NSManaged public var timeFinishedStored: Date?
-    @NSManaged public var titleStored: String?
-    @NSManaged public var notificationIdentifierStored: UUID?
+    @NSManaged private var createdAtStored: Date?
+    @NSManaged private var isPausedStored: NSNumber?
+    @NSManaged private var isReusableStored: NSNumber?
+    @NSManaged private var isRunningStored: NSNumber?
+    @NSManaged private var remainingTimeStored: NSNumber?
+    @NSManaged private var totalTimeStored: NSNumber?
+    @NSManaged private var timeStartedStored: Date?
+    @NSManaged private var timeFinishedStored: Date?
+    @NSManaged private var titleStored: String?
+    @NSManaged private var notificationIdentifierStored: UUID?
     
     //MARK: Setting Properties
-    @NSManaged public var soundSettingStored: String?
-    @NSManaged public var precisionSettingStored: String?
-    @NSManaged public var notificationSettingStored: String?
-    @NSManaged public var showInLogStored: NSNumber?
+    @NSManaged private var soundSettingStored: String?
+    @NSManaged private var precisionSettingStored: String?
+    @NSManaged private var notificationSettingStored: String?
+    @NSManaged private var showInLogStored: NSNumber?
     
     //MARK: Setting Collections
     static let soundSettings = ["short", "long"]
