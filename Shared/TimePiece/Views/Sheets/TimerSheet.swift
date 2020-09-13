@@ -31,7 +31,7 @@ struct TimerSheet: View {
             HeaderBar(
             leadingAction: {
                 self.discard()
-            }, leadingTitle: dismissString, leadingIcon: "xmark", leadingIsDestructive: false,
+            }, leadingTitle: dismissString, leadingIcon: "chevron.down", leadingIsDestructive: false,
             trailingAction: {})
             
             ScrollView() {

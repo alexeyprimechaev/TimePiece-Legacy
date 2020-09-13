@@ -156,13 +156,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		80150D7024F58BDC00C740B3 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
 		801A18532402FF1E005B4D19 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +193,6 @@
 			children = (
 				8043381C24F6836700958666 /* TimePiece.entitlements */,
 				80150D6424F58BD900C740B3 /* Shared */,
-				80150D7024F58BDC00C740B3 /* iOS */,
 				80612FE023C274DB00BC03F5 /* Products */,
 				809D9F3024C4929200DB4E94 /* Frameworks */,
 			);

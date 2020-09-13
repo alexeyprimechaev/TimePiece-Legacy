@@ -31,7 +31,7 @@ let logString: LocalizedStringKey = "log"
 let settingsString: LocalizedStringKey = "settings"
 
 let discardString: LocalizedStringKey = "discard"
-let dismissString: LocalizedStringKey = "dismiss"
+let dismissString: LocalizedStringKey = "back"
 let restoreString: LocalizedStringKey = "restore"
 let startString: LocalizedStringKey = "start"
 let pauseString: LocalizedStringKey = "pause"

@@ -31,8 +31,10 @@ struct TabBar: View {
                 TabItem(title: settingsString, icon: "gear", action: { self.actions[2]() })
                 Spacer()
             }
-        }.sheet(isPresented: $showingSubscriptionSheet) {
+        }
+        .fullScreenCover(isPresented: $showingSubscriptionSheet) {
             SubscriptionSheet(discard: {self.showingSubscriptionSheet = false}).environmentObject(self.settings)
         }
+
     }
 }

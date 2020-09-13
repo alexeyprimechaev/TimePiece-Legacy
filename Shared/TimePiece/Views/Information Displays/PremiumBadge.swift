@@ -35,7 +35,7 @@ struct PremiumBadge<Content:View>: View {
             }
             
         }
-        .sheet(isPresented: $settings.showingSubscription) {
+        .fullScreenCover(isPresented: $settings.showingSubscription) {
             SubscriptionSheet(discard: {
                 self.settings.showingSubscription = false
             }).environmentObject(self.settings)

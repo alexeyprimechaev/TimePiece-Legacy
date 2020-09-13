@@ -31,7 +31,7 @@
 "settings" = "Settings";
 
 "discard" = "Discard";
-"dismiss" = "Dismiss";
+"back" = "Back";
 "restore" = "Restore";
 "start" = "Start";
 "pause" = "Pause";

@@ -20,68 +20,91 @@ struct SubscriptionSheet: View {
     @State var alertText2 = "Some error occured..."
         
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            
-            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "xmark", trailingAction: {
-                print(self.settings.isSubscribed)
-                self.restorePurchases()
-                print(self.settings.isSubscribed)
-            }, trailingTitle: restoreString, trailingIcon: "arrow.clockwise")
-                
-                .alert(isPresented: $showingAlert) {
-                Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
-            }
-            
+        ZStack {
+            Color(red: 0.11, green: 0.11, blue: 0.12)
+                .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading, spacing: 0) {
                 
-                HStack(alignment: .bottom, spacing: 4) {
-                    Text(timePieceString)
-                        .title()
-                        
-                    Image("PlusIcon")
-                        .padding(.bottom, 9)
-                }.padding(7)
-                ScrollView(.vertical) {
-                    VStack(alignment: .leading, spacing: 14) {
-                        SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: sellingPoint1String, subtitle: sellingPoint1SecondString)
-                        SubscriptionBadge(icon: "bell.circle.fill", title: sellingPoint2String, subtitle: sellingPoint2SecondString)
-                        SubscriptionBadge(icon: "book.circle.fill", title: sellingPoint3String, subtitle: sellingPoint3SecondString)
-                        SubscriptionBadge(icon: "star.circle.fill", title: sellingPoint4String, subtitle: sellingPoint4SecondString)
-                        SubscriptionBadge(icon: "ellipsis.circle.fill", title: sellingPoint5String, subtitle: sellingPoint5SecondString)
-                        SubscriptionBadge(icon: "heart.circle.fill", title: sellingPoint6String, subtitle: sellingPoint6SecondString)
-                        
- 
-                    }.padding(.top, 14).frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
-                    
-                }
-                Spacer()
-                VStack(spacing: 14) {
-                    SubscriptionButton(title: subscription1String, promo: subscription1SecondString, price: "\(settings.monthlyPrice)", duration: subscription1PeriodString, isAccent: true, action: {
-                            self.purchaseMonthly()
-                        })
-                        SubscriptionButton(title: subscription2String, promo: subscription2SecondString, price: "\(settings.yearlyPrice)", duration: subscription2PeriodString, isAccent: false, action: {
-                            self.purchaseYearly()
-                        })
-                }.padding(.trailing, 28)
-                    
-                Text(subscriptionDetailsString).secondaryText().padding(14).padding(.trailing, 14)
-                HStack(spacing: 0) {
-                    Spacer()
+                HStack() {
                         Button(action: {
-                            UIApplication.shared.open(URL(string: "https://number16.github.io/timepiece-terms.html")!)
+                            lightHaptic()
+                            self.discard()
                         }) {
-                         Text(termsDetailsString)
+                            Label(dismissString, systemImage: "chevron.down")
                             .smallTitle()
-                            .foregroundColor(Color.primary)
-                            .padding(7)
+                            .padding(.horizontal, 28)
+                            Spacer()
                         }
-                        
-                    Spacer()
-                    Spacer().frame(width: 21)
+                    
+
+                        Button(action: {
+                            self.restorePurchases()
+                        }) {
+                            Spacer()
+                            Label(restoreString, systemImage: "arrow.clockwise")
+                            .smallTitle()
+                            .padding(.horizontal, 28)
+                        }
+                    
+                    
+                    
                 }
-                Spacer().frame(height: 14)
-            }.padding(.leading, 21)
+                .frame(height: 52)
+
+                    
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
+                    }
+                ScrollView() {
+                    VStack(alignment: .center, spacing: 0) {
+                        
+                        HStack(alignment: .bottom, spacing: 4) {
+                            Text(timePieceString)
+                                .title()
+                                
+                            Image("PlusIcon")
+                                .padding(.bottom, 9)
+                        }.padding(7)
+                        SubscribtionPoints {
+                            SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: sellingPoint1String, subtitle: sellingPoint1SecondString).tag(0)
+                            SubscriptionBadge(icon: "bell.circle.fill", title: sellingPoint2String, subtitle: sellingPoint2SecondString).tag(1)
+                            SubscriptionBadge(icon: "book.circle.fill", title: sellingPoint3String, subtitle: sellingPoint3SecondString).tag(2)
+                            SubscriptionBadge(icon: "star.circle.fill", title: sellingPoint4String, subtitle: sellingPoint4SecondString).tag(3)
+                            SubscriptionBadge(icon: "ellipsis.circle.fill", title: sellingPoint5String, subtitle: sellingPoint5SecondString).tag(4)
+                            SubscriptionBadge(icon: "heart.circle.fill", title: sellingPoint6String, subtitle: sellingPoint6SecondString).tag(5)
+                        }.padding(.bottom, 14)
+                        
+                        
+                        VStack(spacing: 14) {
+                            SubscriptionButton(title: subscription1String, promo: subscription1SecondString, price: "\(settings.monthlyPrice)", duration: subscription1PeriodString, isAccent: true, action: {
+                                    self.purchaseMonthly()
+                                })
+                                SubscriptionButton(title: subscription2String, promo: subscription2SecondString, price: "\(settings.yearlyPrice)", duration: subscription2PeriodString, isAccent: false, action: {
+                                    self.purchaseYearly()
+                                })
+                        }.padding(.trailing, 28).padding(.leading, 21)
+                            
+                        Text(subscriptionDetailsString).secondaryText().padding(14).padding(.trailing, 14).padding(.leading, 21)
+                        HStack(spacing: 0) {
+                            Spacer()
+                                Button(action: {
+                                    UIApplication.shared.open(URL(string: "https://number16.github.io/timepiece-terms.html")!)
+                                }) {
+                                 Text(termsDetailsString)
+                                    .smallTitle()
+                                    .padding(7)
+                                }
+                                
+                            Spacer()
+                            Spacer().frame(width: 21)
+                        }
+                        .padding(.bottom, 14).padding(.leading, 21)
+                    }
+                }
+                
+            }.foregroundColor(.white)
         }
+        
         
     }
     

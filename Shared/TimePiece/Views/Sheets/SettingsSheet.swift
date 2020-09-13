@@ -16,7 +16,7 @@ struct SettingsSheet: View {
             
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
-            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "xmark", trailingAction: {})
+            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "chevron.down", trailingAction: {})
             
             ScrollView() {
                 

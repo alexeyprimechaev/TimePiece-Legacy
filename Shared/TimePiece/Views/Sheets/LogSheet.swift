@@ -65,7 +65,7 @@ struct LogSheet: View {
     
     var body: some View {
         VStack(spacing: 0) {
-        HeaderBar(leadingAction: { self.discard() }, leadingTitle: "Dismiss", leadingIcon: "xmark", trailingAction: {})
+        HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "chevron.down", trailingAction: {})
             Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
                 Text("Trends").tag(0)
                 Text("History").tag(1)
