@@ -39,7 +39,7 @@ struct TimerSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                         
-                    PropertyView(title: titleString, timer: timer).disabled(!timer.isPaused)
+                    TitleEditor(title: titleString, timer: timer).disabled(!timer.isPaused)
                     
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isRunning {

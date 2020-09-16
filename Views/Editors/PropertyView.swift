@@ -1,5 +1,5 @@
 //
-//  PropertyView.swift
+//  TitleEditor.swift
 //  TimerPlus
 //
 //  Created by Alexey Primechaev on 1/16/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 import Introspect
 
-struct PropertyView: View {
+struct TitleEditor: View {
     
     @State var title = LocalizedStringKey("")
     
