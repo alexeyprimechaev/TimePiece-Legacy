@@ -95,11 +95,15 @@ struct LogSheet: View {
                 }.background(Color(UIColor.systemBackground))
                 
             } else {
-                List(update(logItems), id: \.self) { section in
-                    ForEach(section) { logItem in
-                        LogView(logItem: logItem)
-                    }
-                }
+                Spacer()
+                Text("Under Construction 🚧")
+                Spacer()
+                Spacer()
+//                List(update(logItems), id: \.self) { section in
+//                    ForEach(section) { logItem in
+//                        LogView(logItem: logItem)
+//                    }
+//                }
 
 //                ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
 //                .alwaysBounce(true)

@@ -50,7 +50,7 @@ struct TimeDisplay: View {
                             Text(seconds).animation(nil)
                                 .opacity(isOpaque ? 1 : 0.5)
                             
-                            if precisionSetting == TimerItem.precisionSettings[0] {
+                            if precisionSetting == TimerItem.precisionSettings[0] || (precisionSetting == TimerItem.precisionSettings[2] && hours == "00" && minutes == "00") {
                                 Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                                 Text(milliseconds).animation(nil)
                                     .opacity(0.5)
@@ -66,7 +66,7 @@ struct TimeDisplay: View {
                             Text("88")
                             Dots()
                             Text("88")
-                            if precisionSetting == TimerItem.precisionSettings[0] {
+                            if precisionSetting == TimerItem.precisionSettings[0] || (precisionSetting == TimerItem.precisionSettings[2] && hours == "00" && minutes == "00") {
                                 Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
                                 Text("88").animation(nil)
                                     .opacity(0.5)
@@ -85,16 +85,29 @@ struct TimeDisplay: View {
                     .animation(nil)
                     .fixedSize()
                     .onChange(of: timeString) { newValue in
-                        hours = String(timeString.prefix(2))
-                        minutes = String(timeString.prefix(4).suffix(2))
-                        seconds = String(timeString.suffix(4).prefix(2))
-                        milliseconds = String(timeString.suffix(2))
+                        if timeString.count == 8 {
+                            hours = String(timeString.prefix(2))
+                            minutes = String(timeString.prefix(4).suffix(2))
+                            seconds = String(timeString.suffix(4).prefix(2))
+                            milliseconds = String(timeString.suffix(2))
+                        } else {
+                            hours = String(timeString.prefix(2))
+                            minutes = String(timeString.prefix(4).suffix(2))
+                            seconds = String(timeString.suffix(2))
+                        }
                     }
                     .onAppear() {
-                        hours = String(timeString.prefix(2))
-                        minutes = String(timeString.prefix(4).suffix(2))
-                        seconds = String(timeString.suffix(4).prefix(2))
-                        milliseconds = String(timeString.suffix(2))
+                        if timeString.count == 8 {
+                            hours = String(timeString.prefix(2))
+                            minutes = String(timeString.prefix(4).suffix(2))
+                            seconds = String(timeString.suffix(4).prefix(2))
+                            milliseconds = String(timeString.suffix(2))
+                        } else {
+                            hours = String(timeString.prefix(2))
+                            minutes = String(timeString.prefix(4).suffix(2))
+                            seconds = String(timeString.suffix(2))
+                        }
+                        
                     }
                 .padding(displayStyle == .labeled ? 7 : 0)
             }
