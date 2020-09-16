@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+enum TimeDisplayStyle {
+    case simple, labeled
+}
+
 struct TimeDisplay: View {
     
     @Binding var isPaused: Bool
@@ -15,43 +19,87 @@ struct TimeDisplay: View {
     @Binding var timeString: String
     
     @State var updateTime: () -> ()
+    @State var isOpaque = false
     
+    @State var displayStyle: TimeDisplayStyle = .simple
+    @State var label: LocalizedStringKey = "Time"
+    
+    @Binding var precisionSetting: String
+    
+    @State private var milliseconds = ""
     @State private var seconds = ""
     @State private var minutes = ""
     @State private var hours = ""
     
     var body: some View {
-            
-            HStack(spacing: 0) {
-                if hours != "00" {
-                    Text(hours).animation(nil)
-                        .opacity(0.5)
-                    Dots().opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
+        VStack() {
+            if isRunning == false && displayStyle == .labeled {
+                TimeEditor(timeString: $timeString).disabled(isRunning).animation(nil)
+            } else {
+                HStack(alignment: .bottom, spacing: 7) {
+                    ZStack(alignment: .topLeading) {
+                        HStack(spacing: 0) {
+                            if hours != "00" {
+                                Text(hours).animation(nil)
+                                    .opacity(isOpaque ? 1 : 0.5)
+                                Dots().opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
+                            }
+                            Text(minutes).animation(nil)
+                                .opacity(isOpaque ? 1 : 0.5)
+                            Dots().opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
+                            Text(seconds).animation(nil)
+                                .opacity(isOpaque ? 1 : 0.5)
+                            
+                            if precisionSetting == TimerItem.precisionSettings[0] {
+                                Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
+                                Text(milliseconds).animation(nil)
+                                    .opacity(0.5)
+                            }
+                           
+                        }
+                        
+                        HStack(spacing: 0) {
+                            if hours != "00" {
+                                Text("88").animation(nil)
+                                Dots()
+                            }
+                            Text("88")
+                            Dots()
+                            Text("88")
+                            if precisionSetting == TimerItem.precisionSettings[0] {
+                                Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
+                                Text("88").animation(nil)
+                                    .opacity(0.5)
+                            }
+                        }.animation(nil).opacity(0)
+                    }
+                    if displayStyle == .labeled {
+                        Text(label).smallTitle().opacity(0.5).padding(.bottom, 5)
+                    }
                 }
-                Text(minutes).animation(nil)
-                    .opacity(0.5)
-                Dots().opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
-                Text(seconds).animation(nil)
-                    .opacity(0.5)
-    //            Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
-    //            Text(seconds).animation(nil)
-    //                .opacity(0.5)
+                
+                    
+                    .transition(.opacity)
+                    .animation(isPaused && isRunning ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: isPaused)
+                    .title()
+                    .animation(nil)
+                    .fixedSize()
+                    .onChange(of: timeString) { newValue in
+                        hours = String(timeString.prefix(2))
+                        minutes = String(timeString.prefix(4).suffix(2))
+                        seconds = String(timeString.suffix(4).prefix(2))
+                        milliseconds = String(timeString.suffix(2))
+                    }
+                    .onAppear() {
+                        hours = String(timeString.prefix(2))
+                        minutes = String(timeString.prefix(4).suffix(2))
+                        seconds = String(timeString.suffix(4).prefix(2))
+                        milliseconds = String(timeString.suffix(2))
+                    }
+                .padding(displayStyle == .labeled ? 7 : 0)
             }
-            .transition(.opacity)
-            .animation(isPaused && isRunning ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: isPaused)
-            .title()
-            .fixedSize()
-            .onChange(of: timeString) { newValue in
-                hours = String(timeString.prefix(2))
-                minutes = String(timeString.prefix(4).suffix(2))
-                seconds = String(timeString.suffix(2))
-            }
-            .onAppear() {
-                hours = String(timeString.prefix(2))
-                minutes = String(timeString.prefix(4).suffix(2))
-                seconds = String(timeString.suffix(2))
-            }
-            
+        }
+        
 
         
         

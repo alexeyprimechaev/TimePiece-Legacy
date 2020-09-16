@@ -20,6 +20,7 @@ struct TimerSheet: View {
     @State var name = ""
     
     @State var currentTime: String = "00:00"
+    @State var totalTime: String = "00:00"
     
     var discard: () -> ()
     
@@ -42,10 +43,11 @@ struct TimerSheet: View {
                     
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isRunning {
-                            LegacyTimeView(time: $currentTime, title: leftString, update: {})
+                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: leftString, precisionSetting: $timer.precisionSetting)
                         }
-                        TimeEditor(timeString: $timer.editableTimeString)
-                        .disabled(timer.isRunning)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: totalString, precisionSetting: $timer.precisionSetting)
+                        
+                        
                     }.animation(Animation.default, value: timer.isRunning)
                         
                     VStack(alignment: .leading, spacing:14) {
@@ -132,7 +134,7 @@ struct TimerSheet: View {
     func updateTime() {
         
         if !timer.isPaused {
-            currentTime = timer.timeFinished.timeIntervalSince(Date()).stringFromTimeInterval(precisionSetting: timer.precisionSetting)
+            
             
             if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
                
@@ -142,6 +144,10 @@ struct TimerSheet: View {
 
                 AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }
+            
+            currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
+            print(currentTime)
+            print(timer.remainingTimeString)
    
         }
         

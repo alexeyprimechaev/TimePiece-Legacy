@@ -95,9 +95,14 @@ struct LogSheet: View {
                 }.background(Color(UIColor.systemBackground))
                 
             } else {
-                Text("Under construction 🏗")
-                //ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
-                //.alwaysBounce(true)
+                List(update(logItems), id: \.self) { section in
+                    ForEach(section) { logItem in
+                        LogView(logItem: logItem)
+                    }
+                }
+
+//                ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
+//                .alwaysBounce(true)
             }
             
         

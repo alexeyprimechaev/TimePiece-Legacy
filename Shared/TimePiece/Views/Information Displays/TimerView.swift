@@ -52,7 +52,7 @@ struct TimerView: View {
                     Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
                 ZStack(alignment: .topLeading) {
 
-                    TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()})
+                    TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, precisionSetting: $timer.precisionSetting)
                     HStack(spacing: 0) {
                         if currentTime.prefix(2) != "00" {
                             Text("88").animation(nil)
@@ -118,7 +118,7 @@ struct TimerView: View {
                 AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }
             
-            currentTime = timer.timeFinished.timeIntervalSince(Date()).editableString()
+            currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
             print(currentTime)
             print(timer.remainingTimeString)
    

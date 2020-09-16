@@ -14,7 +14,7 @@ struct TimeEditor: View {
     
     @Binding var timeString: String
     @State var becomeFirstResponder = false
-    @State var label = "Time"
+    @State var label = "Edit Time"
     
     @State private var keyboardMode: Int = 0
     
@@ -287,6 +287,6 @@ struct Dots: View {
         VStack(spacing: 6) {
             Circle().frame(width: 5, height: 5).opacity(isMilliseconds ? 0 : 1)
             Circle().frame(width: 5, height: 5).padding(.top, isMilliseconds ? 8 : 0)
-        }.padding(.vertical, 8).padding(.horizontal, 1)
+        }.padding(.vertical, 8).padding(.horizontal, 1).transition(.opacity)
     }
 }
