@@ -65,19 +65,6 @@ struct ContentView: View {
                     ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
                         TimerItemCell(timer: timer).environmentObject(self.settings)
 
-                    },
-                    
-                    ASCollectionViewSection(id: 2) {
-                        if timerItems.count == 0 {
-                            TimerButton(title: newString, icon: "plus.circle.fill", sfSymbolIcon: true, action: {
-                                withAnimation(.default) {
-                                    TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                                            activeSheet = .newTimer
-                                            showingSheet = true
-                                }
-                            }).padding(.vertical, 12).fixedSize()
-                        }
-                        
                     }
                 ]
             )

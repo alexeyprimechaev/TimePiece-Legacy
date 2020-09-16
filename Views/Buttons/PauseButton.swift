@@ -1,5 +1,5 @@
 //
-//  MainButton.swift
+//  PauseButton.swift
 //  TimerPlus
 //
 //  Created by Alexey Primechaev on 1/13/20.
@@ -31,20 +31,14 @@ struct PauseButton: View {
     
 //MARK: - View
     var body: some View {
-        Button(action:
-            
-        //MARK: Action
-        {
-        if self.isPaused {
-            self.onTap()
-        } else {
-            self.offTap()
-        }
-    })
-            
-            
-        //MARK: Layout
-        {
+        
+        Button {
+            if self.isPaused {
+                self.onTap()
+            } else {
+                self.offTap()
+            }
+        } label: {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(Color("button.gray"))

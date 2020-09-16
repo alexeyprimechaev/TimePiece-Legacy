@@ -45,7 +45,7 @@ struct TimerSheet: View {
                         if timer.isRunning {
                             TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: leftString, precisionSetting: $timer.precisionSetting)
                         }
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: totalString, precisionSetting: $timer.precisionSetting)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: totalString, precisionSetting: $timer.editableTimeString)
                         
                         
                     }.animation(Animation.default, value: timer.isRunning)

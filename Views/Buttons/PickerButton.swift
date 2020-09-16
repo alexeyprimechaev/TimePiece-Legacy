@@ -20,9 +20,7 @@ struct PickerButton: View {
     //MARK: - View
     var body: some View {
         
-        Button(action:
-        //MARK: Action
-        {
+        Button {
             lightHaptic()
             if self.index < self.values.count - 1 {
                 self.index += 1
@@ -31,11 +29,7 @@ struct PickerButton: View {
                 self.index = 0
                 self.value = self.values[self.index]
             }
-        })
-            
-    
-        //MARK: Layout
-        {
+        } label: {
             HStack(alignment: .bottom, spacing: 7) {
                 Text(title)
                     .title()
@@ -49,13 +43,14 @@ struct PickerButton: View {
                             .fixedSize()
                             .padding(.bottom, 5)
                             .opacity(self.value == value ? 1 : 0.5)
+                            .lineLimit(1)
                     }.smallTitle().fixedSize()
                 }.fixedSize().padding(0)
             }
             .padding(0)
             .background(Color(.systemBackground))
-
         }
+
             
             
         //MARK: Styling

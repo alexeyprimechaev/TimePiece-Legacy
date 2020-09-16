@@ -26,9 +26,9 @@ struct SubscriptionButton: View {
     
     var body: some View {
         
-        Button(action: {
-            self.action()
-        }) {
+        Button {
+            action()
+        } label: {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(isAccent ? .white : Color(red: 0.153, green: 0.153, blue: 0.161))
@@ -47,6 +47,7 @@ struct SubscriptionButton: View {
                 }.padding(.horizontal, 14).foregroundColor(isAccent ? .black : .white)
             }.frame(height: 66)
         }
+        
     }
 }
 

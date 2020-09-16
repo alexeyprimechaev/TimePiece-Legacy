@@ -11,34 +11,22 @@ import SwiftUI
 struct RegularButton: View {
     
     @State var title = LocalizedStringKey("")
+    @State var icon = "arrow.clockwise"
     @State var subtitle = String()
     @State var isActive = false
     
     var action: () -> ()
     
     var body: some View {
-        Button(action:
-            
-        //MARK: Action
-        {
+        
+        Button {
             regularHaptic()
             self.action()
-        })
-                
-        
-            //MARK: Layout
-        {
-            HStack(alignment: .bottom, spacing: 7) {
-                Text(title)
-                    .title()
-                    .opacity(isActive ? 1 : 0.5)
-                Text(subtitle)
-                    .padding(.bottom, 5)
-                    .smallTitle()
-                    
-            }
+        } label: {
+            Label(title, systemImage: icon)
+            .smallTitle()
+            .padding(7)
         }
-        .padding(7)
         .buttonStyle(RegularButtonStyle())
     }
 }

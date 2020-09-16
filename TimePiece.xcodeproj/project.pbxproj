@@ -21,17 +21,14 @@
 		80150DD724F58E7300C740B3 /* PremiumBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80727C97241136FF0046EE08 /* PremiumBadge.swift */; };
 		80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
 		80150DD924F58E7300C740B3 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E0212482D50600F6F74D /* TabBar.swift */; };
-		80150DDA24F58E7300C740B3 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7A824056C5000E7798E /* TimerButton.swift */; };
 		80150DDB24F58E7300C740B3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
 		80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
 		80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
-		80150DE124F58E7300C740B3 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0E402416D4D1004A17B1 /* MainButton.swift */; };
 		80150DE224F58E7300C740B3 /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
 		80150DE324F58E7300C740B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
 		80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 		80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
-		80150DE724F58E7300C740B3 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A18512402DD9C005B4D19 /* ToggleButton.swift */; };
 		80150DE824F58E7300C740B3 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
 		80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
 		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
@@ -65,14 +62,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8012C7A824056C5000E7798E /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		8012C7AA24057D4200E7798E /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		80150D6724F58BD900C740B3 /* TimePieceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceApp.swift; sourceTree = "<group>"; };
 		80150D6924F58BD900C740B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		80150D6F24F58BDC00C740B3 /* TimePiece.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimePiece.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		801A184F2402CEB6005B4D19 /* RegularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularButton.swift; sourceTree = "<group>"; };
-		801A18512402DD9C005B4D19 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
-		801C0E402416D4D1004A17B1 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		801FFBB123CF9AF50040A12C /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerSheet.swift; sourceTree = "<group>"; };
 		8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -203,9 +197,6 @@
 				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
 				80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */,
 				80ACD6B623CBE435000C49DC /* PauseButton.swift */,
-				801C0E402416D4D1004A17B1 /* MainButton.swift */,
-				8012C7A824056C5000E7798E /* TimerButton.swift */,
-				801A18512402DD9C005B4D19 /* ToggleButton.swift */,
 				801A184F2402CEB6005B4D19 /* RegularButton.swift */,
 			);
 			path = Buttons;
@@ -357,11 +348,8 @@
 				80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */,
 				80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */,
 				808A388A2512D6B10075AC50 /* InsightRow.swift in Sources */,
-				80150DE124F58E7300C740B3 /* MainButton.swift in Sources */,
-				80150DDA24F58E7300C740B3 /* TimerButton.swift in Sources */,
 				80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */,
 				80150DDB24F58E7300C740B3 /* Strings.swift in Sources */,
-				80150DE724F58E7300C740B3 /* ToggleButton.swift in Sources */,
 				80150DD224F58E7300C740B3 /* SubscriptionRow.swift in Sources */,
 				80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */,
 				80150DEE24F58E7300C740B3 /* TimerSheet.swift in Sources */,
