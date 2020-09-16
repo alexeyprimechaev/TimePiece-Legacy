@@ -12,10 +12,9 @@
 		80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
 		80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A14FB42411077000638B64 /* PersonCard.swift */; };
 		80150DCF24F58E7300C740B3 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
-		80150DD024F58E7300C740B3 /* EditableTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADA923D507F50090BA7F /* EditableTimeView.swift */; };
 		80150DD124F58E7300C740B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
-		80150DD224F58E7300C740B3 /* SubscriptionBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionBadge.swift */; };
-		80150DD324F58E7300C740B3 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimerView.swift */; };
+		80150DD224F58E7300C740B3 /* SubscriptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionRow.swift */; };
+		80150DD324F58E7300C740B3 /* TimerItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimerItemCell.swift */; };
 		80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B42443723800BA76B1 /* SettingsSheet.swift */; };
 		80150DD524F58E7300C740B3 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
 		80150DD624F58E7300C740B3 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
@@ -25,10 +24,7 @@
 		80150DDA24F58E7300C740B3 /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7A824056C5000E7798E /* TimerButton.swift */; };
 		80150DDB24F58E7300C740B3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
 		80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
-		80150DDD24F58E7300C740B3 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6DD4F24D49F0900B0DC78 /* InsightView.swift */; };
 		80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
-		80150DDF24F58E7300C740B3 /* LegacyTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807A0F4023D4C66C008B0E24 /* LegacyTimeView.swift */; };
-		80150DE024F58E7300C740B3 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E01F2482D12200F6F74D /* TabItem.swift */; };
 		80150DE124F58E7300C740B3 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0E402416D4D1004A17B1 /* MainButton.swift */; };
 		80150DE224F58E7300C740B3 /* NewTimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */; };
 		80150DE324F58E7300C740B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
@@ -41,7 +37,7 @@
 		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		80150DEB24F58E7300C740B3 /* TimerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimerItem.swift */; };
 		80150DEC24F58E7300C740B3 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
-		80150DED24F58E7300C740B3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogView.swift */; };
+		80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogItemCell.swift */; };
 		80150DEE24F58E7300C740B3 /* TimerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimerSheet.swift */; };
 		80150E2524F5900400C740B3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2424F5900400C740B3 /* Introspect */; };
 		80150E2924F5903700C740B3 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2824F5903700C740B3 /* ASCollectionView */; };
@@ -52,6 +48,7 @@
 		8043381D24F6836A00958666 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809D9F3124C4929200DB4E94 /* CloudKit.framework */; };
 		808854CE24FA533400F7BCDC /* TitleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808854CD24FA533400F7BCDC /* TitleEditor.swift */; };
 		80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DA024FAB08400C55895 /* TimeDisplay.swift */; };
+		808A387F2512D52F0075AC50 /* InsightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A387E2512D52F0075AC50 /* InsightRow.swift */; };
 		80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeEditor.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +75,6 @@
 		801A18512402DD9C005B4D19 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		801C0E402416D4D1004A17B1 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		801FFBB123CF9AF50040A12C /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
-		8021ADA923D507F50090BA7F /* EditableTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimeView.swift; sourceTree = "<group>"; };
 		8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTimerSheet.swift; sourceTree = "<group>"; };
 		8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		802A026C23CFBA5600512B39 /* PropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyView.swift; sourceTree = "<group>"; };
@@ -86,24 +82,23 @@
 		804E17B124087B71003F5001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		8055D7AA243B62ED00AF516E /* LogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheet.swift; sourceTree = "<group>"; };
-		8055D7AE243B697800AF516E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		8055D7AE243B697800AF516E /* LogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemCell.swift; sourceTree = "<group>"; };
 		805DB84124D4831E00178B5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		805DB84324D485F600178B5B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8060E01F2482D12200F6F74D /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		80612FE923C274DB00BC03F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80612FF323C274DF00BC03F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80612FF923C2750900BC03F5 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		80612FF923C2750900BC03F5 /* TimerItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerItemCell.swift; sourceTree = "<group>"; };
 		80612FFB23C2766B00BC03F5 /* TimerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerItem.swift; sourceTree = "<group>"; };
 		80727C97241136FF0046EE08 /* PremiumBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBadge.swift; sourceTree = "<group>"; };
-		807A0F4023D4C66C008B0E24 /* LegacyTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTimeView.swift; sourceTree = "<group>"; };
 		807C15AC250185710055227D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		807C15AE250185710055227D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		8088473A23C2AE79001D1A6E /* TimerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSheet.swift; sourceTree = "<group>"; };
 		808854CD24FA533400F7BCDC /* TitleEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleEditor.swift; sourceTree = "<group>"; };
 		80888DA024FAB08400C55895 /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
+		808A387E2512D52F0075AC50 /* InsightRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InsightRow.swift; path = ../InsightRow.swift; sourceTree = "<group>"; };
 		809635632401544D00BF297F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		809D69C42416CB4900896206 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
 		809D9F3124C4929200DB4E94 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -111,14 +106,13 @@
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 		80B4137824F80FFB0089BF7A /* TimeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEditor.swift; sourceTree = "<group>"; };
 		80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionButton.swift; sourceTree = "<group>"; };
-		80B6BF1C2418205900815793 /* SubscriptionBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionBadge.swift; sourceTree = "<group>"; };
+		80B6BF1C2418205900815793 /* SubscriptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRow.swift; sourceTree = "<group>"; };
 		80B91C8524C8A04F0017F8B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80B91C8724C8A1BE0017F8B9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		80C909202437BB3E00939F25 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		80D343B22443717F00BA76B1 /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
 		80D343B42443723800BA76B1 /* SettingsSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSheet.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
-		80E6DD4F24D49F0900B0DC78 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = SOURCE_ROOT; };
 		80F355132418068F009ABFAD /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,50 +134,21 @@
 		80612FD623C274DB00BC03F5 = {
 			isa = PBXGroup;
 			children = (
-				8043381C24F6836700958666 /* TimePiece.entitlements */,
-				80612FF323C274DF00BC03F5 /* Info.plist */,
+				808A386A2512D1B60075AC50 /* Config */,
+				808A386B2512D1D10075AC50 /* Data */,
 				80150D6724F58BD900C740B3 /* TimePieceApp.swift */,
-				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
-				80150D6924F58BD900C740B3 /* Persistence.swift */,
-				80B91C8624C8A04F0017F8B9 /* Localizable.strings */,
-				80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */,
-				8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */,
-				80B91C8724C8A1BE0017F8B9 /* Strings.swift */,
-				80612FFB23C2766B00BC03F5 /* TimerItem.swift */,
-				8055D7A8243B627600AF516E /* LogItem.swift */,
-				804E17B124087B71003F5001 /* Settings.swift */,
 				809635632401544D00BF297F /* NotificationManager.swift */,
-				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
+				808A386E2512D3500075AC50 /* Views */,
 				8060E0212482D50600F6F74D /* TabBar.swift */,
-				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
-				809D69C42416CB4900896206 /* SubscriptionSheet.swift */,
-				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
-				8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */,
-				8088473A23C2AE79001D1A6E /* TimerSheet.swift */,
-				80E6DD4F24D49F0900B0DC78 /* InsightView.swift */,
-				8055D7AE243B697800AF516E /* LogView.swift */,
-				80612FF923C2750900BC03F5 /* TimerView.swift */,
+				8055D7AE243B697800AF516E /* LogItemCell.swift */,
+				80612FF923C2750900BC03F5 /* TimerItemCell.swift */,
 				8012C7AA24057D4200E7798E /* ListSection.swift */,
 				80A14FB42411077000638B64 /* PersonCard.swift */,
-				80B6BF1C2418205900815793 /* SubscriptionBadge.swift */,
-				80727C97241136FF0046EE08 /* PremiumBadge.swift */,
+				808A38812512D5480075AC50 /* Time Displays */,
+				808A38782512D4630075AC50 /* Rows & Badges */,
 				802A026C23CFBA5600512B39 /* PropertyView.swift */,
-				807A0F4023D4C66C008B0E24 /* LegacyTimeView.swift */,
-				80B4137824F80FFB0089BF7A /* TimeEditor.swift */,
-				80888DA024FAB08400C55895 /* TimeDisplay.swift */,
 				808854CD24FA533400F7BCDC /* TitleEditor.swift */,
-				8021ADA923D507F50090BA7F /* EditableTimeView.swift */,
-				8060E01F2482D12200F6F74D /* TabItem.swift */,
-				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
-				80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */,
-				80F355132418068F009ABFAD /* HeaderBar.swift */,
-				80ACD6B623CBE435000C49DC /* PauseButton.swift */,
-				801C0E402416D4D1004A17B1 /* MainButton.swift */,
-				8012C7A824056C5000E7798E /* TimerButton.swift */,
-				801A18512402DD9C005B4D19 /* ToggleButton.swift */,
-				801A184F2402CEB6005B4D19 /* RegularButton.swift */,
-				80C909202437BB3E00939F25 /* Haptics.swift */,
-				80612FE923C274DB00BC03F5 /* ContentView.swift */,
+				808A386D2512D31E0075AC50 /* Buttons */,
 				80612FED23C274DF00BC03F5 /* Preview Content */,
 				80612FE023C274DB00BC03F5 /* Products */,
 				809D9F3024C4929200DB4E94 /* Frameworks */,
@@ -206,9 +171,91 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		808A386A2512D1B60075AC50 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				8043381C24F6836700958666 /* TimePiece.entitlements */,
+				80612FF323C274DF00BC03F5 /* Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		808A386B2512D1D10075AC50 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				80B91C8724C8A1BE0017F8B9 /* Strings.swift */,
+				80B91C8624C8A04F0017F8B9 /* Localizable.strings */,
+				80612FFB23C2766B00BC03F5 /* TimerItem.swift */,
+				8055D7A8243B627600AF516E /* LogItem.swift */,
+				80150D6924F58BD900C740B3 /* Persistence.swift */,
+				80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */,
+				80612FEB23C274DF00BC03F5 /* Assets.xcassets */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		808A386C2512D1F80075AC50 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
+				809D69C42416CB4900896206 /* SubscriptionSheet.swift */,
+				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
+				8021ADAB23D51F080090BA7F /* NewTimerSheet.swift */,
+				8088473A23C2AE79001D1A6E /* TimerSheet.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		808A386D2512D31E0075AC50 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				80C909202437BB3E00939F25 /* Haptics.swift */,
+				80F355132418068F009ABFAD /* HeaderBar.swift */,
+				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
+				80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */,
+				80ACD6B623CBE435000C49DC /* PauseButton.swift */,
+				801C0E402416D4D1004A17B1 /* MainButton.swift */,
+				8012C7A824056C5000E7798E /* TimerButton.swift */,
+				801A18512402DD9C005B4D19 /* ToggleButton.swift */,
+				801A184F2402CEB6005B4D19 /* RegularButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		808A386E2512D3500075AC50 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				804E17B124087B71003F5001 /* Settings.swift */,
+				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
+				80612FE923C274DB00BC03F5 /* ContentView.swift */,
+				808A386C2512D1F80075AC50 /* Sheets */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		808A38782512D4630075AC50 /* Rows & Badges */ = {
+			isa = PBXGroup;
+			children = (
+				808A387E2512D52F0075AC50 /* InsightRow.swift */,
+				80B6BF1C2418205900815793 /* SubscriptionRow.swift */,
+				80727C97241136FF0046EE08 /* PremiumBadge.swift */,
+			);
+			path = "Rows & Badges";
+			sourceTree = "<group>";
+		};
+		808A38812512D5480075AC50 /* Time Displays */ = {
+			isa = PBXGroup;
+			children = (
+				80B4137824F80FFB0089BF7A /* TimeEditor.swift */,
+				80888DA024FAB08400C55895 /* TimeDisplay.swift */,
+			);
+			path = "Time Displays";
+			sourceTree = "<group>";
+		};
 		809D9F3024C4929200DB4E94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */,
 				809D9F3124C4929200DB4E94 /* CloudKit.framework */,
 				807C15AC250185710055227D /* WidgetKit.framework */,
 				807C15AE250185710055227D /* SwiftUI.framework */,
@@ -303,14 +350,13 @@
 				80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */,
 				80150DD624F58E7300C740B3 /* Styles.swift in Sources */,
 				80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */,
-				80150DDD24F58E7300C740B3 /* InsightView.swift in Sources */,
 				80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */,
 				80150DE124F58E7300C740B3 /* MainButton.swift in Sources */,
 				80150DDA24F58E7300C740B3 /* TimerButton.swift in Sources */,
 				80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */,
 				80150DDB24F58E7300C740B3 /* Strings.swift in Sources */,
 				80150DE724F58E7300C740B3 /* ToggleButton.swift in Sources */,
-				80150DD224F58E7300C740B3 /* SubscriptionBadge.swift in Sources */,
+				80150DD224F58E7300C740B3 /* SubscriptionRow.swift in Sources */,
 				80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */,
 				80150DEE24F58E7300C740B3 /* TimerSheet.swift in Sources */,
 				80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */,
@@ -320,20 +366,18 @@
 				808854CE24FA533400F7BCDC /* TitleEditor.swift in Sources */,
 				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
 				80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */,
-				80150DD324F58E7300C740B3 /* TimerView.swift in Sources */,
+				80150DD324F58E7300C740B3 /* TimerItemCell.swift in Sources */,
 				80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */,
 				80150DE824F58E7300C740B3 /* Haptics.swift in Sources */,
-				80150DED24F58E7300C740B3 /* LogView.swift in Sources */,
+				80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */,
 				80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */,
-				80150DE024F58E7300C740B3 /* TabItem.swift in Sources */,
 				80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				80150DEC24F58E7300C740B3 /* SubscriptionSheet.swift in Sources */,
 				80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */,
+				808A387F2512D52F0075AC50 /* InsightRow.swift in Sources */,
 				80150DD524F58E7300C740B3 /* LogItem.swift in Sources */,
 				80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */,
-				80150DD024F58E7300C740B3 /* EditableTimeView.swift in Sources */,
 				80150DD124F58E7300C740B3 /* Settings.swift in Sources */,
-				80150DDF24F58E7300C740B3 /* LegacyTimeView.swift in Sources */,
 				80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */,
 				80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */,
 				80150DD724F58E7300C740B3 /* PremiumBadge.swift in Sources */,
@@ -365,11 +409,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_ENTITLEMENTS = TimePiece.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -392,11 +436,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_ENTITLEMENTS = TimePiece.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

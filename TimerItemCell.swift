@@ -1,5 +1,5 @@
 //
-//  TimerView.swift
+//  TimerItemCell.swift
 //  TimerPlus
 //
 //  Created by Alexey Primechaev on 1/5/20.
@@ -10,7 +10,7 @@ import SwiftUI
 import UserNotifications
 import AVFoundation
 
-struct TimerView: View {
+struct TimerItemCell: View {
 //MARK: - Properties
     
     //MARK: Dynamic Propertiess
@@ -130,6 +130,6 @@ struct TimerView: View {
 //MARK: - Previews
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView()
+        TimerItemCell()
     }
 }

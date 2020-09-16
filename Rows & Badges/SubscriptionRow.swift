@@ -1,5 +1,5 @@
 //
-//  SubscriptionBadge.swift
+//  SubscriptionRow.swift
 //  TimePiece
 //
 //  Created by Alexey Primechaev on 3/10/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SubscriptionBadge: View {
+struct SubscriptionRow: View {
     
     var icon = String()
     var title = LocalizedStringKey("")
@@ -60,8 +60,8 @@ struct SubscribtionPoints<Content:View>: View {
 }
 
 
-struct SubscriptionBadge_Previews: PreviewProvider {
+struct SubscriptionRow_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionBadge()
+        SubscriptionRow()
     }
 }

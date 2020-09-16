@@ -63,7 +63,7 @@ struct ContentView: View {
                     },
             //MARK: Timers
                     ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
-                        TimerView(timer: timer).environmentObject(self.settings)
+                        TimerItemCell(timer: timer).environmentObject(self.settings)
 
                     },
                     

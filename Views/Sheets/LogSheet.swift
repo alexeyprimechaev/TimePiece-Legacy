@@ -42,7 +42,7 @@ struct LogSheet: View {
                 onSwipeToDelete: onSwipeToDelete,
                 contextMenuProvider: contextMenuProvider)
             { item, _ in
-                LogView(logItem: item)
+                LogItemCell(logItem: item)
             }
             .sectionHeader
             {
@@ -85,10 +85,10 @@ struct LogSheet: View {
                     ScrollView() {
                     VStack(spacing: 14) {
                         Spacer().frame(height: 14)
-                        InsightView(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")
-                        InsightView(icon: "heart.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: $mostPopularTimer, value: $mostPopularTimerCount, showingValue: true, subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productive.")
-                        InsightView(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: $dailyAverage, value: $mostPopularTimerCount, subtitle: "Looks like you have good average productivity. Well done, mate!")
-                        InsightView(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: $totalTimersRun, value: $mostPopularTimerCount, subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
+                        InsightRow(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")
+                        InsightRow(icon: "heart.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: $mostPopularTimer, value: $mostPopularTimerCount, showingValue: true, subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productive.")
+                        InsightRow(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: $dailyAverage, value: $mostPopularTimerCount, subtitle: "Looks like you have good average productivity. Well done, mate!")
+                        InsightRow(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: $totalTimersRun, value: $mostPopularTimerCount, subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
                         Spacer()
                     }.padding(.leading, 21)
                     }

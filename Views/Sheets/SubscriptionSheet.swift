@@ -66,12 +66,12 @@ struct SubscriptionSheet: View {
                                 .padding(.bottom, 9)
                         }.padding(7)
                         SubscribtionPoints {
-                            SubscriptionBadge(icon: "arrow.clockwise.circle.fill", title: sellingPoint1String, subtitle: sellingPoint1SecondString).tag(0)
-                            SubscriptionBadge(icon: "bell.circle.fill", title: sellingPoint2String, subtitle: sellingPoint2SecondString).tag(1)
-                            SubscriptionBadge(icon: "book.circle.fill", title: sellingPoint3String, subtitle: sellingPoint3SecondString).tag(2)
-                            SubscriptionBadge(icon: "star.circle.fill", title: sellingPoint4String, subtitle: sellingPoint4SecondString).tag(3)
-                            SubscriptionBadge(icon: "ellipsis.circle.fill", title: sellingPoint5String, subtitle: sellingPoint5SecondString).tag(4)
-                            SubscriptionBadge(icon: "heart.circle.fill", title: sellingPoint6String, subtitle: sellingPoint6SecondString).tag(5)
+                            SubscriptionRow(icon: "arrow.clockwise.circle.fill", title: sellingPoint1String, subtitle: sellingPoint1SecondString).tag(0)
+                            SubscriptionRow(icon: "bell.circle.fill", title: sellingPoint2String, subtitle: sellingPoint2SecondString).tag(1)
+                            SubscriptionRow(icon: "book.circle.fill", title: sellingPoint3String, subtitle: sellingPoint3SecondString).tag(2)
+                            SubscriptionRow(icon: "star.circle.fill", title: sellingPoint4String, subtitle: sellingPoint4SecondString).tag(3)
+                            SubscriptionRow(icon: "ellipsis.circle.fill", title: sellingPoint5String, subtitle: sellingPoint5SecondString).tag(4)
+                            SubscriptionRow(icon: "heart.circle.fill", title: sellingPoint6String, subtitle: sellingPoint6SecondString).tag(5)
                         }.padding(.bottom, 14)
                         
                         

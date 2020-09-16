@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct InsightView: View {
+struct InsightRow: View {
     
     @State var icon = "clock.fill"
     @State var color = Color.black

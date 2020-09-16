@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LogView: View {
+struct LogItemCell: View {
     
     @ObservedObject var logItem = LogItem()
     @EnvironmentObject var settings: Settings
@@ -47,6 +47,6 @@ struct LogView: View {
 
 struct LogView_Previews: PreviewProvider {
     static var previews: some View {
-        LogView()
+        LogItemCell()
     }
 }
