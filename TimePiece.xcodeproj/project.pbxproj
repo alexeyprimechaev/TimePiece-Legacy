@@ -130,6 +130,7 @@
 				808A386B2512D1D10075AC50 /* Data */,
 				80150D6724F58BD900C740B3 /* TimePieceApp.swift */,
 				809635632401544D00BF297F /* NotificationManager.swift */,
+				804E17B124087B71003F5001 /* Settings.swift */,
 				808A386E2512D3500075AC50 /* Views */,
 				80612FED23C274DF00BC03F5 /* Preview Content */,
 				80612FE023C274DB00BC03F5 /* Products */,
@@ -205,7 +206,6 @@
 		808A386E2512D3500075AC50 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				804E17B124087B71003F5001 /* Settings.swift */,
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				808A38812512D5480075AC50 /* Editors */,

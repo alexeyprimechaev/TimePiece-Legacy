@@ -27,7 +27,7 @@ struct ContentView: View {
     
     //MARK: State Variables
     @State var showingSheet = false
-    @State var activeSheet: ActiveSheet = .settings
+    @State var activeSheet = 0
     
     @State var isAdding = false
     @State var selectedTimer = 0
@@ -92,14 +92,14 @@ struct ContentView: View {
                 {
                     withAnimation(.default) {
                     TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
-                        activeSheet = .newTimer
+                        activeSheet = 1
                         showingSheet = true
                     }
                 },{
-                    activeSheet = .trends
+                    activeSheet = 3
                     showingSheet = true
                 },{
-                    activeSheet = .settings
+                    activeSheet = 2
                     showingSheet = true
                     }]).environmentObject(self.settings)
 
@@ -107,11 +107,11 @@ struct ContentView: View {
         
         
         .onAppear {
-            activeSheet = .trends
+            activeSheet = 3
         }
         //MARK: Sheet
         .sheet(isPresented: $showingSheet, onDismiss: {
-            if activeSheet == .newTimer {
+            if activeSheet == 1 {
                 if self.isAdding {
                     
                 } else {
@@ -124,7 +124,7 @@ struct ContentView: View {
         }) {
             switch activeSheet {
     
-                case .timer:
+                case 0:
                     TimerSheet(timer: self.timerItems[self.selectedTimer], discard: {showingSheet = false}, delete: {
                         withAnimation(.default) {
                             self.timerItems[self.selectedTimer].remove(from: self.context)
@@ -132,19 +132,23 @@ struct ContentView: View {
                         showingSheet = false
                     }).environmentObject(self.settings)
                     
-                case .newTimer:
+                case 1:
                     NewTimerSheet(timer: self.timerItems[self.timerItems.count-1], isAdding: self.$isAdding, discard: {showingSheet = false}).environmentObject(self.settings)
                     
-                case .settings:
+                case 2:
                     SettingsSheet(discard: {showingSheet = false}).environmentObject(self.settings)
-                case .trends:
+                case 3:
                     LogSheet(discard: {showingSheet = false}).environmentObject(self.settings).environment(\.managedObjectContext, self.context)
-                case .subscription:
+                case 4:
                     SubscriptionSheet(discard: {
                         showingSheet = false
                         self.settings.showingSubscription = false
                     }).environmentObject(self.settings)
+                default:
+                SettingsSheet(discard: {showingSheet = false}).environmentObject(self.settings)
                 }
+            
+           
             
         }
 
@@ -206,7 +210,7 @@ struct ContentView: View {
                 if self.settings.isSubscribed {
                     timer.makeReusable()
                 } else {
-                    activeSheet = .subscription
+                    activeSheet = 4
                     showingSheet = true
                 }
             }
@@ -219,7 +223,7 @@ struct ContentView: View {
 
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
                 self.selectedTimer = self.timerItems.lastIndex(of: timer) ?? 0
-                activeSheet = .timer
+                activeSheet = 0
                 self.showingSheet = true
             }
 
