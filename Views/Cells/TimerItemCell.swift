@@ -51,8 +51,12 @@ struct TimerItemCell: View {
             VStack(alignment: .leading, spacing: 0) {
                     Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
                 ZStack(alignment: .topLeading) {
-
-                    TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: timer.isRunning ? $currentTime : $timer.editableTimeString, updateTime: {updateTime()}, precisionSetting: $timer.precisionSetting)
+                    if timer.isRunning {
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, precisionSetting: $timer.precisionSetting)
+                    }
+                    else {
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, precisionSetting: $timer.precisionSetting)
+                    }
                     HStack(spacing: 0) {
                         if currentTime.prefix(2) != "00" {
                             Text("88").animation(nil)
