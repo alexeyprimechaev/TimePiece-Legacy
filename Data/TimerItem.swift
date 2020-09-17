@@ -21,6 +21,8 @@ public class TimerItem: NSManagedObject, Identifiable {
         objectID
     }
     
+    @NSManaged private var orderStored: NSNumber?
+    
     var logItem: LogItem?
     
     //MARK: Main Properties
@@ -84,15 +86,16 @@ public class TimerItem: NSManagedObject, Identifiable {
     
 //MARK: - Functions
     
-    var timer: Timer?
     
     //MARK: Creation (in context)
-    static func newTimer(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool) {
+    static func newTimerItem(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool, order: Int) {
         let timer = TimerItem(context: context)
         
         // User Input
         timer.title = title
         timer.totalTime = totalTime
+        
+        timer.order = order
         
         // Defaults
         timer.createdAt = Date()
@@ -197,6 +200,11 @@ public class TimerItem: NSManagedObject, Identifiable {
 
 //MARK: - Unwrappers
 extension TimerItem {
+    
+    var order: Int {
+        get { orderStored?.intValue ?? 0 }
+        set { orderStored = NSNumber(value: newValue) }
+    }
     
     var createdAt: Date {
         get { createdAtStored ?? Date() }
@@ -550,7 +558,7 @@ extension TimerItem {
     static func getAllTimers() -> NSFetchRequest<TimerItem> {
         let request: NSFetchRequest<TimerItem> = TimerItem.fetchRequest() as! NSFetchRequest<TimerItem>
         
-        let sortDescriptor = NSSortDescriptor(key: "createdAtStored", ascending: true)
+        let sortDescriptor = NSSortDescriptor(keyPath: \TimerItem.orderStored, ascending: true)
         
         request.sortDescriptors = [sortDescriptor]
         

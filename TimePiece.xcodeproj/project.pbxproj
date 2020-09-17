@@ -607,7 +607,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
 			requirement = {
-				branch = master;
+				branch = v1.8.0WIP;
 				kind = branch;
 			};
 		};

@@ -41,7 +41,6 @@ struct ContentView: View {
     
     var body: some View {
         
-//        TitleEditor()
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
                     HStack {
@@ -62,13 +61,12 @@ struct ContentView: View {
                         Text(timePieceString).title().padding(.bottom, 14).padding(.leading, 7)
                     },
             //MARK: Timers
-                    ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
+                    ASCollectionViewSection(id: 1, data: timerItems, dragDropConfig: dragDropConfig, contextMenuProvider: contextMenuProvider) { timer, _ in
                         TimerItemCell(timer: timer).environmentObject(self.settings)
 
                     }
                 ]
             )
-
 
             //MARK: Layout Configuration
             .layout {
@@ -91,7 +89,7 @@ struct ContentView: View {
                 TabBar(actions: [
                 {
                     withAnimation(.default) {
-                    TimerItem.newTimer(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault)
+                        TimerItem.newTimerItem(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault, order: timerItems.count)
                         activeSheet = 1
                         showingSheet = true
                     }
@@ -108,6 +106,10 @@ struct ContentView: View {
         
         .onAppear {
             activeSheet = 3
+            for i in 0...timerItems.count-1 {
+                timerItems[i].order = i
+            }
+            dump(timerItems)
         }
         //MARK: Sheet
         .sheet(isPresented: $showingSheet, onDismiss: {
@@ -233,6 +235,27 @@ struct ContentView: View {
         }
         return configuration
     }
+    
+    var dragDropConfig: ASDragDropConfig<TimerItem>
+    {
+        ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
+            
+            
+            
+            
+            
+            return false
+        })
+            .canDragItem { (indexPath) -> Bool in
+                false
+            }
+            .canMoveItem { (from, to) -> Bool in
+                false
+            }
+        
+        
+    }
+    
     
     
 }

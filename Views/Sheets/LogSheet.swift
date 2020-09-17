@@ -32,34 +32,34 @@ struct LogSheet: View {
     }
 
         
-    var sections: [ASTableViewSection<Int>]
-    {
-        update(logItems).enumerated().map
-        { i, section in
-            ASTableViewSection(
-                id: i + 1,
-                data: section,
-                onSwipeToDelete: onSwipeToDelete,
-                contextMenuProvider: contextMenuProvider)
-            { item, _ in
-                LogItemCell(logItem: item)
-            }
-            .sectionHeader
-            {
-               VStack(spacing: 0)
-                {
-                    HStack() {
-                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).title().padding(7).padding(.leading, 21).padding(.vertical, 7)
-                        Spacer()
-                    }
-                    
-                    if settings.showingDividers {
-                        Divider()
-                    }
-               }.background(Color(UIColor.systemBackground))
-            }
-        }
-    }
+//    var sections: [ASTableViewSection<Int>]
+//    {
+//        update(logItems).enumerated().map
+//        { i, section in
+//            ASTableViewSection(
+//                id: i + 1,
+//                data: section,
+//                onSwipeToDelete: onSwipeToDelete,
+//                contextMenuProvider: contextMenuProvider)
+//            { item, _ in
+//                LogItemCell(logItem: item)
+//            }
+//            .sectionHeader
+//            {
+//               VStack(spacing: 0)
+//                {
+//                    HStack() {
+//                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).title().padding(7).padding(.leading, 21).padding(.vertical, 7)
+//                        Spacer()
+//                    }
+//
+//                    if settings.showingDividers {
+//                        Divider()
+//                    }
+//               }.background(Color(UIColor.systemBackground))
+//            }
+//        }
+//    }
     
 
     
