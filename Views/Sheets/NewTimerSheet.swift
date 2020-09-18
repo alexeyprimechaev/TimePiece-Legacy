@@ -18,7 +18,7 @@ struct NewTimerSheet: View {
     
     @State var showingOptions = false
         
-    var discard: () -> ()
+    var discard: () -> Void
             
     var body: some View {
         VStack(spacing:0) {
@@ -40,7 +40,7 @@ struct NewTimerSheet: View {
                 self.discard()
             }, trailingTitle: self.timer.isReusable ? addString : startString, trailingIcon: self.timer.isReusable ? "plus" : "play")
             
-            ScrollView() {
+            ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
@@ -50,7 +50,7 @@ struct NewTimerSheet: View {
                     
                     VStack(alignment: .leading, spacing: 14) {
                         
-                        PremiumBadge() {
+                        PremiumBadge {
                             PickerButton(title: reusableString, values: [true.yesNo, false.yesNo], value: self.$timer.isReusable.yesNo)
                         }
                         
@@ -75,13 +75,13 @@ struct NewTimerSheet: View {
                             
                             PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
                             
-                            PremiumBadge() {
+                            PremiumBadge {
                                 PickerButton(title: soundString, values: TimerItem.soundSettings, value: self.$timer.soundSetting)
                             }
-                            PremiumBadge() {
+                            PremiumBadge {
                                 PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                             }
-                            PremiumBadge() {
+                            PremiumBadge {
                                 PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
                             }
                         }
@@ -93,7 +93,7 @@ struct NewTimerSheet: View {
                     
                 }.padding(.leading, 21)
             }
-        }.onAppear() {
+        }.onAppear {
             self.isAdding = false
         }
     }

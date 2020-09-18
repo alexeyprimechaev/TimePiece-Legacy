@@ -12,51 +12,49 @@ struct HeaderBar: View {
     
     @EnvironmentObject var settings: Settings
     
-    var leadingAction: () -> ()
+    var leadingAction: () -> Void
     var leadingTitle = LocalizedStringKey("")
     var leadingIcon = String()
     var leadingIsDestructive = false
     
-    var trailingAction: () -> ()
+    var trailingAction: () -> Void
     var trailingTitle = LocalizedStringKey("")
     var trailingIcon = String()
     var trailingIsDestructive = false
     
     var body: some View {
-        HStack() {
+        HStack {
             if leadingTitle != LocalizedStringKey("") {
-                Button(action: {
+                Button {
                     lightHaptic()
                     self.leadingAction()
-                }) {
+                } label: {
                     Label {
                         Text(leadingTitle).fontSize(.smallTitle)
                     } icon: {
                         Image(systemName: leadingIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
                     }
-                    .padding(.horizontal, 28)
+                    .padding(.horizontal, 14)
                     .foregroundColor(leadingIsDestructive ? .red : .primary)
-                    Spacer()
                 }
             }
-            
+            Spacer()
             if trailingTitle != LocalizedStringKey("") {
-                Button(action: {
+                Button {
                     self.trailingAction()
-                }) {
-                    Spacer()
+                } label: {
                     Label {
                         Text(trailingTitle).fontSize(.smallTitle)
                     } icon: {
                         Image(systemName: trailingIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
                     }
-                    .padding(.horizontal, 28)
+                    .padding(.horizontal, 14)
                     .foregroundColor(trailingIsDestructive ? .red : .primary)
                 }
             }
             
             
-        }
+        }.padding(.horizontal, 14)
         .frame(height: 52)
         
     }

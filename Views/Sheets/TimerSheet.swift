@@ -22,9 +22,9 @@ struct TimerSheet: View {
     @State var currentTime: String = "00:00"
     @State var totalTime: String = "00:00"
     
-    var discard: () -> ()
+    var discard: () -> Void
     
-    var delete: () -> ()
+    var delete: () -> Void
     
     var body: some View {
         
@@ -35,7 +35,7 @@ struct TimerSheet: View {
             }, leadingTitle: dismissString, leadingIcon: "chevron.down", leadingIsDestructive: false,
             trailingAction: {})
             
-            ScrollView() {
+            ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                         
@@ -54,16 +54,16 @@ struct TimerSheet: View {
                         if timer.isReusable {
                             PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
                             PickerButton(title: soundString, values: TimerItem.soundSettings, value: $timer.soundSetting)
-                            PremiumBadge() {
+                            PremiumBadge {
                                 PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
                             }
 
-                            PremiumBadge() {
+                            PremiumBadge {
                                 PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
                             }
                         } else {
                             
-                            PremiumBadge() {
+                            PremiumBadge {
                                 RegularButton(title: makeReusableString, subtitle: "", action: self.timer.makeReusable)
                             }
                             
@@ -84,7 +84,7 @@ struct TimerSheet: View {
 
             }
             
-            HStack() {
+            HStack {
                 Spacer().frame(width:28)
                 if timer.isReusable {
                     PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? resetString : stopString, onTitle: deleteString, offIcon: "stop.fill", onIcon: "trash.fill",
@@ -98,7 +98,7 @@ struct TimerSheet: View {
                                 }
                     )
                 } else {
-                    PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: deleteString, onTitle: deleteString, offIcon: "trash.fill", onIcon: "trash.fill", onTap: {self.delete()}, offTap: {self.delete()})
+                    PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: deleteString, onTitle: deleteString, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
                 }
                 Spacer().frame(width:28)
                 PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: startString, onTitle: pauseString, offIcon: "play.fill", onIcon: "pause.fill", onTap: {

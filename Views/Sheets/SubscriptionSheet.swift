@@ -13,7 +13,7 @@ struct SubscriptionSheet: View {
     
     @EnvironmentObject var settings: Settings
     
-    var discard: () -> ()
+    var discard: () -> Void
     
     @State var showingAlert = false
     @State var alertText1 = "Failed"
@@ -25,25 +25,23 @@ struct SubscriptionSheet: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading, spacing: 0) {
                 
-                HStack() {
-                        Button(action: {
+                HStack {
+                        Button {
                             lightHaptic()
                             self.discard()
-                        }) {
+                        } label: {
                             Label {
                                 Text(dismissString).fontSize(.smallTitle)
                             } icon: {
                                 Image(systemName: "chevron.down").font(.headline)
                             }
                             .padding(.horizontal, 28)
-                            Spacer()
                         }
                     
 
-                        Button(action: {
+                        Button {
                             self.restorePurchases()
-                        }) {
-                            Spacer()
+                        } label: {
                             Label {
                                 Text(restoreString).fontSize(.smallTitle)
                             } icon: {
@@ -61,7 +59,7 @@ struct SubscriptionSheet: View {
                     .alert(isPresented: $showingAlert) {
                         Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
                     }
-                ScrollView() {
+                ScrollView {
                     VStack(alignment: .center, spacing: 0) {
                         
                         HStack(alignment: .bottom, spacing: 4) {
@@ -90,12 +88,12 @@ struct SubscriptionSheet: View {
                                 })
                         }.padding(.trailing, 28).padding(.leading, 21)
                             
-                        Text(subscriptionDetailsString).secondaryText().padding(14).padding(.trailing, 14).padding(.leading, 21)
+                        Text(subscriptionDetailsString).fontSize(.secondaryText).padding(14).padding(.trailing, 14).padding(.leading, 21)
                         HStack(spacing: 0) {
                             Spacer()
-                                Button(action: {
+                                Button {
                                     UIApplication.shared.open(URL(string: "https://number16.github.io/timepiece-terms.html")!)
-                                }) {
+                                } label: {
                                  Text(termsDetailsString)
                                     .fontSize(.smallTitle)
                                     .padding(7)

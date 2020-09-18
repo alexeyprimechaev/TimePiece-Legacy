@@ -12,13 +12,13 @@ struct SettingsSheet: View {
     
     @EnvironmentObject var settings: Settings
                         
-    var discard: () -> ()
+    var discard: () -> Void
             
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
             HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "chevron.down", trailingAction: {})
             
-            ScrollView() {
+            ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
@@ -33,31 +33,31 @@ struct SettingsSheet: View {
                     
                     ListSection(title: newTimersString) {
                         PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: self.$settings.notificationSettingDefault)
-                        PremiumBadge() {
+                        PremiumBadge {
                             PickerButton(title: soundString, values: TimerItem.soundSettings, value: self.$settings.soundSettingDefault)
                         }
-                        PremiumBadge() {
+                        PremiumBadge {
                             PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$settings.precisionSettingDefault)
                         }
                             
-                        PremiumBadge() {
+                        PremiumBadge {
                             PickerButton(title: reusableString, values: TimerItem.reusableSettings, value: self.$settings.isReusableDefault)
                         }
                         
-                        PremiumBadge() {
+                        PremiumBadge {
                             PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$settings.showInLogDefault.yesNo)
                         }
                         
                     }
                     
                     ListSection(title: visualsString) {
-                            PickerButton(title: fontString, values: [Font.Design.default.string, Font.Design.rounded.string], value: self.$settings.fontDesign.string)
+                            PickerButton(title: fontString, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], value: self.$settings.fontDesign.string)
                         
-                        PremiumBadge() {
+                        PremiumBadge {
                             PickerButton(title: monochromeString, values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
                         }
                         
-                        PremiumBadge() {
+                        PremiumBadge {
                             PickerButton(title: logSeparatorsString, values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
                         }
                                                 

@@ -22,7 +22,7 @@ struct SubscriptionButton: View {
     @State var isAccent = false
     
     
-    var action: () -> ()
+    var action: () -> Void
     
     var body: some View {
         
@@ -32,7 +32,7 @@ struct SubscriptionButton: View {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(isAccent ? .white : Color(red: 0.153, green: 0.153, blue: 0.161))
-                HStack() {
+                HStack {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(title).fontSize(.smallTitle)
                         Text(promo).font(.system(size: 12, weight: .medium, design: .default))

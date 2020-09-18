@@ -23,12 +23,12 @@ struct LogSheet: View {
     @State private var dailyAverage = "00:00"
     @State private var totalTimersRun = "0"
     
-    var discard: () -> ()
+    var discard: () -> Void
     
     func update(_ result : FetchedResults<LogItem>)-> [[LogItem]]{
         return  Dictionary(grouping: result){ (element : LogItem)  in
             TimerItem.dateFormatter.string(from: element.timeStarted)
-        }.values.sorted() { $0[0].timeStarted > $1[0].timeStarted }
+        }.values.sorted { $0[0].timeStarted > $1[0].timeStarted }
     }
 
         
@@ -65,7 +65,12 @@ struct LogSheet: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "chevron.down", trailingAction: {clearLog()}, trailingTitle: "Clear Log", trailingIcon: "trash")
+            HeaderBar(leadingAction: discard,
+                      leadingTitle: dismissString,
+                      leadingIcon: "chevron.down",
+                      trailingAction: clearLog,
+                      trailingTitle: "Clear Log",
+                      trailingIcon: "trash")
             Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
                 Text("Trends").tag(0)
                 Text("History").tag(1)
@@ -73,7 +78,7 @@ struct LogSheet: View {
             if selectedScreen == 0 {
                 VStack(spacing: 0)
                  {
-                     HStack() {
+                     HStack {
                          Text("This Week").fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
                          Spacer()
                      }
@@ -82,7 +87,7 @@ struct LogSheet: View {
                      if settings.showingDividers {
                          Divider()
                      }
-                    ScrollView() {
+                    ScrollView {
                     VStack(spacing: 14) {
                         Spacer().frame(height: 14)
                         InsightRow(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")

@@ -274,3 +274,17 @@ extension String {
         }
     }
 }
+
+extension String {
+    func getIcon() -> String {
+        switch self {
+        case "yes":
+            return "checkmark"
+        case "no":
+            return "xmark"
+        default:
+            return ""
+        }
+
+    }
+}

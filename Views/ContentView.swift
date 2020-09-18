@@ -62,7 +62,7 @@ struct ContentView: View {
                     },
             //MARK: Timers
                     ASCollectionViewSection(id: 1, data: timerItems, dragDropConfig: dragDropConfig, contextMenuProvider: contextMenuProvider) { timer, _ in
-                        TimerItemCell(timer: timer).environmentObject(self.settings)
+                        TimerItemCell(timer: timer).environmentObject(settings)
 
                     }
                 ]
@@ -77,7 +77,7 @@ struct ContentView: View {
                 fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
                 return fl
             }
-            .onScroll() { scroll, _ in
+            .onScroll { scroll, _ in
                 if scroll.y >= 32 {
                     isLarge = false
                 } else if scroll.y < 32  {
@@ -89,7 +89,7 @@ struct ContentView: View {
                 TabBar(actions: [
                 {
                     withAnimation(.default) {
-                        TimerItem.newTimerItem(totalTime: 0, title: "", context: self.context, reusableSetting: self.settings.isReusableDefault, soundSetting: self.settings.soundSettingDefault, precisionSetting: self.settings.precisionSettingDefault, notificationSetting: self.settings.notificationSettingDefault, showInLog: self.settings.showInLogDefault, order: timerItems.count)
+                        TimerItem.newTimerItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, order: timerItems.count)
                         activeSheet = 1
                         showingSheet = true
                     }
@@ -99,11 +99,11 @@ struct ContentView: View {
                 },{
                     activeSheet = 2
                     showingSheet = true
-                    }]).environmentObject(self.settings)
+                    }]).environmentObject(settings)
 
             }
         
-        
+        .ignoresSafeArea(.keyboard)
         .onAppear {
             activeSheet = 3
             if timerItems.count > 0 {
@@ -117,11 +117,11 @@ struct ContentView: View {
         //MARK: Sheet
         .sheet(isPresented: $showingSheet, onDismiss: {
             if activeSheet == 1 {
-                if self.isAdding {
+                if isAdding {
                     
                 } else {
                     withAnimation(.default) {
-                        self.deleteLast()
+                        deleteLast()
                     }
                 }
             }
@@ -130,27 +130,27 @@ struct ContentView: View {
             switch activeSheet {
     
                 case 0:
-                    TimerSheet(timer: self.timerItems[self.selectedTimer], discard: {showingSheet = false}, delete: {
+                    TimerSheet(timer: timerItems[selectedTimer], discard: {showingSheet = false}, delete: {
                         withAnimation(.default) {
-                            self.timerItems[self.selectedTimer].remove(from: self.context)
+                            timerItems[selectedTimer].remove(from: context)
                         }
                         showingSheet = false
-                    }).environmentObject(self.settings)
+                    }).environmentObject(settings)
                     
                 case 1:
-                    NewTimerSheet(timer: self.timerItems[self.timerItems.count-1], isAdding: self.$isAdding, discard: {showingSheet = false}).environmentObject(self.settings)
+                    NewTimerSheet(timer: timerItems[timerItems.count-1], isAdding: $isAdding, discard: {showingSheet = false}).environmentObject(settings)
                     
                 case 2:
-                    SettingsSheet(discard: {showingSheet = false}).environmentObject(self.settings)
+                    SettingsSheet(discard: {showingSheet = false}).environmentObject(settings)
                 case 3:
-                    LogSheet(discard: {showingSheet = false}).environmentObject(self.settings).environment(\.managedObjectContext, self.context)
+                    LogSheet(discard: {showingSheet = false}).environmentObject(settings).environment(\.managedObjectContext, context)
                 case 4:
                     SubscriptionSheet(discard: {
                         showingSheet = false
-                        self.settings.showingSubscription = false
-                    }).environmentObject(self.settings)
+                        settings.showingSubscription = false
+                    }).environmentObject(settings)
                 default:
-                SettingsSheet(discard: {showingSheet = false}).environmentObject(self.settings)
+                SettingsSheet(discard: {showingSheet = false}).environmentObject(settings)
                 }
             
            
@@ -242,11 +242,7 @@ struct ContentView: View {
     var dragDropConfig: ASDragDropConfig<TimerItem>
     {
         ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
-            
-            
-            
-            
-            
+
             return false
         })
             .canDragItem { (indexPath) -> Bool in

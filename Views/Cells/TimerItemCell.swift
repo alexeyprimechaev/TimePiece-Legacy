@@ -27,10 +27,7 @@ struct TimerItemCell: View {
     var body: some View {
         
         
-        Button(action:
-            
-        //MARK: Action
-        {
+        Button {
             regularHaptic()
             if self.timer.remainingTime == 0 {
                 if self.timer.isReusable {
@@ -43,19 +40,15 @@ struct TimerItemCell: View {
             }
             
             try? self.context.save()
-        })
-            
-            
-        //MARK: Layout
-        {
+        } label: {
             VStack(alignment: .leading, spacing: 0) {
                     Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
                 ZStack(alignment: .topLeading) {
                     if timer.isRunning {
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, precisionSetting: $timer.precisionSetting)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timer.precisionSetting)
                     }
                     else {
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, precisionSetting: $timer.precisionSetting)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: updateTime, precisionSetting: $timer.precisionSetting)
                     }
                     HStack(spacing: 0) {
                         if currentTime.prefix(2) != "00" {

@@ -21,19 +21,25 @@ struct TabBar: View {
             Divider()
             HStack(spacing: 0) {
                 Spacer().frame(width: 14)
-                TabItem(title: newString,icon: "plus", action: { self.actions[0]() })
-                TabItem(title: logString, icon: "bolt", action: {
+                TabItem(title: newString,icon: "plus") {
+                    self.actions[0]()
+                }
+                TabItem(title: logString, icon: "bolt") {
                     self.actions[1]()
-                    
-                    }).overlay(
+                }.overlay(
                         Circle().frame(width: 7, height: 7).foregroundColor(.red).padding(.top, 7).padding(.leading, 26).opacity(settings.hasSeenTrends ? 0 : 1)
                     , alignment: .topLeading)
-                TabItem(title: settingsString, icon: "gear", action: { self.actions[2]() })
+                TabItem(title: settingsString, icon: "gear") {
+                    self.actions[2]()
+                }
                 Spacer()
             }
         }
         .fullScreenCover(isPresented: $showingSubscriptionSheet) {
-            SubscriptionSheet(discard: {self.showingSubscriptionSheet = false}).environmentObject(self.settings)
+            SubscriptionSheet {
+                self.showingSubscriptionSheet = false
+            }
+            .environmentObject(self.settings)
         }
 
     }
@@ -45,13 +51,13 @@ struct TabItem: View {
     
     @State var icon = "plus"
     
-    var action: () -> ()
+    var action: () -> Void
     
     var body: some View {
-        Button(action: {
+        Button {
             self.action()
             regularHaptic()
-        }) {
+        } label: {
             Label {
                 Text(title).fontSize(.smallTitle)
             } icon: {

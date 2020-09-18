@@ -18,7 +18,7 @@ struct TimeDisplay: View {
     @Binding var isRunning: Bool
     @Binding var timeString: String
     
-    @State var updateTime: () -> ()
+    @State var updateTime: () -> Void
     @State var isOpaque = false
     
     @State var displayStyle: TimeDisplayStyle = .simple
@@ -97,7 +97,7 @@ struct TimeDisplay: View {
                             seconds = String(timeString.suffix(2))
                         }
                     }
-                    .onAppear() {
+                    .onAppear {
                         if timeString.count == 8 {
                             hours = String(timeString.prefix(2))
                             minutes = String(timeString.prefix(4).suffix(2))

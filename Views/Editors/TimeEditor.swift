@@ -52,16 +52,16 @@ struct TimeEditor: View {
                     }.fontSize(.title).frame(minHeight: 43).padding(7).fixedSize(horizontal: true, vertical: true)
                     .animation(.default, value: showOutline)
                     .overlay(
-                        TextField("", text: $string, onEditingChanged: { (editingChanged) in
+                        TextField("", text: $string) { (editingChanged) in
                             if editingChanged {
                                 showOutline = true
                             } else {
                                 showOutline = false
                                 fixNumbers()
                             }
-                        }, onCommit:  {
+                        } onCommit: {
                             fixNumbers()
-                        })
+                        }
                             .introspectTextField { textField in
                                 self.textField = textField
                                 if becomeFirstResponder {
@@ -199,7 +199,7 @@ struct TimeEditor: View {
     //                Text("00")
     //            }.opacity(timeString.count == 0 ? 0.5 : 0).fontSize(.title))
                 HStack(spacing: 0) {
-                    Button(action: {
+                    Button {
                         if keyboardMode == 1 {
                             fixNumbers()
                             string = timeString
@@ -218,11 +218,10 @@ struct TimeEditor: View {
                         
                         isProtected = true
                         textField.becomeFirstResponder()
-                        
-                    }) {
+                    } label: {
                         Rectangle().frame(width: 54, height: 52).opacity(0)
                     }
-                    Button(action: {
+                    Button {
                         if keyboardMode == 2 {
                             fixNumbers()
                             string = timeString
@@ -241,10 +240,10 @@ struct TimeEditor: View {
                         
                         isProtected = true
                         textField.becomeFirstResponder()
-                    }) {
+                    } label: {
                         Rectangle().frame(width: 54, height: 52).opacity(0)
                     }
-                    Button(action: {
+                    Button {
                         if keyboardMode == 3 {
                             fixNumbers()
                             string = timeString
@@ -262,7 +261,7 @@ struct TimeEditor: View {
                         }
                         isProtected = true
                         textField.becomeFirstResponder()
-                    }) {
+                    } label: {
                         Rectangle().frame(width: 54, height: 52).opacity(0)
                     }
                 }

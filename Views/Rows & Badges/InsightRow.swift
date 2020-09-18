@@ -34,7 +34,7 @@ struct InsightRow: View {
                         }
                         
                     }
-                    Text(subtitle).multilineTextAlignment(.leading).secondaryText().opacity(0.5)
+                    Text(subtitle).multilineTextAlignment(.leading).fontSize(.secondaryText).opacity(0.5)
                 }
                 Spacer()
             }.padding(7)

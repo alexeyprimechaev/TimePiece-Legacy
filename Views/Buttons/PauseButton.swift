@@ -27,8 +27,8 @@ struct PauseButton: View {
     var offIcon = String()
     var onIcon = String()
     
-    var onTap: () -> ()
-    var offTap: () -> ()
+    var onTap: () -> Void
+    var offTap: () -> Void
     
 //MARK: - View
     var body: some View {
