@@ -15,8 +15,7 @@ import SwiftUI
 struct FontStyles {
     
     @EnvironmentObject var settings: Settings
-    
-    
+        
     
 }
 
@@ -35,7 +34,24 @@ struct TitleStyle: ViewModifier {
     }
 }
 
+public enum FontSize {
+    case title, smallTitle, secondaryText
+}
+
 //MARK: Small Title Style
+
+struct FontStyle: ViewModifier {
+    
+    @EnvironmentObject var settings: Settings
+    
+    @State var fontSize: FontSize
+    
+    func body(content: Content) -> some View {
+        content
+            .font(fontSize == .title ? Font.system(.largeTitle, design: settings.fontDesign).bold() : fontSize == .smallTitle ? Font.system(.headline, design: settings.fontDesign) : .system(size: 14, weight: .medium, design: settings.fontDesign))
+            .grayscale(settings.isMonochrome ? 0 : 1)
+    }
+}
 struct SmallTitleStyle: ViewModifier {
     
     @EnvironmentObject var settings: Settings
@@ -64,6 +80,10 @@ extension View {
     
     func title(design: Font.Design? = .default) -> some View {
         self.modifier(TitleStyle())
+    }
+    
+    func fontSize(_ size: FontSize = .title) -> some View {
+        return self.modifier(FontStyle(fontSize: size))
     }
     
     func smallTitle(design: Font.Design? = .default) -> some View {
