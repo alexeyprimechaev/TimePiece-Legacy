@@ -21,15 +21,15 @@ struct TabBar: View {
             Divider()
             HStack(spacing: 0) {
                 Spacer().frame(width: 14)
-                TabItem(title: newString,icon: "plus") {
+                TabItem(title: Strings.new,icon: "plus") {
                     self.actions[0]()
                 }
-                TabItem(title: logString, icon: "bolt") {
+                TabItem(title: Strings.log, icon: "bolt") {
                     self.actions[1]()
                 }.overlay(
                         Circle().frame(width: 7, height: 7).foregroundColor(.red).padding(.top, 7).padding(.leading, 26).opacity(settings.hasSeenTrends ? 0 : 1)
                     , alignment: .topLeading)
-                TabItem(title: settingsString, icon: "gear") {
+                TabItem(title: Strings.settings, icon: "gear") {
                     self.actions[2]()
                 }
                 Spacer()

@@ -31,7 +31,7 @@ struct SubscriptionSheet: View {
                             self.discard()
                         } label: {
                             Label {
-                                Text(dismissString).fontSize(.smallTitle)
+                                Text(Strings.dismiss).fontSize(.smallTitle)
                             } icon: {
                                 Image(systemName: "chevron.down").font(.headline)
                             }
@@ -43,7 +43,7 @@ struct SubscriptionSheet: View {
                             self.restorePurchases()
                         } label: {
                             Label {
-                                Text(restoreString).fontSize(.smallTitle)
+                                Text(Strings.restore).fontSize(.smallTitle)
                             } icon: {
                                 Image(systemName: "arrow.clockwise").font(.headline)
                             }
@@ -63,38 +63,38 @@ struct SubscriptionSheet: View {
                     VStack(alignment: .center, spacing: 0) {
                         
                         HStack(alignment: .bottom, spacing: 4) {
-                            Text(timePieceString)
+                            Text(Strings.timePiece)
                                 .fontSize(.title)
                                 
                             Image("PlusIcon")
                                 .padding(.bottom, 9)
                         }.padding(7)
                         SubscribtionPoints {
-                            SubscriptionRow(icon: "arrow.clockwise.circle.fill", title: sellingPoint1String, subtitle: sellingPoint1SecondString).tag(0)
-                            SubscriptionRow(icon: "bell.circle.fill", title: sellingPoint2String, subtitle: sellingPoint2SecondString).tag(1)
-                            SubscriptionRow(icon: "book.circle.fill", title: sellingPoint3String, subtitle: sellingPoint3SecondString).tag(2)
-                            SubscriptionRow(icon: "star.circle.fill", title: sellingPoint4String, subtitle: sellingPoint4SecondString).tag(3)
-                            SubscriptionRow(icon: "ellipsis.circle.fill", title: sellingPoint5String, subtitle: sellingPoint5SecondString).tag(4)
-                            SubscriptionRow(icon: "heart.circle.fill", title: sellingPoint6String, subtitle: sellingPoint6SecondString).tag(5)
+                            SubscriptionRow(icon: "arrow.clockwise.circle.fill", title: Strings.sellingPoint1, subtitle: Strings.sellingPoint1Second).tag(0)
+                            SubscriptionRow(icon: "bell.circle.fill", title: Strings.sellingPoint2, subtitle: Strings.sellingPoint2Second).tag(1)
+                            SubscriptionRow(icon: "book.circle.fill", title: Strings.sellingPoint3, subtitle: Strings.sellingPoint3Second).tag(2)
+                            SubscriptionRow(icon: "star.circle.fill", title: Strings.sellingPoint4, subtitle: Strings.sellingPoint4Second).tag(3)
+                            SubscriptionRow(icon: "ellipsis.circle.fill", title: Strings.sellingPoint5, subtitle: Strings.sellingPoint5Second).tag(4)
+                            SubscriptionRow(icon: "heart.circle.fill", title: Strings.sellingPoint6, subtitle: Strings.sellingPoint6Second).tag(5)
                         }.padding(.bottom, 14)
                         
                         
                         VStack(spacing: 14) {
-                            SubscriptionButton(title: subscription1String, promo: subscription1SecondString, price: "\(settings.monthlyPrice)", duration: subscription1PeriodString, isAccent: true, action: {
+                            SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: {
                                     self.purchaseMonthly()
                                 })
-                                SubscriptionButton(title: subscription2String, promo: subscription2SecondString, price: "\(settings.yearlyPrice)", duration: subscription2PeriodString, isAccent: false, action: {
+                            SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, action: {
                                     self.purchaseYearly()
                                 })
                         }.padding(.trailing, 28).padding(.leading, 21)
                             
-                        Text(subscriptionDetailsString).fontSize(.secondaryText).padding(14).padding(.trailing, 14).padding(.leading, 21)
+                        Text(Strings.subscriptionDetails).fontSize(.secondaryText).padding(14).padding(.trailing, 14).padding(.leading, 21)
                         HStack(spacing: 0) {
                             Spacer()
                                 Button {
                                     UIApplication.shared.open(URL(string: "https://number16.github.io/timepiece-terms.html")!)
                                 } label: {
-                                 Text(termsDetailsString)
+                                    Text(Strings.termsDetails)
                                     .fontSize(.smallTitle)
                                     .padding(7)
                                 }

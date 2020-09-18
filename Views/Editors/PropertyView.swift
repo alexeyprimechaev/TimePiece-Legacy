@@ -20,12 +20,12 @@ struct TitleEditor: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             HStack(alignment: .bottom, spacing: 7) {
-                if title == titleString {
-                    Text(timer.title.count == 0 ? timerString : LocalizedStringKey(timer.title))
+                if title == Strings.title {
+                    Text(timer.title.count == 0 ? Strings.timer : LocalizedStringKey(timer.title))
                         .fontSize(.title)
                         .opacity(timer.title.count == 0 ? 0.6 : 1)
                     
-                } else if title == leftString {
+                } else if title == Strings.left {
                     Text(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
                         .fontSize(.title)
                 } else {
@@ -35,9 +35,9 @@ struct TitleEditor: View {
                 Text(title)
                     .fontSize(.smallTitle)
                     .padding(.bottom, 5)
-                    .opacity(timer.title.count == 0 && title == titleString ? 1 : 0.5)
+                    .opacity(timer.title.count == 0 && title == Strings.title ? 1 : 0.5)
             }
-            if title == titleString {
+            if title == Strings.title {
                 TextField("", text: $timer.title)
                     .introspectTextField { textField in
                         textField.font = UIFont(name: "AppleColorEmoji", size: 34)

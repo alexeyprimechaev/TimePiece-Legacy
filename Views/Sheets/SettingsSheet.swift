@@ -16,49 +16,52 @@ struct SettingsSheet: View {
             
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
-            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "chevron.down", trailingAction: {})
+            HeaderBar(leadingAction: discard,
+                      leadingTitle: Strings.dismiss,
+                      leadingIcon: "chevron.down",
+                      trailingAction: {})
             
             ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
-                    Text(settingsString).fontSize(.title).padding(7)
+                    Text(Strings.settings).fontSize(.title).padding(7)
                     
                     Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).fontSize(.title).padding(7)
                     
-                    ListSection(title: madeInMoscowString) {
-                        PersonCard(name: alexeyString, description: "@FetchRequested", link: "https://twitter.com/FetchRequested", image: "alesha", icon: "twitter")
-                        PersonCard(name: igorString, description: "@stopUIKit", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
+                    ListSection(title: Strings.madeInMoscow) {
+                        PersonCard(name: Strings.alexey, description: "@FetchRequested", link: "https://twitter.com/FetchRequested", image: "alesha", icon: "twitter")
+                        PersonCard(name: Strings.igor, description: "@stopUIKit", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
                     }
                     
-                    ListSection(title: newTimersString) {
-                        PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: self.$settings.notificationSettingDefault)
+                    ListSection(title: Strings.newTimers) {
+                        PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, value: self.$settings.notificationSettingDefault)
                         PremiumBadge {
-                            PickerButton(title: soundString, values: TimerItem.soundSettings, value: self.$settings.soundSettingDefault)
+                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, value: self.$settings.soundSettingDefault)
                         }
                         PremiumBadge {
-                            PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$settings.precisionSettingDefault)
+                            PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, value: self.$settings.precisionSettingDefault)
                         }
                             
                         PremiumBadge {
-                            PickerButton(title: reusableString, values: TimerItem.reusableSettings, value: self.$settings.isReusableDefault)
+                            PickerButton(title: Strings.reusable, values: TimerItem.reusableSettings, value: self.$settings.isReusableDefault)
                         }
                         
                         PremiumBadge {
-                            PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$settings.showInLogDefault.yesNo)
+                            PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], value: self.$settings.showInLogDefault.yesNo)
                         }
                         
                     }
                     
-                    ListSection(title: visualsString) {
-                            PickerButton(title: fontString, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], value: self.$settings.fontDesign.string)
+                    ListSection(title: Strings.visuals) {
+                        PickerButton(title: Strings.font, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], value: self.$settings.fontDesign.string)
                         
                         PremiumBadge {
-                            PickerButton(title: monochromeString, values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
+                            PickerButton(title: Strings.monochrome, values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
                         }
                         
                         PremiumBadge {
-                            PickerButton(title: logSeparatorsString, values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
+                            PickerButton(title: Strings.logSeparators, values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
                         }
                                                 
                     }

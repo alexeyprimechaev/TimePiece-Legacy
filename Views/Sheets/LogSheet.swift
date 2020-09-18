@@ -66,7 +66,7 @@ struct LogSheet: View {
     var body: some View {
         VStack(spacing: 0) {
             HeaderBar(leadingAction: discard,
-                      leadingTitle: dismissString,
+                      leadingTitle: Strings.dismiss,
                       leadingIcon: "chevron.down",
                       trailingAction: clearLog,
                       trailingTitle: "Clear Log",

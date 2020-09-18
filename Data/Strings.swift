@@ -9,92 +9,90 @@
 import Foundation
 import SwiftUI
 
-let timePieceString: LocalizedStringKey = "timePiece"
+public class Strings {
+    
+    static let timePiece: LocalizedStringKey = "timePiece"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    static let new: LocalizedStringKey = "new"
+    static let log: LocalizedStringKey = "log"
+    static let settings: LocalizedStringKey = "settings"
+ 
+    static let discard: LocalizedStringKey = "discard"
+    static let dismiss: LocalizedStringKey = "back"
+    static let restore: LocalizedStringKey = "restore"
+    static let start: LocalizedStringKey = "start"
+    static let pause: LocalizedStringKey = "pause"
+    static let add: LocalizedStringKey = "add"
+    static let delete: LocalizedStringKey = "delete"
+    static let stop: LocalizedStringKey = "stop"
+    static let reset: LocalizedStringKey = "reset"
+    static let showDetails: LocalizedStringKey = "showDetails"
+    static let makeReusable: LocalizedStringKey = "makeReusable"
+ 
+    static let title: LocalizedStringKey = "title"
+    static let time: LocalizedStringKey = "time"
+    static let left: LocalizedStringKey = "left"
+    static let total: LocalizedStringKey = "total"
+    static let moreOptions: LocalizedStringKey = "More Options"
+ 
+    static let timer: LocalizedStringKey = "timer"
+    static let reusable: LocalizedStringKey = "reusable"
+    static let notification: LocalizedStringKey = "notification"
+    static let sound: LocalizedStringKey = "sound"
+    static let milliseconds: LocalizedStringKey = "milliseconds"
+    static let showInLog: LocalizedStringKey = "showInLog"
+    static let logSeparators: LocalizedStringKey = "logSeparators"
+    static let font: LocalizedStringKey = "font"
+    static let monochrome: LocalizedStringKey = "monochrome"
+ 
+    static let madeInMoscow: LocalizedStringKey = "madeInMoscow"
+ 
+    static let alexey: LocalizedStringKey = "alexey"
+    static let igor: LocalizedStringKey = "igor"
+    static let alexeyDescription: LocalizedStringKey = "alexeyDescription"
+    static let igorDescription: LocalizedStringKey = "igorDescription"
+ 
+    static let newTimers: LocalizedStringKey = "newTimers"
+    static let visuals: LocalizedStringKey = "visuals"
+ 
+    static let sellingPoint1: LocalizedStringKey = "sellingPoint1"
+    static let sellingPoint1Second: LocalizedStringKey = "sellingPoint1Second"
+ 
+    static let sellingPoint2: LocalizedStringKey = "sellingPoint2"
+    static let sellingPoint2Second: LocalizedStringKey = "sellingPoint2Second"
+ 
+    static let sellingPoint3: LocalizedStringKey = "sellingPoint3"
+    static let sellingPoint3Second: LocalizedStringKey = "sellingPoint3Second"
+ 
+    static let sellingPoint4: LocalizedStringKey = "sellingPoint4"
+    static let sellingPoint4Second: LocalizedStringKey = "sellingPoint4Second"
+ 
+    static let sellingPoint5: LocalizedStringKey = "sellingPoint5"
+    static let sellingPoint5Second: LocalizedStringKey = "sellingPoint5Second"
+ 
+    static let sellingPoint6: LocalizedStringKey = "sellingPoint6"
+    static let sellingPoint6Second: LocalizedStringKey = "sellingPoint6Second"
+ 
+    static let subscription1: LocalizedStringKey = "subscription1"
+    static let subscription1Second: LocalizedStringKey = "subscription1Second"
+    static let subscription1Price: LocalizedStringKey = "subscription1Price"
+    static let subscription1Period: LocalizedStringKey = "subscription1Period"
+ 
+    static let subscription2: LocalizedStringKey = "subscription2"
+    static let subscription2Second: LocalizedStringKey = "subscription2Second"
+    static let subscription2Price: LocalizedStringKey = "subscription2Price"
+    static let subscription2Period: LocalizedStringKey = "subscription2Period"
+ 
+    static let subscriptionDetails: LocalizedStringKey = "subscriptionDetails"
+    static let termsDetails: LocalizedStringKey = "termsDetails"
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let newString: LocalizedStringKey = "new"
-let logString: LocalizedStringKey = "log"
-let settingsString: LocalizedStringKey = "settings"
-
-let discardString: LocalizedStringKey = "discard"
-let dismissString: LocalizedStringKey = "back"
-let restoreString: LocalizedStringKey = "restore"
-let startString: LocalizedStringKey = "start"
-let pauseString: LocalizedStringKey = "pause"
-let addString: LocalizedStringKey = "add"
-let deleteString: LocalizedStringKey = "delete"
-let stopString: LocalizedStringKey = "stop"
-let resetString: LocalizedStringKey = "reset"
-let showDetailsString: LocalizedStringKey = "showDetails"
-let makeReusableString: LocalizedStringKey = "makeReusable"
-
-let titleString: LocalizedStringKey = "title"
-let timeString: LocalizedStringKey = "time"
-let leftString: LocalizedStringKey = "left"
-let totalString: LocalizedStringKey = "total"
-let moreOptionsString: LocalizedStringKey = "More Options"
-
-let timerString: LocalizedStringKey = "timer"
-let reusableString: LocalizedStringKey = "reusable"
-let notificationString: LocalizedStringKey = "notification"
-let soundString: LocalizedStringKey = "sound"
-let millisecondsString: LocalizedStringKey = "milliseconds"
-let showInLogString: LocalizedStringKey = "showInLog"
-let logSeparatorsString: LocalizedStringKey = "logSeparators"
-let fontString: LocalizedStringKey = "font"
-let monochromeString: LocalizedStringKey = "monochrome"
-
-let madeInMoscowString: LocalizedStringKey = "madeInMoscow"
-
-let alexeyString: LocalizedStringKey = "alexey"
-let igorString: LocalizedStringKey = "igor"
-let alexeyDescriptionString: LocalizedStringKey = "alexeyDescription"
-let igorDescriptionString: LocalizedStringKey = "igorDescription"
-
-let newTimersString: LocalizedStringKey = "newTimers"
-let visualsString: LocalizedStringKey = "visuals"
-
-let sellingPoint1String: LocalizedStringKey = "sellingPoint1"
-let sellingPoint1SecondString: LocalizedStringKey = "sellingPoint1Second"
-
-let sellingPoint2String: LocalizedStringKey = "sellingPoint2"
-let sellingPoint2SecondString: LocalizedStringKey = "sellingPoint2Second"
-
-let sellingPoint3String: LocalizedStringKey = "sellingPoint3"
-let sellingPoint3SecondString: LocalizedStringKey = "sellingPoint3Second"
-
-let sellingPoint4String: LocalizedStringKey = "sellingPoint4"
-let sellingPoint4SecondString: LocalizedStringKey = "sellingPoint4Second"
-
-let sellingPoint5String: LocalizedStringKey = "sellingPoint5"
-let sellingPoint5SecondString: LocalizedStringKey = "sellingPoint5Second"
-
-let sellingPoint6String: LocalizedStringKey = "sellingPoint6"
-let sellingPoint6SecondString: LocalizedStringKey = "sellingPoint6Second"
-
-let subscription1String: LocalizedStringKey = "subscription1"
-let subscription1SecondString: LocalizedStringKey = "subscription1Second"
-let subscription1PriceString: LocalizedStringKey = "subscription1Price"
-let subscription1PeriodString: LocalizedStringKey = "subscription1Period"
-
-let subscription2String: LocalizedStringKey = "subscription2"
-let subscription2SecondString: LocalizedStringKey = "subscription2Second"
-let subscription2PriceString: LocalizedStringKey = "subscription2Price"
-let subscription2PeriodString: LocalizedStringKey = "subscription2Period"
-
-let subscriptionDetailsString: LocalizedStringKey = "subscriptionDetails"
-let termsDetailsString: LocalizedStringKey = "termsDetails"

@@ -21,7 +21,7 @@ struct LogItemCell: View {
             Spacer().frame(height: 7)
             HStack(spacing: 0) {
                 Spacer().frame(width: 28)
-                Text(logItem.title == "" ? timerString : LocalizedStringKey(logItem.title))
+                Text(logItem.title == "" ? Strings.timer : LocalizedStringKey(logItem.title))
                 Spacer()
                 Text(logItem.timeFinished.timeIntervalSince(Date()) < 0 ? logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber() : currentTime.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber())
                 Spacer().frame(width: 28)

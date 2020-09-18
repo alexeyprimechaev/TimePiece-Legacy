@@ -42,7 +42,7 @@ struct TimerItemCell: View {
             try? self.context.save()
         } label: {
             VStack(alignment: .leading, spacing: 0) {
-                    Text(timer.title.isEmpty ? timerString : LocalizedStringKey(timer.title))
+                Text(timer.title.isEmpty ? Strings.timer : LocalizedStringKey(timer.title))
                 ZStack(alignment: .topLeading) {
                     if timer.isRunning {
                         TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timer.precisionSetting)

@@ -29,42 +29,41 @@ struct TimerSheet: View {
     var body: some View {
         
         VStack(spacing:0) {
-            HeaderBar(
-            leadingAction: {
-                self.discard()
-            }, leadingTitle: dismissString, leadingIcon: "chevron.down", leadingIsDestructive: false,
-            trailingAction: {})
-            
+            HeaderBar(leadingAction: discard,
+                      leadingTitle: Strings.dismiss,
+                      leadingIcon: "chevron.down",
+                      leadingIsDestructive: false,
+                      trailingAction: {})
             ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                         
-                    TitleEditor(title: titleString, timer: timer).disabled(!timer.isPaused)
+                    TitleEditor(title: Strings.title, timer: timer).disabled(!timer.isPaused)
                     
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isRunning {
-                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: leftString, precisionSetting: $timer.precisionSetting)
+                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.left, precisionSetting: $timer.precisionSetting)
                         }
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: totalString, precisionSetting: $timer.editableTimeString)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timer.editableTimeString)
                         
                         
                     }.animation(Animation.default, value: timer.isRunning)
                         
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {
-                            PickerButton(title: notificationString, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
-                            PickerButton(title: soundString, values: TimerItem.soundSettings, value: $timer.soundSetting)
+                            PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
+                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, value: $timer.soundSetting)
                             PremiumBadge {
-                                PickerButton(title: millisecondsString, values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
+                                PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, value: $timer.precisionSetting)
                             }
 
                             PremiumBadge {
-                                PickerButton(title: showInLogString, values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], value: $timer.showInLog.yesNo)
                             }
                         } else {
                             
                             PremiumBadge {
-                                RegularButton(title: makeReusableString, subtitle: "", action: self.timer.makeReusable)
+                                RegularButton(title: Strings.makeReusable, subtitle: "", action: timer.makeReusable)
                             }
                             
                         }
@@ -87,7 +86,7 @@ struct TimerSheet: View {
             HStack {
                 Spacer().frame(width:28)
                 if timer.isReusable {
-                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? resetString : stopString, onTitle: deleteString, offIcon: "stop.fill", onIcon: "trash.fill",
+                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? Strings.reset : Strings.stop, onTitle: Strings.delete, offIcon: "stop.fill", onIcon: "trash.fill",
                                 onTap: {
                                     self.timer.reset()
                                     mediumHaptic()
@@ -98,31 +97,31 @@ struct TimerSheet: View {
                                 }
                     )
                 } else {
-                    PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: deleteString, onTitle: deleteString, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
+                    PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: Strings.delete, onTitle: Strings.delete, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
                 }
                 Spacer().frame(width:28)
-                PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: startString, onTitle: pauseString, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+                PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
                         regularHaptic()
-                        if self.timer.remainingTime == 0 {
-                            if self.timer.isReusable {
-                                self.timer.reset()
+                        if timer.remainingTime == 0 {
+                            if timer.isReusable {
+                                timer.reset()
                             } else {
-                                self.delete()
+                                delete()
                             }
                         } else {
-                            self.timer.togglePause()
+                            timer.togglePause()
                         }
                     
                 }, offTap: {
                     regularHaptic()
-                    if self.timer.remainingTime == 0 {
-                        if self.timer.isReusable {
-                            self.timer.reset()
+                    if timer.remainingTime == 0 {
+                        if timer.isReusable {
+                            timer.reset()
                         } else {
-                            self.delete()
+                            delete()
                         }
                     } else {
-                        self.timer.togglePause()
+                        timer.togglePause()
                     }
                 })
                 Spacer().frame(width:28)
