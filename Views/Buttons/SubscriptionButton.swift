@@ -34,14 +34,14 @@ struct SubscriptionButton: View {
                     .foregroundColor(isAccent ? .white : Color(red: 0.153, green: 0.153, blue: 0.161))
                 HStack() {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(title).smallTitle()
+                        Text(title).fontSize(.smallTitle)
                         Text(promo).font(.system(size: 12, weight: .medium, design: .default))
                     }
                     
                     Spacer()
                     
                     VStack(alignment: .trailing, spacing: 4) {
-                        Text(price).smallTitle()
+                        Text(price).fontSize(.smallTitle)
                         Text(duration).font(.system(size: 12, weight: .medium, design: .default))
                     }
                 }.padding(.horizontal, 14).foregroundColor(isAccent ? .black : .white)

@@ -10,6 +10,8 @@ import SwiftUI
 
 struct HeaderBar: View {
     
+    @EnvironmentObject var settings: Settings
+    
     var leadingAction: () -> ()
     var leadingTitle = LocalizedStringKey("")
     var leadingIcon = String()
@@ -27,8 +29,11 @@ struct HeaderBar: View {
                     lightHaptic()
                     self.leadingAction()
                 }) {
-                    Label(leadingTitle, systemImage: leadingIcon)
-                    .smallTitle()
+                    Label {
+                        Text(leadingTitle).fontSize(.smallTitle)
+                    } icon: {
+                        Image(systemName: leadingIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
+                    }
                     .padding(.horizontal, 28)
                     .foregroundColor(leadingIsDestructive ? .red : .primary)
                     Spacer()
@@ -40,8 +45,11 @@ struct HeaderBar: View {
                     self.trailingAction()
                 }) {
                     Spacer()
-                    Label(trailingTitle, systemImage: trailingIcon)
-                    .smallTitle()
+                    Label {
+                        Text(trailingTitle).fontSize(.smallTitle)
+                    } icon: {
+                        Image(systemName: trailingIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
+                    }
                     .padding(.horizontal, 28)
                     .foregroundColor(trailingIsDestructive ? .red : .primary)
                 }

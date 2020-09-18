@@ -23,7 +23,7 @@ struct ListSection<Content:View>: View {
             Text(title)
                 .padding(.horizontal, 7)
                 .padding(.top, 7)
-                .smallTitle()
+                .fontSize(.smallTitle)
             VStack(alignment: .leading, spacing: 14) {
                 content
             }

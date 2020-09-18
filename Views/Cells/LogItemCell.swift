@@ -36,7 +36,7 @@ struct LogItemCell: View {
                 Spacer().frame(width: 28)
             }.opacity(0.5)
             Spacer().frame(height: 14)
-        }.smallTitle()
+        }.fontSize(.smallTitle)
         
         .onReceive(Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()) { time in
             self.currentTime = Date()

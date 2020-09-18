@@ -59,8 +59,11 @@ struct NewTimerSheet: View {
                                 lightHaptic()
                                 self.showingOptions.toggle()
                             }) {
-                                Label("More Options", systemImage: "ellipsis.circle")
-                                .smallTitle()
+                                Label {
+                                    Text("More Options").fontSize(.smallTitle)
+                                } icon: {
+                                    Image(systemName: "ellipsis.circle").font(.headline)
+                                }
                                 .padding(.horizontal, 7)
                                 .padding(.vertical, 14)
                                 .foregroundColor(.primary)

@@ -45,7 +45,7 @@ struct ContentView: View {
                 VStack(spacing: 0) {
                     HStack {
 
-                        Text(timePieceString).smallTitle().opacity(isLarge ? 0 : 1).padding(14)
+                        Text(timePieceString).fontSize(.smallTitle).opacity(isLarge ? 0 : 1).padding(14)
 
 
                     }
@@ -58,7 +58,7 @@ struct ContentView: View {
                 [
 
                     ASCollectionViewSection(id: 0) {
-                        Text(timePieceString).title().padding(.bottom, 14).padding(.leading, 7)
+                        Text(timePieceString).fontSize(.title).padding(.bottom, 14).padding(.leading, 7)
                     },
             //MARK: Timers
                     ASCollectionViewSection(id: 1, data: timerItems, dragDropConfig: dragDropConfig, contextMenuProvider: contextMenuProvider) { timer, _ in

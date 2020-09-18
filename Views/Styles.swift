@@ -46,10 +46,12 @@ struct FontStyle: ViewModifier {
     
     @State var fontSize: FontSize
     
+    @State var changeDesign = true
+    
     func body(content: Content) -> some View {
         content
-            .font(fontSize == .title ? Font.system(.largeTitle, design: settings.fontDesign).bold() : fontSize == .smallTitle ? Font.system(.headline, design: settings.fontDesign) : .system(size: 14, weight: .medium, design: settings.fontDesign))
-            .grayscale(settings.isMonochrome ? 0 : 1)
+            .font(fontSize == .title ? Font.system(.largeTitle, design: changeDesign ? settings.fontDesign : .default).bold() : fontSize == .smallTitle ? Font.system(.headline, design: changeDesign ? settings.fontDesign : .default) : .system(size: 14, weight: .medium, design: changeDesign ? settings.fontDesign : .default))
+            .saturation(settings.isMonochrome ? 0 : 1)
     }
 }
 struct SmallTitleStyle: ViewModifier {
@@ -82,7 +84,7 @@ extension View {
         self.modifier(TitleStyle())
     }
     
-    func fontSize(_ size: FontSize = .title) -> some View {
+    func fontSize(_ size: FontSize = .title, changeDesign: Bool = true) -> some View {
         return self.modifier(FontStyle(fontSize: size))
     }
     

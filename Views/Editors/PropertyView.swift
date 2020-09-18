@@ -22,18 +22,18 @@ struct TitleEditor: View {
             HStack(alignment: .bottom, spacing: 7) {
                 if title == titleString {
                     Text(timer.title.count == 0 ? timerString : LocalizedStringKey(timer.title))
-                        .title()
+                        .fontSize(.title)
                         .opacity(timer.title.count == 0 ? 0.6 : 1)
                     
                 } else if title == leftString {
                     Text(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
-                        .title()
+                        .fontSize(.title)
                 } else {
                     Text((timer.totalTime).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
-                        .title()
+                        .fontSize(.title)
                 }
                 Text(title)
-                    .smallTitle()
+                    .fontSize(.smallTitle)
                     .padding(.bottom, 5)
                     .opacity(timer.title.count == 0 && title == titleString ? 1 : 0.5)
             }
@@ -48,7 +48,7 @@ struct TitleEditor: View {
                     .onChange(of: timer.title) { newValue in
                         try? timer.managedObjectContext?.save()
                     }
-                    .title()
+                    .fontSize(.title)
                     .foregroundColor(Color.clear)
                     .accentColor(Color.primary)
             }

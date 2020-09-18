@@ -10,6 +10,8 @@ import SwiftUI
 
 struct PersonCard: View {
     
+    @EnvironmentObject var settings: Settings
+    
     @State var name = LocalizedStringKey("")
     
     @State var description = LocalizedStringKey("")
@@ -26,17 +28,19 @@ struct PersonCard: View {
             UIApplication.shared.open(URL(string: self.link)!)
         }) {
             HStack(alignment: .center, spacing: 7) {
-                Image(image).frame(width: 44, height: 44).cornerRadius(100).overlay(
-                    RoundedRectangle(cornerRadius: 100)
-                        .stroke(Color.black, lineWidth: 0.5)
-                ).padding(7)
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(name)
+                Image(image).frame(width: 44, height: 44).cornerRadius(.infinity).padding(7).saturation(settings.isMonochrome ? 0 : 1)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(name).fontSize(.smallTitle)
+                    
+                    Label {
                         Image(icon)
+                    } icon: {
+                        
+                        Text(description).opacity(0.5).fontSize(.smallTitle)
                     }
-                    Text(description).opacity(0.5)
-                }.smallTitle()
+                        
+                        
+                }
             }
         }.buttonStyle(RegularButtonStyle())
     }

@@ -22,13 +22,13 @@ struct SettingsSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
-                    Text(settingsString).title().padding(7)
+                    Text(settingsString).fontSize(.title).padding(7)
                     
-                    Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).title().padding(7)
+                    Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).fontSize(.title).padding(7)
                     
                     ListSection(title: madeInMoscowString) {
-                        PersonCard(name: alexeyString, description: alexeyDescriptionString, link: "https://twitter.com/FetchRequested", image: "alesha", icon: "twitter")
-                        PersonCard(name: igorString, description: igorDescriptionString, link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
+                        PersonCard(name: alexeyString, description: "@FetchRequested", link: "https://twitter.com/FetchRequested", image: "alesha", icon: "twitter")
+                        PersonCard(name: igorString, description: "@stopUIKit", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
                     }
                     
                     ListSection(title: newTimersString) {

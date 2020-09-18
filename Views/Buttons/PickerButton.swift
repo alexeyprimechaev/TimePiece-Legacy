@@ -32,7 +32,7 @@ struct PickerButton: View {
         } label: {
             HStack(alignment: .bottom, spacing: 7) {
                 Text(title)
-                    .title()
+                    .fontSize(.title)
                     .lineLimit(1)
                     .opacity(0.5)
                     .padding(0)
@@ -44,7 +44,7 @@ struct PickerButton: View {
                             .padding(.bottom, 5)
                             .opacity(self.value == value ? 1 : 0.5)
                             .lineLimit(1)
-                    }.smallTitle().fixedSize()
+                    }.fontSize(.smallTitle).fixedSize()
                 }.fixedSize().padding(0)
             }
             .padding(0)

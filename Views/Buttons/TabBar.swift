@@ -52,11 +52,15 @@ struct TabItem: View {
             self.action()
             regularHaptic()
         }) {
-            Label(title, systemImage: icon)
+            Label {
+                Text(title).fontSize(.smallTitle)
+            } icon: {
+                Image(systemName: icon).font(.headline)
+            }
             .lineLimit(1)
             .padding(14)
         
-        }.smallTitle().foregroundColor(.primary)
+        }.foregroundColor(.primary)
         
     }
 }

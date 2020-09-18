@@ -30,8 +30,11 @@ struct SubscriptionSheet: View {
                             lightHaptic()
                             self.discard()
                         }) {
-                            Label(dismissString, systemImage: "chevron.down")
-                            .smallTitle()
+                            Label {
+                                Text(dismissString).fontSize(.smallTitle)
+                            } icon: {
+                                Image(systemName: "chevron.down").font(.headline)
+                            }
                             .padding(.horizontal, 28)
                             Spacer()
                         }
@@ -41,8 +44,11 @@ struct SubscriptionSheet: View {
                             self.restorePurchases()
                         }) {
                             Spacer()
-                            Label(restoreString, systemImage: "arrow.clockwise")
-                            .smallTitle()
+                            Label {
+                                Text(restoreString).fontSize(.smallTitle)
+                            } icon: {
+                                Image(systemName: "arrow.clockwise").font(.headline)
+                            }
                             .padding(.horizontal, 28)
                         }
                     
@@ -60,7 +66,7 @@ struct SubscriptionSheet: View {
                         
                         HStack(alignment: .bottom, spacing: 4) {
                             Text(timePieceString)
-                                .title()
+                                .fontSize(.title)
                                 
                             Image("PlusIcon")
                                 .padding(.bottom, 9)
@@ -91,7 +97,7 @@ struct SubscriptionSheet: View {
                                     UIApplication.shared.open(URL(string: "https://number16.github.io/timepiece-terms.html")!)
                                 }) {
                                  Text(termsDetailsString)
-                                    .smallTitle()
+                                    .fontSize(.smallTitle)
                                     .padding(7)
                                 }
                                 

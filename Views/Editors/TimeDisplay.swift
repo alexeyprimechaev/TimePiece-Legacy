@@ -74,14 +74,14 @@ struct TimeDisplay: View {
                         }.animation(nil).opacity(0)
                     }
                     if displayStyle == .labeled {
-                        Text(label).smallTitle().opacity(0.5).padding(.bottom, 5)
+                        Text(label).fontSize(.smallTitle).opacity(0.5).padding(.bottom, 5)
                     }
                 }
                 
                     
                     .transition(.opacity)
                     .animation(isPaused && isRunning ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: isPaused)
-                    .title()
+                    .fontSize(.title)
                     .animation(nil)
                     .fixedSize()
                     .onChange(of: timeString) { newValue in

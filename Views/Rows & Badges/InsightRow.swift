@@ -10,6 +10,8 @@ import SwiftUI
 
 struct InsightRow: View {
     
+    @EnvironmentObject var settings: Settings
+    
     @State var icon = "clock.fill"
     @State var color = Color.black
     @State var title = "Most Spent"
@@ -21,14 +23,14 @@ struct InsightRow: View {
     var body: some View {
         VStack() {
             HStack(alignment: .top) {
-                Image(systemName: icon).font(.system(size: 41)).foregroundColor(color).padding(.top,4)
+                Image(systemName: icon).font(.system(size: 41)).foregroundColor(color).padding(.top,4).saturation(settings.isMonochrome ? 0 : 1)
                 Spacer().frame(width: 14)
                 VStack(alignment: .leading, spacing: 7) {
-                    Text(title).foregroundColor(color).smallTitle()
+                    Text(title).foregroundColor(color).fontSize(.smallTitle)
                     HStack(spacing: 14) {
-                        Text(item == "" ? "Timer ⏱" : item).smallTitle()
+                        Text(item == "" ? "Timer ⏱" : item).fontSize(.smallTitle)
                         if showingValue {
-                            Text(value).smallTitle().opacity(0.5)
+                            Text(value).fontSize(.smallTitle).opacity(0.5)
                         }
                         
                     }

@@ -99,7 +99,7 @@ struct TimerItemCell: View {
         
             
         //MARK: Styling
-        .title()
+        .fontSize(.title)
         .buttonStyle(RegularButtonStyle())
         .padding(7)
         .fixedSize()

@@ -23,8 +23,11 @@ struct RegularButton: View {
             regularHaptic()
             self.action()
         } label: {
-            Label(title, systemImage: icon)
-            .smallTitle()
+            Label {
+                Text(title).fontSize(.smallTitle)
+            } icon: {
+                Image(systemName: icon).font(.headline)
+            }
             .padding(7)
         }
         .buttonStyle(RegularButtonStyle())

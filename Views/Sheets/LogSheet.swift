@@ -49,7 +49,7 @@ struct LogSheet: View {
 //               VStack(spacing: 0)
 //                {
 //                    HStack() {
-//                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).title().padding(7).padding(.leading, 21).padding(.vertical, 7)
+//                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
 //                        Spacer()
 //                    }
 //
@@ -74,7 +74,7 @@ struct LogSheet: View {
                 VStack(spacing: 0)
                  {
                      HStack() {
-                         Text("This Week").title().padding(7).padding(.leading, 21).padding(.vertical, 7)
+                         Text("This Week").fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
                          Spacer()
                      }
                     

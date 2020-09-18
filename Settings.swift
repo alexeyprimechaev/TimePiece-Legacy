@@ -252,24 +252,24 @@ extension Font.Design {
 extension String {
     var fontDesignValue: Font.Design {
         get {
-            if self == "Rounded" {
+            if self == "rounded" {
                 return .rounded
-            } else if self == "Serif" {
+            } else if self == "serif" {
                 return .serif
-            } else if self == "Mono" {
+            } else if self == "mono" {
                 return .monospaced
             } else {
                 return .default
             }
         } set {
             if newValue == .rounded {
-                self = "Rounded"
+                self = "rounded"
             } else if newValue == .serif {
-                self = "Serif"
+                self = "serif"
             } else if newValue == .monospaced {
-                self = "Mono"
+                self = "mono"
             } else {
-                self = "Default"
+                self = "default"
             }
         }
     }

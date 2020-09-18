@@ -18,6 +18,7 @@ struct PauseButton: View {
     @State var color: Color
     @Binding var isPaused: Bool
     
+    @EnvironmentObject var settings: Settings
     
     //MARK: Static Properties
     var offTitle = LocalizedStringKey("")
@@ -42,9 +43,12 @@ struct PauseButton: View {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(Color("button.gray"))
-                Label(isPaused ? offTitle : onTitle, systemImage: isPaused ? offIcon : onIcon)
+                Label {
+                    Text(isPaused ? offTitle : onTitle).fontSize(.smallTitle)
+                } icon: {
+                    Image(systemName: isPaused ? offIcon : onIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
+                }
                 .foregroundColor(color)
-                .smallTitle()
             }.frame(height: 52)
         }
         

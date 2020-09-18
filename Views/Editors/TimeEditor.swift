@@ -35,7 +35,7 @@ struct TimeEditor: View {
     var body: some View {
         
             ZStack(alignment: .topLeading) {
-                Text("88").title().padding(7).opacity(0)
+                Text("88").fontSize(.title).padding(7).opacity(0)
                 HStack(alignment: .bottom, spacing: 7) {
                     HStack(spacing: 0) {
                         Text(hours)
@@ -49,7 +49,7 @@ struct TimeEditor: View {
                         Text(seconds)
                             .frame(width: showOutline ? 46 : nil, alignment: .topTrailing)
                             .opacity(keyboardMode == 3 || keyboardMode == 0 ? 1 : 0.5)
-                    }.title().frame(minHeight: 43).padding(7).fixedSize(horizontal: true, vertical: true)
+                    }.fontSize(.title).frame(minHeight: 43).padding(7).fixedSize(horizontal: true, vertical: true)
                     .animation(.default, value: showOutline)
                     .overlay(
                         TextField("", text: $string, onEditingChanged: { (editingChanged) in
@@ -187,7 +187,7 @@ struct TimeEditor: View {
                                     .foregroundColor(Color("button.gray"))
                                     .opacity(textField.isFirstResponder || showOutline ? 1 : 0))
                             )
-                    Text(label).smallTitle().padding(.bottom, 13).opacity(showOutline ? 1 : 0.5)
+                    Text(label).fontSize(.smallTitle).padding(.bottom, 13).opacity(showOutline ? 1 : 0.5)
                 }.animation(.default, value: showOutline)
     //            .background(HStack(spacing: 0) {
     //                Text("00")
@@ -197,7 +197,7 @@ struct TimeEditor: View {
     //                    .frame(width:46, alignment: .topTrailing)
     //                Dots().opacity(0)
     //                Text("00")
-    //            }.opacity(timeString.count == 0 ? 0.5 : 0).title())
+    //            }.opacity(timeString.count == 0 ? 0.5 : 0).fontSize(.title))
                 HStack(spacing: 0) {
                     Button(action: {
                         if keyboardMode == 1 {
