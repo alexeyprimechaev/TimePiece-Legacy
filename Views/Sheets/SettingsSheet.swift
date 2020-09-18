@@ -24,8 +24,10 @@ struct SettingsSheet: View {
                     
                     Text(settingsString).title().padding(7)
                     
+                    Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).title().padding(7)
+                    
                     ListSection(title: madeInMoscowString) {
-                        PersonCard(name: alexeyString, description: alexeyDescriptionString, link: "https://twitter.com/numberl6", image: "alesha", icon: "twitter")
+                        PersonCard(name: alexeyString, description: alexeyDescriptionString, link: "https://twitter.com/FetchRequested", image: "alesha", icon: "twitter")
                         PersonCard(name: igorString, description: igorDescriptionString, link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
                     }
                     
@@ -58,9 +60,7 @@ struct SettingsSheet: View {
                         PremiumBadge() {
                             PickerButton(title: logSeparatorsString, values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
                         }
-                        
-                        //ToggleButton(title: "Subscription", trueTitle: "Off", falseTitle: "On", value: self.$settings.isSubscribed)
-                        
+                                                
                     }
                     
                     

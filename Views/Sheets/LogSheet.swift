@@ -65,7 +65,7 @@ struct LogSheet: View {
     
     var body: some View {
         VStack(spacing: 0) {
-        HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "chevron.down", trailingAction: {})
+            HeaderBar(leadingAction: { self.discard() }, leadingTitle: dismissString, leadingIcon: "chevron.down", trailingAction: {clearLog()}, trailingTitle: "Clear Log", trailingIcon: "trash")
             Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
                 Text("Trends").tag(0)
                 Text("History").tag(1)
@@ -115,6 +115,15 @@ struct LogSheet: View {
             self.calculateValues(logItems: self.logItems)
         }
 
+    }
+    
+    func clearLog() {
+        if logItems.count > 0 {
+            for i in 0...logItems.count-1 {
+                context.delete(logItems[i])
+                
+            }
+        }
     }
     
     func contextMenuProvider(int: Int, logItem: LogItem) -> UIContextMenuConfiguration? {

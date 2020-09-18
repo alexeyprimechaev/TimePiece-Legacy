@@ -48,9 +48,12 @@ struct TimePieceApp: App {
                         
                         settings.getMonthlyPrice()
                         settings.getYearlyPrice()
-                        if settings.isSubscribed {
-                            settings.validateSubscription()
-                        }
+                        
+                        //MARK: Удолить на релизе
+                        settings.isSubscribed = true
+//                        if settings.isSubscribed {
+//                            settings.validateSubscription()
+//                        }
                         
                         
                         
