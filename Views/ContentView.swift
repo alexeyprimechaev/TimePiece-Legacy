@@ -106,9 +106,12 @@ struct ContentView: View {
         
         .onAppear {
             activeSheet = 3
-            for i in 0...timerItems.count-1 {
-                timerItems[i].order = i
+            if timerItems.count > 0 {
+                for i in 0...timerItems.count-1 {
+                    timerItems[i].order = i
+                }
             }
+            
             dump(timerItems)
         }
         //MARK: Sheet
