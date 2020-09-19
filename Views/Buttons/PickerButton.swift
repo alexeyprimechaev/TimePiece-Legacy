@@ -65,7 +65,7 @@ struct PickerButton: View {
                         .fixedSize()
                     HStack(spacing: 7) {
                         ForEach(values, id: \.self) { value in
-                            Text(NSLocalizedString(controlledValue, comment: "value"))
+                            Text(NSLocalizedString(value, comment: "value"))
                                 .fixedSize()
                                 .padding(.bottom, 5)
                                 .opacity(controlledValue == value ? 1 : 0.5)

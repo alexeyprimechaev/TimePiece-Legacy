@@ -22,6 +22,12 @@ struct TimerSheet: View {
     @State var currentTime: String = "00:00"
     @State var totalTime: String = "00:00"
     
+    @State var titleField = UITextField()
+    @State var timeField = UITextField()
+    
+    @State var titleFocused = false
+    @State var timeFocused = false
+    
     var discard: () -> Void
     
     var delete: () -> Void
@@ -38,7 +44,7 @@ struct TimerSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                         
-                    TitleEditor(title: Strings.title, timer: timer).disabled(!timer.isPaused)
+                    TitleEditor(title: Strings.title, timer: timer, textField: $titleField, isFocused: $titleFocused).disabled(!timer.isPaused)
                     
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isRunning {

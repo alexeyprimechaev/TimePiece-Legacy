@@ -16,6 +16,10 @@ struct TitleEditor: View {
     @State var value = String()
         
     @ObservedObject var timer = TimerItem()
+    
+    @Binding var textField: UITextField
+    
+    @Binding var isFocused: Bool
         
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -38,8 +42,15 @@ struct TitleEditor: View {
                     .opacity(timer.title.count == 0 && title == Strings.title ? 1 : 0.5)
             }
             if title == Strings.title {
-                TextField("", text: $timer.title)
-                    .introspectTextField { textField in
+                TextField("", text: $timer.title) { (editingChanged) in
+                    if editingChanged {
+                        isFocused = true
+                    } else {
+                        isFocused = false
+                    }
+                }
+                    .introspectTextField { field in
+                        textField = field
                         textField.font = UIFont(name: "AppleColorEmoji", size: 34)
                         textField.font = .systemFont(ofSize: 34, weight: .bold)
                         textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)

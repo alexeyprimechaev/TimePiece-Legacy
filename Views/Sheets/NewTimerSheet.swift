@@ -17,6 +17,12 @@ struct NewTimerSheet: View {
     @Binding var isAdding: Bool
     
     @State var showingOptions = false
+    
+    @State var titleField = UITextField()
+    @State var timeField = UITextField()
+    
+    @State var titleFocused = false
+    @State var timeFocused = false
         
     var discard: () -> Void
             
@@ -27,26 +33,15 @@ struct NewTimerSheet: View {
                 isAdding = false
                 discard()
             }, leadingTitle: Strings.discard, leadingIcon: "xmark", leadingIsDestructive: true,
-            trailingAction: {
-                isAdding = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    if !timer.isReusable {
-                        print(timer.totalTime)
-                        if timer.totalTime > 0 {
-                            timer.togglePause()
-                        }
-                    }
-                }
-                discard()
-            }, trailingTitle: timer.isReusable ? Strings.add : Strings.start, trailingIcon: timer.isReusable ? "plus" : "play")
+            trailingAction: {})
             
             ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
-                    TitleEditor(title: Strings.title, timer: timer)
+                    TitleEditor(title: Strings.title, timer: timer, textField: $titleField, isFocused: $titleFocused)
                     
-                    TimeEditor(timeString: $timer.editableTimeString, becomeFirstResponder: true)
+                    TimeEditor(timeString: $timer.editableTimeString, becomeFirstResponder: true, textField: $timeField, isFocused: $timeFocused)
                     
                     VStack(alignment: .leading, spacing: 14) {
                         
@@ -92,6 +87,28 @@ struct NewTimerSheet: View {
                     
                     
                 }.padding(.leading, 21)
+            }
+            
+            EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused) {
+                Button {
+                    isAdding = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        if !timer.isReusable {
+                            print(timer.totalTime)
+                            if timer.totalTime > 0 {
+                                timer.togglePause()
+                            }
+                        }
+                    }
+                    discard()
+                } label: {
+                    Label {
+                        Text(timer.isReusable ? Strings.add : Strings.start).fontSize(.smallTitle)
+                    } icon: {
+                        Image(systemName: timer.isReusable ? "plus" : "play").font(.headline)
+                    }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                            .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
+                }
             }
         }.onAppear {
             isAdding = false

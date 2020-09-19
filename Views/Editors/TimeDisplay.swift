@@ -26,6 +26,10 @@ struct TimeDisplay: View {
     
     @Binding var precisionSetting: String
     
+    @State var timeField = UITextField()
+    
+    @State var timeFocused = false
+    
     @State private var milliseconds = ""
     @State private var seconds = ""
     @State private var minutes = ""
@@ -34,7 +38,7 @@ struct TimeDisplay: View {
     var body: some View {
         VStack() {
             if isRunning == false && displayStyle == .labeled {
-                TimeEditor(timeString: $timeString).disabled(isRunning).animation(nil)
+                TimeEditor(timeString: $timeString, textField: $timeField, isFocused: $timeFocused).disabled(isRunning).animation(nil)
             } else {
                 HStack(alignment: .bottom, spacing: 7) {
                     ZStack(alignment: .topLeading) {

@@ -18,14 +18,14 @@ struct TimeEditor: View {
     
     @State private var keyboardMode: Int = 0
     
-    @State private var textField = UITextField()
+    @Binding var textField: UITextField
     
     @State private var string = ""
     
     @State private var isProtected = false
     
    
-    @State private var showOutline = false
+    @Binding var isFocused: Bool
     
     
     @State private var seconds = ""
@@ -39,24 +39,24 @@ struct TimeEditor: View {
                 HStack(alignment: .bottom, spacing: 7) {
                     HStack(spacing: 0) {
                         Text(hours)
-                            .frame(width: showOutline ? 46 : nil, alignment: .topTrailing)
+                            .frame(width: isFocused ? 46 : nil, alignment: .topTrailing)
                             .opacity(keyboardMode == 1 || keyboardMode == 0 ? 1 : 0.5)
                         Dots()
                         Text(minutes)
-                            .frame(width: showOutline ? 46 : nil, alignment: .topTrailing)
+                            .frame(width: isFocused ? 46 : nil, alignment: .topTrailing)
                             .opacity(keyboardMode == 2 || keyboardMode == 0 ? 1 : 0.5)
                         Dots()
                         Text(seconds)
-                            .frame(width: showOutline ? 46 : nil, alignment: .topTrailing)
+                            .frame(width: isFocused ? 46 : nil, alignment: .topTrailing)
                             .opacity(keyboardMode == 3 || keyboardMode == 0 ? 1 : 0.5)
                     }.fontSize(.title).frame(minHeight: 43).padding(7).fixedSize(horizontal: true, vertical: true)
-                    .animation(.default, value: showOutline)
+                    .animation(.default, value: isFocused)
                     .overlay(
                         TextField("", text: $string) { (editingChanged) in
                             if editingChanged {
-                                showOutline = true
+                                isFocused = true
                             } else {
-                                showOutline = false
+                                isFocused = false
                                 fixNumbers()
                             }
                         } onCommit: {
@@ -185,10 +185,10 @@ struct TimeEditor: View {
                                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                                     .stroke(Color.primary, lineWidth: 2)
                                     .foregroundColor(Color("button.gray"))
-                                    .opacity(textField.isFirstResponder || showOutline ? 1 : 0))
+                                    .opacity(textField.isFirstResponder || isFocused ? 1 : 0))
                             )
-                    Text(label).fontSize(.smallTitle).padding(.bottom, 13).opacity(showOutline ? 1 : 0.5)
-                }.animation(.default, value: showOutline)
+                    Text(label).fontSize(.smallTitle).padding(.bottom, 13).opacity(isFocused ? 1 : 0.5)
+                }.animation(.default, value: isFocused)
     //            .background(HStack(spacing: 0) {
     //                Text("00")
     //                    .frame(width:46, alignment: .topTrailing)
