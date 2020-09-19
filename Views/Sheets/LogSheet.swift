@@ -164,9 +164,9 @@ struct LogSheet: View {
     }
     
     func calculateValues(logItems: FetchedResults<LogItem>) {
-        let logItemsThisWeek = logItems.filter({
+        let logItemsThisWeek = logItems.filter {
             $0.timeFinished > Date().addingTimeInterval(-604800)
-        })
+        }
         
         totalTimersRun = String(logItemsThisWeek.count)
         

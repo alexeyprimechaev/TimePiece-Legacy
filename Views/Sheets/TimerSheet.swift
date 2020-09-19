@@ -51,14 +51,14 @@ struct TimerSheet: View {
                         
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {
-                            PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
-                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, value: $timer.soundSetting)
+                            PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $timer.notificationSetting)
+                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $timer.soundSetting)
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, value: $timer.precisionSetting)
+                                PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, controlledValue: $timer.precisionSetting)
                             }
 
                             PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], value: $timer.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timer.showInLog.yesNo)
                             }
                         } else {
                             
@@ -77,7 +77,7 @@ struct TimerSheet: View {
                     currentTime = timer.remainingTimeString
                 }
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
-                    self.updateTime()
+                    updateTime()
                     print(timer.remainingTime)
                 }
 
@@ -88,11 +88,11 @@ struct TimerSheet: View {
                 if timer.isReusable {
                     PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? Strings.reset : Strings.stop, onTitle: Strings.delete, offIcon: "stop.fill", onIcon: "trash.fill",
                                 onTap: {
-                                    self.timer.reset()
+                                    timer.reset()
                                     mediumHaptic()
                                 },
                                 offTap: {
-                                    self.delete()
+                                    delete()
                                     mediumHaptic()
                                 }
                     )

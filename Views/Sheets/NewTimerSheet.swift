@@ -24,40 +24,40 @@ struct NewTimerSheet: View {
         VStack(spacing:0) {
             HeaderBar(
             leadingAction: {
-                self.isAdding = false
-                self.discard()
+                isAdding = false
+                discard()
             }, leadingTitle: Strings.discard, leadingIcon: "xmark", leadingIsDestructive: true,
             trailingAction: {
-                self.isAdding = true
+                isAdding = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    if !self.timer.isReusable {
-                        print(self.timer.totalTime)
-                        if self.timer.totalTime > 0 {
-                            self.timer.togglePause()
+                    if !timer.isReusable {
+                        print(timer.totalTime)
+                        if timer.totalTime > 0 {
+                            timer.togglePause()
                         }
                     }
                 }
-                self.discard()
-            }, trailingTitle: self.timer.isReusable ? Strings.add : Strings.start, trailingIcon: self.timer.isReusable ? "plus" : "play")
+                discard()
+            }, trailingTitle: timer.isReusable ? Strings.add : Strings.start, trailingIcon: timer.isReusable ? "plus" : "play")
             
             ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
-                    TitleEditor(title: Strings.title, timer: self.timer)
+                    TitleEditor(title: Strings.title, timer: timer)
                     
                     TimeEditor(timeString: $timer.editableTimeString, becomeFirstResponder: true)
                     
                     VStack(alignment: .leading, spacing: 14) {
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], value: self.$timer.isReusable.yesNo)
+                            PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], controlledValue: $timer.isReusable.yesNo)
                         }
                         
                         if !showingOptions {
                             Button(action: {
                                 lightHaptic()
-                                self.showingOptions.toggle()
+                                showingOptions.toggle()
                             }) {
                                 Label {
                                     Text("More Options").fontSize(.smallTitle)
@@ -73,16 +73,16 @@ struct NewTimerSheet: View {
                     
                         if showingOptions {
                             
-                            PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, value: $timer.notificationSetting)
+                            PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $timer.notificationSetting)
                             
                             PremiumBadge {
-                                PickerButton(title: Strings.sound, values: TimerItem.soundSettings, value: self.$timer.soundSetting)
+                                PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $timer.soundSetting)
                             }
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, value: self.$timer.precisionSetting)
+                                PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, controlledValue: $timer.precisionSetting)
                             }
                             PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], value: self.$timer.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timer.showInLog.yesNo)
                             }
                         }
                             
@@ -94,7 +94,7 @@ struct NewTimerSheet: View {
                 }.padding(.leading, 21)
             }
         }.onAppear {
-            self.isAdding = false
+            isAdding = false
         }
     }
 }

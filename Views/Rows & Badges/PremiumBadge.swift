@@ -20,7 +20,7 @@ struct PremiumBadge<Content:View>: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: -4) {
-            if !self.settings.isSubscribed {
+            if !settings.isSubscribed {
                 HStack(alignment: .center, spacing: 0) {
                     Image(systemName: "star.fill").font(.system(size: 9, weight: .semibold, design: settings.fontDesign)).padding(.trailing, 3)
                     Text("PLUS").font(.system(size: 13, weight: .semibold, design: settings.fontDesign))
@@ -28,17 +28,17 @@ struct PremiumBadge<Content:View>: View {
             }
             content.disabled(!settings.isSubscribed)
         }.onTapGesture {
-            if self.settings.isSubscribed {
+            if settings.isSubscribed {
                 
             } else {
-                self.settings.showingSubscription = true
+               settings.showingSubscription = true
             }
             
         }
         .fullScreenCover(isPresented: $settings.showingSubscription) {
             SubscriptionSheet {
-                self.settings.showingSubscription = false
-            }.environmentObject(self.settings)
+                settings.showingSubscription = false
+            }.environmentObject(settings)
         }
         
         

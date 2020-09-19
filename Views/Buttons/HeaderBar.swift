@@ -27,7 +27,7 @@ struct HeaderBar: View {
             if leadingTitle != LocalizedStringKey("") {
                 Button {
                     lightHaptic()
-                    self.leadingAction()
+                    leadingAction()
                 } label: {
                     Label {
                         Text(leadingTitle).fontSize(.smallTitle)
@@ -41,7 +41,7 @@ struct HeaderBar: View {
             Spacer()
             if trailingTitle != LocalizedStringKey("") {
                 Button {
-                    self.trailingAction()
+                    trailingAction()
                 } label: {
                     Label {
                         Text(trailingTitle).fontSize(.smallTitle)

@@ -22,24 +22,24 @@ struct TabBar: View {
             HStack(spacing: 0) {
                 Spacer().frame(width: 14)
                 TabItem(title: Strings.new,icon: "plus") {
-                    self.actions[0]()
+                    actions[0]()
                 }
                 TabItem(title: Strings.log, icon: "bolt") {
-                    self.actions[1]()
+                    actions[1]()
                 }.overlay(
                         Circle().frame(width: 7, height: 7).foregroundColor(.red).padding(.top, 7).padding(.leading, 26).opacity(settings.hasSeenTrends ? 0 : 1)
                     , alignment: .topLeading)
                 TabItem(title: Strings.settings, icon: "gear") {
-                    self.actions[2]()
+                    actions[2]()
                 }
                 Spacer()
             }
         }
         .fullScreenCover(isPresented: $showingSubscriptionSheet) {
             SubscriptionSheet {
-                self.showingSubscriptionSheet = false
+                showingSubscriptionSheet = false
             }
-            .environmentObject(self.settings)
+            .environmentObject(settings)
         }
 
     }
@@ -55,7 +55,7 @@ struct TabItem: View {
     
     var body: some View {
         Button {
-            self.action()
+            action()
             regularHaptic()
         } label: {
             Label {

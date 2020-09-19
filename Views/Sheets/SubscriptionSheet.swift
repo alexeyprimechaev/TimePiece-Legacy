@@ -80,12 +80,8 @@ struct SubscriptionSheet: View {
                         
                         
                         VStack(spacing: 14) {
-                            SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: {
-                                    self.purchaseMonthly()
-                                })
-                            SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, action: {
-                                    self.purchaseYearly()
-                                })
+                            SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: purchaseMonthly)
+                            SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, action: purchaseYearly)
                         }.padding(.trailing, 28).padding(.leading, 21)
                             
                         Text(Strings.subscriptionDetails).fontSize(.secondaryText).padding(14).padding(.trailing, 14).padding(.leading, 21)

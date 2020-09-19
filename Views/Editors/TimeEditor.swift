@@ -62,8 +62,8 @@ struct TimeEditor: View {
                         } onCommit: {
                             fixNumbers()
                         }
-                            .introspectTextField { textField in
-                                self.textField = textField
+                            .introspectTextField { field in
+                                textField = field
                                 if becomeFirstResponder {
                                     textField.becomeFirstResponder()
                                     becomeFirstResponder = false

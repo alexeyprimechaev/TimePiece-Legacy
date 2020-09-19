@@ -35,33 +35,33 @@ struct SettingsSheet: View {
                     }
                     
                     ListSection(title: Strings.newTimers) {
-                        PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, value: self.$settings.notificationSettingDefault)
+                        PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $settings.notificationSettingDefault)
                         PremiumBadge {
-                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, value: self.$settings.soundSettingDefault)
+                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $settings.soundSettingDefault)
                         }
                         PremiumBadge {
-                            PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, value: self.$settings.precisionSettingDefault)
+                            PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, controlledValue: $settings.precisionSettingDefault)
                         }
                             
                         PremiumBadge {
-                            PickerButton(title: Strings.reusable, values: TimerItem.reusableSettings, value: self.$settings.isReusableDefault)
+                            PickerButton(title: Strings.reusable, values: TimerItem.reusableSettings, controlledValue: $settings.isReusableDefault)
                         }
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], value: self.$settings.showInLogDefault.yesNo)
+                            PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $settings.showInLogDefault.yesNo)
                         }
                         
                     }
                     
                     ListSection(title: Strings.visuals) {
-                        PickerButton(title: Strings.font, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], value: self.$settings.fontDesign.string)
+                        PickerButton(title: Strings.font, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], controlledValue: $settings.fontDesign.string)
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.monochrome, values: [true.yesNo, false.yesNo], value: self.$settings.isMonochrome.yesNo)
+                            PickerButton(title: Strings.monochrome, values: [true.yesNo, false.yesNo], controlledValue: $settings.isMonochrome.yesNo)
                         }
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.logSeparators, values: [true.onOff, false.onOff], value: self.$settings.showingDividers.onOff)
+                            PickerButton(title: Strings.logSeparators, values: [true.onOff, false.onOff], controlledValue: $settings.showingDividers.onOff)
                         }
                                                 
                     }

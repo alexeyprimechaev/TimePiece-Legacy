@@ -25,7 +25,7 @@ struct PersonCard: View {
     var body: some View {
         Button {
             mediumHaptic()
-            UIApplication.shared.open(URL(string: self.link)!)
+            UIApplication.shared.open(URL(string: link)!)
         } label: {
             HStack(alignment: .center, spacing: 7) {
                 Image(image).frame(width: 44, height: 44).cornerRadius(.infinity).padding(7).saturation(settings.isMonochrome ? 0 : 1)

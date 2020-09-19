@@ -14,7 +14,7 @@ struct PickerButton: View {
     //MARK: - Properties
     @State var title = LocalizedStringKey("")
     @State var values = [String]()
-    @Binding var value: String
+    @Binding var controlledValue: String
     @State var index = Int()
     
     //MARK: - View
@@ -24,7 +24,7 @@ struct PickerButton: View {
             Menu {
                 ForEach(values, id: \.self) { value in
                     Button(NSLocalizedString(value, comment: "value")) {
-                        self.value = value
+                        controlledValue = value
                     }
                 }
             } label: {
@@ -36,7 +36,7 @@ struct PickerButton: View {
                         .padding(0)
                         .fixedSize()
                     Label {
-                        Text(NSLocalizedString(value, comment: "value")).fontSize(.smallTitle)
+                        Text(NSLocalizedString(controlledValue, comment: "value")).fontSize(.smallTitle)
                     } icon: {
                         Image(systemName: "ellipsis.circle").font(.headline)
                     }
@@ -48,12 +48,12 @@ struct PickerButton: View {
         } else {
             Button {
                 lightHaptic()
-                if self.index < self.values.count - 1 {
-                    self.index += 1
-                    self.value = self.values[self.index]
+                if index < values.count - 1 {
+                    index += 1
+                    controlledValue = values[index]
                 } else {
-                    self.index = 0
-                    self.value = self.values[self.index]
+                    index = 0
+                    controlledValue = values[index]
                 }
             } label: {
                 HStack(alignment: .bottom, spacing: 7) {
@@ -65,10 +65,10 @@ struct PickerButton: View {
                         .fixedSize()
                     HStack(spacing: 7) {
                         ForEach(values, id: \.self) { value in
-                            Text(NSLocalizedString(value, comment: "value"))
+                            Text(NSLocalizedString(controlledValue, comment: "value"))
                                 .fixedSize()
                                 .padding(.bottom, 5)
-                                .opacity(self.value == value ? 1 : 0.5)
+                                .opacity(controlledValue == value ? 1 : 0.5)
                                 .lineLimit(1)
                         }.fontSize(.smallTitle).fixedSize()
                     }.fixedSize().padding(0)
@@ -86,13 +86,13 @@ struct PickerButton: View {
                 
             //MARK: On Appear
             .onAppear {
-                for i in 0...self.values.count-1 {
-                    if self.value == self.values[i] {
-                        self.index = i
+                for i in 0...values.count-1 {
+                    if controlledValue == values[i] {
+                        index = i
                         break
                     }
-                    if i == self.values.count-1 {
-                        self.value = self.values[0]
+                    if i == values.count-1 {
+                        controlledValue = values[0]
                     }
                 }
             }

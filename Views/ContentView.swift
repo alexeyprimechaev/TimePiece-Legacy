@@ -34,8 +34,6 @@ struct ContentView: View {
     
     @State var isLarge = true
     
-    @State var string = "000000"
-        
         
 //MARK: - View
     
@@ -70,7 +68,8 @@ struct ContentView: View {
 
             //MARK: Layout Configuration
             .layout {
-                let fl = AlignedFlowLayout()
+                let fl = AlignedCollectionViewFlowLayout()
+                fl.horizontalAlignment = .leading
                 fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
                 fl.minimumInteritemSpacing = 14
                 fl.minimumLineSpacing = 14
@@ -115,7 +114,7 @@ struct ContentView: View {
             dump(timerItems)
         }
         //MARK: Sheet
-        .sheet(isPresented: $showingSheet, onDismiss: {
+        .sheet(isPresented: $showingSheet) {
             if activeSheet == 1 {
                 if isAdding {
                     
@@ -126,31 +125,41 @@ struct ContentView: View {
                 }
             }
             
-        }) {
+        } content: {
             switch activeSheet {
     
                 case 0:
-                    TimerSheet(timer: timerItems[selectedTimer], discard: {showingSheet = false}, delete: {
+                    TimerSheet(timer: timerItems[selectedTimer]) {
+                        showingSheet = false
+                    } delete: {
                         withAnimation(.default) {
                             timerItems[selectedTimer].remove(from: context)
                         }
                         showingSheet = false
-                    }).environmentObject(settings)
+                    }.environmentObject(settings)
                     
                 case 1:
-                    NewTimerSheet(timer: timerItems[timerItems.count-1], isAdding: $isAdding, discard: {showingSheet = false}).environmentObject(settings)
+                    NewTimerSheet(timer: timerItems[timerItems.count-1], isAdding: $isAdding) {
+                        showingSheet = false
+                    }.environmentObject(settings)
                     
                 case 2:
-                    SettingsSheet(discard: {showingSheet = false}).environmentObject(settings)
+                    SettingsSheet {
+                        showingSheet = false
+                    }.environmentObject(settings)
                 case 3:
-                    LogSheet(discard: {showingSheet = false}).environmentObject(settings).environment(\.managedObjectContext, context)
+                    LogSheet {
+                        showingSheet = false
+                    }.environmentObject(settings).environment(\.managedObjectContext, context)
                 case 4:
-                    SubscriptionSheet(discard: {
+                    SubscriptionSheet {
                         showingSheet = false
                         settings.showingSubscription = false
-                    }).environmentObject(settings)
+                    }.environmentObject(settings)
                 default:
-                SettingsSheet(discard: {showingSheet = false}).environmentObject(settings)
+                SettingsSheet {
+                    showingSheet = false
+                }.environmentObject(settings)
                 }
             
            
@@ -179,24 +188,24 @@ struct ContentView: View {
     func contextMenuProvider(int: Int, timer: TimerItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
-            let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
+            let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
                 if !(timer.isRunning) {
-                    timer.remove(from: self.context)
-                    try? self.context.save()
+                    timer.remove(from: context)
+                    try? context.save()
                 } else {
                     timer.reset()
                 }
                
             }
             
-            let deleteConfirmReusable = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
-                timer.remove(from: self.context)
-                try? self.context.save()
+            let deleteConfirmReusable = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
+                timer.remove(from: context)
+                try? context.save()
                
             }
 
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
+            let delete = UIMenu(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
             
 
             let pause = UIAction(title: timer.isPaused ? NSLocalizedString("start", comment: "Start") : NSLocalizedString("pause", comment: "Pause"), image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
@@ -204,7 +213,7 @@ struct ContentView: View {
                     if timer.isReusable {
                         timer.reset()
                     } else {
-                        timer.remove(from: self.context)
+                        timer.remove(from: context)
                     }
                 } else {
                     timer.togglePause()
@@ -212,7 +221,7 @@ struct ContentView: View {
             }
             
             let makeReusable = UIAction(title: NSLocalizedString("makeReusable", comment: "Make Reusable"), image: UIImage(systemName: "arrow.clockwise")) { action in
-                if self.settings.isSubscribed {
+                if settings.isSubscribed {
                     timer.makeReusable()
                 } else {
                     activeSheet = 4
@@ -220,16 +229,16 @@ struct ContentView: View {
                 }
             }
             
-            let deleteReusable = UIMenu(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
+            let deleteReusable = UIMenu(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), options: settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
             
 
             // The edit menu adds delete as a child, just like an action
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-                self.selectedTimer = self.timerItems.lastIndex(of: timer) ?? 0
+                selectedTimer = timerItems.lastIndex(of: timer) ?? 0
                 activeSheet = 0
-                self.showingSheet = true
+                showingSheet = true
             }
 
             // Then we add edit as a child of the main menu
@@ -242,7 +251,7 @@ struct ContentView: View {
     var dragDropConfig: ASDragDropConfig<TimerItem>
     {
         ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
-
+            
             return false
         })
             .canDragItem { (indexPath) -> Bool in
@@ -257,101 +266,6 @@ struct ContentView: View {
     
     
     
-}
-
-//MARK: - CollectionView Layout
-
-class AlignedFlowLayout: UICollectionViewFlowLayout {
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool
-    {
-        if let collectionView = self.collectionView
-        {
-            return collectionView.frame.width != newBounds.width // We only care about changes in the width
-        }
-
-        return false
-    }
-
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]?
-    {
-        let attributes = super.layoutAttributesForElements(in: rect)
-
-        attributes?.forEach
-        { layoutAttribute in
-            guard layoutAttribute.representedElementCategory == .cell else
-            {
-                return
-            }
-            layoutAttributesForItem(at: layoutAttribute.indexPath).map { layoutAttribute.frame = $0.frame }
-        }
-
-        return attributes
-    }
-
-    private var leftEdge: CGFloat
-    {
-        guard let insets = collectionView?.adjustedContentInset else
-        {
-            return sectionInset.left
-        }
-        return insets.left + sectionInset.left
-    }
-
-    private var contentWidth: CGFloat?
-    {
-        guard let collectionViewWidth = collectionView?.frame.size.width,
-            let insets = collectionView?.adjustedContentInset else
-        {
-            return nil
-        }
-        return collectionViewWidth - insets.left - insets.right - sectionInset.left - sectionInset.right
-    }
-
-    fileprivate func isFrame(for firstItemAttributes: UICollectionViewLayoutAttributes, inSameLineAsFrameFor secondItemAttributes: UICollectionViewLayoutAttributes) -> Bool
-    {
-        guard let lineWidth = contentWidth else
-        {
-            return false
-        }
-        let firstItemFrame = firstItemAttributes.frame
-        let lineFrame = CGRect(
-            x: leftEdge,
-            y: firstItemFrame.origin.y,
-            width: lineWidth,
-            height: firstItemFrame.size.height)
-        return lineFrame.intersects(secondItemAttributes.frame)
-    }
-
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes?
-    {
-        guard let attributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else
-        {
-            return nil
-        }
-        guard attributes.representedElementCategory == .cell else
-        {
-            return attributes
-        }
-        guard
-            indexPath.item > 0,
-            let previousAttributes = layoutAttributesForItem(at: IndexPath(item: indexPath.item - 1, section: indexPath.section))
-        else
-        {
-            attributes.frame.origin.x = leftEdge // first item of the section should always be left aligned
-            return attributes
-        }
-
-        if isFrame(for: attributes, inSameLineAsFrameFor: previousAttributes)
-        {
-            attributes.frame.origin.x = previousAttributes.frame.maxX + 14
-        }
-        else
-        {
-            attributes.frame.origin.x = leftEdge
-        }
-
-        return attributes
-    }
 }
 
 //MARK: - Previews
