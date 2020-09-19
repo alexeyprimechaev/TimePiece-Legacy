@@ -23,6 +23,9 @@ struct TimerItemCell: View {
     
     @State var currentTime: String = "00:00"
     
+    @State var timeFieldDummy = UITextField()
+    @State var timeFocusedDummy = false
+    
 //MARK: - View
     var body: some View {
         
@@ -45,10 +48,10 @@ struct TimerItemCell: View {
                 Text(timer.title.isEmpty ? Strings.timer : LocalizedStringKey(timer.title))
                 ZStack(alignment: .topLeading) {
                     if timer.isRunning {
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timer.precisionSetting)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                     }
                     else {
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: updateTime, precisionSetting: $timer.precisionSetting)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: updateTime, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                     }
                     HStack(spacing: 0) {
                         if currentTime.prefix(2) != "00" {

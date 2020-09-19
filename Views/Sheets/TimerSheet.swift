@@ -25,8 +25,13 @@ struct TimerSheet: View {
     @State var titleField = UITextField()
     @State var timeField = UITextField()
     
+    
+    
     @State var titleFocused = false
     @State var timeFocused = false
+    
+    @State var timeFieldDummy = UITextField()
+    @State var timeFocusedDummy = false
     
     var discard: () -> Void
     
@@ -48,9 +53,9 @@ struct TimerSheet: View {
                     
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isRunning {
-                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.left, precisionSetting: $timer.precisionSetting)
+                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: Strings.left, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                         }
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timer.editableTimeString)
+                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timer.editableTimeString, textField: $timeField, isFocused: $timeFocused)
                         
                         
                     }.animation(Animation.default, value: timer.isRunning)
@@ -89,24 +94,51 @@ struct TimerSheet: View {
 
             }
             
-            HStack {
-                Spacer().frame(width:28)
-                if timer.isReusable {
-                    PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? Strings.reset : Strings.stop, onTitle: Strings.delete, offIcon: "stop.fill", onIcon: "trash.fill",
-                                onTap: {
-                                    timer.reset()
-                                    mediumHaptic()
-                                },
-                                offTap: {
-                                    delete()
-                                    mediumHaptic()
-                                }
-                    )
-                } else {
-                    PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: Strings.delete, onTitle: Strings.delete, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
+            if titleFocused || timeFocused {
+                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused) {
+                    Button {
+                        titleField.resignFirstResponder()
+                        timeField.resignFirstResponder()
+                    } label: {
+                        Label {
+                            Text("Done").fontSize(.smallTitle)
+                        } icon: {
+                            
+                        }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                                .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
+                    }
                 }
-                Spacer().frame(width:28)
-                PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+            } else {
+                HStack {
+                    Spacer().frame(width:28)
+                    if timer.isReusable {
+                        PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? Strings.reset : Strings.stop, onTitle: Strings.delete, offIcon: "stop.fill", onIcon: "trash.fill",
+                                    onTap: {
+                                        timer.reset()
+                                        mediumHaptic()
+                                    },
+                                    offTap: {
+                                        delete()
+                                        mediumHaptic()
+                                    }
+                        )
+                    } else {
+                        PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: Strings.delete, onTitle: Strings.delete, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
+                    }
+                    Spacer().frame(width:28)
+                    PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+                            regularHaptic()
+                            if timer.remainingTime == 0 {
+                                if timer.isReusable {
+                                    timer.reset()
+                                } else {
+                                    delete()
+                                }
+                            } else {
+                                timer.togglePause()
+                            }
+                        
+                    }, offTap: {
                         regularHaptic()
                         if timer.remainingTime == 0 {
                             if timer.isReusable {
@@ -117,22 +149,12 @@ struct TimerSheet: View {
                         } else {
                             timer.togglePause()
                         }
+                    })
+                    Spacer().frame(width:28)
                     
-                }, offTap: {
-                    regularHaptic()
-                    if timer.remainingTime == 0 {
-                        if timer.isReusable {
-                            timer.reset()
-                        } else {
-                            delete()
-                        }
-                    } else {
-                        timer.togglePause()
-                    }
-                })
-                Spacer().frame(width:28)
-                
-            }.padding(.vertical, 7)
+                }.padding(.vertical, 7)
+            }
+            
         }
     }
     
