@@ -89,7 +89,6 @@ struct TimerSheet: View {
                 }
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                     updateTime()
-                    print(timer.remainingTime)
                 }
 
             }
@@ -173,8 +172,7 @@ struct TimerSheet: View {
             }
             
             currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-            print(currentTime)
-            print(timer.remainingTimeString)
+          
    
         }
         

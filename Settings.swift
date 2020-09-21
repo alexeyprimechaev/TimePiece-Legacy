@@ -14,8 +14,15 @@ public let defaultsStored = UserDefaults.standard
 
 public class Settings: ObservableObject {
     
+    @Published var isBoldTextEnabled: Bool = UIAccessibility.isBoldTextEnabled 
     
     @Published var showingSubscription: Bool = false
+    
+    @Published var hasSeenOnboarding: Bool = ((defaultsStored.value(forKey: "hasSeenOnboarding") ?? false) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "hasSeenOnboarding")
+        }
+    }
     
     @Published var nextNotificationDate: Date = ((defaultsStored.value(forKey: "nextNotificationDate") ?? Date().addingTimeInterval(36000)) as! Date) {
         willSet {

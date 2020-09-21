@@ -32,34 +32,33 @@ struct LogSheet: View {
     }
 
         
-//    var sections: [ASTableViewSection<Int>]
-//    {
-//        update(logItems).enumerated().map
-//        { i, section in
-//            ASTableViewSection(
-//                id: i + 1,
-//                data: section,
-//                onSwipeToDelete: onSwipeToDelete,
-//                contextMenuProvider: contextMenuProvider)
-//            { item, _ in
-//                LogItemCell(logItem: item)
-//            }
-//            .sectionHeader
-//            {
-//               VStack(spacing: 0)
-//                {
-//                    HStack() {
-//                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
-//                        Spacer()
-//                    }
-//
-//                    if settings.showingDividers {
-//                        Divider()
-//                    }
-//               }.background(Color(UIColor.systemBackground))
-//            }
-//        }
-//    }
+    var sections: [ASTableViewSection<Int>]
+    {
+        update(logItems).enumerated().map
+        { i, section in
+            ASTableViewSection(
+                id: i + 1,
+                data: section,
+                contextMenuProvider: contextMenuProvider)
+            { item, _ in
+                LogItemCell(logItem: item)
+            }
+            .sectionHeader
+            {
+               VStack(spacing: 0)
+                {
+                    HStack() {
+                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
+                        Spacer()
+                    }
+
+                    if settings.showingDividers {
+                        Divider()
+                    }
+               }.background(Color(UIColor.systemBackground))
+            }
+        }
+    }
     
 
     
@@ -73,7 +72,7 @@ struct LogSheet: View {
                       trailingIcon: "trash")
             Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
                 Text("Trends").tag(0)
-                Text("History").tag(1)
+                Text("Log").tag(1)
             }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 28).padding(.vertical, 7)
             if selectedScreen == 0 {
                 VStack(spacing: 0)
@@ -100,18 +99,15 @@ struct LogSheet: View {
                 }.background(Color(UIColor.systemBackground))
                 
             } else {
-                Spacer()
-                Text("Under Construction 🚧")
-                Spacer()
-                Spacer()
+
 //                List(update(logItems), id: \.self) { section in
 //                    ForEach(section) { logItem in
 //                        LogView(logItem: logItem)
 //                    }
 //                }
 
-//                ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
-//                .alwaysBounce(true)
+                ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
+                .alwaysBounce(true)
             }
             
         
@@ -147,7 +143,6 @@ struct LogSheet: View {
             
 
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-                print("fuck")
             }
 
             // Then we add edit as a child of the main menu

@@ -15,7 +15,6 @@ public class NotificationManager {
         
         get { (defaultsStored.value(forKey: "badgeCount") ?? 0) as! Int }
         set { if newValue < 0 {
-                print("zero")
                 defaultsStored.set(0, forKey: "badgeCount")
             } else {
                 defaultsStored.set(newValue, forKey: "badgeCount")

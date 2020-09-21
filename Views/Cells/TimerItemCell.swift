@@ -119,8 +119,7 @@ struct TimerItemCell: View {
             }
             
             currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-            print(currentTime)
-            print(timer.remainingTimeString)
+
    
         }
         

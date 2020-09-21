@@ -88,7 +88,6 @@ struct TimeDisplay: View {
                     .animation(nil)
                     .fixedSize()
                     .onChange(of: timeString) { newValue in
-                        print(timeString)
                         if timeString.count == 8 {
                             hours = String(timeString.prefix(2))
                             minutes = String(timeString.prefix(4).suffix(2))

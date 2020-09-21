@@ -104,7 +104,13 @@ struct ContentView: View {
         
         .ignoresSafeArea(.keyboard)
         .onAppear {
-            activeSheet = 3
+            if !settings.hasSeenOnboarding {
+                activeSheet = 5
+                showingSheet = true
+            } else {
+                activeSheet = 3
+            }
+            
             if timerItems.count > 0 {
                 for i in 0...timerItems.count-1 {
                     timerItems[i].order = i
@@ -155,6 +161,12 @@ struct ContentView: View {
                     SubscriptionSheet {
                         showingSheet = false
                         settings.showingSubscription = false
+                    }.environmentObject(settings)
+                case 5:
+                    OnboardingSheet {
+                        settings.hasSeenOnboarding = true
+                        showingSheet = false
+                        
                     }.environmentObject(settings)
                 default:
                 SettingsSheet {

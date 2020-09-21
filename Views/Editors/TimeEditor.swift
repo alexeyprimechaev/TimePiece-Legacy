@@ -12,6 +12,8 @@ struct TimeEditor: View {
     
     //@Binding var time: TimeInterval
     
+    @EnvironmentObject var settings: Settings
+    
     @Binding var timeString: String
     @State var becomeFirstResponder = false
     @State var label = "Edit Time"
@@ -23,6 +25,10 @@ struct TimeEditor: View {
     @State private var string = ""
     
     @State private var isProtected = false
+    
+    @ScaledMetric(relativeTo: .largeTitle) var fieldWidth: CGFloat = 46
+    @ScaledMetric(relativeTo: .largeTitle) var fieldWidthBold: CGFloat = 50
+    @ScaledMetric var buttonWidth: CGFloat = 54
     
    
     @Binding var isFocused: Bool
@@ -39,15 +45,15 @@ struct TimeEditor: View {
                 HStack(alignment: .bottom, spacing: 7) {
                     HStack(spacing: 0) {
                         Text(hours)
-                            .frame(width: isFocused ? 46 : nil, alignment: .topTrailing)
+                            .frame(width: isFocused ? settings.isBoldTextEnabled ? fieldWidthBold : fieldWidth : nil, alignment: .topTrailing)
                             .opacity(keyboardMode == 1 || keyboardMode == 0 ? 1 : 0.5)
                         Dots()
                         Text(minutes)
-                            .frame(width: isFocused ? 46 : nil, alignment: .topTrailing)
+                            .frame(width: isFocused ? settings.isBoldTextEnabled ? fieldWidthBold : fieldWidth : nil, alignment: .topTrailing)
                             .opacity(keyboardMode == 2 || keyboardMode == 0 ? 1 : 0.5)
                         Dots()
                         Text(seconds)
-                            .frame(width: isFocused ? 46 : nil, alignment: .topTrailing)
+                            .frame(width: isFocused ? settings.isBoldTextEnabled ? fieldWidthBold : fieldWidth : nil, alignment: .topTrailing)
                             .opacity(keyboardMode == 3 || keyboardMode == 0 ? 1 : 0.5)
                     }.fontSize(.title).frame(minHeight: 43).padding(7).fixedSize(horizontal: true, vertical: true)
                     .animation(.default, value: isFocused)
@@ -219,7 +225,7 @@ struct TimeEditor: View {
                         isProtected = true
                         textField.becomeFirstResponder()
                     } label: {
-                        Rectangle().frame(width: 54, height: 52).opacity(0)
+                        Rectangle().frame(width: buttonWidth, height: 52).opacity(0)
                     }
                     Button {
                         if keyboardMode == 2 {
@@ -241,7 +247,7 @@ struct TimeEditor: View {
                         isProtected = true
                         textField.becomeFirstResponder()
                     } label: {
-                        Rectangle().frame(width: 54, height: 52).opacity(0)
+                        Rectangle().frame(width: buttonWidth, height: 52).opacity(0)
                     }
                     Button {
                         if keyboardMode == 3 {
@@ -262,7 +268,7 @@ struct TimeEditor: View {
                         isProtected = true
                         textField.becomeFirstResponder()
                     } label: {
-                        Rectangle().frame(width: 54, height: 52).opacity(0)
+                        Rectangle().frame(width: buttonWidth, height: 52).opacity(0)
                     }
                 }
             }
@@ -280,7 +286,9 @@ struct TimeEditor: View {
             seconds = "0" + seconds
         }
         timeString = hours + minutes + seconds
+        print(fieldWidth)
     }
+    
     
 }
 

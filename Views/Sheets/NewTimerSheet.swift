@@ -94,7 +94,6 @@ struct NewTimerSheet: View {
                     isAdding = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         if !timer.isReusable {
-                            print(timer.totalTime)
                             if timer.totalTime > 0 {
                                 timer.togglePause()
                             }
