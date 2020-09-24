@@ -27,7 +27,7 @@ struct ContentView: View {
     
     //MARK: State Variables
     @State var showingSheet = false
-    @State var activeSheet = 0
+    @State var activeSheet = 2
     
     @State var isAdding = false
     @State var selectedTimer = 0
@@ -65,7 +65,7 @@ struct ContentView: View {
                     }
                 ]
             )
-
+            
             //MARK: Layout Configuration
             .layout {
                 let fl = AlignedCollectionViewFlowLayout()

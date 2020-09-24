@@ -115,7 +115,17 @@ struct TimerItemCell: View {
                 
                 timer.remainingTime = 0
 
+                
+                
+                
+                
+                
                 AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
+                
+                
+                
+                
+                
             }
             
             currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
