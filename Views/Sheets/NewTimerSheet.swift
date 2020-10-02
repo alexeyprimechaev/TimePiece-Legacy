@@ -48,6 +48,8 @@ struct NewTimerSheet: View {
                         PremiumBadge {
                             PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], controlledValue: $timer.isReusable.yesNo)
                         }
+                        PickerButton(title: "Stopwatch", values: [true.yesNo, false.yesNo], controlledValue: $timer.isStopwatch
+                                        .yesNo)
                         
                         if !showingOptions {
                             Button(action: {

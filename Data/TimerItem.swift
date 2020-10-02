@@ -27,6 +27,7 @@ public class TimerItem: NSManagedObject, Identifiable {
     
     //MARK: Main Properties
     @NSManaged private var createdAtStored: Date?
+    @NSManaged private var isStopwatchStored: NSNumber?
     @NSManaged private var isPausedStored: NSNumber?
     @NSManaged private var isReusableStored: NSNumber?
     @NSManaged private var isRunningStored: NSNumber?
@@ -136,32 +137,56 @@ public class TimerItem: NSManagedObject, Identifiable {
     //MARK: Toggle Pause
     func togglePause() {
         
-        NotificationManager.scheduleNotification(timer: self)
+        if !isStopwatch {
+            NotificationManager.scheduleNotification(timer: self)
+        }
+        
+       
         
         isRunning = true
         if isPaused {
-            timeStarted = Date()
-            timeFinished = timeStarted.addingTimeInterval(remainingTime)
+            
+            
+            if isStopwatch {
+                print(timeStarted)
+                print(remainingTime)
+                timeStarted = Date().addingTimeInterval(-remainingTime)
+            } else {
+                timeStarted = Date()
+                
+                timeFinished = timeStarted.addingTimeInterval(remainingTime)
+                
+                if showInLog {
+                    logItem = LogItem(context: self.managedObjectContext!)
+                    logItem?.title = title
+                    logItem?.timeStarted = timeStarted
+                    logItem?.timeFinished = timeFinished
+                }
+            }
             isPaused = false
             
-            if showInLog {
-                logItem = LogItem(context: self.managedObjectContext!)
-                logItem?.title = title
-                logItem?.timeStarted = timeStarted
-                logItem?.timeFinished = timeFinished
-            }
             
         } else {
-            timeStarted = Date()
-            remainingTime = timeFinished.timeIntervalSince(timeStarted)
-            isPaused = true
             
-            if showInLog {
-                if remainingTime > 0 {
-                    logItem?.timeFinished = Date()
+            if isStopwatch {
+                timeFinished = Date()
+                remainingTime = timeFinished.timeIntervalSince(timeStarted)
+                print("stopped")
+                print(remainingTime)
+                isPaused = true
+            } else {
+                timeStarted = Date()
+                remainingTime = timeFinished.timeIntervalSince(timeStarted)
+                isPaused = true
+                
+                if showInLog {
+                    if remainingTime > 0 {
+                        logItem?.timeFinished = Date()
+                    }
+                    logItem = nil
                 }
-                logItem = nil
             }
+            
         }
         
         try? self.managedObjectContext?.save()
@@ -209,6 +234,11 @@ extension TimerItem {
     var createdAt: Date {
         get { createdAtStored ?? Date() }
         set { createdAtStored = newValue }
+    }
+    
+    var isStopwatch: Bool {
+        get { isStopwatchStored?.boolValue ?? false }
+        set { isStopwatchStored = newValue as NSNumber }
     }
     
     var isPaused: Bool {
