@@ -166,7 +166,6 @@ struct ContentView: View {
                     OnboardingSheet {
                         settings.hasSeenOnboarding = true
                         showingSheet = false
-                        
                     }.environmentObject(settings)
                 default:
                 SettingsSheet {
@@ -264,10 +263,26 @@ struct ContentView: View {
     {
         ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
             
+//            var revisedItems: [ TimerItem ] = timerItems.map{ $0 }
+//
+//                // change the order of the items in the array
+//                revisedItems.move(fromOffsets: IndexSet(integer: from), toOffset: to )
+//
+//                // update the userOrder attribute in revisedItems to
+//                // persist the new order. This is done in reverse order
+//                // to minimize changes to the indices.
+//                for reverseIndex in stride( from: revisedItems.count - 1,
+//                                            through: 0,
+//                                            by: -1 )
+//                {
+//                    revisedItems[ reverseIndex ].order =
+//                        Int( reverseIndex )
+//                }
+            
             return false
         })
             .canDragItem { (indexPath) -> Bool in
-                false
+                true
             }
             .canMoveItem { (from, to) -> Bool in
                 false

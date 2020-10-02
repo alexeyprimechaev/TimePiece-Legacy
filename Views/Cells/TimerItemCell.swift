@@ -14,17 +14,17 @@ struct TimerItemCell: View {
 //MARK: - Properties
     
     //MARK: Dynamic Propertiess
-    @ObservedObject var timer = TimerItem()
+    @ObservedObject var timer: TimerItem
     
     //MARK: CoreData
     @Environment(\.managedObjectContext) var context
     
     @EnvironmentObject var settings: Settings
     
-    @State var currentTime: String = "00:00"
+    @State private var currentTime: String = "00:00"
     
-    @State var timeFieldDummy = UITextField()
-    @State var timeFocusedDummy = false
+    @State private var timeFieldDummy = UITextField()
+    @State private var timeFocusedDummy = false
     
 //MARK: - View
     var body: some View {
@@ -133,12 +133,5 @@ struct TimerItemCell: View {
    
         }
         
-    }
-}
-
-//MARK: - Previews
-struct TimerView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimerItemCell()
     }
 }

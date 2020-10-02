@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "SwiftUIX",
+        "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
+        "state": {
+          "branch": "master",
+          "revision": "998ebf2fe40e69c52024ed71b6995d10603baa7d",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftyStoreKit",
         "repositoryURL": "https://github.com/bizz84/SwiftyStoreKit.git",
         "state": {

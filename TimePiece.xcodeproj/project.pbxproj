@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80066657251D1FDA00581B6A /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 80066656251D1FDA00581B6A /* SwiftUIX */; };
 		80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
 		80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
 		80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
@@ -120,6 +121,7 @@
 				80150E2B24F5903C00C740B3 /* SwiftyStoreKit in Frameworks */,
 				8043381D24F6836A00958666 /* CloudKit.framework in Frameworks */,
 				80150E2924F5903700C740B3 /* ASCollectionView in Frameworks */,
+				80066657251D1FDA00581B6A /* SwiftUIX in Frameworks */,
 				80150E2524F5900400C740B3 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +288,7 @@
 				80150E2424F5900400C740B3 /* Introspect */,
 				80150E2824F5903700C740B3 /* ASCollectionView */,
 				80150E2A24F5903C00C740B3 /* SwiftyStoreKit */,
+				80066656251D1FDA00581B6A /* SwiftUIX */,
 			);
 			productName = "TimePieceApp (iOS)";
 			productReference = 80150D6F24F58BDC00C740B3 /* TimePiece.app */;
@@ -321,6 +324,7 @@
 				80494C40241B8C8600CC8435 /* XCRemoteSwiftPackageReference "ASCollectionView" */,
 				80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				80066655251D1FDA00581B6A /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 80612FE023C274DB00BC03F5 /* Products */;
 			projectDirPath = "";
@@ -427,7 +431,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -456,7 +460,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -605,6 +609,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		80066655251D1FDA00581B6A /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/timbersoftware/SwiftUI-Introspect.git";
@@ -632,6 +644,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		80066656251D1FDA00581B6A /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80066655251D1FDA00581B6A /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
 		80150E2424F5900400C740B3 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80150E2324F5900400C740B3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
