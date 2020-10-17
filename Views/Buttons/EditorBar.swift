@@ -14,11 +14,12 @@ struct EditorBar<Content:View>: View {
     
     
 
-    init(titleField: Binding<UITextField>, timeField: Binding<UITextField>, titleFocused: Binding<Bool>, timeFocused: Binding<Bool>, @ViewBuilder button: @escaping () -> Content) {
+    init(titleField: Binding<UITextField>, timeField: Binding<UITextField>, titleFocused: Binding<Bool>, timeFocused: Binding<Bool>, showSwitcher: Binding<Bool>, @ViewBuilder button: @escaping () -> Content) {
         self._titleField = titleField
         self._timeField = timeField
         self._titleFocused = titleFocused
         self._timeFocused = timeFocused
+        self._showSwitcher = showSwitcher
         self.button = button()
     }
     
@@ -27,6 +28,8 @@ struct EditorBar<Content:View>: View {
     
     @Binding var titleFocused: Bool
     @Binding var timeFocused: Bool
+    
+    @Binding var showSwitcher: Bool
         
     let button: Content
     
@@ -35,22 +38,28 @@ struct EditorBar<Content:View>: View {
         VStack(spacing: 0) {
             Divider()
             HStack {
-                Button {
-                    if timeFocused {
-                        titleField.becomeFirstResponder()
-                    } else {
-                        timeField.becomeFirstResponder()
+                if !showSwitcher {
+                    Button {
+                        if timeFocused {
+                            titleField.becomeFirstResponder()
+                        } else {
+                            timeField.becomeFirstResponder()
+                        }
+                        
+                    } label: {
+                        Label {
+                            Text(timeFocused ? "Edit Title" : "Edit Time").fontSize(.smallTitle)
+                        } icon: {
+                            Image(systemName: timeFocused ? "chevron.up" : "chevron.down").font(.headline)
+                        }.padding(14)
                     }
+                    Spacer()
+                } else {
                     
-                } label: {
-                    Label {
-                        Text(timeFocused ? "Edit Title" : "Edit Time").fontSize(.smallTitle)
-                    } icon: {
-                        Image(systemName: timeFocused ? "chevron.up" : "chevron.down").font(.headline)
-                    }.padding(14)
                 }
                 
-                Spacer()
+                
+               
                 
                 button
             }.padding(.horizontal, 14).foregroundColor(.primary)

@@ -59,7 +59,7 @@ struct ContentView: View {
                         Text(Strings.timePiece).fontSize(.title).padding(.bottom, 14).padding(.leading, 7)
                     },
             //MARK: Timers
-                    ASCollectionViewSection(id: 1, data: timerItems, dragDropConfig: dragDropConfig, contextMenuProvider: contextMenuProvider) { timer, _ in
+                    ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
                         TimerItemCell(timer: timer).environmentObject(settings)
 
                     }
@@ -196,7 +196,7 @@ struct ContentView: View {
     
     
     //MARK: Context Menu
-    func contextMenuProvider(int: Int, timer: TimerItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(timer: TimerItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
@@ -259,10 +259,10 @@ struct ContentView: View {
         return configuration
     }
     
-    var dragDropConfig: ASDragDropConfig<TimerItem>
-    {
-        ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
-            
+//    var dragDropConfig: ASDragDropConfig<TimerItem>
+//    {
+//        ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
+//
 //            var revisedItems: [ TimerItem ] = timerItems.map{ $0 }
 //
 //                // change the order of the items in the array
@@ -278,18 +278,18 @@ struct ContentView: View {
 //                    revisedItems[ reverseIndex ].order =
 //                        Int( reverseIndex )
 //                }
-            
-            return false
-        })
-            .canDragItem { (indexPath) -> Bool in
-                true
-            }
-            .canMoveItem { (from, to) -> Bool in
-                false
-            }
-        
-        
-    }
+//
+//            return true
+//        })
+//            .canDragItem { (indexPath) -> Bool in
+//                true
+//            }
+//            .canMoveItem { (from, to) -> Bool in
+//                true
+//            }
+//
+//
+//    }
     
     
     

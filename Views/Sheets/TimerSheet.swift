@@ -51,14 +51,17 @@ struct TimerSheet: View {
                         
                     TitleEditor(title: Strings.title, timer: timer, textField: $titleField, isFocused: $titleFocused).disabled(!timer.isPaused)
                     
-                    VStack(alignment: .leading, spacing:14) {
                         if timer.isRunning {
                             TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: Strings.left, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                         }
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timer.editableTimeString, textField: $timeField, isFocused: $timeFocused)
+                        
+                        if !timer.isStopwatch {
+                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timer.editableTimeString, textField: $timeField, isFocused: $timeFocused)
+                        }
                         
                         
-                    }.animation(Animation.default, value: timer.isRunning)
+                        
+                    
                         
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {
@@ -74,9 +77,25 @@ struct TimerSheet: View {
                         } else {
                             
                             PremiumBadge {
-                                RegularButton(title: Strings.makeReusable, subtitle: "", action: timer.makeReusable)
+                                RegularButton(title: Strings.makeReusable) {
+                                    timer.makeReusable()
+                                }
                             }
                             
+                        }
+                        
+                        Group {
+                            if !timer.isStopwatch {
+                                
+                                RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                                    self.timer.isStopwatch = true
+                                }
+                                
+                            } else {
+                                RegularButton(title: "Convert to Timer", icon: "timer") {
+                                    self.timer.isStopwatch = false
+                                }
+                            }
                         }
 
                     }.animation(Animation.default, value: timer.isReusable)
@@ -91,10 +110,13 @@ struct TimerSheet: View {
                     updateTime()
                 }
 
-            }
+            }.animation(.default)
             
             if titleFocused || timeFocused {
-                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused) {
+                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timer.isStopwatch) {
+                    if timer.isStopwatch {
+                        Spacer()
+                    }
                     Button {
                         titleField.resignFirstResponder()
                         timeField.resignFirstResponder()
@@ -127,26 +149,34 @@ struct TimerSheet: View {
                     Spacer().frame(width:28)
                     PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
                             regularHaptic()
-                            if timer.remainingTime == 0 {
-                                if timer.isReusable {
-                                    timer.reset()
-                                } else {
-                                    delete()
-                                }
+                            if timer.isStopwatch {
+                                self.timer.togglePause()
                             } else {
-                                timer.togglePause()
+                                if self.timer.remainingTime == 0 {
+                                    if self.timer.isReusable {
+                                        self.timer.reset()
+                                    } else {
+                                        delete()
+                                    }
+                                } else {
+                                    self.timer.togglePause()
+                                }
                             }
                         
                     }, offTap: {
                         regularHaptic()
-                        if timer.remainingTime == 0 {
-                            if timer.isReusable {
-                                timer.reset()
-                            } else {
-                                delete()
-                            }
+                        if timer.isStopwatch {
+                            self.timer.togglePause()
                         } else {
-                            timer.togglePause()
+                            if self.timer.remainingTime == 0 {
+                                if self.timer.isReusable {
+                                    self.timer.reset()
+                                } else {
+                                    delete()
+                                }
+                            } else {
+                                self.timer.togglePause()
+                            }
                         }
                     })
                     Spacer().frame(width:28)
@@ -159,21 +189,41 @@ struct TimerSheet: View {
     
     func updateTime() {
         
-        if !timer.isPaused {
-            
-            
-            if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
-               
-                timer.togglePause()
+        if timer.isStopwatch {
+            if !timer.isPaused {
+                currentTime = Date().timeIntervalSince(timer.timeStarted).editableStringMilliseconds()
+            } else {
                 
-                timer.remainingTime = 0
-
-                AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
             }
             
-            currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-          
-   
+            
+        } else {
+            if !timer.isPaused {
+                
+                
+                if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
+                   
+                    timer.togglePause()
+                    
+                    timer.remainingTime = 0
+
+                    
+                    
+                    
+                    
+                    
+                    AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
+                    
+                    
+                    
+                    
+                    
+                }
+                
+                currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
+
+       
+            }
         }
         
     }

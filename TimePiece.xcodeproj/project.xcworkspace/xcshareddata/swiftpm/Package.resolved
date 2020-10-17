@@ -5,18 +5,9 @@
         "package": "ASCollectionView",
         "repositoryURL": "https://github.com/apptekstudios/ASCollectionView",
         "state": {
-          "branch": "v1.8.0WIP",
-          "revision": "9d6854e785926d5122d52a733e0a275146bc978d",
-          "version": null
-        }
-      },
-      {
-        "package": "DifferenceKit",
-        "repositoryURL": "https://github.com/ra1028/DifferenceKit",
-        "state": {
           "branch": null,
-          "revision": "14c66681e12a38b81045f44c6c29724a0d4b0e72",
-          "version": "1.1.5"
+          "revision": "91d85a3aec1bdc88fb285b3908ba036ba9d1dd09",
+          "version": "1.5.0"
         }
       },
       {
@@ -25,15 +16,6 @@
         "state": {
           "branch": "master",
           "revision": "5c501bf4a581e683b96a4915bb2566e88a264c95",
-          "version": null
-        }
-      },
-      {
-        "package": "SwiftUIX",
-        "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
-        "state": {
-          "branch": "master",
-          "revision": "998ebf2fe40e69c52024ed71b6995d10603baa7d",
           "version": null
         }
       },

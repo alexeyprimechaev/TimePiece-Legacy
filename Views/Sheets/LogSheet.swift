@@ -127,7 +127,7 @@ struct LogSheet: View {
         }
     }
     
-    func contextMenuProvider(int: Int, logItem: LogItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(logItem: LogItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
@@ -152,7 +152,7 @@ struct LogSheet: View {
         return configuration
     }
     
-    func onSwipeToDelete(int: Int, logItem: LogItem, completionHandler: (Bool) -> Void) {
+    func onSwipeToDelete(logItem: LogItem, completionHandler: (Bool) -> Void) {
         withAnimation(.default) {
             context.delete(logItem)
         }

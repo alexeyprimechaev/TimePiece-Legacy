@@ -12,8 +12,6 @@ struct RegularButton: View {
     
     @State var title = LocalizedStringKey("")
     @State var icon = "arrow.clockwise"
-    @State var subtitle = String()
-    @State var isActive = false
     
     var action: () -> Void
     

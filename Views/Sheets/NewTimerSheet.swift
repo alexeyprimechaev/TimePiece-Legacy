@@ -41,40 +41,50 @@ struct NewTimerSheet: View {
                                             
                     TitleEditor(title: Strings.title, timer: timer, textField: $titleField, isFocused: $titleFocused)
                     
-                    TimeEditor(timeString: $timer.editableTimeString, becomeFirstResponder: true, textField: $timeField, isFocused: $timeFocused)
+                    if !timer.isStopwatch {
+                        TimeEditor(timeString: $timer.editableTimeString, becomeFirstResponder: true, textField: $timeField, isFocused: $timeFocused)
+                    }
                     
                     VStack(alignment: .leading, spacing: 14) {
                         
-                        PremiumBadge {
-                            PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], controlledValue: $timer.isReusable.yesNo)
-                        }
-                        PickerButton(title: "Stopwatch", values: [true.yesNo, false.yesNo], controlledValue: $timer.isStopwatch
-                                        .yesNo)
                         
-                        if !showingOptions {
-                            Button(action: {
-                                lightHaptic()
-                                showingOptions.toggle()
-                            }) {
-                                Label {
-                                    Text("More Options").fontSize(.smallTitle)
-                                } icon: {
-                                    Image(systemName: "ellipsis.circle").font(.headline)
-                                }
-                                .padding(.horizontal, 7)
-                                .padding(.vertical, 14)
-                                .foregroundColor(.primary)
-                                
+                        if !timer.isStopwatch {
+                            PremiumBadge {
+                                PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], controlledValue: $timer.isReusable.yesNo)
                             }
                         }
+                        
+                        
+                        
+                        if !timer.isStopwatch {
+                            
+                            RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                                self.timer.isStopwatch = true
+                                titleField.becomeFirstResponder()
+                            }
+                            
+                        } else {
+                            RegularButton(title: "Convert to Timer", icon: "timer") {
+                                self.timer.isStopwatch = false
+                                timeField.becomeFirstResponder()
+                            }
+                        }
+                        
+                        RegularButton(title: showingOptions ? "Less Options" : "More Options", icon: "ellipsis.circle") {
+                            showingOptions.toggle()
+                        }.opacity(showingOptions ? 0.5 : 1)
                     
                         if showingOptions {
                             
-                            PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $timer.notificationSetting)
-                            
-                            PremiumBadge {
-                                PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $timer.soundSetting)
+                            if !timer.isStopwatch {
+                                PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $timer.notificationSetting)
+                                
+                                PremiumBadge {
+                                    PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $timer.soundSetting)
+                                }
                             }
+                            
+                           
                             PremiumBadge {
                                 PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, controlledValue: $timer.precisionSetting)
                             }
@@ -88,29 +98,65 @@ struct NewTimerSheet: View {
 
                     
                     
-                }.padding(.leading, 21)
+                }.padding(.leading, 21).animation(.default, value: timer.isStopwatch)
             }
-            
-            EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused) {
-                Button {
-                    isAdding = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        if !timer.isReusable {
-                            if timer.totalTime > 0 {
+                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timer.isStopwatch) {
+                    if !timer.isStopwatch {
+                        Button {
+                            isAdding = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                if !timer.isReusable {
+                                    if timer.totalTime > 0 {
+                                        timer.togglePause()
+                                    }
+                                }
+                            }
+                            discard()
+                        } label: {
+                            Label {
+                                Text(timer.isReusable ? Strings.add : Strings.start).fontSize(.smallTitle)
+                            } icon: {
+                                Image(systemName: timer.isReusable ? "plus" : "play").font(.headline)
+                            }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                                    .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
+                        }
+                    } else {
+                        
+
+                        Button {
+                            self.timer.editableTimeString = "000000"
+                            isAdding = true
+                            discard()
+                        } label: {
+                            Label {
+                                Text(Strings.add).fontSize(.smallTitle)
+                            } icon: {
+                                Image(systemName: "plus").font(.headline)
+                            }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                                    .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
+                        }
+                        Spacer()
+                        
+                        Button {
+                            self.timer.editableTimeString = "000000"
+                            isAdding = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                 timer.togglePause()
                             }
+                            discard()
+                        } label: {
+                            Label {
+                                Text(Strings.start).fontSize(.smallTitle)
+                            } icon: {
+                                Image(systemName: "play").font(.headline)
+                            }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                                    .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
                         }
                     }
-                    discard()
-                } label: {
-                    Label {
-                        Text(timer.isReusable ? Strings.add : Strings.start).fontSize(.smallTitle)
-                    } icon: {
-                        Image(systemName: timer.isReusable ? "plus" : "play").font(.headline)
-                    }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                                            .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
+                    
                 }
-            }
+            
+
         }.onAppear {
             isAdding = false
         }
