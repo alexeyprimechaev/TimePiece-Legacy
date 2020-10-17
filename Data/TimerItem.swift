@@ -137,59 +137,67 @@ public class TimerItem: NSManagedObject, Identifiable {
     //MARK: Toggle Pause
     func togglePause() {
         
-        if !isStopwatch {
-            NotificationManager.scheduleNotification(timer: self)
-        }
-        
-       
-        
-        isRunning = true
-        if isPaused {
-            
-            
-            if isStopwatch {
-                print(timeStarted)
-                print(remainingTime)
+        if isStopwatch {
+            if isPaused {
+                isRunning = true
+                isPaused = false
                 timeStarted = Date().addingTimeInterval(-remainingTime)
             } else {
-                timeStarted = Date()
-                
-                timeFinished = timeStarted.addingTimeInterval(remainingTime)
-                
-                if showInLog {
-                    logItem = LogItem(context: self.managedObjectContext!)
-                    logItem?.title = title
-                    logItem?.timeStarted = timeStarted
-                    logItem?.timeFinished = timeFinished
-                }
-            }
-            isPaused = false
-            
-            
-        } else {
-            
-            if isStopwatch {
                 timeFinished = Date()
                 remainingTime = timeFinished.timeIntervalSince(timeStarted)
                 print("stopped")
                 print(remainingTime)
                 isPaused = true
+            }
+            recordLog()
+           
+            
+        } else {
+            
+            if isPaused {
+                isRunning = true
+                isPaused = false
+                NotificationManager.scheduleNotification(timer: self)
+                
+                timeStarted = Date()
+                
+                timeFinished = timeStarted.addingTimeInterval(remainingTime)
+                
+                
             } else {
                 timeStarted = Date()
                 remainingTime = timeFinished.timeIntervalSince(timeStarted)
                 isPaused = true
-                
-                if showInLog {
-                    if remainingTime > 0 {
-                        logItem?.timeFinished = Date()
-                    }
-                    logItem = nil
-                }
             }
+            
+            recordLog()
             
         }
         
         try? self.managedObjectContext?.save()
+    }
+    
+    func recordLog() {
+        if !isPaused {
+            if showInLog {
+                print("logged")
+                dump(logItem)
+                logItem = LogItem(context: self.managedObjectContext!)
+                logItem?.title = title
+                logItem?.timeStarted = Date()
+                logItem?.timeFinished = timeFinished
+                logItem?.isStopwatch = isStopwatch
+                logItem?.isDone = false
+            }
+        } else {
+            print("unlogged")
+            dump(logItem)
+            if remainingTime > 0 {
+                logItem?.timeFinished = Date()
+            }
+            logItem?.isDone = true
+            logItem = nil
+        }
     }
     
     func makeReusable() {
@@ -214,6 +222,7 @@ public class TimerItem: NSManagedObject, Identifiable {
         
         if showInLog {
             logItem?.timeFinished = Date()
+            logItem?.isDone = true
             logItem = nil
         }
         

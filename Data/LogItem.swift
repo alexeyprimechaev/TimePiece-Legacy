@@ -21,9 +21,11 @@ public class LogItem: NSManagedObject, Identifiable {
     }
     
     //MARK: Main Properties
-    @NSManaged public var titleStored: String?
-    @NSManaged public var timeStartedStored: Date?
-    @NSManaged public var timeFinishedStored: Date?
+    @NSManaged private var titleStored: String?
+    @NSManaged private var timeStartedStored: Date?
+    @NSManaged private var timeFinishedStored: Date?
+    @NSManaged private var isStopwatchStored: NSNumber?
+    @NSManaged private var isDoneStored: NSNumber?
     
     
     
@@ -45,6 +47,25 @@ extension LogItem {
     var timeFinished: Date {
         get { timeFinishedStored ?? Date() }
         set { timeFinishedStored = newValue }
+    }
+    
+    var isStopwatch: Bool {
+        get { isStopwatchStored?.boolValue ?? false }
+        set { isStopwatchStored = NSNumber(value: newValue) }
+    }
+    var isDone: Bool {
+        get { isDoneStored?.boolValue ?? true }
+        set { isDoneStored = NSNumber(value: newValue) }
+    }
+    
+    var time: String {
+        get {
+            if isStopwatch {
+                return timeFinished.timeIntervalSince(timeStarted).relativeStringFromNumber()
+            } else {
+                return timeFinished.timeIntervalSince(timeStarted).relativeStringFromNumber()
+            }
+        }
     }
     
 }

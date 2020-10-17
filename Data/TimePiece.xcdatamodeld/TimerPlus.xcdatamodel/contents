@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5354i" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17510.1" systemVersion="20A5395g" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="LogItem" representedClassName=".LogItem" syncable="YES">
+        <attribute name="isDoneStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isStopwatchStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="timeFinishedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timeStartedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="titleStored" optional="YES" attributeType="String"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="LogItem"/>
+        </fetchedProperty>
     </entity>
     <entity name="TimerItem" representedClassName=".TimerItem" syncable="YES">
         <attribute name="createdAtStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -24,7 +29,7 @@
         <attribute name="totalTimeStored" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="LogItem" positionX="0" positionY="0" width="128" height="74"/>
+        <element name="LogItem" positionX="0" positionY="0" width="128" height="125"/>
         <element name="TimerItem" positionX="0" positionY="0" width="128" height="269"/>
     </elements>
 </model>
