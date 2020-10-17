@@ -30,7 +30,7 @@ struct ContentView: View {
     @State var activeSheet = 2
     
     @State var isAdding = false
-    @State var selectedTimer = 0
+    @State var selectedTimer = TimerItem()
     
     @State var isLarge = true
     
@@ -135,11 +135,11 @@ struct ContentView: View {
             switch activeSheet {
     
                 case 0:
-                    TimerSheet(timer: timerItems[selectedTimer]) {
+                    TimerSheet(timer: selectedTimer) {
                         showingSheet = false
                     } delete: {
                         withAnimation(.default) {
-                            timerItems[selectedTimer].remove(from: context)
+                            selectedTimer.remove(from: context)
                         }
                         showingSheet = false
                     }.environmentObject(settings)
@@ -247,7 +247,7 @@ struct ContentView: View {
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-                selectedTimer = timerItems.lastIndex(of: timer) ?? 0
+                selectedTimer = timer
                 activeSheet = 0
                 showingSheet = true
             }
