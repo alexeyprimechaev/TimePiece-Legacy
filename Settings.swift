@@ -67,25 +67,25 @@ public class Settings: ObservableObject {
         }
     }
     
-    @Published var isReusableDefault: String = (defaultsStored.string(forKey: "isReusableDefault") ?? TimerItem.reusableSettings[1]) {
+    @Published var isReusableDefault: String = (defaultsStored.string(forKey: "isReusableDefault") ?? TimeItem.reusableSettings[1]) {
         willSet {
             defaultsStored.set(newValue, forKey: "isReusableDefault")
         }
     }
     
-    @Published var soundSettingDefault: String = (defaultsStored.string(forKey: "soundSettingDefault") ?? TimerItem.soundSettings[0]) {
+    @Published var soundSettingDefault: String = (defaultsStored.string(forKey: "soundSettingDefault") ?? TimeItem.soundSettings[0]) {
            willSet {
                defaultsStored.set(newValue, forKey: "soundSettingDefault")
            }
     }
     
-    @Published var precisionSettingDefault: String = (defaultsStored.string(forKey: "precisionSettingDefault") ?? TimerItem.precisionSettings[1]) {
+    @Published var precisionSettingDefault: String = (defaultsStored.string(forKey: "precisionSettingDefault") ?? TimeItem.precisionSettings[1]) {
            willSet {
                defaultsStored.set(newValue, forKey: "precisionSettingDefault")
            }
     }
     
-    @Published var notificationSettingDefault: String = (defaultsStored.string(forKey: "notificationSettingDefault") ?? TimerItem.notificationSettings[0]) {
+    @Published var notificationSettingDefault: String = (defaultsStored.string(forKey: "notificationSettingDefault") ?? TimeItem.notificationSettings[0]) {
            willSet {
                defaultsStored.set(newValue, forKey: "notificationSettingDefault")
            }

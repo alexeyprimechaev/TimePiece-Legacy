@@ -27,7 +27,7 @@ struct LogSheet: View {
     
     func update(_ result : FetchedResults<LogItem>)-> [[LogItem]]{
         return  Dictionary(grouping: result){ (element : LogItem)  in
-            TimerItem.dateFormatter.string(from: element.timeStarted)
+            TimeItem.dateFormatter.string(from: element.timeStarted)
         }.values.sorted { $0[0].timeStarted > $1[0].timeStarted }
     }
 
@@ -39,6 +39,7 @@ struct LogSheet: View {
             ASTableViewSection(
                 id: i + 1,
                 data: section,
+                onSwipeToDelete: onSwipeToDelete,
                 contextMenuProvider: contextMenuProvider)
             { item, _ in
                 LogItemCell(logItem: item)
@@ -48,7 +49,7 @@ struct LogSheet: View {
                VStack(spacing: 0)
                 {
                     HStack() {
-                        Text(TimerItem.dateFormatter.string(from: section[0].timeStarted)).fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
+                        Text(TimeItem.dateFormatter.string(from: section[0].timeStarted)).fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
                         Spacer()
                     }
 
@@ -67,9 +68,7 @@ struct LogSheet: View {
             HeaderBar(leadingAction: discard,
                       leadingTitle: Strings.dismiss,
                       leadingIcon: "chevron.down",
-                      trailingAction: clearLog,
-                      trailingTitle: "Clear Log",
-                      trailingIcon: "trash")
+                      trailingAction: {})
             Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
                 Text("Trends").tag(0)
                 Text("Log").tag(1)
@@ -108,6 +107,7 @@ struct LogSheet: View {
 
                 ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
                 .alwaysBounce(true)
+                
             }
             
         

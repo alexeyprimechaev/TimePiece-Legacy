@@ -144,7 +144,7 @@ struct SubscriptionSheet: View {
                             self.settings.isSubscribed = false
                         }
                         self.alertText1 = "Failed"
-                        self.alertText2 = "Subscription has expired on \(TimerItem.createdAtFormatter.string(from: expiryDate))"
+                        self.alertText2 = "Subscription has expired on \(TimeItem.createdAtFormatter.string(from: expiryDate))"
                         self.showingAlert = true
                     case .notPurchased:
                         //print("The user has never purchased \(productIdMonthly)")
@@ -184,7 +184,7 @@ struct SubscriptionSheet: View {
                             self.settings.isSubscribed = false
                         }
                         self.alertText1 = "Failed"
-                        self.alertText2 = "Subscription has expired on \(TimerItem.createdAtFormatter.string(from: expiryDate))"
+                        self.alertText2 = "Subscription has expired on \(TimeItem.createdAtFormatter.string(from: expiryDate))"
                         self.showingAlert = true
                     case .notPurchased:
                         yearly = false

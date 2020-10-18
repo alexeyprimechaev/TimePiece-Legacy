@@ -6,9 +6,9 @@
         <attribute name="timeFinishedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timeStartedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="titleStored" optional="YES" attributeType="String"/>
-        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimerItem" inverseName="logItem" inverseEntity="TimerItem"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeItem" inverseName="logItem" inverseEntity="TimeItem"/>
     </entity>
-    <entity name="TimerItem" representedClassName=".TimerItem" syncable="YES">
+    <entity name="TimeItem" representedClassName=".TimeItem" syncable="YES">
         <attribute name="createdAtStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isPausedStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isReusableStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -29,6 +29,6 @@
     </entity>
     <elements>
         <element name="LogItem" positionX="0" positionY="0" width="128" height="119"/>
-        <element name="TimerItem" positionX="0" positionY="0" width="128" height="284"/>
+        <element name="TimeItem" positionX="0" positionY="0" width="128" height="284"/>
     </elements>
 </model>

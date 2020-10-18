@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct NewTimerSheet: View {
+struct NewTimeItemSheet: View {
     
     @Environment(\.managedObjectContext) var context
     
-    @ObservedObject var timer = TimerItem()
+    @ObservedObject var timer = TimeItem()
     
     @Binding var isAdding: Bool
     
@@ -55,38 +55,39 @@ struct NewTimerSheet: View {
                         }
                         
                         
-                        
-                        if !timer.isStopwatch {
-                            
-                            RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                self.timer.isStopwatch = true
-                                titleField.becomeFirstResponder()
+                        VStack(alignment: .leading, spacing: 7) {
+                            if !timer.isStopwatch {
+                                
+                                RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                                    self.timer.isStopwatch = true
+                                    titleField.becomeFirstResponder()
+                                }
+                                
+                            } else {
+                                RegularButton(title: "Convert to Timer", icon: "timer") {
+                                    self.timer.isStopwatch = false
+                                    timeField.becomeFirstResponder()
+                                }
                             }
                             
-                        } else {
-                            RegularButton(title: "Convert to Timer", icon: "timer") {
-                                self.timer.isStopwatch = false
-                                timeField.becomeFirstResponder()
-                            }
+                            RegularButton(title: showingOptions ? "Less Options" : "More Options", icon: "ellipsis.circle") {
+                                showingOptions.toggle()
+                            }.opacity(showingOptions ? 0.5 : 1)
                         }
-                        
-                        RegularButton(title: showingOptions ? "Less Options" : "More Options", icon: "ellipsis.circle") {
-                            showingOptions.toggle()
-                        }.opacity(showingOptions ? 0.5 : 1)
                     
                         if showingOptions {
                             
                             if !timer.isStopwatch {
-                                PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $timer.notificationSetting)
+                                PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timer.notificationSetting)
                                 
                                 PremiumBadge {
-                                    PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $timer.soundSetting)
+                                    PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timer.soundSetting)
                                 }
                             }
                             
                            
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, controlledValue: $timer.precisionSetting)
+                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timer.precisionSetting)
                             }
                             PremiumBadge {
                                 PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timer.showInLog.yesNo)

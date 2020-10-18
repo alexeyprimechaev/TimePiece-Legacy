@@ -15,7 +15,7 @@ struct TitleEditor: View {
     
     @State var value = String()
         
-    @ObservedObject var timer = TimerItem()
+    @ObservedObject var timer = TimeItem()
     
     @Binding var textField: UITextField
     

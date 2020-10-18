@@ -11,9 +11,9 @@ import Introspect
 import AVFoundation
 import CoreData
 
-struct TimerSheet: View {
+struct TimeItemSheet: View {
     
-    @ObservedObject var timer = TimerItem()
+    @ObservedObject var timer = TimeItem()
     
     @EnvironmentObject var settings: Settings
         
@@ -65,10 +65,10 @@ struct TimerSheet: View {
                         
                     VStack(alignment: .leading, spacing:14) {
                         if timer.isReusable {
-                            PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $timer.notificationSetting)
-                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $timer.soundSetting)
+                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timer.notificationSetting)
+                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timer.soundSetting)
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, controlledValue: $timer.precisionSetting)
+                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timer.precisionSetting)
                             }
 
                             PremiumBadge {
@@ -84,19 +84,30 @@ struct TimerSheet: View {
                             
                         }
                         
-                        Group {
-                            if !timer.isStopwatch {
-                                
-                                RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                    self.timer.isStopwatch = true
-                                }
-                                
-                            } else {
-                                RegularButton(title: "Convert to Timer", icon: "timer") {
-                                    self.timer.isStopwatch = false
+                        VStack(alignment: .leading, spacing: 7) {
+                            Group {
+                                if !timer.isStopwatch {
+                                    
+                                    RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                                        self.timer.isStopwatch = true
+                                    }
+                                    
+                                } else {
+                                    RegularButton(title: "Convert to Timer", icon: "timer") {
+                                        self.timer.isStopwatch = false
+                                    }
                                 }
                             }
+                            
+                            RegularButton(title: "Add to Sequence", icon: "chevron.right.2") {
+                                
+                            }
+                            
+                            RegularButton(title: "Show History", icon: "clock") {
+                                
+                            }
                         }
+                        
 
                     }.animation(Animation.default, value: timer.isReusable)
                     
@@ -212,7 +223,7 @@ struct TimerSheet: View {
                     
                     
                     
-                    AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
+                    AudioServicesPlaySystemSound(timer.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
                     
                     
                     
@@ -232,6 +243,6 @@ struct TimerSheet: View {
 
 struct TimerDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerSheet(discard: {}, delete: {})
+        TimeItemSheet(discard: {}, delete: {})
     }
 }

@@ -26,7 +26,8 @@ struct RegularButton: View {
             } icon: {
                 Image(systemName: icon).font(.headline)
             }
-            .padding(7)
+            .padding(.vertical, 14)
+            .padding(.horizontal, 7)
         }
         .buttonStyle(RegularButtonStyle())
     }

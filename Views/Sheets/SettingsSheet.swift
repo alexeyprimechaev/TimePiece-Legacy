@@ -35,16 +35,16 @@ struct SettingsSheet: View {
                     }
                     
                     ListSection(title: Strings.newTimers) {
-                        PickerButton(title: Strings.notification, values: TimerItem.notificationSettings, controlledValue: $settings.notificationSettingDefault)
+                        PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $settings.notificationSettingDefault)
                         PremiumBadge {
-                            PickerButton(title: Strings.sound, values: TimerItem.soundSettings, controlledValue: $settings.soundSettingDefault)
+                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $settings.soundSettingDefault)
                         }
                         PremiumBadge {
-                            PickerButton(title: Strings.milliseconds, values: TimerItem.precisionSettings, controlledValue: $settings.precisionSettingDefault)
+                            PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $settings.precisionSettingDefault)
                         }
                             
                         PremiumBadge {
-                            PickerButton(title: Strings.reusable, values: TimerItem.reusableSettings, controlledValue: $settings.isReusableDefault)
+                            PickerButton(title: Strings.reusable, values: TimeItem.reusableSettings, controlledValue: $settings.isReusableDefault)
                         }
                         
                         PremiumBadge {

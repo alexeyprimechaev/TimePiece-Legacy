@@ -53,7 +53,7 @@ struct TimeDisplay: View {
                             Text(seconds).animation(nil)
                                 .opacity(isOpaque ? 1 : 0.5)
                             
-                            if precisionSetting == TimerItem.precisionSettings[0] || (precisionSetting == TimerItem.precisionSettings[2] && hours == "00" && minutes == "00") {
+                            if precisionSetting == TimeItem.precisionSettings[0] || (precisionSetting == TimeItem.precisionSettings[2] && hours == "00" && minutes == "00") {
                                 Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                                 Text(milliseconds).animation(nil)
                                     .opacity(0.5)
@@ -69,7 +69,7 @@ struct TimeDisplay: View {
                             Text("88")
                             Dots()
                             Text("88")
-                            if precisionSetting == TimerItem.precisionSettings[0] || (precisionSetting == TimerItem.precisionSettings[2] && hours == "00" && minutes == "00") {
+                            if precisionSetting == TimeItem.precisionSettings[0] || (precisionSetting == TimeItem.precisionSettings[2] && hours == "00" && minutes == "00") {
                                 Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
                                 Text("88").animation(nil)
                                     .opacity(0.5)

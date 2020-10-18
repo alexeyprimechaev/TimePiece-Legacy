@@ -33,29 +33,29 @@ public class NotificationManager {
         }
     }
     
-    static func scheduleNotification(timer: TimerItem) {
+    static func scheduleNotification(timeItem: TimeItem) {
         print("schedule")
 
         requestNotificationPermisson()
 
-        if timer.isPaused {
+        if timeItem.isPaused {
             
             let content = UNMutableNotificationContent()
-            content.title = "\(timer.title == "" ? NSLocalizedString("timer", comment: "Timer") : timer.title) is done"
+            content.title = "\(timeItem.title == "" ? NSLocalizedString("timer", comment: "Timer") : timeItem.title) is done"
             content.subtitle = "Tap to view"
             content.sound = UNNotificationSound.default
             badgeCount += 1
             content.badge = NSNumber(value: badgeCount)
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timer.remainingTime, repeats: false)
-            let request = UNNotificationRequest(identifier: timer.notificationIdentifier.uuidString, content: content, trigger: trigger)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeItem.remainingTime, repeats: false)
+            let request = UNNotificationRequest(identifier: timeItem.notificationIdentifier.uuidString, content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request)
  
             
         } else {
-            if timer.remainingTime > 0 {
-                removePendingNotification(timer: timer)
+            if timeItem.remainingTime > 0 {
+                removePendingNotification(timer: timeItem)
             }
         }
         
@@ -75,7 +75,7 @@ public class NotificationManager {
         
     }
     
-    static func removePendingNotification(timer: TimerItem) {
+    static func removePendingNotification(timer: TimeItem) {
         print("pending")
         print(badgeCount)
         badgeCount -= 1
@@ -83,7 +83,7 @@ public class NotificationManager {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [timer.notificationIdentifier.uuidString])
     }
     
-    static func removeDeliveredNotification(timer: TimerItem) {
+    static func removeDeliveredNotification(timer: TimeItem) {
         print("delivered")
         print(badgeCount)
         

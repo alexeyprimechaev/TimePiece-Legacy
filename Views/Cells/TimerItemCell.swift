@@ -14,7 +14,7 @@ struct TimerItemCell: View {
 //MARK: - Properties
     
     //MARK: Dynamic Propertiess
-    @ObservedObject var timer: TimerItem
+    @ObservedObject var timer: TimeItem
     
     //MARK: CoreData
     @Environment(\.managedObjectContext) var context
@@ -172,7 +172,7 @@ struct TimerItemCell: View {
                     
                     
                     
-                    AudioServicesPlaySystemSound(timer.soundSetting == TimerItem.soundSettings[0] ? 1007 : 1036)
+                    AudioServicesPlaySystemSound(timer.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
                     
                     
                     

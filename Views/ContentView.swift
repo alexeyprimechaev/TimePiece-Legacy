@@ -9,10 +9,6 @@
 import SwiftUI
 import ASCollectionView
 
-enum ActiveSheet {
-   case timer, newTimer, settings, trends, subscription
-}
-
 struct ContentView: View {
     
 //MARK: - Variable Defenition
@@ -21,7 +17,7 @@ struct ContentView: View {
 
     //MARK: Core Data Setup
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(fetchRequest: TimerItem.getAllTimers()) var timerItems: FetchedResults<TimerItem>
+    @FetchRequest(fetchRequest: TimeItem.getAllTimers()) var timeItems: FetchedResults<TimeItem>
     
     @EnvironmentObject var settings: Settings
     
@@ -30,7 +26,7 @@ struct ContentView: View {
     @State var activeSheet = 2
     
     @State var isAdding = false
-    @State var selectedTimer = TimerItem()
+    @State var selectedTimer = TimeItem()
     
     @State var isLarge = true
     
@@ -59,7 +55,7 @@ struct ContentView: View {
                         Text(Strings.timePiece).fontSize(.title).padding(.bottom, 14).padding(.leading, 7)
                     },
             //MARK: Timers
-                    ASCollectionViewSection(id: 1, data: timerItems, contextMenuProvider: contextMenuProvider) { timer, _ in
+                    ASCollectionViewSection(id: 1, data: timeItems, contextMenuProvider: contextMenuProvider) { timer, _ in
                         TimerItemCell(timer: timer).environmentObject(settings)
 
                     }
@@ -84,11 +80,12 @@ struct ContentView: View {
                 }
             }
             .alwaysBounceVertical(true)
+            .ignoresSafeArea(.keyboard)
             .animation(.default)
                 TabBar(actions: [
                 {
                     withAnimation(.default) {
-                        TimerItem.newTimerItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, order: timerItems.count)
+                        TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, order: timeItems.count)
                         activeSheet = 1
                         showingSheet = true
                     }
@@ -111,13 +108,13 @@ struct ContentView: View {
                 activeSheet = 3
             }
             
-            if timerItems.count > 0 {
-                for i in 0...timerItems.count-1 {
-                    timerItems[i].order = i
+            if timeItems.count > 0 {
+                for i in 0...timeItems.count-1 {
+                    timeItems[i].order = i
                 }
             }
             
-            dump(timerItems)
+            dump(timeItems)
         }
         //MARK: Sheet
         .sheet(isPresented: $showingSheet) {
@@ -135,7 +132,7 @@ struct ContentView: View {
             switch activeSheet {
     
                 case 0:
-                    TimerSheet(timer: selectedTimer) {
+                    TimeItemSheet(timer: selectedTimer) {
                         showingSheet = false
                     } delete: {
                         withAnimation(.default) {
@@ -145,7 +142,7 @@ struct ContentView: View {
                     }.environmentObject(settings)
                     
                 case 1:
-                    NewTimerSheet(timer: timerItems[timerItems.count-1], isAdding: $isAdding) {
+                    NewTimeItemSheet(timer: timeItems[timeItems.count-1], isAdding: $isAdding) {
                         showingSheet = false
                     }.environmentObject(settings)
                     
@@ -188,7 +185,7 @@ struct ContentView: View {
     
     //MARK: Delete
     func deleteLast() {
-        timerItems[timerItems.count - 1].remove(from: context)
+        timeItems[timeItems.count - 1].remove(from: context)
     }
     
 //MARK: - CollectionView Functions
@@ -196,7 +193,7 @@ struct ContentView: View {
     
     
     //MARK: Context Menu
-    func contextMenuProvider(timer: TimerItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(timer: TimeItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
@@ -263,7 +260,7 @@ struct ContentView: View {
 //    {
 //        ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
 //
-//            var revisedItems: [ TimerItem ] = timerItems.map{ $0 }
+//            var revisedItems: [ TimerItem ] = timeItems.map{ $0 }
 //
 //                // change the order of the items in the array
 //                revisedItems.move(fromOffsets: IndexSet(integer: from), toOffset: to )

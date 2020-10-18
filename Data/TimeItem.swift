@@ -13,7 +13,7 @@ import UserNotifications
 import AVFoundation
 
 
-public class TimerItem: NSManagedObject, Identifiable {
+public class TimeItem: NSManagedObject, Identifiable {
     
 //MARK: - Properties
     
@@ -102,31 +102,31 @@ public class TimerItem: NSManagedObject, Identifiable {
     
     
     //MARK: Creation (in context)
-    static func newTimerItem(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool, order: Int) {
-        let timer = TimerItem(context: context)
+    static func newTimeItem(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool, order: Int) {
+        let timeItem = TimeItem(context: context)
         
         // User Input
-        timer.title = title
-        timer.totalTime = totalTime
+        timeItem.title = title
+        timeItem.totalTime = totalTime
         
-        timer.order = order
+        timeItem.order = order
         
         // Defaults
-        timer.createdAt = Date()
-        timer.isPaused = true
-        timer.isRunning = false
+        timeItem.createdAt = Date()
+        timeItem.isPaused = true
+        timeItem.isRunning = false
         
-        timer.remainingTime = timer.totalTime
-        timer.timeStarted = Date()
-        timer.timeFinished = timer.timeStarted.addingTimeInterval(timer.remainingTime)
-        timer.notificationIdentifier = UUID()
+        timeItem.remainingTime = timeItem.totalTime
+        timeItem.timeStarted = Date()
+        timeItem.timeFinished = timeItem.timeStarted.addingTimeInterval(timeItem.remainingTime)
+        timeItem.notificationIdentifier = UUID()
     
         // Settings
-        timer.isReusable.yesNo = reusableSetting
-        timer.soundSetting = soundSetting
-        timer.precisionSetting = precisionSetting
-        timer.notificationSetting = notificationSetting
-        timer.showInLog = showInLog
+        timeItem.isReusable.yesNo = reusableSetting
+        timeItem.soundSetting = soundSetting
+        timeItem.precisionSetting = precisionSetting
+        timeItem.notificationSetting = notificationSetting
+        timeItem.showInLog = showInLog
         
         // Saving
         do {
@@ -170,7 +170,7 @@ public class TimerItem: NSManagedObject, Identifiable {
             if isPaused {
                 isRunning = true
                 isPaused = false
-                NotificationManager.scheduleNotification(timer: self)
+                NotificationManager.scheduleNotification(timeItem: self)
                 
                 timeStarted = Date()
                 
@@ -245,7 +245,7 @@ public class TimerItem: NSManagedObject, Identifiable {
 }
 
 //MARK: - Unwrappers
-extension TimerItem {
+extension TimeItem {
     
     var order: Int {
         get { orderStored?.intValue ?? 0 }
@@ -321,17 +321,17 @@ extension TimerItem {
     }
     
     var soundSetting: String {
-        get { soundSettingStored ?? TimerItem.soundSettings[0] }
+        get { soundSettingStored ?? TimeItem.soundSettings[0] }
         set { soundSettingStored = newValue }
     }
     
     var precisionSetting: String {
-        get { precisionSettingStored ?? TimerItem.precisionSettings[0] }
+        get { precisionSettingStored ?? TimeItem.precisionSettings[0] }
         set { precisionSettingStored = newValue }
     }
     
     var notificationSetting: String {
-        get { notificationSettingStored ?? TimerItem.notificationSettings[0] }
+        get { notificationSettingStored ?? TimeItem.notificationSettings[0] }
         set { notificationSettingStored = newValue }
     }
     
@@ -612,11 +612,11 @@ extension Bool {
 }
 
 //MARK: - CoreData
-extension TimerItem {
-    static func getAllTimers() -> NSFetchRequest<TimerItem> {
-        let request: NSFetchRequest<TimerItem> = TimerItem.fetchRequest() as! NSFetchRequest<TimerItem>
+extension TimeItem {
+    static func getAllTimers() -> NSFetchRequest<TimeItem> {
+        let request: NSFetchRequest<TimeItem> = TimeItem.fetchRequest() as! NSFetchRequest<TimeItem>
         
-        let sortDescriptor = NSSortDescriptor(keyPath: \TimerItem.orderStored, ascending: true)
+        let sortDescriptor = NSSortDescriptor(keyPath: \TimeItem.orderStored, ascending: true)
         
         request.sortDescriptors = [sortDescriptor]
         

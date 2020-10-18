@@ -29,14 +29,18 @@ struct LogItemCell: View {
             Spacer().frame(height: 7)
             HStack(spacing: 0) {
                 Spacer().frame(width: 28)
-                Text(TimerItem.currentTimeFormatter.string(from: logItem.timeStarted))
+                Text(TimeItem.currentTimeFormatter.string(from: logItem.timeStarted))
                 Text(" – ")
-                Text(logItem.isDone ? TimerItem.currentTimeFormatter.string(from: logItem.timeFinished) : "Now")
+                Text(logItem.isDone ? TimeItem.currentTimeFormatter.string(from: logItem.timeFinished) : "Now")
                 Spacer()
                 Spacer().frame(width: 28)
             }.opacity(0.5)
             Spacer().frame(height: 14)
         }.fontSize(.smallTitle)
+        
+        .onAppear {
+            currentTime = Date().timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
+        }
         
         .onReceive(Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()) { time in
             currentTime = Date().timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
