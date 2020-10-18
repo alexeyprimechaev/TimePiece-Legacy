@@ -21,9 +21,21 @@ public class TimerItem: NSManagedObject, Identifiable {
         objectID
     }
     
+    @objc(addLogItemObject:)
+    @NSManaged public func addToLogItem(_ value: LogItem)
+    
+    @objc(removeLogItemObject:)
+    @NSManaged public func removeFromLogItem(_ value: LogItem)
+    
+    @objc(addLogItem:)
+    @NSManaged public func addToLogItem(_ values: NSSet)
+    
+    @objc(removeLogItem:)
+    @NSManaged public func removeFromLogItem(_ values: NSSet)
+    
     @NSManaged private var orderStored: NSNumber?
     
-    var logItem: LogItem?
+    var logItemOld: LogItem?
     
     //MARK: Main Properties
     @NSManaged private var createdAtStored: Date?
@@ -37,6 +49,7 @@ public class TimerItem: NSManagedObject, Identifiable {
     @NSManaged private var timeFinishedStored: Date?
     @NSManaged private var titleStored: String?
     @NSManaged private var notificationIdentifierStored: UUID?
+    @NSManaged private var logItem: NSSet?
     
     //MARK: Setting Properties
     @NSManaged private var soundSettingStored: String?
@@ -180,23 +193,23 @@ public class TimerItem: NSManagedObject, Identifiable {
     func recordLog() {
         if !isPaused {
             if showInLog {
-                print("logged")
-                dump(logItem)
-                logItem = LogItem(context: self.managedObjectContext!)
-                logItem?.title = title
-                logItem?.timeStarted = Date()
-                logItem?.timeFinished = timeFinished
-                logItem?.isStopwatch = isStopwatch
-                logItem?.isDone = false
+                let logItemOwned = LogItem(context: self.managedObjectContext!)
+                logItemOwned.title = title
+                logItemOwned.timeStarted = Date()
+                logItemOwned.timeFinished = timeFinished
+                logItemOwned.isStopwatch = isStopwatch
+                logItemOwned.isDone = false
+                logItemOwned.origin = self
+                
+                
             }
         } else {
             print("unlogged")
-            dump(logItem)
+            
             if remainingTime > 0 {
-                logItem?.timeFinished = Date()
+                logItems.last?.timeFinished = Date()
             }
-            logItem?.isDone = true
-            logItem = nil
+            logItems.last?.isDone = true
         }
     }
     
@@ -221,9 +234,8 @@ public class TimerItem: NSManagedObject, Identifiable {
         timeFinished = timeStarted.addingTimeInterval(remainingTime)
         
         if showInLog {
-            logItem?.timeFinished = Date()
-            logItem?.isDone = true
-            logItem = nil
+            logItems.last?.timeFinished = Date()
+            logItems.last?.isDone = true
         }
         
         try? self.managedObjectContext?.save()
@@ -338,6 +350,15 @@ extension TimerItem {
         set {
             totalTime = newValue.stringToTimeInterval()
             remainingTime = newValue.stringToTimeInterval()
+        }
+    }
+    
+    var logItems: [LogItem] {
+        let set = logItem as? Set<LogItem> ?? []
+        
+        
+        return set.sorted {
+            $0.timeStarted < $1.timeStarted
         }
     }
 

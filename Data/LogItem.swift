@@ -27,6 +27,8 @@ public class LogItem: NSManagedObject, Identifiable {
     @NSManaged private var isStopwatchStored: NSNumber?
     @NSManaged private var isDoneStored: NSNumber?
     
+    @NSManaged public var origin: TimerItem?
+    
     
     
 }
