@@ -17,7 +17,7 @@ struct ContentView: View {
 
     //MARK: Core Data Setup
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(fetchRequest: TimeItem.getAllTimers()) var timeItems: FetchedResults<TimeItem>
+    @FetchRequest(fetchRequest: TimeItem.getAllTimeItems()) var timeItems: FetchedResults<TimeItem>
     
     @EnvironmentObject var settings: Settings
     

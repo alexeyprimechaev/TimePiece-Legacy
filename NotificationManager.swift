@@ -38,7 +38,6 @@ public class NotificationManager {
 
         requestNotificationPermisson()
 
-        if timeItem.isPaused {
             
             let content = UNMutableNotificationContent()
             content.title = "\(timeItem.title == "" ? NSLocalizedString("timer", comment: "Timer") : timeItem.title) is done"
@@ -50,14 +49,13 @@ public class NotificationManager {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeItem.remainingTime, repeats: false)
             let request = UNNotificationRequest(identifier: timeItem.notificationIdentifier.uuidString, content: content, trigger: trigger)
             
+            print("request")
+            dump(request)
+            
             UNUserNotificationCenter.current().add(request)
  
             
-        } else {
-            if timeItem.remainingTime > 0 {
-                removePendingNotification(timer: timeItem)
-            }
-        }
+        
         
     }
     

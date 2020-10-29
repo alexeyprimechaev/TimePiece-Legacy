@@ -613,7 +613,7 @@ extension Bool {
 
 //MARK: - CoreData
 extension TimeItem {
-    static func getAllTimers() -> NSFetchRequest<TimeItem> {
+    static func getAllTimeItems() -> NSFetchRequest<TimeItem> {
         let request: NSFetchRequest<TimeItem> = TimeItem.fetchRequest() as! NSFetchRequest<TimeItem>
         
         let sortDescriptor = NSSortDescriptor(keyPath: \TimeItem.orderStored, ascending: true)
