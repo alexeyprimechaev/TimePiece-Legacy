@@ -165,10 +165,12 @@ public class TimeItem: NSManagedObject, Identifiable {
             
         } else {
             
+            NotificationManager.scheduleNotification(timeItem: self)
+            
             if isPaused {
                 isRunning = true
                 isPaused = false
-                NotificationManager.scheduleNotification(timeItem: self)
+                
                 
                 timeStarted = Date()
                 
@@ -198,9 +200,6 @@ public class TimeItem: NSManagedObject, Identifiable {
                 logItemOwned.isStopwatch = isStopwatch
                 logItemOwned.isDone = false
                 logItemOwned.origin = self
-                
-                
-                
             }
         } else {
             
