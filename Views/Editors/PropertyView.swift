@@ -15,7 +15,7 @@ struct TitleEditor: View {
     
     @State var value = String()
         
-    @ObservedObject var timer = TimeItem()
+    @ObservedObject var timeItem = TimeItem()
     
     @Binding var textField: UITextField
     
@@ -25,24 +25,24 @@ struct TitleEditor: View {
         ZStack(alignment: .bottomLeading) {
             HStack(alignment: .bottom, spacing: 7) {
                 if title == Strings.title {
-                    Text(timer.title.count == 0 ? Strings.timer : LocalizedStringKey(timer.title))
+                    Text(timeItem.title.isEmpty ? timeItem.isStopwatch ? "Stopwatch ⏱" : Strings.timer : LocalizedStringKey(timeItem.title))
                         .fontSize(.title)
-                        .opacity(timer.title.count == 0 ? 0.6 : 1)
+                        .opacity(timeItem.title.count == 0 ? 0.6 : 1)
                     
                 } else if title == Strings.left {
-                    Text(timer.timeFinished.timeIntervalSince(timer.timeStarted).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
+                    Text(timeItem.timeFinished.timeIntervalSince(timeItem.timeStarted).stringFromTimeInterval(precisionSetting: timeItem.precisionSetting))
                         .fontSize(.title)
                 } else {
-                    Text((timer.totalTime).stringFromTimeInterval(precisionSetting: timer.precisionSetting))
+                    Text((timeItem.totalTime).stringFromTimeInterval(precisionSetting: timeItem.precisionSetting))
                         .fontSize(.title)
                 }
                 Text(title)
                     .fontSize(.smallTitle)
                     .padding(.bottom, 5)
-                    .opacity(timer.title.count == 0 && title == Strings.title ? 1 : 0.5)
+                    .opacity(timeItem.title.count == 0 && title == Strings.title ? 1 : 0.5)
             }
             if title == Strings.title {
-                TextField("", text: $timer.title) { (editingChanged) in
+                TextField("", text: $timeItem.title) { (editingChanged) in
                     if editingChanged {
                         isFocused = true
                     } else {
@@ -56,8 +56,8 @@ struct TitleEditor: View {
                         textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
 
                     }
-                    .onChange(of: timer.title) { newValue in
-                        try? timer.managedObjectContext?.save()
+                    .onChange(of: timeItem.title) { newValue in
+                        try? timeItem.managedObjectContext?.save()
                     }
                     .fontSize(.title)
                     .foregroundColor(Color.clear)
@@ -67,6 +67,7 @@ struct TitleEditor: View {
             
         }
     .padding(7)
+        .animation(nil)
     
     }
 }

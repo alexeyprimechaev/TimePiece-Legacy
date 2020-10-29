@@ -47,7 +47,6 @@ struct PickerButton: View {
             }.foregroundColor(.primary).padding(7)
         } else {
             Button {
-                lightHaptic()
                 if index < values.count - 1 {
                     index += 1
                     controlledValue = values[index]
@@ -80,7 +79,7 @@ struct PickerButton: View {
                 
                 
             //MARK: Styling
-            .buttonStyle(RegularButtonStyle())
+            .buttonStyle(TitleButtonStyle())
             
                 
                 

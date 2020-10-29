@@ -158,8 +158,6 @@ public class TimeItem: NSManagedObject, Identifiable {
             } else {
                 timeFinished = Date()
                 remainingTime = timeFinished.timeIntervalSince(timeStarted)
-                print("stopped")
-                print(remainingTime)
                 isPaused = true
             }
             recordLog()
@@ -202,15 +200,17 @@ public class TimeItem: NSManagedObject, Identifiable {
                 logItemOwned.origin = self
                 
                 
+                
             }
         } else {
-            print("unlogged")
             
             if remainingTime > 0 {
                 logItems.last?.timeFinished = Date()
             }
             logItems.last?.isDone = true
         }
+        
+        dump(logItems)
     }
     
     func makeReusable() {

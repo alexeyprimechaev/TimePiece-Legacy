@@ -18,7 +18,6 @@ struct RegularButton: View {
     var body: some View {
         
         Button {
-            regularHaptic()
             self.action()
         } label: {
             Label {
@@ -29,6 +28,7 @@ struct RegularButton: View {
             .padding(.vertical, 14)
             .padding(.horizontal, 7)
         }
+        .foregroundColor(.primary)
         .buttonStyle(RegularButtonStyle())
     }
 }

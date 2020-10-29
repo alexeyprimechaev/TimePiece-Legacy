@@ -77,7 +77,7 @@ extension LogItem {
     static func getAllLogItems() -> NSFetchRequest<LogItem> {
         let request: NSFetchRequest<LogItem> = LogItem.fetchRequest() as! NSFetchRequest<LogItem>
         
-        let sortDescriptor = NSSortDescriptor(key: "timeStartedStored", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "timeStartedStored", ascending: false)
         
         request.sortDescriptors = [sortDescriptor]
         

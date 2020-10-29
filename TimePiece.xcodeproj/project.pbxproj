@@ -14,7 +14,7 @@
 		80150DCF24F58E7300C740B3 /* PropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802A026C23CFBA5600512B39 /* PropertyView.swift */; };
 		80150DD124F58E7300C740B3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E17B124087B71003F5001 /* Settings.swift */; };
 		80150DD224F58E7300C740B3 /* SubscriptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6BF1C2418205900815793 /* SubscriptionRow.swift */; };
-		80150DD324F58E7300C740B3 /* TimerItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimerItemCell.swift */; };
+		80150DD324F58E7300C740B3 /* TimeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FF923C2750900BC03F5 /* TimeItemCell.swift */; };
 		80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D343B42443723800BA76B1 /* SettingsSheet.swift */; };
 		80150DD524F58E7300C740B3 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
 		80150DD624F58E7300C740B3 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
@@ -29,7 +29,6 @@
 		80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 		80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
-		80150DE824F58E7300C740B3 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C909202437BB3E00939F25 /* Haptics.swift */; };
 		80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
 		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimeItem.swift */; };
@@ -86,7 +85,7 @@
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80612FF323C274DF00BC03F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80612FF923C2750900BC03F5 /* TimerItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerItemCell.swift; sourceTree = "<group>"; };
+		80612FF923C2750900BC03F5 /* TimeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemCell.swift; sourceTree = "<group>"; };
 		80612FFB23C2766B00BC03F5 /* TimeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItem.swift; sourceTree = "<group>"; };
 		80727C97241136FF0046EE08 /* PremiumBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBadge.swift; sourceTree = "<group>"; };
 		807C15AC250185710055227D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -105,7 +104,6 @@
 		80B91C8524C8A04F0017F8B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80B91C8724C8A1BE0017F8B9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		80C055872516215E002147EC /* EditorBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorBar.swift; sourceTree = "<group>"; };
-		80C909202437BB3E00939F25 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		80D343B22443717F00BA76B1 /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
 		80D343B42443723800BA76B1 /* SettingsSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSheet.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 			children = (
 				80F484312527A54A00BA2E7D /* TypePicker.swift */,
 				80C055872516215E002147EC /* EditorBar.swift */,
-				80C909202437BB3E00939F25 /* Haptics.swift */,
 				8060E0212482D50600F6F74D /* TabBar.swift */,
 				80F355132418068F009ABFAD /* HeaderBar.swift */,
 				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
@@ -252,7 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				8055D7AE243B697800AF516E /* LogItemCell.swift */,
-				80612FF923C2750900BC03F5 /* TimerItemCell.swift */,
+				80612FF923C2750900BC03F5 /* TimeItemCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -370,9 +367,8 @@
 				80150DE324F58E7300C740B3 /* ContentView.swift in Sources */,
 				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
 				80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */,
-				80150DD324F58E7300C740B3 /* TimerItemCell.swift in Sources */,
+				80150DD324F58E7300C740B3 /* TimeItemCell.swift in Sources */,
 				80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */,
-				80150DE824F58E7300C740B3 /* Haptics.swift in Sources */,
 				80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */,
 				80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */,
 				80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
@@ -415,7 +411,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
@@ -444,7 +440,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;

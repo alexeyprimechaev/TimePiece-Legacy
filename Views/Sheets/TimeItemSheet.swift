@@ -13,7 +13,7 @@ import CoreData
 
 struct TimeItemSheet: View {
     
-    @ObservedObject var timer = TimeItem()
+    @ObservedObject var timeItem = TimeItem()
     
     @EnvironmentObject var settings: Settings
         
@@ -49,36 +49,36 @@ struct TimeItemSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                         
-                    TitleEditor(title: Strings.title, timer: timer, textField: $titleField, isFocused: $titleFocused).disabled(!timer.isPaused)
+                    TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused).disabled(!timeItem.isPaused)
                     
-                        if timer.isRunning {
-                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: Strings.left, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                        if timeItem.isRunning {
+                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                         }
                         
-                        if !timer.isStopwatch {
-                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timer.editableTimeString, textField: $timeField, isFocused: $timeFocused)
+                        if !timeItem.isStopwatch {
+                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
                         }
                         
                         
-                        
+                    
                     
                         
                     VStack(alignment: .leading, spacing:14) {
-                        if timer.isReusable {
-                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timer.notificationSetting)
-                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timer.soundSetting)
+                        if timeItem.isReusable {
+                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timer.precisionSetting)
+                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
                             }
 
                             PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timer.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
                         } else {
                             
                             PremiumBadge {
                                 RegularButton(title: Strings.makeReusable) {
-                                    timer.makeReusable()
+                                    timeItem.makeReusable()
                                 }
                             }
                             
@@ -86,36 +86,36 @@ struct TimeItemSheet: View {
                         
                         VStack(alignment: .leading, spacing: 7) {
                             Group {
-                                if !timer.isStopwatch {
+                                if !timeItem.isStopwatch {
                                     
                                     RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                        self.timer.isStopwatch = true
+                                        self.timeItem.isStopwatch = true
                                     }
                                     
                                 } else {
                                     RegularButton(title: "Convert to Timer", icon: "timer") {
-                                        self.timer.isStopwatch = false
+                                        self.timeItem.isStopwatch = false
                                     }
                                 }
                             }
-                            
-                            RegularButton(title: "Add to Sequence", icon: "chevron.right.2") {
-                                
-                            }
-                            
-                            RegularButton(title: "Show History", icon: "clock") {
-                                
-                            }
+//                            
+//                            RegularButton(title: "Add to Sequence", icon: "chevron.right.2") {
+//                                
+//                            }
+//                            
+//                            RegularButton(title: "Show History", icon: "clock") {
+//                                
+//                            }
                         }
                         
 
-                    }.animation(Animation.default, value: timer.isReusable)
+                    }.animation(Animation.default, value: timeItem.isReusable)
                     
-                }.animation(Animation.default, value: timer.isRunning)
+                }.animation(Animation.default, value: timeItem.isRunning)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
                 .onAppear {
-                    currentTime = timer.remainingTimeString
+                    currentTime = timeItem.remainingTimeString
                 }
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                     updateTime()
@@ -124,8 +124,8 @@ struct TimeItemSheet: View {
             }.animation(.default)
             
             if titleFocused || timeFocused {
-                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timer.isStopwatch) {
-                    if timer.isStopwatch {
+                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timeItem.isStopwatch) {
+                    if timeItem.isStopwatch {
                         Spacer()
                     }
                     Button {
@@ -143,50 +143,46 @@ struct TimeItemSheet: View {
             } else {
                 HStack {
                     Spacer().frame(width:28)
-                    if timer.isReusable {
-                        PauseButton(color: Color.red, isPaused: $timer.isRunning, offTitle: timer.remainingTime == 0 ? Strings.reset : Strings.stop, onTitle: Strings.delete, offIcon: "stop.fill", onIcon: "trash.fill",
+                    if timeItem.isReusable {
+                        PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.stop, onTitle: Strings.delete, offIcon: "stop.fill", onIcon: "trash.fill",
                                     onTap: {
-                                        timer.reset()
-                                        mediumHaptic()
+                                        timeItem.reset()
                                     },
                                     offTap: {
                                         delete()
-                                        mediumHaptic()
                                     }
                         )
                     } else {
-                        PauseButton(color: Color.red, isPaused: $timer.isReusable, offTitle: Strings.delete, onTitle: Strings.delete, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
+                        PauseButton(color: Color.red, isPaused: $timeItem.isReusable, offTitle: Strings.delete, onTitle: Strings.delete, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
                     }
                     Spacer().frame(width:28)
-                    PauseButton(color: Color.primary, isPaused: $timer.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
-                            regularHaptic()
-                            if timer.isStopwatch {
-                                self.timer.togglePause()
+                    PauseButton(color: Color.primary, isPaused: $timeItem.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+                            if timeItem.isStopwatch {
+                                self.timeItem.togglePause()
                             } else {
-                                if self.timer.remainingTime == 0 {
-                                    if self.timer.isReusable {
-                                        self.timer.reset()
+                                if self.timeItem.remainingTime == 0 {
+                                    if self.timeItem.isReusable {
+                                        self.timeItem.reset()
                                     } else {
                                         delete()
                                     }
                                 } else {
-                                    self.timer.togglePause()
+                                    self.timeItem.togglePause()
                                 }
                             }
                         
                     }, offTap: {
-                        regularHaptic()
-                        if timer.isStopwatch {
-                            self.timer.togglePause()
+                        if timeItem.isStopwatch {
+                            self.timeItem.togglePause()
                         } else {
-                            if self.timer.remainingTime == 0 {
-                                if self.timer.isReusable {
-                                    self.timer.reset()
+                            if self.timeItem.remainingTime == 0 {
+                                if self.timeItem.isReusable {
+                                    self.timeItem.reset()
                                 } else {
                                     delete()
                                 }
                             } else {
-                                self.timer.togglePause()
+                                self.timeItem.togglePause()
                             }
                         }
                     })
@@ -200,30 +196,30 @@ struct TimeItemSheet: View {
     
     func updateTime() {
         
-        if timer.isStopwatch {
-            if !timer.isPaused {
-                currentTime = Date().timeIntervalSince(timer.timeStarted).editableStringMilliseconds()
+        if timeItem.isStopwatch {
+            if !timeItem.isPaused {
+                currentTime = Date().timeIntervalSince(timeItem.timeStarted).editableStringMilliseconds()
             } else {
                 
             }
             
             
         } else {
-            if !timer.isPaused {
+            if !timeItem.isPaused {
                 
                 
-                if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
+                if timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
                    
-                    timer.togglePause()
+                    timeItem.togglePause()
                     
-                    timer.remainingTime = 0
+                    timeItem.remainingTime = 0
 
                     
                     
                     
                     
                     
-                    AudioServicesPlaySystemSound(timer.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
+                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
                     
                     
                     
@@ -231,7 +227,7 @@ struct TimeItemSheet: View {
                     
                 }
                 
-                currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
+                currentTime = timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
 
        
             }

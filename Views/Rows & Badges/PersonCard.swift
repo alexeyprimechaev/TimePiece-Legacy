@@ -24,7 +24,6 @@ struct PersonCard: View {
     
     var body: some View {
         Button {
-            mediumHaptic()
             UIApplication.shared.open(URL(string: link)!)
         } label: {
             HStack(alignment: .center, spacing: 7) {
@@ -42,7 +41,7 @@ struct PersonCard: View {
                         
                 }
             }
-        }.buttonStyle(RegularButtonStyle())
+        }.buttonStyle(TitleButtonStyle())
     }
 }
 

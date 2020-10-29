@@ -52,6 +52,8 @@ struct PauseButton: View {
             }.frame(height: 52)
         }
         
+        .buttonStyle(PrimaryButtonStyle())
+        
     }
 }
 

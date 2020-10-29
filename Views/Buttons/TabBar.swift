@@ -56,7 +56,6 @@ struct TabItem: View {
     var body: some View {
         Button {
             action()
-            regularHaptic()
         } label: {
             Label {
                 Text(title).fontSize(.smallTitle)
@@ -67,6 +66,8 @@ struct TabItem: View {
             .padding(14)
         
         }.foregroundColor(.primary)
+        
+        .buttonStyle(RegularButtonStyle())
         
     }
 }

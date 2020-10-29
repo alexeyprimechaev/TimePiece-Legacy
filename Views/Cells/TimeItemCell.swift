@@ -10,11 +10,11 @@ import SwiftUI
 import UserNotifications
 import AVFoundation
 
-struct TimerItemCell: View {
+struct TimeItemCell: View {
 //MARK: - Properties
     
     //MARK: Dynamic Propertiess
-    @ObservedObject var timer: TimeItem
+    @ObservedObject var timeItem: TimeItem
     
     //MARK: CoreData
     @Environment(\.managedObjectContext) var context
@@ -31,18 +31,17 @@ struct TimerItemCell: View {
         
         
         Button {
-            regularHaptic()
-            if timer.isStopwatch {
-                self.timer.togglePause()
+            if timeItem.isStopwatch {
+                self.timeItem.togglePause()
             } else {
-                if self.timer.remainingTime == 0 {
-                    if self.timer.isReusable {
-                        self.timer.reset()
+                if self.timeItem.remainingTime == 0 {
+                    if self.timeItem.isReusable {
+                        self.timeItem.reset()
                     } else {
-                        self.timer.remove(from: self.context)
+                        self.timeItem.remove(from: self.context)
                     }
                 } else {
-                    self.timer.togglePause()
+                    self.timeItem.togglePause()
                 }
             }
             
@@ -51,15 +50,15 @@ struct TimerItemCell: View {
         } label: {
             
             Group {
-            if !timer.isStopwatch {
+            if !timeItem.isStopwatch {
                 VStack(alignment: .leading, spacing: 0) {
-                Text(timer.title.isEmpty ? Strings.timer : LocalizedStringKey(timer.title))
+                Text(timeItem.title.isEmpty ? Strings.timer : LocalizedStringKey(timeItem.title))
                 ZStack(alignment: .topLeading) {
-                    if timer.isRunning {
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                    if timeItem.isRunning {
+                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                     }
                     else {
-                        TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $timer.editableTimeString, updateTime: updateTime, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                     }
                     HStack(spacing: 0) {
                         if currentTime.prefix(2) != "00" {
@@ -84,8 +83,8 @@ struct TimerItemCell: View {
                 
                 ZStack(alignment: .topLeading) {
                     VStack(alignment: .leading, spacing: 0) {
-                        if timer.isRunning {
-                            TimeDisplay(isPaused: $timer.isPaused, isRunning: $timer.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timer.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                        if timeItem.isRunning {
+                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                         }
                         else {
                             Text("Start").fontSize(.title).opacity(0.5)
@@ -105,7 +104,7 @@ struct TimerItemCell: View {
             //                .opacity(0.5)
                     }.animation(nil).opacity(0)
                 }
-                Text(timer.title.isEmpty ? Strings.timer : LocalizedStringKey(timer.title))
+                Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title))
                     
 
                     
@@ -128,9 +127,9 @@ struct TimerItemCell: View {
                 self.updateTime()
             }
             .onAppear {
-                currentTime = timer.remainingTimeString
+                currentTime = timeItem.remainingTimeString
             }
-            .onChange(of: timer.remainingTimeString) { newValue in
+            .onChange(of: timeItem.remainingTimeString) { newValue in
                 currentTime = newValue
             }
             .animation(nil)
@@ -139,7 +138,7 @@ struct TimerItemCell: View {
             
         //MARK: Styling
         .fontSize(.title)
-        .buttonStyle(RegularButtonStyle())
+        .buttonStyle(TitleButtonStyle())
         .padding(7)
         .fixedSize()
 
@@ -149,30 +148,30 @@ struct TimerItemCell: View {
     
     func updateTime() {
         
-        if timer.isStopwatch {
-            if !timer.isPaused {
-                currentTime = Date().timeIntervalSince(timer.timeStarted).editableStringMilliseconds()
+        if timeItem.isStopwatch {
+            if !timeItem.isPaused {
+                currentTime = Date().timeIntervalSince(timeItem.timeStarted).editableStringMilliseconds()
             } else {
                 
             }
             
             
         } else {
-            if !timer.isPaused {
+            if !timeItem.isPaused {
                 
                 
-                if timer.timeFinished.timeIntervalSince(Date()) <= 0 {
+                if timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
                    
-                    timer.togglePause()
+                    timeItem.togglePause()
                     
-                    timer.remainingTime = 0
+                    timeItem.remainingTime = 0
 
                     
                     
                     
                     
                     
-                    AudioServicesPlaySystemSound(timer.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
+                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
                     
                     
                     
@@ -180,7 +179,7 @@ struct TimerItemCell: View {
                     
                 }
                 
-                currentTime = timer.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
+                currentTime = timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
 
        
             }

@@ -12,7 +12,7 @@ struct NewTimeItemSheet: View {
     
     @Environment(\.managedObjectContext) var context
     
-    @ObservedObject var timer = TimeItem()
+    @ObservedObject var timeItem = TimeItem()
     
     @Binding var isAdding: Bool
     
@@ -39,33 +39,33 @@ struct NewTimeItemSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
-                    TitleEditor(title: Strings.title, timer: timer, textField: $titleField, isFocused: $titleFocused)
+                    TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused)
                     
-                    if !timer.isStopwatch {
-                        TimeEditor(timeString: $timer.editableTimeString, becomeFirstResponder: true, textField: $timeField, isFocused: $timeFocused)
+                    if !timeItem.isStopwatch {
+                        TimeEditor(timeString: $timeItem.editableTimeString, becomeFirstResponder: true, textField: $timeField, isFocused: $timeFocused)
                     }
                     
                     VStack(alignment: .leading, spacing: 14) {
                         
                         
-                        if !timer.isStopwatch {
+                        if !timeItem.isStopwatch {
                             PremiumBadge {
-                                PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], controlledValue: $timer.isReusable.yesNo)
+                                PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.isReusable.yesNo)
                             }
                         }
                         
                         
                         VStack(alignment: .leading, spacing: 7) {
-                            if !timer.isStopwatch {
+                            if !timeItem.isStopwatch {
                                 
                                 RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                    self.timer.isStopwatch = true
+                                    self.timeItem.isStopwatch = true
                                     titleField.becomeFirstResponder()
                                 }
                                 
                             } else {
                                 RegularButton(title: "Convert to Timer", icon: "timer") {
-                                    self.timer.isStopwatch = false
+                                    self.timeItem.isStopwatch = false
                                     timeField.becomeFirstResponder()
                                 }
                             }
@@ -77,20 +77,20 @@ struct NewTimeItemSheet: View {
                     
                         if showingOptions {
                             
-                            if !timer.isStopwatch {
-                                PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timer.notificationSetting)
+                            if !timeItem.isStopwatch {
+                                PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
                                 
                                 PremiumBadge {
-                                    PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timer.soundSetting)
+                                    PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                                 }
                             }
                             
                            
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timer.precisionSetting)
+                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
                             }
                             PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timer.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
                         }
                             
@@ -99,25 +99,25 @@ struct NewTimeItemSheet: View {
 
                     
                     
-                }.padding(.leading, 21).animation(.default, value: timer.isStopwatch)
+                }.padding(.leading, 21).animation(.default, value: timeItem.isStopwatch)
             }
-                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timer.isStopwatch) {
-                    if !timer.isStopwatch {
+                EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timeItem.isStopwatch) {
+                    if !timeItem.isStopwatch {
                         Button {
                             isAdding = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                if !timer.isReusable {
-                                    if timer.totalTime > 0 {
-                                        timer.togglePause()
+                                if !timeItem.isReusable {
+                                    if timeItem.totalTime > 0 {
+                                        timeItem.togglePause()
                                     }
                                 }
                             }
                             discard()
                         } label: {
                             Label {
-                                Text(timer.isReusable ? Strings.add : Strings.start).fontSize(.smallTitle)
+                                Text(timeItem.isReusable ? Strings.add : Strings.start).fontSize(.smallTitle)
                             } icon: {
-                                Image(systemName: timer.isReusable ? "plus" : "play").font(.headline)
+                                Image(systemName: timeItem.isReusable ? "plus" : "play").font(.headline)
                             }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                                                                     .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
                         }
@@ -125,7 +125,7 @@ struct NewTimeItemSheet: View {
                         
 
                         Button {
-                            self.timer.editableTimeString = "000000"
+                            self.timeItem.editableTimeString = "000000"
                             isAdding = true
                             discard()
                         } label: {
@@ -139,10 +139,10 @@ struct NewTimeItemSheet: View {
                         Spacer()
                         
                         Button {
-                            self.timer.editableTimeString = "000000"
+                            self.timeItem.editableTimeString = "000000"
                             isAdding = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                timer.togglePause()
+                                timeItem.togglePause()
                             }
                             discard()
                         } label: {

@@ -26,7 +26,8 @@ struct ContentView: View {
     @State var activeSheet = 2
     
     @State var isAdding = false
-    @State var selectedTimer = TimeItem()
+    @State var newTimeItem = TimeItem()
+    @State var selectedTimeItem = TimeItem()
     
     @State var isLarge = true
     
@@ -38,10 +39,7 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
                     HStack {
-
                         Text(Strings.timePiece).fontSize(.smallTitle).opacity(isLarge ? 0 : 1).padding(14)
-
-
                     }
 
                     Divider().opacity(isLarge ? 0 : 1)
@@ -56,7 +54,7 @@ struct ContentView: View {
                     },
             //MARK: Timers
                     ASCollectionViewSection(id: 1, data: timeItems, contextMenuProvider: contextMenuProvider) { timer, _ in
-                        TimerItemCell(timer: timer).environmentObject(settings)
+                        TimeItemCell(timeItem: timer).environmentObject(settings)
 
                     }
                 ]
@@ -113,8 +111,6 @@ struct ContentView: View {
                     timeItems[i].order = i
                 }
             }
-            
-            dump(timeItems)
         }
         //MARK: Sheet
         .sheet(isPresented: $showingSheet) {
@@ -132,17 +128,17 @@ struct ContentView: View {
             switch activeSheet {
     
                 case 0:
-                    TimeItemSheet(timer: selectedTimer) {
+                    TimeItemSheet(timeItem: selectedTimeItem) {
                         showingSheet = false
                     } delete: {
                         withAnimation(.default) {
-                            selectedTimer.remove(from: context)
+                            selectedTimeItem.remove(from: context)
                         }
                         showingSheet = false
                     }.environmentObject(settings)
                     
                 case 1:
-                    NewTimeItemSheet(timer: timeItems[timeItems.count-1], isAdding: $isAdding) {
+                    NewTimeItemSheet(timeItem: timeItems[timeItems.count-1], isAdding: $isAdding) {
                         showingSheet = false
                     }.environmentObject(settings)
                     
@@ -244,7 +240,7 @@ struct ContentView: View {
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-                selectedTimer = timer
+                selectedTimeItem = timer
                 activeSheet = 0
                 showingSheet = true
             }

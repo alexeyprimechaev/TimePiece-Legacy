@@ -46,12 +46,75 @@ extension View {
 
 
 //MARK: - Button Styles
-struct RegularButtonStyle: ButtonStyle {
+struct TitleButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
             .opacity(configuration.isPressed ? 0.5 : 1.0)
+            .onChange(of: configuration.isPressed) { newValue in
+                if newValue == true {
+                    regularHaptic()
+                } else {
+                    regularHaptic()
+                }
+                
+            }
+            .animation(.easeOut(duration: 0.2))
     }
 
+}
+
+struct RegularButtonStyle: ButtonStyle {
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        
+        
+        configuration.label
+            .opacity(configuration.isPressed ? 0.33 : 1.0)
+            .onChange(of: configuration.isPressed) { newValue in
+                if newValue == true {
+                    lightHaptic()
+                } else {
+                    lightHaptic()
+                }
+                
+            }
+            .animation(.easeOut(duration: 0.2))
+    }
+
+}
+
+struct PrimaryButtonStyle: ButtonStyle {
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        
+        
+        configuration.label
+            .opacity(configuration.isPressed ? 0.5 : 1.0)
+            .onChange(of: configuration.isPressed) { newValue in
+                if newValue == true {
+                    regularHaptic()
+                } else {
+                    regularHaptic()
+                }
+                
+            }
+    }
+
+}
+
+public func regularHaptic() {
+    let generator = UIImpactFeedbackGenerator(style: .rigid)
+    generator.impactOccurred()
+}
+
+public func mediumHaptic() {
+    let generator = UIImpactFeedbackGenerator(style: .medium)
+    generator.impactOccurred()
+}
+
+public func lightHaptic() {
+    let generator = UIImpactFeedbackGenerator(style: .light)
+    generator.impactOccurred()
 }

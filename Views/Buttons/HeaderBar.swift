@@ -26,7 +26,6 @@ struct HeaderBar: View {
         HStack {
             if leadingTitle != LocalizedStringKey("") {
                 Button {
-                    lightHaptic()
                     leadingAction()
                 } label: {
                     Label {
@@ -37,6 +36,7 @@ struct HeaderBar: View {
                     .padding(.horizontal, 14)
                     .foregroundColor(leadingIsDestructive ? .red : .primary)
                 }
+                .buttonStyle(RegularButtonStyle())
             }
             Spacer()
             if trailingTitle != LocalizedStringKey("") {
@@ -51,6 +51,7 @@ struct HeaderBar: View {
                     .padding(.horizontal, 14)
                     .foregroundColor(trailingIsDestructive ? .red : .primary)
                 }
+                .buttonStyle(RegularButtonStyle())
             }
             
             

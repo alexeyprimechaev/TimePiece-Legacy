@@ -27,7 +27,6 @@ struct SubscriptionSheet: View {
                 
                 HStack {
                         Button {
-                            lightHaptic()
                             self.discard()
                         } label: {
                             Label {
@@ -37,6 +36,7 @@ struct SubscriptionSheet: View {
                             }
                             .padding(.horizontal, 28)
                         }
+                        .buttonStyle(RegularButtonStyle())
                     
 
                         Button {
