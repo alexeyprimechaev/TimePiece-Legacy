@@ -39,7 +39,6 @@ struct LogSheet: View {
             ASTableViewSection(
                 id: i + 1,
                 data: section,
-                onSwipeToDelete: onSwipeToDelete,
                 contextMenuProvider: contextMenuProvider)
             { item, _ in
                 LogItemCell(logItem: item)
@@ -127,11 +126,13 @@ struct LogSheet: View {
         }
     }
     
-    func contextMenuProvider(logItem: LogItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(int: Int, logItem: LogItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
-
+                withAnimation(.default) {
+                    context.delete(logItem)
+                }
                
             }
 
@@ -146,7 +147,7 @@ struct LogSheet: View {
             }
 
             // Then we add edit as a child of the main menu
-            let mainMenu = UIMenu(title: "", children: [delete, info])
+            let mainMenu = UIMenu(title: "", children: [delete])
             return mainMenu
         }
         return configuration

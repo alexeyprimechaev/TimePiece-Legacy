@@ -617,8 +617,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apptekstudios/ASCollectionView";
 			requirement = {
-				kind = exactVersion;
-				version = 1.5.0;
+				branch = v1.8.0WIP;
+				kind = branch;
 			};
 		};
 		80EF121B2430E74A00905780 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {

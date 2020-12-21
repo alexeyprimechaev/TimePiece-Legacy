@@ -189,7 +189,7 @@ struct ContentView: View {
     
     
     //MARK: Context Menu
-    func contextMenuProvider(timer: TimeItem) -> UIContextMenuConfiguration? {
+    func contextMenuProvider(int: Int, timer: TimeItem) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
             let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
             let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in

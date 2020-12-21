@@ -32,3 +32,4 @@ struct RegularButton: View {
         .buttonStyle(RegularButtonStyle())
     }
 }
+

@@ -30,8 +30,16 @@ struct SettingsSheet: View {
                     Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).fontSize(.title).padding(7)
                     
                     ListSection(title: Strings.madeInMoscow) {
-                        PersonCard(name: Strings.alexey, description: "@FetchRequested", link: "https://twitter.com/FetchRequested", image: "alesha", icon: "twitter")
-                        PersonCard(name: Strings.igor, description: "@stopUIKit", link: "https://twitter.com/stopuikit", image: "igor", icon: "twitter")
+                        PersonCard(name: Strings.alexey,
+                                   description: "@FetchRequested",
+                                   link: "https://twitter.com/FetchRequested",
+                                   image: "alesha",
+                                   icon: "twitter")
+                        PersonCard(name: Strings.igor,
+                                   description: "@stopUIKit",
+                                   link: "https://twitter.com/stopuikit",
+                                   image: "igor",
+                                   icon: "twitter")
                     }
                     
                     ListSection(title: Strings.newTimers) {

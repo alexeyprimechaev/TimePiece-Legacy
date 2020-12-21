@@ -28,7 +28,7 @@ struct FontStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             
-            .font(fontSize == .title ? Font.system(.largeTitle, design: changeDesign ? settings.fontDesign : .default).bold() : fontSize == .smallTitle ? Font.system(.headline, design: changeDesign ? settings.fontDesign : .default) : .system(size: 14, weight: .medium, design: changeDesign ? settings.fontDesign : .default))
+            .font(fontSize == .title ? Font.system(.largeTitle, design: changeDesign ? settings.fontDesign : .default).bold().monospacedDigit() : fontSize == .smallTitle ? Font.system(.headline, design: changeDesign ? settings.fontDesign : .default).monospacedDigit() : .system(size: 14, weight: .medium, design: changeDesign ? settings.fontDesign : .default))
             .saturation(settings.isMonochrome ? 0 : 1)
             
     }

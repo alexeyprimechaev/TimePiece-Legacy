@@ -60,18 +60,6 @@ struct TimeItemCell: View {
                     else {
                         TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                     }
-                    HStack(spacing: 0) {
-                        if currentTime.prefix(2) != "00" {
-                            Text("88").animation(nil)
-                            Dots()
-                        }
-                        Text("88")
-                        Dots()
-                        Text("88")
-            //            Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
-            //            Text(seconds).animation(nil)
-            //                .opacity(0.5)
-                    }.animation(nil).opacity(0)
                 }
                     
 
@@ -91,18 +79,7 @@ struct TimeItemCell: View {
                         }
                     }.animation(.default)
                     
-                    HStack(spacing: 0) {
-                        if currentTime.prefix(2) != "00" {
-                            Text("88").animation(nil)
-                            Dots()
-                        }
-                        Text("88")
-                        Dots()
-                        Text("88")
-            //            Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
-            //            Text(seconds).animation(nil)
-            //                .opacity(0.5)
-                    }.animation(nil).opacity(0)
+
                 }
                 Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title))
                     
@@ -165,17 +142,8 @@ struct TimeItemCell: View {
                     timeItem.togglePause()
                     
                     timeItem.remainingTime = 0
-
-                    
-                    
-                    
-                    
                     
                     AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
-                    
-                    
-                    
-                    
                     
                 }
                 
