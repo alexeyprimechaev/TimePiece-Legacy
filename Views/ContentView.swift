@@ -20,6 +20,7 @@ struct ContentView: View {
     @FetchRequest(fetchRequest: TimeItem.getAllTimeItems()) var timeItems: FetchedResults<TimeItem>
     
     @EnvironmentObject var settings: Settings
+    @EnvironmentObject var appState: AppState
     
     //MARK: State Variables
     @State var showingSheet = false
@@ -31,6 +32,8 @@ struct ContentView: View {
     
     @State var isLarge = true
     
+    @State var showingDeleteAlert = false
+    
         
 //MARK: - View
     
@@ -38,9 +41,26 @@ struct ContentView: View {
         
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
-                    HStack {
-                        Text(Strings.timePiece).fontSize(.smallTitle).opacity(isLarge ? 0 : 1).padding(14)
-                    }
+                    ZStack {
+                        HStack {
+                            
+                            Text(Strings.timePiece).fontSize(.smallTitle).opacity(isLarge ? 0 : 1).padding(14)
+                            
+                        }
+                        HStack {
+                            Spacer()
+                            Button {
+                                appState.isInEditing.toggle()
+                                appState.selectedValues = []
+                            } label: {
+                                Label {
+                                    Text(appState.isInEditing ? "Done" : "Edit").fontSize(.smallTitle)
+                                } icon: {
+                                    
+                                }.foregroundColor(.primary).padding(14).padding(.horizontal, 14)
+                            }
+                        }
+                    }.animation(nil)
 
                     Divider().opacity(isLarge ? 0 : 1)
                 }.animation(.easeOut(duration: 0.2))
@@ -53,8 +73,8 @@ struct ContentView: View {
                         Text(Strings.timePiece).fontSize(.title).padding(.bottom, 14).padding(.leading, 7)
                     },
             //MARK: Timers
-                    ASCollectionViewSection(id: 1, data: timeItems, contextMenuProvider: contextMenuProvider) { timer, _ in
-                        TimeItemCell(timeItem: timer).environmentObject(settings)
+                    ASCollectionViewSection(id: 1, data: timeItems, contextMenuProvider: appState.isInEditing ? nil : contextMenuProvider) { timer, _ in
+                        TimeItemCell(timeItem: timer).environmentObject(settings).environmentObject(appState)
 
                     }
                 ]
@@ -80,21 +100,44 @@ struct ContentView: View {
             .alwaysBounceVertical(true)
             .ignoresSafeArea(.keyboard)
             .animation(.default)
-                TabBar(actions: [
-                {
-                    withAnimation(.default) {
-                        TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, order: timeItems.count)
-                        activeSheet = 1
-                        showingSheet = true
+                BottomBar {
+                    if appState.isInEditing {
+                        BottomBarItem(title: "Delete", icon: "trash") {
+                            showingDeleteAlert = true
+                        }.foregroundColor(.red).opacity(appState.selectedValues.isEmpty ? 0.5 : 1).disabled(appState.selectedValues.isEmpty)
+                        .alert(isPresented: $showingDeleteAlert) {
+                            Alert(title: Text("Delete selected Timers?"), primaryButton: .destructive(Text("Delete")) {
+                                
+                                withAnimation {
+                                    for timeItem in appState.selectedValues {
+                                            context.delete(timeItem)
+                                    }
+                                }
+                                try? context.save()
+                                appState.isInEditing = false
+                                        }, secondaryButton: .cancel())
+                        }
+                    } else {
+                        BottomBarItem(title: Strings.new,icon: "plus") {
+                            withAnimation(.default) {
+                                TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, order: timeItems.count)
+                                activeSheet = 1
+                                showingSheet = true
+                            }
+                        }.foregroundColor(.primary)
+                        BottomBarItem(title: Strings.log, icon: "bolt") {
+                            activeSheet = 3
+                            showingSheet = true
+                        }.foregroundColor(.primary)
+                        BottomBarItem(title: Strings.settings, icon: "gear") {
+                            activeSheet = 2
+                            showingSheet = true
+                        }.environmentObject(settings).foregroundColor(.primary)
                     }
-                },{
-                    activeSheet = 3
-                    showingSheet = true
-                },{
-                    activeSheet = 2
-                    showingSheet = true
-                    }]).environmentObject(settings)
 
+                    
+                }
+                    
             }
         
         .ignoresSafeArea(.keyboard)

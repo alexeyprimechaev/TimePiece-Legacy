@@ -20,6 +20,7 @@ struct TimeItemCell: View {
     @Environment(\.managedObjectContext) var context
     
     @EnvironmentObject var settings: Settings
+    @EnvironmentObject var appState: AppState
     
     @State private var currentTime: String = "00:00"
     
@@ -31,17 +32,26 @@ struct TimeItemCell: View {
         
         
         Button {
-            if timeItem.isStopwatch {
-                self.timeItem.togglePause()
-            } else {
-                if self.timeItem.remainingTime == 0 {
-                    if self.timeItem.isReusable {
-                        self.timeItem.reset()
-                    } else {
-                        self.timeItem.remove(from: self.context)
-                    }
+            if appState.isInEditing {
+                if appState.selectedValues.contains(timeItem) {
+                    appState.selectedValues.removeAll { $0 == timeItem }
                 } else {
+                    appState.selectedValues.append(timeItem)
+                }
+                
+            } else {
+                if timeItem.isStopwatch {
                     self.timeItem.togglePause()
+                } else {
+                    if self.timeItem.remainingTime == 0 {
+                        if self.timeItem.isReusable {
+                            self.timeItem.reset()
+                        } else {
+                            self.timeItem.remove(from: self.context)
+                        }
+                    } else {
+                        self.timeItem.togglePause()
+                    }
                 }
             }
             
@@ -110,6 +120,9 @@ struct TimeItemCell: View {
                 currentTime = newValue
             }
             .animation(nil)
+            .opacity(appState.isInEditing ? 0.5 : 1)
+            
+            .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
         }
         
             

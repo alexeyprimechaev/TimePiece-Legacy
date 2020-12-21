@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0502DA4B25911F4A00CB4A14 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502DA4A25911F4A00CB4A14 /* AppState.swift */; };
 		80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
 		80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
 		80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
@@ -20,7 +21,7 @@
 		80150DD624F58E7300C740B3 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
 		80150DD724F58E7300C740B3 /* PremiumBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80727C97241136FF0046EE08 /* PremiumBadge.swift */; };
 		80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809635632401544D00BF297F /* NotificationManager.swift */; };
-		80150DD924F58E7300C740B3 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E0212482D50600F6F74D /* TabBar.swift */; };
+		80150DD924F58E7300C740B3 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8060E0212482D50600F6F74D /* BottomBar.swift */; };
 		80150DDB24F58E7300C740B3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B91C8724C8A1BE0017F8B9 /* Strings.swift */; };
 		80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
 		80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0502DA4A25911F4A00CB4A14 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		8012C7AA24057D4200E7798E /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		80150D6724F58BD900C740B3 /* TimePieceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceApp.swift; sourceTree = "<group>"; };
 		80150D6924F58BD900C740B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		8055D7AE243B697800AF516E /* LogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemCell.swift; sourceTree = "<group>"; };
 		805DB84124D4831E00178B5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		805DB84324D485F600178B5B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8060E0212482D50600F6F74D /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		8060E0212482D50600F6F74D /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		80612FE923C274DB00BC03F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				80150D6724F58BD900C740B3 /* TimePieceApp.swift */,
 				809635632401544D00BF297F /* NotificationManager.swift */,
 				804E17B124087B71003F5001 /* Settings.swift */,
+				0502DA4A25911F4A00CB4A14 /* AppState.swift */,
 				808A386E2512D3500075AC50 /* Views */,
 				80612FED23C274DF00BC03F5 /* Preview Content */,
 				80612FE023C274DB00BC03F5 /* Products */,
@@ -199,7 +202,7 @@
 			children = (
 				80F484312527A54A00BA2E7D /* TypePicker.swift */,
 				80C055872516215E002147EC /* EditorBar.swift */,
-				8060E0212482D50600F6F74D /* TabBar.swift */,
+				8060E0212482D50600F6F74D /* BottomBar.swift */,
 				80F355132418068F009ABFAD /* HeaderBar.swift */,
 				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
 				80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */,
@@ -351,6 +354,7 @@
 				80150DE224F58E7300C740B3 /* NewTimeItemSheet.swift in Sources */,
 				80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */,
 				80150DD624F58E7300C740B3 /* Styles.swift in Sources */,
+				0502DA4B25911F4A00CB4A14 /* AppState.swift in Sources */,
 				80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */,
 				80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */,
 				80FEF1AB25191291007BEB49 /* OnboardingSheet.swift in Sources */,
@@ -363,7 +367,7 @@
 				80150DEE24F58E7300C740B3 /* TimeItemSheet.swift in Sources */,
 				80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */,
 				80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */,
-				80150DD924F58E7300C740B3 /* TabBar.swift in Sources */,
+				80150DD924F58E7300C740B3 /* BottomBar.swift in Sources */,
 				80150DE324F58E7300C740B3 /* ContentView.swift in Sources */,
 				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
 				80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */,

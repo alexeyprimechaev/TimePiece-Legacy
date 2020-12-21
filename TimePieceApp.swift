@@ -17,12 +17,14 @@ struct TimePieceApp: App {
     @Environment(\.scenePhase) var scenePhase
     let persistenceController = PersistenceController.shared
     var settings = Settings()
+    var appState = AppState()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(settings)
+                .environmentObject(appState)
                 .onChange(of: scenePhase) { phase in
                     if phase == .active {
                         print("start")

@@ -52,14 +52,6 @@ struct TitleButtonStyle: ButtonStyle {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
             .opacity(configuration.isPressed ? 0.5 : 1.0)
-            .onChange(of: configuration.isPressed) { newValue in
-                if newValue == true {
-                    regularHaptic()
-                } else {
-                    regularHaptic()
-                }
-                
-            }
             .animation(.easeOut(duration: 0.2))
     }
 
@@ -72,14 +64,6 @@ struct RegularButtonStyle: ButtonStyle {
         
         configuration.label
             .opacity(configuration.isPressed ? 0.33 : 1.0)
-            .onChange(of: configuration.isPressed) { newValue in
-                if newValue == true {
-                    lightHaptic()
-                } else {
-                    lightHaptic()
-                }
-                
-            }
             .animation(.easeOut(duration: 0.2))
     }
 

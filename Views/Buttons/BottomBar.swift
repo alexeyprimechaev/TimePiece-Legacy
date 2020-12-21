@@ -8,44 +8,33 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct BottomBar<Content:View>: View {
     
-    var actions: [() -> ()]
     
     @EnvironmentObject var settings: Settings
+        
+    var content: Content
     
-    @State var showingSubscriptionSheet = false
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content()
+    }
     
     var body: some View {
         VStack(spacing: 0) {
             Divider()
             HStack(spacing: 0) {
                 Spacer().frame(width: 14)
-                TabItem(title: Strings.new,icon: "plus") {
-                    actions[0]()
-                }
-                TabItem(title: Strings.log, icon: "bolt") {
-                    actions[1]()
-                }.overlay(
-                        Circle().frame(width: 7, height: 7).foregroundColor(.red).padding(.top, 7).padding(.leading, 26).opacity(settings.hasSeenTrends ? 0 : 1)
-                    , alignment: .topLeading)
-                TabItem(title: Strings.settings, icon: "gear") {
-                    actions[2]()
-                }
+                
+                content
+                
                 Spacer()
             }
-        }
-        .fullScreenCover(isPresented: $showingSubscriptionSheet) {
-            SubscriptionSheet {
-                showingSubscriptionSheet = false
-            }
-            .environmentObject(settings)
         }
 
     }
 }
 
-struct TabItem: View {
+struct BottomBarItem: View {
     
     @State var title = LocalizedStringKey("")
     
@@ -65,7 +54,7 @@ struct TabItem: View {
             .lineLimit(1)
             .padding(14)
         
-        }.foregroundColor(.primary)
+        }
         
         .buttonStyle(RegularButtonStyle())
         
