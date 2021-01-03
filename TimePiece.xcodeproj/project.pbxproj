@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0502DA4B25911F4A00CB4A14 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502DA4A25911F4A00CB4A14 /* AppState.swift */; };
+		05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EDD9E025A2296100E78486 /* ContinousPicker.swift */; };
 		80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
 		80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
 		80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		0502DA4A25911F4A00CB4A14 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		05EDD9E025A2296100E78486 /* ContinousPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinousPicker.swift; sourceTree = "<group>"; };
 		8012C7AA24057D4200E7798E /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		80150D6724F58BD900C740B3 /* TimePieceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceApp.swift; sourceTree = "<group>"; };
 		80150D6924F58BD900C740B3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				8060E0212482D50600F6F74D /* BottomBar.swift */,
 				80F355132418068F009ABFAD /* HeaderBar.swift */,
 				801FFBB123CF9AF50040A12C /* PickerButton.swift */,
+				05EDD9E025A2296100E78486 /* ContinousPicker.swift */,
 				80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */,
 				80ACD6B623CBE435000C49DC /* PauseButton.swift */,
 				801A184F2402CEB6005B4D19 /* RegularButton.swift */,
@@ -381,6 +384,7 @@
 				80150DD524F58E7300C740B3 /* LogItem.swift in Sources */,
 				80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */,
 				80150DD124F58E7300C740B3 /* Settings.swift in Sources */,
+				05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */,
 				80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */,
 				80F484322527A54A00BA2E7D /* TypePicker.swift in Sources */,
 				80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */,

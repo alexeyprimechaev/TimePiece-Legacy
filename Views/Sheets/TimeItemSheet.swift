@@ -65,6 +65,7 @@ struct TimeItemSheet: View {
                         
                     VStack(alignment: .leading, spacing:14) {
                         if timeItem.isReusable {
+                            ContinousPicker()
                             PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
