@@ -92,7 +92,7 @@ struct ContinousPicker: View {
                     print("delta \(delta)")
                     print("value \(self.value)")
                     print("start value \(startValue)")
-                    self.value = startValue + min(max(-startValue, delta), 1-startValue)
+                    self.value = min(max(0, (startValue + delta)), 1)
                     print("newValue \(self.value)")
                     
                 }

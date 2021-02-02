@@ -34,10 +34,10 @@ struct PauseButton: View {
     var body: some View {
         
         Button {
-            if self.isPaused {
-                self.onTap()
+            if isPaused {
+                onTap()
             } else {
-                self.offTap()
+                offTap()
             }
         } label: {
             ZStack(alignment: .center) {

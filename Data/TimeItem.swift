@@ -151,16 +151,30 @@ public class TimeItem: NSManagedObject, Identifiable {
     func togglePause() {
         
         if isStopwatch {
-            if isPaused {
-                isRunning = true
-                isPaused = false
-                timeStarted = Date().addingTimeInterval(-remainingTime)
+            if isRunning {
+                if isPaused {
+                    isRunning = true
+                    isPaused = false
+                    timeStarted = Date().addingTimeInterval(-remainingTime)
+                } else {
+                    timeFinished = Date()
+                    remainingTime = timeFinished.timeIntervalSince(timeStarted)
+                    isPaused = true
+                }
+                recordLog()
             } else {
-                timeFinished = Date()
-                remainingTime = timeFinished.timeIntervalSince(timeStarted)
-                isPaused = true
+                if isPaused {
+                    isRunning = true
+                    isPaused = false
+                    timeStarted = Date()
+                } else {
+                    timeFinished = Date()
+                    remainingTime = timeFinished.timeIntervalSince(timeStarted)
+                    isPaused = true
+                }
+                recordLog()
             }
-            recordLog()
+            
            
             
         } else {
@@ -214,6 +228,11 @@ public class TimeItem: NSManagedObject, Identifiable {
     
     func makeReusable() {
         isReusable = true
+    }
+    
+    func convertToStopwatch() {
+        isStopwatch = true
+        precisionSetting = TimeItem.precisionSettings[1]
     }
     
     

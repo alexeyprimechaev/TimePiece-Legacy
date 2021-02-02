@@ -33,6 +33,8 @@ struct TimeItemSheet: View {
     @State var timeFieldDummy = UITextField()
     @State var timeFocusedDummy = false
     
+    @State var showingConvertAlert = false
+    
     var discard: () -> Void
     
     var delete: () -> Void
@@ -63,13 +65,15 @@ struct TimeItemSheet: View {
                     
                     
                         
-                    VStack(alignment: .leading, spacing:14) {
                         if timeItem.isReusable {
-                            ContinousPicker()
                             PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
+                                if timeItem.isStopwatch {
+                                    PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
+                                } else {
+                                    PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
+                                }
                             }
 
                             PremiumBadge {
@@ -90,30 +94,44 @@ struct TimeItemSheet: View {
                                 if !timeItem.isStopwatch {
                                     
                                     RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                        self.timeItem.isStopwatch = true
+                                        if timeItem.isRunning {
+                                            showingConvertAlert = true
+                                        } else {
+                                            timeItem.convertToStopwatch()
+                                        }
+                                        
                                     }
                                     
                                 } else {
                                     RegularButton(title: "Convert to Timer", icon: "timer") {
-                                        self.timeItem.isStopwatch = false
+                                        if timeItem.isRunning {
+                                            showingConvertAlert = true
+                                        } else {
+                                            timeItem.isStopwatch = false
+                                        }
                                     }
                                 }
                             }
 //                            
-//                            RegularButton(title: "Add to Sequence", icon: "chevron.right.2") {
-//                                
-//                            }
-//                            
-//                            RegularButton(title: "Show History", icon: "clock") {
-//                                
-//                            }
+                            .alert(isPresented: $showingConvertAlert) {
+                                if timeItem.isStopwatch {
+                                    return Alert(title: Text("Convert to Timer?"), message: Text("Converting will reset the Stopwatch"), primaryButton: .default(Text("Convert"), action:  {
+                                        timeItem.reset()
+                                        timeItem.isStopwatch = false
+                                    }), secondaryButton: .cancel())
+                                } else {
+                                    return Alert(title: Text("Convert to Stopwatch?"), message: Text("Converting will reset the Timer"), primaryButton: .default(Text("Convert"), action:  {
+                                        timeItem.reset()
+                                        timeItem.convertToStopwatch()
+                                    }), secondaryButton: .cancel())
+                                }
+                        }
                         }
                         
 
-                    }.animation(Animation.default, value: timeItem.isReusable)
+                    
                     
                 }.animation(Animation.default, value: timeItem.isRunning)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.leading, 21)
                 .onAppear {
                     currentTime = timeItem.remainingTimeString
