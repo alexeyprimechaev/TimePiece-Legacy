@@ -102,7 +102,7 @@ public class TimeItem: NSManagedObject, Identifiable {
     
     
     //MARK: Creation (in context)
-    static func newTimeItem(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool, order: Int) {
+    static func newTimeItem(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool, isStopwatch: Bool, order: Int) {
         let timeItem = TimeItem(context: context)
         
         // User Input
@@ -127,6 +127,7 @@ public class TimeItem: NSManagedObject, Identifiable {
         timeItem.precisionSetting = precisionSetting
         timeItem.notificationSetting = notificationSetting
         timeItem.showInLog = showInLog
+        timeItem.isStopwatch = isStopwatch
         
         // Saving
         do {

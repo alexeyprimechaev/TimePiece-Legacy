@@ -14,6 +14,8 @@ struct TitleEditor: View {
     @State var title = LocalizedStringKey("")
     
     @State var value = String()
+    
+    @State var becomeFirstResponder = false
         
     @ObservedObject var timeItem = TimeItem()
     
@@ -50,6 +52,9 @@ struct TitleEditor: View {
                     }
                 }
                     .introspectTextField { field in
+                        if becomeFirstResponder {
+                            field.becomeFirstResponder()
+                        }
                         textField = field
                         textField.font = UIFont(name: "AppleColorEmoji", size: 34)
                         textField.font = .systemFont(ofSize: 34, weight: .bold)

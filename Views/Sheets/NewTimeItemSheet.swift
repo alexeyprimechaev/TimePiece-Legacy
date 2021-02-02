@@ -39,10 +39,10 @@ struct NewTimeItemSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                                             
-                    TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused)
+                    TitleEditor(title: Strings.title, becomeFirstResponder: timeItem.isStopwatch ? true : false, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused)
                     
                     if !timeItem.isStopwatch {
-                        TimeEditor(timeString: $timeItem.editableTimeString, becomeFirstResponder: true, textField: $timeField, isFocused: $timeFocused)
+                        TimeEditor(timeString: $timeItem.editableTimeString, becomeFirstResponder: timeItem.isStopwatch ? false : true, textField: $timeField, isFocused: $timeFocused)
                     }
                     
                     VStack(alignment: .leading, spacing: 14) {
@@ -59,7 +59,7 @@ struct NewTimeItemSheet: View {
                             if !timeItem.isStopwatch {
                                 
                                 RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                    self.timeItem.isStopwatch = true
+                                    self.timeItem.convertToStopwatch()
                                     titleField.becomeFirstResponder()
                                 }
                                 
@@ -87,7 +87,11 @@ struct NewTimeItemSheet: View {
                             
                            
                             PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
+                                if timeItem.isStopwatch {
+                                    PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
+                                } else {
+                                    PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
+                                }
                             }
                             PremiumBadge {
                                 PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
@@ -123,7 +127,8 @@ struct NewTimeItemSheet: View {
                         }
                     } else {
                         
-
+                        Spacer()
+                        
                         Button {
                             self.timeItem.editableTimeString = "000000"
                             isAdding = true
@@ -136,7 +141,7 @@ struct NewTimeItemSheet: View {
                             }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                                                                     .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
                         }
-                        Spacer()
+                        
                         
                         Button {
                             self.timeItem.editableTimeString = "000000"

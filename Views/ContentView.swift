@@ -120,11 +120,34 @@ struct ContentView: View {
                     } else {
                         BottomBarItem(title: Strings.new,icon: "plus") {
                             withAnimation(.default) {
-                                TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, order: timeItems.count)
+                                TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
                                 activeSheet = 1
                                 showingSheet = true
                             }
-                        }.foregroundColor(.primary)
+                        }
+                        
+                        .contextMenu {
+                            Button {
+                                withAnimation(.default) {
+                                    TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
+                                    activeSheet = 1
+                                    showingSheet = true
+                                }
+                            } label: {
+                                Label("New Timer", systemImage: "timer")
+                            }
+                            Button {
+                                withAnimation(.default) {
+                                    TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
+                                    activeSheet = 1
+                                    showingSheet = true
+                                }
+                            } label: {
+                                Label("New Stopwatch", systemImage: "stopwatch")
+                            }
+                        }
+                        .foregroundColor(.primary)
+                        
                         BottomBarItem(title: Strings.log, icon: "bolt") {
                             activeSheet = 3
                             showingSheet = true
