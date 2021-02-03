@@ -57,81 +57,88 @@ struct TimeItemSheet: View {
                             TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                         }
                         
-                        if !timeItem.isStopwatch {
-                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
-                        }
-                        
-                        
-                    
-                    
-                        
-                        if timeItem.isReusable {
-                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
-                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
-                            PremiumBadge {
-                                if timeItem.isStopwatch {
-                                    PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
-                                } else {
-                                    PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
-                                }
-                            }
+                        if timeItem.isStopwatch {
+                            if timeItem.isReusable {
+                                PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                                PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
+                                PremiumBadge {
+                                        PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
 
-                            PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
+                                }
+
+                                PremiumBadge {
+                                    PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
+                                }
+                            } else {
+                                
+                                PremiumBadge {
+                                    RegularButton(title: Strings.makeReusable) {
+                                        timeItem.makeReusable()
+                                    }
+                                }
+                                
+                            }
+                            
+                            RegularButton(title: "Convert to Timer", icon: "timer") {
+                                if timeItem.isRunning {
+                                    showingConvertAlert = true
+                                } else {
+                                    timeItem.isStopwatch = false
+                                }
                             }
                         } else {
+                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
                             
-                            PremiumBadge {
-                                RegularButton(title: Strings.makeReusable) {
-                                    timeItem.makeReusable()
+                            if timeItem.isReusable {
+                                PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                                PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
+                                PremiumBadge {
+                                        PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
+                                    
                                 }
-                            }
-                            
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 7) {
-                            Group {
-                                if !timeItem.isStopwatch {
-                                    
-                                    RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                        if timeItem.isRunning {
-                                            showingConvertAlert = true
-                                        } else {
-                                            timeItem.convertToStopwatch()
-                                        }
-                                        
-                                    }
-                                    
-                                } else {
-                                    RegularButton(title: "Convert to Timer", icon: "timer") {
-                                        if timeItem.isRunning {
-                                            showingConvertAlert = true
-                                        } else {
-                                            timeItem.isStopwatch = false
-                                        }
+
+                                PremiumBadge {
+                                    PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
+                                }
+                            } else {
+                                
+                                PremiumBadge {
+                                    RegularButton(title: Strings.makeReusable) {
+                                        timeItem.makeReusable()
                                     }
                                 }
+                                
                             }
-//                            
-                            .alert(isPresented: $showingConvertAlert) {
-                                if timeItem.isStopwatch {
-                                    return Alert(title: Text("Convert to Timer?"), message: Text("Converting will reset the Stopwatch"), primaryButton: .default(Text("Convert"), action:  {
-                                        timeItem.reset()
-                                        timeItem.isStopwatch = false
-                                    }), secondaryButton: .cancel())
+                            RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                                if timeItem.isRunning {
+                                    showingConvertAlert = true
                                 } else {
-                                    return Alert(title: Text("Convert to Stopwatch?"), message: Text("Converting will reset the Timer"), primaryButton: .default(Text("Convert"), action:  {
-                                        timeItem.reset()
+                                    withAnimation {
                                         timeItem.convertToStopwatch()
-                                    }), secondaryButton: .cancel())
+                                    }
                                 }
+                                
+                            }
+                            
+                            
+                            
                         }
-                        }
-                        
 
                     
-                    
-                }.animation(Animation.default, value: timeItem.isRunning)
+                }
+                .alert(isPresented: $showingConvertAlert) {
+                    if timeItem.isStopwatch {
+                        return Alert(title: Text("Convert to Timer?"), message: Text("Converting will reset the Stopwatch"), primaryButton: .default(Text("Convert"), action:  {
+                            timeItem.reset()
+                            timeItem.isStopwatch = false
+                        }), secondaryButton: .cancel())
+                    } else {
+                        return Alert(title: Text("Convert to Stopwatch?"), message: Text("Converting will reset the Timer"), primaryButton: .default(Text("Convert"), action:  {
+                            timeItem.reset()
+                            timeItem.convertToStopwatch()
+                        }), secondaryButton: .cancel())
+                    }
+                }
                 .padding(.leading, 21)
                 .onAppear {
                     currentTime = timeItem.remainingTimeString
@@ -140,7 +147,8 @@ struct TimeItemSheet: View {
                     updateTime()
                 }
 
-            }.animation(.default)
+            }
+            .animation(.default)
             
             if titleFocused || timeFocused {
                 EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timeItem.isStopwatch) {

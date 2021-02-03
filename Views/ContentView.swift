@@ -127,6 +127,7 @@ struct ContentView: View {
                         }
                         
                         .contextMenu {
+                            
                             Button {
                                 withAnimation(.default) {
                                     TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
@@ -136,6 +137,7 @@ struct ContentView: View {
                             } label: {
                                 Label("New Timer", systemImage: "timer")
                             }
+                            
                             Button {
                                 withAnimation(.default) {
                                     TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
@@ -145,6 +147,18 @@ struct ContentView: View {
                             } label: {
                                 Label("New Stopwatch", systemImage: "stopwatch")
                             }
+                            Divider()
+                            Button {
+                                withAnimation(.default) {
+                                    TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        timeItems[timeItems.count-1].togglePause()
+                                    }
+                                }
+                            } label: {
+                                Label("Start Stopwatch", systemImage: "play.circle")
+                            }
+                            
                         }
                         .foregroundColor(.primary)
                         

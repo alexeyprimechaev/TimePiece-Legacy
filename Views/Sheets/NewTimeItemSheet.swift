@@ -109,19 +109,29 @@ struct NewTimeItemSheet: View {
                     if !timeItem.isStopwatch {
                         Button {
                             isAdding = true
+                            discard()
+                        } label: {
+                            Label {
+                                Text(Strings.add).fontSize(.smallTitle)
+                            } icon: {
+                                Image(systemName: "plus").font(.headline)
+                            }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                                    .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
+                        }
+                        Button {
+                            isAdding = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                if !timeItem.isReusable {
                                     if timeItem.totalTime > 0 {
                                         timeItem.togglePause()
                                     }
-                                }
+                                
                             }
                             discard()
                         } label: {
                             Label {
-                                Text(timeItem.isReusable ? Strings.add : Strings.start).fontSize(.smallTitle)
+                                Text(Strings.start).fontSize(.smallTitle)
                             } icon: {
-                                Image(systemName: timeItem.isReusable ? "plus" : "play").font(.headline)
+                                Image(systemName: "play").font(.headline)
                             }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                                                                     .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
                         }

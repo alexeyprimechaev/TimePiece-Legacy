@@ -29,7 +29,7 @@ struct TitleEditor: View {
                 if title == Strings.title {
                     Text(timeItem.title.isEmpty ? timeItem.isStopwatch ? "Stopwatch ⏱" : Strings.timer : LocalizedStringKey(timeItem.title))
                         .fontSize(.title)
-                        .opacity(timeItem.title.count == 0 ? 0.6 : 1)
+                        .opacity(timeItem.title.count == 0 ? 0.5 : 1)
                     
                 } else if title == Strings.left {
                     Text(timeItem.timeFinished.timeIntervalSince(timeItem.timeStarted).stringFromTimeInterval(precisionSetting: timeItem.precisionSetting))
