@@ -8,18 +8,8 @@
 
 import SwiftUI
 import SwiftyStoreKit
+import WidgetKit
 
-public enum AppGroup: String {
-  case group = "group.timepiece"
-
-  public var containerURL: URL {
-    switch self {
-    case .group:
-      return FileManager.default.containerURL(
-      forSecurityApplicationGroupIdentifier: self.rawValue)!
-    }
-  }
-}
 
 @main
 struct TimePieceApp: App {
@@ -74,6 +64,7 @@ struct TimePieceApp: App {
                     }
                     if phase == .background {
                         persistenceController.saveContext()
+                        WidgetCenter.shared.reloadAllTimelines()
                     }
                 }
         }
