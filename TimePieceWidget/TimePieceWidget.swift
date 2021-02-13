@@ -73,40 +73,6 @@ struct TimePieceWidgetEntryView : View {
         }
     }
     
-    func updateTime() {
-        print("hmm")
-        
-        if entry.timeItem.isStopwatch {
-            if !entry.timeItem.isPaused {
-                currentTime = Date().timeIntervalSince(entry.timeItem.timeStarted).editableStringMilliseconds()
-            } else {
-                
-            }
-            
-            
-        } else {
-            if !entry.timeItem.isPaused {
-                
-                
-                if entry.timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
-                   
-                    entry.timeItem.togglePause()
-                    
-                    entry.timeItem.remainingTime = 0
-                    
-                    //AudioServicesPlaySystemSound(entry.timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
-                    
-                }
-                
-                currentTime = entry.timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-
-       
-            }
-        }
-        
-        
-        
-    }
 }
 
 @main
