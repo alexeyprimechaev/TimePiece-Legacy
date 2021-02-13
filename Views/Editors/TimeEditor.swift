@@ -58,7 +58,7 @@ struct TimeEditor: View {
                     }.fontSize(.title).frame(minHeight: 43).padding(7).fixedSize(horizontal: true, vertical: true)
                     .animation(.default, value: isFocused)
                     .overlay(
-                        TextField("", text: $string) { (editingChanged) in
+                        TextField("", text: $string) { editingChanged in
                             if editingChanged {
                                 isFocused = true
                             } else {

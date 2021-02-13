@@ -29,7 +29,7 @@ struct TimeDisplay: View {
     @Binding var textField: UITextField
     @Binding var isFocused: Bool
             
-    @State private var milliseconds = ""
+    @State private var milliseconds = "00"
     @State private var seconds = ""
     @State private var minutes = ""
     @State private var hours = ""
@@ -56,7 +56,7 @@ struct TimeDisplay: View {
                             if precisionSetting == TimeItem.precisionSettings[0] || (precisionSetting == TimeItem.precisionSettings[2] && hours == "00" && minutes == "00") {
                                 Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                                 Text(milliseconds).animation(nil)
-                                    .opacity(0.5)
+                                    .opacity(isOpaque ? 1 : 0.5)
                             }
                            
                         }
