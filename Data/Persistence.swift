@@ -28,10 +28,15 @@ struct PersistenceController {
     }
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "TimePiece")
         
-        let description = container.persistentStoreDescriptions.first
-        description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        let storeURL = AppGroup.group.containerURL.appendingPathComponent("TimePiece.sqlite")
+        let description = NSPersistentStoreDescription(url: storeURL)
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        
+        container = NSPersistentCloudKitContainer(name: "TimePiece")
+        container.persistentStoreDescriptions = [description]
+        
+        
         
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
