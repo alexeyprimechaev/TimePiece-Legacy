@@ -11,6 +11,7 @@ import Combine
 import CoreData
 import UserNotifications
 import AVFoundation
+import WidgetKit
 
 
 public class TimeItem: NSManagedObject, Identifiable {
@@ -203,6 +204,7 @@ public class TimeItem: NSManagedObject, Identifiable {
         }
         
         try? self.managedObjectContext?.save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     func recordLog() {

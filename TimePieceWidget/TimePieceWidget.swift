@@ -27,8 +27,6 @@ struct Provider: IntentTimelineProvider {
         let context = PersistenceController.shared.container.viewContext
         let request = TimeItem.getAllTimeItems()
         
-                
-        
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
