@@ -39,6 +39,7 @@
 		052A346A25D81A5D0052949A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A346125D819950052949A /* AppGroup.swift */; };
 		052A346C25D81AE90052949A /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 052A346B25D81AE90052949A /* SwiftyStoreKit */; };
 		05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EDD9E025A2296100E78486 /* ContinousPicker.swift */; };
+		05F899F725D956F400A9FB90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
 		80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
 		80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
 		80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012C7AA24057D4200E7798E /* ListSection.swift */; };
@@ -510,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				052A345625D819430052949A /* Assets.xcassets in Resources */,
+				05F899F725D956F400A9FB90 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

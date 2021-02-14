@@ -23,12 +23,9 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     
     //MARK: State Variables
-    @State var showingSheet = false
-    @State var activeSheet = 2
     
     @State var isAdding = false
     @State var newTimeItem = TimeItem()
-    @State var selectedTimeItem = TimeItem()
     
     @State var isLarge = true
     
@@ -121,8 +118,8 @@ struct ContentView: View {
                         BottomBarItem(title: Strings.new,icon: "plus") {
                             withAnimation(.default) {
                                 TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
-                                activeSheet = 1
-                                showingSheet = true
+                                appState.activeSheet = 1
+                                appState.showingSheet = true
                             }
                         }
                         
@@ -131,8 +128,8 @@ struct ContentView: View {
                             Button {
                                 withAnimation(.default) {
                                     TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
-                                    activeSheet = 1
-                                    showingSheet = true
+                                    appState.activeSheet = 1
+                                    appState.showingSheet = true
                                 }
                             } label: {
                                 Label("New Timer", systemImage: "timer")
@@ -141,8 +138,8 @@ struct ContentView: View {
                             Button {
                                 withAnimation(.default) {
                                     TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
-                                    activeSheet = 1
-                                    showingSheet = true
+                                    appState.activeSheet = 1
+                                    appState.showingSheet = true
                                 }
                             } label: {
                                 Label("New Stopwatch", systemImage: "stopwatch")
@@ -163,12 +160,12 @@ struct ContentView: View {
                         .foregroundColor(.primary)
                         
                         BottomBarItem(title: Strings.log, icon: "bolt") {
-                            activeSheet = 3
-                            showingSheet = true
+                            appState.activeSheet = 3
+                            appState.showingSheet = true
                         }.foregroundColor(.primary)
                         BottomBarItem(title: Strings.settings, icon: "gear") {
-                            activeSheet = 2
-                            showingSheet = true
+                            appState.activeSheet = 2
+                            appState.showingSheet = true
                         }.environmentObject(settings).foregroundColor(.primary)
                     }
 
@@ -180,10 +177,10 @@ struct ContentView: View {
         .ignoresSafeArea(.keyboard)
         .onAppear {
             if !settings.hasSeenOnboarding {
-                activeSheet = 5
-                showingSheet = true
+                appState.activeSheet = 5
+                appState.showingSheet = true
             } else {
-                activeSheet = 3
+                appState.activeSheet = 3
             }
             
             if timeItems.count > 0 {
@@ -193,8 +190,8 @@ struct ContentView: View {
             }
         }
         //MARK: Sheet
-        .sheet(isPresented: $showingSheet) {
-            if activeSheet == 1 {
+            .sheet(isPresented: $appState.showingSheet) {
+                if appState.activeSheet == 1 {
                 if isAdding {
                     
                 } else {
@@ -205,44 +202,44 @@ struct ContentView: View {
             }
             
         } content: {
-            switch activeSheet {
+            switch appState.activeSheet {
     
                 case 0:
-                    TimeItemSheet(timeItem: selectedTimeItem) {
-                        showingSheet = false
+                    TimeItemSheet(timeItem: appState.selectedTimeItem) {
+                        appState.showingSheet = false
                     } delete: {
                         withAnimation(.default) {
-                            selectedTimeItem.remove(from: context)
+                            appState.selectedTimeItem.remove(from: context)
                         }
-                        showingSheet = false
+                        appState.showingSheet = false
                     }.environmentObject(settings)
                     
                 case 1:
                     NewTimeItemSheet(timeItem: timeItems[timeItems.count-1], isAdding: $isAdding) {
-                        showingSheet = false
+                        appState.showingSheet = false
                     }.environmentObject(settings)
                     
                 case 2:
                     SettingsSheet {
-                        showingSheet = false
+                        appState.showingSheet = false
                     }.environmentObject(settings)
                 case 3:
                     LogSheet {
-                        showingSheet = false
+                        appState.showingSheet = false
                     }.environmentObject(settings).environment(\.managedObjectContext, context)
                 case 4:
                     SubscriptionSheet {
-                        showingSheet = false
+                        appState.showingSheet = false
                         settings.showingSubscription = false
                     }.environmentObject(settings)
                 case 5:
                     OnboardingSheet {
                         settings.hasSeenOnboarding = true
-                        showingSheet = false
+                        appState.showingSheet = false
                     }.environmentObject(settings)
                 default:
                 SettingsSheet {
-                    showingSheet = false
+                    appState.showingSheet = false
                 }.environmentObject(settings)
                 }
             
@@ -308,8 +305,8 @@ struct ContentView: View {
                 if settings.isSubscribed {
                     timer.makeReusable()
                 } else {
-                    activeSheet = 4
-                    showingSheet = true
+                    appState.activeSheet = 4
+                    appState.showingSheet = true
                 }
             }
             
@@ -320,9 +317,9 @@ struct ContentView: View {
             let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
 
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-                selectedTimeItem = timer
-                activeSheet = 0
-                showingSheet = true
+                appState.selectedTimeItem = timer
+                appState.activeSheet = 0
+                appState.showingSheet = true
             }
 
             // Then we add edit as a child of the main menu

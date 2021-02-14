@@ -14,7 +14,7 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
 
 
     
-    func provideTimeItemOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping (INObjectCollection<TimeItemW>?, Error?) -> Void) {
+    func provideTimeItemOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping (INObjectCollection<IntentTimeItem>?, Error?) -> Void) {
             
         
             print("here now")
@@ -26,14 +26,14 @@ class IntentHandler: INExtension, ConfigurationIntentHandling {
             do { results = try context.fetch(request) }
             catch let error as NSError {print("error")}
 
-            let items: [TimeItemW] = results.map { result in
-                        let timeItemW = TimeItemW(
-                            identifier: result.title,
+            let items: [IntentTimeItem] = results.map { result in
+                        let intentTimeItem = IntentTimeItem(
+                            identifier: result.notificationIdentifier.uuidString,
                             display: result.title
                         )
-                        timeItemW.name = result.title
-                        timeItemW.totalTime = result.totalTimeString
-                        return timeItemW
+                        intentTimeItem.name = result.title
+                        intentTimeItem.totalTime = result.totalTimeString
+                        return intentTimeItem
             }
 
 

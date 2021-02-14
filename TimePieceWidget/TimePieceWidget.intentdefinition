@@ -43,7 +43,7 @@
 					<key>INIntentParameterName</key>
 					<string>timeItem</string>
 					<key>INIntentParameterObjectType</key>
-					<string>TimeItemW</string>
+					<string>IntentTimeItem</string>
 					<key>INIntentParameterObjectTypeNamespace</key>
 					<string>88xZPY</string>
 					<key>INIntentParameterPromptDialogs</key>
@@ -59,26 +59,6 @@
 							<true/>
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${timeItem}’.</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>zjHyLo</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationIntroduction</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${timeItem}’?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>bHMmZK</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Confirmation</string>
 						</dict>
 					</array>
 					<key>INIntentParameterSupportsDynamicEnumeration</key>
@@ -138,13 +118,13 @@
 	<array>
 		<dict>
 			<key>INTypeDisplayName</key>
-			<string>Time Item W</string>
+			<string>Intent Time Item</string>
 			<key>INTypeDisplayNameID</key>
 			<string>o1uv0X</string>
 			<key>INTypeLastPropertyTag</key>
 			<integer>103</integer>
 			<key>INTypeName</key>
-			<string>TimeItemW</string>
+			<string>IntentTimeItem</string>
 			<key>INTypeProperties</key>
 			<array>
 				<dict>

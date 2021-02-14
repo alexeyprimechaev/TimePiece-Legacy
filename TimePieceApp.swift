@@ -67,6 +67,32 @@ struct TimePieceApp: App {
                         WidgetCenter.shared.reloadAllTimelines()
                     }
                 }
+                .onOpenURL { url in
+                    if let objectID = url.absoluteString.replacingOccurrences(of: "timepiece://", with: "") as String? {
+                        
+                        let context = persistenceController.container.viewContext
+                        let request = TimeItem.getAllTimeItems()
+                        
+                        var results = [TimeItem]()
+                        
+                        do { results = try context.fetch(request) }
+                        catch let error as NSError {print("error")}
+                        
+                        if let timeItem = results.first(where: { item in
+                            item.objectID.uriRepresentation().absoluteString == objectID
+                            
+                        })  {
+                            appState.selectedTimeItem = timeItem
+                            appState.activeSheet = 0
+                            appState.showingSheet = true
+                        } else {
+                            
+                        }
+                                                
+                    }
+                    
+                    
+                }
         }
     }
     

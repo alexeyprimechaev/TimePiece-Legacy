@@ -14,6 +14,10 @@ import AVFoundation
 import WidgetKit
 
 
+public class TimeItemPlaceholder: TimeItem {
+    static let object = TimeItemPlaceholder()
+}
+
 public class TimeItem: NSManagedObject, Identifiable {
     
 //MARK: - Properties
@@ -103,7 +107,7 @@ public class TimeItem: NSManagedObject, Identifiable {
     
     
     //MARK: Creation (in context)
-    static func newTimeItem(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool, isStopwatch: Bool, order: Int) {
+    static func newTimeItem(totalTime: Double, title: String, context: NSManagedObjectContext, reusableSetting: String, soundSetting: String, precisionSetting: String, notificationSetting: String, showInLog: Bool, isStopwatch: Bool, order: Int) -> TimeItem {
         let timeItem = TimeItem(context: context)
         
         // User Input
@@ -136,6 +140,8 @@ public class TimeItem: NSManagedObject, Identifiable {
         } catch {
             print(error)
         }
+        
+        return timeItem
     }
     
     

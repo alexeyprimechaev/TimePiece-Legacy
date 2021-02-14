@@ -12,5 +12,8 @@ public class AppState: ObservableObject {
     
     @Published var isInEditing: Bool = false
     @Published var selectedValues: [TimeItem] = []
+    @Published var selectedTimeItem = TimeItem()
+    @Published var showingSheet = false
+    @Published var activeSheet = 2
     
 }
