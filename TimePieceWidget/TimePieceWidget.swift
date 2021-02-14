@@ -32,7 +32,7 @@ struct Provider: IntentTimelineProvider {
         
     }
     
-    func fetchTimeItemWithConfig(date: Date, configuration: ConfigurationIntent) -> WidgetTimeItem {
+    func fetchTimeItemWithConfig(date: Date, configuration: ConfigurationIntent) -> [WidgetTimeItem] {
         let context = PersistenceController.shared.container.viewContext
         let request = TimeItem.getAllTimeItems()
         
@@ -44,14 +44,20 @@ struct Provider: IntentTimelineProvider {
         guard let identifier = configuration.timeItem?.identifier, let timeItem = results.first(where: { item in
             item.notificationIdentifier.uuidString == identifier
         }) else {
-            return placeholderWidgetTimeItem
+            return [placeholderWidgetTimeItem]
         }
         
-        return WidgetTimeItem(isPlaceholder: false, date: Date(), title: timeItem.title, totalTime: timeItem.totalTime, remainingTime: timeItem.remainingTime, timeStarted: timeItem.timeStarted, timeFinished: timeItem.timeFinished, isStopwatch: timeItem.isStopwatch, isPaused: timeItem.isPaused, isRunning: timeItem.isRunning, uri: timeItem.objectID.uriRepresentation().absoluteString, configuration: ConfigurationIntent())
+        return [
+                WidgetTimeItem(isPlaceholder: false, date: Date(), title: timeItem.title, totalTime: timeItem.totalTime, remainingTime: timeItem.remainingTime, timeStarted: timeItem.timeStarted, timeFinished: timeItem.timeFinished, isStopwatch: timeItem.isStopwatch, isPaused: timeItem.isPaused, isRunning: timeItem.isRunning, uri: timeItem.objectID.uriRepresentation().absoluteString, configuration: ConfigurationIntent()),
+                
+            WidgetTimeItem(isFinished: true, isPlaceholder: false, date: timeItem.timeFinished, title: timeItem.title, totalTime: timeItem.totalTime, remainingTime: timeItem.remainingTime, timeStarted: timeItem.timeStarted, timeFinished: timeItem.timeFinished, isStopwatch: timeItem.isStopwatch, isPaused: timeItem.isPaused, isRunning: timeItem.isRunning, uri: timeItem.objectID.uriRepresentation().absoluteString, configuration: ConfigurationIntent())
+        ]
         
 
         
     }
+    
+    
     
     func placeholder(in context: Context) -> WidgetTimeItem {
         return fetchTimeItem()
@@ -67,7 +73,7 @@ struct Provider: IntentTimelineProvider {
         
         let currentDate = Date()
                 
-        entries.append(fetchTimeItemWithConfig(date: currentDate, configuration: configuration))
+        entries.append(contentsOf: fetchTimeItemWithConfig(date: currentDate, configuration: configuration))
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -130,7 +136,12 @@ struct TimePieceWidgetEntryView : View {
                             if entry.isPaused {
                                 Text(entry.remainingTime.stringFromTimeInterval(precisionSetting: TimeItem.precisionSettings[1])).opacity(0.5)
                             } else {
-                                Text(entry.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
+                                if entry.isFinished {
+                                    Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                                } else {
+                                    Text(entry.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
+                                }
+                                
                             }
                     }
                     
