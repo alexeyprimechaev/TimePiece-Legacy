@@ -134,7 +134,11 @@ struct TimePieceWidgetEntryView : View {
                     } else {
                         Text(entry.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(entry.title)).lineLimit(2)
                             if entry.isPaused {
-                                Text(entry.remainingTime.stringFromTimeInterval(precisionSetting: TimeItem.precisionSettings[1])).opacity(0.5)
+                                if entry.remainingTime == 0 {
+                                    Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                                } else {
+                                    Text(entry.remainingTime.stringFromTimeInterval(precisionSetting: TimeItem.precisionSettings[1])).opacity(0.5)
+                                }
                             } else {
                                 if entry.isFinished {
                                     Text("Done").multilineTextAlignment(.leading).opacity(0.5)

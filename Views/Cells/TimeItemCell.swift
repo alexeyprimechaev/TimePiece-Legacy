@@ -65,7 +65,12 @@ struct TimeItemCell: View {
                 Text(timeItem.title.isEmpty ? Strings.timer : LocalizedStringKey(timeItem.title))
                 ZStack(alignment: .topLeading) {
                     if timeItem.isRunning {
-                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                        if timeItem.remainingTime == 0 {
+                            Text("Done").opacity(0.5)
+                        } else {
+                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                        }
+                        
                     }
                     else {
                         TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
