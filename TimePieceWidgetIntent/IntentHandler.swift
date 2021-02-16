@@ -9,45 +9,49 @@
 import Intents
 
 class IntentHandler: INExtension, ConfigurationIntentHandling {
-
     
-
-
+    
+    
+    
     
     func provideTimeItemOptionsCollection(for intent: ConfigurationIntent, with completion: @escaping (INObjectCollection<IntentTimeItem>?, Error?) -> Void) {
-            
         
-            print("here now")
-            let context = PersistenceController.shared.container.viewContext
-            let request = TimeItem.getAllTimeItems()
-
-            var results = [TimeItem]()
-
-            do { results = try context.fetch(request) }
-            catch let error as NSError {print("error")}
-
-            let items: [IntentTimeItem] = results.map { result in
-                        let intentTimeItem = IntentTimeItem(
-                            identifier: result.notificationIdentifier.uuidString,
-                            display: result.title
-                        )
-                        intentTimeItem.name = result.title
-                        intentTimeItem.totalTime = result.totalTimeString
-                        return intentTimeItem
+        
+        print("here now")
+        let context = PersistenceController.shared.container.viewContext
+        let request = TimeItem.getAllTimeItems()
+        
+        var results = [TimeItem]()
+        
+        do { results = try context.fetch(request) }
+        catch let error as NSError {print("error")}
+        
+        let items: [IntentTimeItem] = results.map { result in
+            let intentTimeItem = IntentTimeItem(
+                identifier: result.notificationIdentifier.uuidString,
+                display: result.isStopwatch ? result.title.isEmpty ? "Stopwatch ⏱" : result.title : result.title.isEmpty ? "Timer ⏱" : result.title
+            )
+            if result.isStopwatch {
+                intentTimeItem.name = result.title.isEmpty ? "Stopwatch ⏱" : result.title
+            } else {
+                intentTimeItem.name = result.title.isEmpty ? "Timer ⏱" : result.title
             }
-
-
-
-
-
-            // Create a collection with the array of characters.
-            let collection = INObjectCollection(items: items)
-
-            // Call the completion handler, passing the collection.
-            completion(collection, nil)
-
-
+            intentTimeItem.totalTime = result.totalTimeString
+            return intentTimeItem
         }
+        
+        
+        
+        
+        
+        // Create a collection with the array of characters.
+        let collection = INObjectCollection(items: items)
+        
+        // Call the completion handler, passing the collection.
+        completion(collection, nil)
+        
+        
+    }
     
     
     override func handler(for intent: INIntent) -> Any {

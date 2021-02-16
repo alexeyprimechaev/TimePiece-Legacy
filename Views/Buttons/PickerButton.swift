@@ -75,14 +75,14 @@ struct PickerButton: View {
                 .padding(7)
                 .background(Color(.systemBackground))
             }
-
-                
-                
+            
+            
+            
             //MARK: Styling
             .buttonStyle(TitleButtonStyle())
             
-                
-                
+            
+            
             //MARK: On Appear
             .onAppear {
                 for i in 0...values.count-1 {

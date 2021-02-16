@@ -12,7 +12,7 @@ struct BottomBar<Content:View>: View {
     
     
     @EnvironmentObject var settings: Settings
-        
+    
     var content: Content
     
     init(@ViewBuilder content: @escaping () -> Content) {
@@ -30,7 +30,7 @@ struct BottomBar<Content:View>: View {
                 Spacer()
             }
         }
-
+        
     }
 }
 
@@ -54,7 +54,7 @@ struct BottomBarItem: View {
             .lineLimit(1)
             .padding(14)
             .background(RoundedRectangle(cornerRadius: 12, style: .continuous).foregroundColor(Color(.systemBackground)))
-        
+            
         }
         
         .buttonStyle(RegularButtonStyle())

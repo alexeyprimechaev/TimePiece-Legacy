@@ -11,7 +11,7 @@ import UserNotifications
 import AVFoundation
 
 struct TimeItemCell: View {
-//MARK: - Properties
+    //MARK: - Properties
     
     //MARK: Dynamic Propertiess
     @ObservedObject var timeItem: TimeItem
@@ -27,7 +27,7 @@ struct TimeItemCell: View {
     @State private var timeFieldDummy = UITextField()
     @State private var timeFocusedDummy = false
     
-//MARK: - View
+    //MARK: - View
     var body: some View {
         
         
@@ -60,61 +60,61 @@ struct TimeItemCell: View {
         } label: {
             
             Group {
-            if !timeItem.isStopwatch {
-                VStack(alignment: .leading, spacing: 0) {
-                Text(timeItem.title.isEmpty ? Strings.timer : LocalizedStringKey(timeItem.title))
-                ZStack(alignment: .topLeading) {
-                    if timeItem.isRunning {
-                        if timeItem.remainingTime == 0 {
-                            Text("Done").opacity(0.5)
-                        } else {
-                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                if !timeItem.isStopwatch {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(timeItem.title.isEmpty ? Strings.timer : LocalizedStringKey(timeItem.title))
+                        ZStack(alignment: .topLeading) {
+                            if timeItem.isRunning {
+                                if timeItem.remainingTime == 0 {
+                                    Text("Done").opacity(0.5)
+                                } else {
+                                    TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                                }
+                                
+                            }
+                            else {
+                                TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                            }
                         }
                         
+                        
+                        
+                        
                     }
-                    else {
-                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
-                    }
-                }
-                    
-
-                    
-                    
-            }
-            } else {
-                VStack(alignment: .leading, spacing: 0) {
-                
-                ZStack(alignment: .topLeading) {
+                } else {
                     VStack(alignment: .leading, spacing: 0) {
-                        if timeItem.isRunning {
-                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                        
+                        ZStack(alignment: .topLeading) {
+                            VStack(alignment: .leading, spacing: 0) {
+                                if timeItem.isRunning {
+                                    TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                                }
+                                else {
+                                    Text("Start").fontSize(.title).opacity(0.5)
+                                }
+                            }.animation(.default)
+                            
+                            
                         }
-                        else {
-                            Text("Start").fontSize(.title).opacity(0.5)
-                        }
-                    }.animation(.default)
-                    
-
+                        Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title))
+                        
+                        
+                        
+                        
+                    }
                 }
-                Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title))
-                    
-
-                    
-                    
-            }
-            }
             }
             
-                
-                
-                // Paused animations
-
-                
-                // For layout stability
-                
-
-                
-                
+            
+            
+            // Paused animations
+            
+            
+            // For layout stability
+            
+            
+            
+            
             .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                 self.updateTime()
             }
@@ -130,14 +130,14 @@ struct TimeItemCell: View {
             .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
         }
         
-            
+        
         //MARK: Styling
         .fontSize(.title)
         .buttonStyle(TitleButtonStyle())
         .padding(7)
         .fixedSize()
-
-    
+        
+        
         
     }
     
@@ -156,7 +156,7 @@ struct TimeItemCell: View {
                 
                 
                 if timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
-                   
+                    
                     timeItem.togglePause()
                     
                     timeItem.remainingTime = 0
@@ -166,8 +166,8 @@ struct TimeItemCell: View {
                 }
                 
                 currentTime = timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-
-       
+                
+                
             }
         }
         

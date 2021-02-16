@@ -13,6 +13,6 @@ struct TypePicker: View {
     @Binding var type: Bool
     
     var body: some View {
-       Text("")
+        Text("")
     }
 }

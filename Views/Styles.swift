@@ -30,7 +30,7 @@ struct FontStyle: ViewModifier {
             
             .font(fontSize == .title ? Font.system(.largeTitle, design: changeDesign ? settings.fontDesign : .default).bold().monospacedDigit() : fontSize == .smallTitle ? Font.system(.headline, design: changeDesign ? settings.fontDesign : .default).monospacedDigit() : .system(size: 14, weight: .medium, design: changeDesign ? settings.fontDesign : .default))
             .saturation(settings.isMonochrome ? 0 : 1)
-            
+        
     }
 }
 
@@ -41,24 +41,24 @@ extension View {
         return self.modifier(FontStyle(fontSize: size))
     }
     
-
+    
 }
 
 
 //MARK: - Button Styles
 struct TitleButtonStyle: ButtonStyle {
-
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
             .opacity(configuration.isPressed ? 0.5 : 1.0)
             .animation(.easeOut(duration: 0.2))
     }
-
+    
 }
 
 struct RegularButtonStyle: ButtonStyle {
-
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         
         
@@ -66,11 +66,11 @@ struct RegularButtonStyle: ButtonStyle {
             .opacity(configuration.isPressed ? 0.33 : 1.0)
             .animation(.easeOut(duration: 0.2))
     }
-
+    
 }
 
 struct PrimaryButtonStyle: ButtonStyle {
-
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         
         
@@ -85,7 +85,7 @@ struct PrimaryButtonStyle: ButtonStyle {
                 
             }
     }
-
+    
 }
 
 public func regularHaptic() {

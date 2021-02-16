@@ -14,7 +14,7 @@ import SwiftUI
 
 public class LogItem: NSManagedObject, Identifiable {
     
-//MARK: - Properties
+    //MARK: - Properties
     
     public var id: NSManagedObjectID {
         objectID
@@ -35,7 +35,7 @@ public class LogItem: NSManagedObject, Identifiable {
 
 //MARK: - Unwrappers
 extension LogItem {
-
+    
     var title: String {
         get { titleStored ?? "Found Nil" }
         set { titleStored = newValue }

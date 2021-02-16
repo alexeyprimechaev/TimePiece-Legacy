@@ -36,34 +36,34 @@ struct ContinousPicker: View {
             
             HStack(alignment: .bottom, spacing: 7) {
                 if isContinous {
-                            HStack(spacing: 0) {
-                                Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(value), height: 40)
-                                Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(1-value), height: 40).opacity(0.5)
-                            }.mask(
-                                Text("Tap Me Every")
-                                    .fontSize(.title)
-                                    .fixedSize()
-                                    
-                                    .overlay(
-                                        GeometryReader { geometry in
-                                            Spacer()
-                                                .onAppear {
-                                                    print("fucko")
-                                                    print(geometry.size.width)
-                                                    width = geometry.size.width
-                                                }
-                                                
+                    HStack(spacing: 0) {
+                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(value), height: 40)
+                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(1-value), height: 40).opacity(0.5)
+                    }.mask(
+                        Text("Tap Me Every")
+                            .fontSize(.title)
+                            .fixedSize()
+                            
+                            .overlay(
+                                GeometryReader { geometry in
+                                    Spacer()
+                                        .onAppear {
+                                            print("fucko")
+                                            print(geometry.size.width)
+                                            width = geometry.size.width
                                         }
-                                    )
+                                    
+                                }
                             )
+                    )
                     
                     Label {
                         Text("\(Int(120*value))m").fontSize(.smallTitle).padding(.bottom, 5).fixedSize()
                     } icon: {
                         Image(systemName: "rays").font(.headline)
                     }
-                
-                        
+                    
+                    
                 } else {
                     Text("Tap Me Every")
                         .fontSize(.title)
@@ -84,29 +84,29 @@ struct ContinousPicker: View {
             }
             .padding(7)
             .gesture(DragGesture(minimumDistance: 1, coordinateSpace: .local)
-                
-                .onChanged { value in
-                    isContinous = true
-                    
-                    let delta = Float(value.translation.width/width)
-                    print("delta \(delta)")
-                    print("value \(self.value)")
-                    print("start value \(startValue)")
-                    self.value = min(max(0, (startValue + delta)), 1)
-                    print("newValue \(self.value)")
-                    
-                }
-                     
-                .onEnded { endValue in
-                    startValue = min(max(0, Float(endValue.location.x/width)), 1)
-                }
+                        
+                        .onChanged { value in
+                            isContinous = true
+                            
+                            let delta = Float(value.translation.width/width)
+                            print("delta \(delta)")
+                            print("value \(self.value)")
+                            print("start value \(startValue)")
+                            self.value = min(max(0, (startValue + delta)), 1)
+                            print("newValue \(self.value)")
+                            
+                        }
+                        
+                        .onEnded { endValue in
+                            startValue = min(max(0, Float(endValue.location.x/width)), 1)
+                        }
             )
             
-                 
-                    
-                }
             
             
+        }
+        
+        
         .onAppear {
             value = values[selectedValue]
         }
@@ -115,9 +115,9 @@ struct ContinousPicker: View {
         
         
         
-
-                
-            
+        
+        
+        
         
         
     }

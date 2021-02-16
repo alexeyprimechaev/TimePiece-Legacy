@@ -16,13 +16,13 @@ struct TitleEditor: View {
     @State var value = String()
     
     @State var becomeFirstResponder = false
-        
+    
     @ObservedObject var timeItem = TimeItem()
     
     @Binding var textField: UITextField
     
     @Binding var isFocused: Bool
-        
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             HStack(alignment: .bottom, spacing: 7) {
@@ -51,29 +51,29 @@ struct TitleEditor: View {
                         isFocused = false
                     }
                 }
-                    .introspectTextField { field in
-                        if becomeFirstResponder {
-                            field.becomeFirstResponder()
-                        }
-                        textField = field
-                        textField.font = UIFont(name: "AppleColorEmoji", size: 34)
-                        textField.font = .systemFont(ofSize: 34, weight: .bold)
-                        textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-
+                .introspectTextField { field in
+                    if becomeFirstResponder {
+                        field.becomeFirstResponder()
                     }
-                    .onChange(of: timeItem.title) { newValue in
-                        try? timeItem.managedObjectContext?.save()
-                    }
-                    .fontSize(.title)
-                    .foregroundColor(Color.clear)
-                    .accentColor(Color.primary)
+                    textField = field
+                    textField.font = UIFont(name: "AppleColorEmoji", size: 34)
+                    textField.font = .systemFont(ofSize: 34, weight: .bold)
+                    textField.addTarget(self, action: #selector(TitleTextHelper.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+                    
+                }
+                .onChange(of: timeItem.title) { newValue in
+                    try? timeItem.managedObjectContext?.save()
+                }
+                .fontSize(.title)
+                .foregroundColor(Color.clear)
+                .accentColor(Color.primary)
             }
             
             
         }
-    .padding(7)
+        .padding(7)
         .animation(nil)
-    
+        
     }
 }
 

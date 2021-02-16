@@ -37,8 +37,8 @@ struct PersonCard: View {
                         
                         Text(description).opacity(0.5).fontSize(.smallTitle)
                     }
-                        
-                        
+                    
+                    
                 }
             }
         }.buttonStyle(TitleButtonStyle())

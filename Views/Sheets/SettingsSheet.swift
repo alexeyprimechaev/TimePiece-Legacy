@@ -11,9 +11,9 @@ import SwiftUI
 struct SettingsSheet: View {
     
     @EnvironmentObject var settings: Settings
-                        
+    
     var discard: () -> Void
-            
+    
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
             HeaderBar(leadingAction: discard,
@@ -50,7 +50,7 @@ struct SettingsSheet: View {
                         PremiumBadge {
                             PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $settings.precisionSettingDefault)
                         }
-                            
+                        
                         PremiumBadge {
                             PickerButton(title: Strings.reusable, values: TimeItem.reusableSettings, controlledValue: $settings.isReusableDefault)
                         }
@@ -71,13 +71,13 @@ struct SettingsSheet: View {
                         PremiumBadge {
                             PickerButton(title: Strings.logSeparators, values: [true.onOff, false.onOff], controlledValue: $settings.showingDividers.onOff)
                         }
-                                                
+                        
                     }
                     
                     
                 }.padding(.leading, 21).padding(.bottom, 28).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-                    
-                }
+                
+            }
         }
         
     }

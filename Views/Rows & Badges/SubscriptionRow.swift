@@ -33,18 +33,18 @@ struct SubscriptionRow: View {
 struct SubscribtionPoints<Content:View>: View {
     
     let content: Content
-
+    
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
     }
-        
+    
     @State var selection = 0
     
     var body: some View {
         TabView(selection: $selection.animation()) {
             content
         }.tabViewStyle(PageTabViewStyle()).indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never)).frame(minHeight: 340, idealHeight: 340, maxHeight: 340, alignment: .center)
-
+        
         .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { time in
             withAnimation {
                 if selection < 5 {

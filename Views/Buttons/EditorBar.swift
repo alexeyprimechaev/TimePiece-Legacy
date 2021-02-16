@@ -10,10 +10,10 @@ import SwiftUI
 
 
 struct EditorBar<Content:View>: View {
-        
     
     
-
+    
+    
     init(titleField: Binding<UITextField>, timeField: Binding<UITextField>, titleFocused: Binding<Bool>, timeFocused: Binding<Bool>, showSwitcher: Binding<Bool>, @ViewBuilder button: @escaping () -> Content) {
         self._titleField = titleField
         self._timeField = timeField
@@ -30,7 +30,7 @@ struct EditorBar<Content:View>: View {
     @Binding var timeFocused: Bool
     
     @Binding var showSwitcher: Bool
-        
+    
     let button: Content
     
     
@@ -59,7 +59,7 @@ struct EditorBar<Content:View>: View {
                 }
                 
                 
-               
+                
                 
                 button
             }.padding(.horizontal, 14).foregroundColor(.primary)

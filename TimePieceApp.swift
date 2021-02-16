@@ -20,7 +20,7 @@ struct TimePieceApp: App {
     let persistenceController = PersistenceController.shared
     var settings = Settings()
     var appState = AppState()
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -31,15 +31,15 @@ struct TimePieceApp: App {
                     if phase == .active {
                         print("start")
                         let calendar = Calendar(identifier: .gregorian)
-
+                        
                         // Weekday units are the numbers 1 through n, where n is the number of days in the week.
                         // For example, in the Gregorian calendar, n is 7 and Sunday is represented by 1.
-                       var date = DateComponents()
+                        var date = DateComponents()
                         
-                            date.hour = 10
-                            date.minute = 00
-                            date.weekday = 7
-                            date.calendar = calendar
+                        date.hour = 10
+                        date.minute = 00
+                        date.weekday = 7
+                        date.calendar = calendar
                         
                         
                         let nextSunday = calendar.nextDate(after: Date(), matching: date, matchingPolicy: .nextTimePreservingSmallerComponents) // "Jan 14, 2018 at 12:00 AM"
@@ -55,9 +55,9 @@ struct TimePieceApp: App {
                         
                         //MARK: Удолить на релизе
                         settings.isSubscribed = true
-//                        if settings.isSubscribed {
-//                            settings.validateSubscription()
-//                        }
+                        //                        if settings.isSubscribed {
+                        //                            settings.validateSubscription()
+                        //                        }
                         
                         
                         
@@ -88,7 +88,7 @@ struct TimePieceApp: App {
                         } else {
                             
                         }
-                                                
+                        
                     }
                     
                     
@@ -117,10 +117,10 @@ struct TimePieceApp: App {
                             // Deliver content from server, then:
                             SwiftyStoreKit.finishTransaction(purchase.transaction)
                         }
-                        // Unlock content
+                    // Unlock content
                     case .failed, .purchasing, .deferred:
                         break // do nothing
-                        
+                    
                     }
                 }
             }
@@ -132,5 +132,5 @@ struct TimePieceApp: App {
             return true
         }
     }
-
+    
 }

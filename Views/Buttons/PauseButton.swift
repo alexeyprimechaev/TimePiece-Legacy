@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PauseButton: View {
     
-//MARK: - Properties
+    //MARK: - Properties
     
     
     
@@ -30,7 +30,7 @@ struct PauseButton: View {
     var onTap: () -> Void
     var offTap: () -> Void
     
-//MARK: - View
+    //MARK: - View
     var body: some View {
         
         Button {

@@ -44,7 +44,7 @@ public class Settings: ObservableObject {
     
     @Published var fontDesign: Font.Design = ((defaultsStored.value(forKey: "fontDesign") ?? "Default") as! String).fontDesignValue {
         willSet {
-
+            
             defaultsStored.set(newValue.string, forKey: "fontDesign")
         }
     }
@@ -74,21 +74,21 @@ public class Settings: ObservableObject {
     }
     
     @Published var soundSettingDefault: String = (defaultsStored.string(forKey: "soundSettingDefault") ?? TimeItem.soundSettings[0]) {
-           willSet {
-               defaultsStored.set(newValue, forKey: "soundSettingDefault")
-           }
+        willSet {
+            defaultsStored.set(newValue, forKey: "soundSettingDefault")
+        }
     }
     
     @Published var precisionSettingDefault: String = (defaultsStored.string(forKey: "precisionSettingDefault") ?? TimeItem.precisionSettings[1]) {
-           willSet {
-               defaultsStored.set(newValue, forKey: "precisionSettingDefault")
-           }
+        willSet {
+            defaultsStored.set(newValue, forKey: "precisionSettingDefault")
+        }
     }
     
     @Published var notificationSettingDefault: String = (defaultsStored.string(forKey: "notificationSettingDefault") ?? TimeItem.notificationSettings[0]) {
-           willSet {
-               defaultsStored.set(newValue, forKey: "notificationSettingDefault")
-           }
+        willSet {
+            defaultsStored.set(newValue, forKey: "notificationSettingDefault")
+        }
     }
     
     @Published var monthlyPrice = defaultsStored.string(forKey: "monthlyPrice") ?? "$3" {
@@ -102,7 +102,7 @@ public class Settings: ObservableObject {
             defaultsStored.set(newValue, forKey: "yearlyPrice")
         }
     }
-
+    
     func getMonthlyPrice() {
         SwiftyStoreKit.retrieveProductsInfo(["timepiecesubscription"]) { result in
             if let product = result.retrievedProducts.first {
@@ -157,7 +157,7 @@ public class Settings: ObservableObject {
                     ofType: .autoRenewable, // or .nonRenewing (see below)
                     productId: productIdMonthly,
                     inReceipt: receipt)
-                    
+                
                 switch purchaseResultMonthly {
                 case .purchased(let expiryDate, let items):
                     print("\(productIdMonthly) is valid until \(expiryDate)\n\(items)\n")
@@ -188,9 +188,9 @@ public class Settings: ObservableObject {
                 let productIdYearly = "timepieceyearly"
                 
                 let purchaseResultYearly = SwiftyStoreKit.verifySubscription(
-                ofType: .autoRenewable, // or .nonRenewing (see below)
-                productId: productIdYearly,
-                inReceipt: receipt)
+                    ofType: .autoRenewable, // or .nonRenewing (see below)
+                    productId: productIdYearly,
+                    inReceipt: receipt)
                 
                 switch purchaseResultYearly {
                 case .purchased(let expiryDate, let items):
@@ -218,14 +218,14 @@ public class Settings: ObservableObject {
                         self.isSubscribed = false
                     }
                 }
-
+                
             case .error(let error):
                 print("Receipt verification failed: \(error)")
             }
         }
-
+        
     }
-
+    
     
     
 }
@@ -292,6 +292,6 @@ extension String {
         default:
             return ""
         }
-
+        
     }
 }

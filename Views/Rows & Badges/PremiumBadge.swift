@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct PremiumBadge<Content:View>: View {
-
+    
     let content: Content
-
+    
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
     }
@@ -31,7 +31,7 @@ struct PremiumBadge<Content:View>: View {
             if settings.isSubscribed {
                 
             } else {
-               settings.showingSubscription = true
+                settings.showingSubscription = true
             }
             
         }

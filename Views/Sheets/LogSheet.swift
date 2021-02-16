@@ -30,8 +30,8 @@ struct LogSheet: View {
             TimeItem.dateFormatter.string(from: element.timeStarted)
         }.values.sorted { $0[0].timeStarted > $1[0].timeStarted }
     }
-
-        
+    
+    
     var sections: [ASTableViewSection<Int>]
     {
         update(logItems).enumerated().map
@@ -45,22 +45,22 @@ struct LogSheet: View {
             }
             .sectionHeader
             {
-               VStack(spacing: 0)
+                VStack(spacing: 0)
                 {
                     HStack() {
                         Text(TimeItem.dateFormatter.string(from: section[0].timeStarted)).fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
                         Spacer()
                     }
-
+                    
                     if settings.showingDividers {
                         Divider()
                     }
-               }.background(Color(UIColor.systemBackground))
+                }.background(Color(UIColor.systemBackground))
             }
         }
     }
     
-
+    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -74,47 +74,47 @@ struct LogSheet: View {
             }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 28).padding(.vertical, 7)
             if selectedScreen == 0 {
                 VStack(spacing: 0)
-                 {
-                     HStack {
-                         Text("This Week").fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
-                         Spacer()
-                     }
-                    
-                     
-                     if settings.showingDividers {
-                         Divider()
-                     }
-                    ScrollView {
-                    VStack(spacing: 14) {
-                        Spacer().frame(height: 14)
-                        InsightRow(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")
-                        InsightRow(icon: "heart.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: $mostPopularTimer, value: $mostPopularTimerCount, showingValue: true, subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productive.")
-                        InsightRow(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: $dailyAverage, value: $mostPopularTimerCount, subtitle: "Looks like you have good average productivity. Well done, mate!")
-                        InsightRow(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: $totalTimersRun, value: $mostPopularTimerCount, subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
+                {
+                    HStack {
+                        Text("This Week").fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
                         Spacer()
-                    }.padding(.leading, 21)
+                    }
+                    
+                    
+                    if settings.showingDividers {
+                        Divider()
+                    }
+                    ScrollView {
+                        VStack(spacing: 14) {
+                            Spacer().frame(height: 14)
+                            InsightRow(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")
+                            InsightRow(icon: "heart.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: $mostPopularTimer, value: $mostPopularTimerCount, showingValue: true, subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productive.")
+                            InsightRow(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: $dailyAverage, value: $mostPopularTimerCount, subtitle: "Looks like you have good average productivity. Well done, mate!")
+                            InsightRow(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: $totalTimersRun, value: $mostPopularTimerCount, subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
+                            Spacer()
+                        }.padding(.leading, 21)
                     }
                 }.background(Color(UIColor.systemBackground))
                 
             } else {
-
-//                List(update(logItems), id: \.self) { section in
-//                    ForEach(section) { logItem in
-//                        LogView(logItem: logItem)
-//                    }
-//                }
-
+                
+                //                List(update(logItems), id: \.self) { section in
+                //                    ForEach(section) { logItem in
+                //                        LogView(logItem: logItem)
+                //                    }
+                //                }
+                
                 ASTableView(style: .plain, sections: sections).separatorsEnabled(settings.showingDividers)
-                .alwaysBounce(true)
+                    .alwaysBounce(true)
                 
             }
             
-        
+            
         }.onAppear {
             self.settings.hasSeenTrends = true
             self.calculateValues(logItems: self.logItems)
         }
-
+        
     }
     
     func clearLog() {
@@ -133,19 +133,19 @@ struct LogSheet: View {
                 withAnimation(.default) {
                     context.delete(logItem)
                 }
-               
+                
             }
-
-
+            
+            
             // The delete sub-menu is created like the top-level menu, but we also specify an image and options
             let delete = UIMenu(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
             
-
             
-
+            
+            
             let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
             }
-
+            
             // Then we add edit as a child of the main menu
             let mainMenu = UIMenu(title: "", children: [delete])
             return mainMenu
@@ -180,15 +180,15 @@ struct LogSheet: View {
         
     }
     
-
+    
     func mostFrequent(array: [LogItem]) -> (value: String, count: Int)? {
-
+        
         let counts = array.reduce(into: [:]) { $0[$1.title, default: 0] += 1 }
-
+        
         if let (value, count) = counts.max(by: { $0.1 < $1.1 }) {
             return (value, count)
         }
-
+        
         // array was empty
         return nil
     }
@@ -212,7 +212,7 @@ struct LogSheet: View {
         
         return (sum/7).relativeStringFromNumber()
     }
-
+    
     
     
 }

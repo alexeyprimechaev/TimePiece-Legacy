@@ -28,7 +28,7 @@ struct TimeDisplay: View {
     
     @Binding var textField: UITextField
     @Binding var isFocused: Bool
-            
+    
     @State private var milliseconds = "00"
     @State private var seconds = ""
     @State private var minutes = ""
@@ -58,7 +58,7 @@ struct TimeDisplay: View {
                                 Text(milliseconds).animation(nil)
                                     .opacity(isOpaque ? 1 : 0.5)
                             }
-                           
+                            
                         }
                         
                         HStack(spacing: 0) {
@@ -81,42 +81,42 @@ struct TimeDisplay: View {
                     }
                 }
                 
+                
+                .transition(.opacity)
+                .animation(isPaused && isRunning ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: isPaused)
+                .fontSize(.title)
+                .animation(nil)
+                .fixedSize()
+                .onChange(of: timeString) { newValue in
+                    if timeString.count == 8 {
+                        hours = String(timeString.prefix(2))
+                        minutes = String(timeString.prefix(4).suffix(2))
+                        seconds = String(timeString.suffix(4).prefix(2))
+                        milliseconds = String(timeString.suffix(2))
+                    } else {
+                        hours = String(timeString.prefix(2))
+                        minutes = String(timeString.prefix(4).suffix(2))
+                        seconds = String(timeString.suffix(2))
+                    }
+                }
+                .onAppear {
+                    if timeString.count == 8 {
+                        hours = String(timeString.prefix(2))
+                        minutes = String(timeString.prefix(4).suffix(2))
+                        seconds = String(timeString.suffix(4).prefix(2))
+                        milliseconds = String(timeString.suffix(2))
+                    } else {
+                        hours = String(timeString.prefix(2))
+                        minutes = String(timeString.prefix(4).suffix(2))
+                        seconds = String(timeString.suffix(2))
+                    }
                     
-                    .transition(.opacity)
-                    .animation(isPaused && isRunning ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: isPaused)
-                    .fontSize(.title)
-                    .animation(nil)
-                    .fixedSize()
-                    .onChange(of: timeString) { newValue in
-                        if timeString.count == 8 {
-                            hours = String(timeString.prefix(2))
-                            minutes = String(timeString.prefix(4).suffix(2))
-                            seconds = String(timeString.suffix(4).prefix(2))
-                            milliseconds = String(timeString.suffix(2))
-                        } else {
-                            hours = String(timeString.prefix(2))
-                            minutes = String(timeString.prefix(4).suffix(2))
-                            seconds = String(timeString.suffix(2))
-                        }
-                    }
-                    .onAppear {
-                        if timeString.count == 8 {
-                            hours = String(timeString.prefix(2))
-                            minutes = String(timeString.prefix(4).suffix(2))
-                            seconds = String(timeString.suffix(4).prefix(2))
-                            milliseconds = String(timeString.suffix(2))
-                        } else {
-                            hours = String(timeString.prefix(2))
-                            minutes = String(timeString.prefix(4).suffix(2))
-                            seconds = String(timeString.suffix(2))
-                        }
-                        
-                    }
+                }
                 .padding(displayStyle == .labeled ? 7 : 0)
             }
         }
         
-
+        
         
         
     }

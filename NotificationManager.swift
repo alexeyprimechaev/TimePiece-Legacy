@@ -15,10 +15,10 @@ public class NotificationManager {
         
         get { (defaultsStored.value(forKey: "badgeCount") ?? 0) as! Int }
         set { if newValue < 0 {
-                defaultsStored.set(0, forKey: "badgeCount")
-            } else {
-                defaultsStored.set(newValue, forKey: "badgeCount")
-            }
+            defaultsStored.set(0, forKey: "badgeCount")
+        } else {
+            defaultsStored.set(newValue, forKey: "badgeCount")
+        }
         }
     }
     
@@ -35,9 +35,9 @@ public class NotificationManager {
     
     static func scheduleNotification(timeItem: TimeItem) {
         print("schedule")
-
+        
         requestNotificationPermisson()
-
+        
         if timeItem.isPaused {
             
             let content = UNMutableNotificationContent()
@@ -54,7 +54,7 @@ public class NotificationManager {
             dump(request)
             
             UNUserNotificationCenter.current().add(request)
- 
+            
             
         } else {
             if timeItem.remainingTime > 0 {
@@ -97,25 +97,25 @@ public class NotificationManager {
     }
     
     static func createRepeatingNotification() {
-            var date = DateComponents()
+        var date = DateComponents()
         
-            date.hour = 10
-            date.minute = 00
-            date.weekday = 7
+        date.hour = 10
+        date.minute = 00
+        date.weekday = 7
         
-            print("fuck")
+        print("fuck")
         
-            let content = UNMutableNotificationContent()
-            content.title = "Check how you've been spending your time this week"
-//            content.body = "Don't forget to log your mood"
-            content.sound = UNNotificationSound.default
-            badgeCount += 1
-            content.badge = NSNumber(value: badgeCount)
+        let content = UNMutableNotificationContent()
+        content.title = "Check how you've been spending your time this week"
+        //            content.body = "Don't forget to log your mood"
+        content.sound = UNNotificationSound.default
+        badgeCount += 1
+        content.badge = NSNumber(value: badgeCount)
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
-            let request = UNNotificationRequest(identifier: "openApp", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
-          
+        let request = UNNotificationRequest(identifier: "openApp", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+            
         })
     }
 }

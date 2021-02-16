@@ -12,7 +12,7 @@ struct ListSection<Content:View>: View {
     
     let title: LocalizedStringKey
     let content: Content
-
+    
     init(title: LocalizedStringKey, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
         self.content = content()

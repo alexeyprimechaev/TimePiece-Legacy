@@ -48,12 +48,12 @@ struct Provider: IntentTimelineProvider {
         }
         
         return [
-                WidgetTimeItem(isPlaceholder: false, date: Date(), title: timeItem.title, totalTime: timeItem.totalTime, remainingTime: timeItem.remainingTime, timeStarted: timeItem.timeStarted, timeFinished: timeItem.timeFinished, isStopwatch: timeItem.isStopwatch, isPaused: timeItem.isPaused, isRunning: timeItem.isRunning, uri: timeItem.objectID.uriRepresentation().absoluteString, configuration: ConfigurationIntent()),
-                
+            WidgetTimeItem(isPlaceholder: false, date: Date(), title: timeItem.title, totalTime: timeItem.totalTime, remainingTime: timeItem.remainingTime, timeStarted: timeItem.timeStarted, timeFinished: timeItem.timeFinished, isStopwatch: timeItem.isStopwatch, isPaused: timeItem.isPaused, isRunning: timeItem.isRunning, uri: timeItem.objectID.uriRepresentation().absoluteString, configuration: ConfigurationIntent()),
+            
             WidgetTimeItem(isFinished: true, isPlaceholder: false, date: timeItem.timeFinished, title: timeItem.title, totalTime: timeItem.totalTime, remainingTime: timeItem.remainingTime, timeStarted: timeItem.timeStarted, timeFinished: timeItem.timeFinished, isStopwatch: timeItem.isStopwatch, isPaused: timeItem.isPaused, isRunning: timeItem.isRunning, uri: timeItem.objectID.uriRepresentation().absoluteString, configuration: ConfigurationIntent())
         ]
         
-
+        
         
     }
     
@@ -62,19 +62,19 @@ struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> WidgetTimeItem {
         return fetchTimeItem()
     }
-
+    
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (WidgetTimeItem) -> ()) {
         completion(fetchTimeItem())
     }
-
+    
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         
         var entries: [WidgetTimeItem] = []
         
         let currentDate = Date()
-                
+        
         entries.append(contentsOf: fetchTimeItemWithConfig(date: currentDate, configuration: configuration))
-
+        
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
@@ -108,51 +108,70 @@ struct WidgetTimeItem: TimelineEntry {
     let configuration: ConfigurationIntent
 }
 
-struct TimePieceWidgetEntryView : View {
+struct TimePieceWidgetEntryCell: View {
+    
+    var entry: Provider.Entry
+    
+    var body: some View {
+        ZStack {
+            ContainerRelativeShape()
+                .inset(by: 0)
+                .fill(Color(.systemGray6))
+            VStack(alignment: .leading, spacing: 4) {
+                Text(entry.title)
+                Text(entry.timeFinished, style: .timer).opacity(0.5)
+            }.padding(7).padding(.horizontal, 7).font(.headline)
+        }
+    }
+    
+}
+
+struct TimePieceWidgetEntryView: View {
     var entry: Provider.Entry
     
     @State private var currentTime: String = "00:00"
-
+    
     var body: some View {
-            VStack(alignment: .leading) {
-                if entry.isPlaceholder {
-                    Text("Edit Widget")
-                    Text("To Select").opacity(0.5)
-                } else {
-                    
-                    if entry.isStopwatch {
-                            if entry.isRunning {
-                                if entry.isPaused {
-                                    Text(entry.remainingTime.stringFromTimeInterval(precisionSetting: TimeItem.precisionSettings[1])).opacity(0.5)
-                                } else {
-                                    Text(entry.timeStarted, style: .timer).opacity(0.5).multilineTextAlignment(.leading)
-                                }
-                            } else {
-                                Text("Start").opacity(0.5)
-                            }
-                        Text(entry.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(entry.title)).lineLimit(1)
-                    } else {
-                        Text(entry.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(entry.title)).lineLimit(2)
-                            if entry.isPaused {
-                                if entry.remainingTime == 0 {
-                                    Text("Done").multilineTextAlignment(.leading).opacity(0.5)
-                                } else {
-                                    Text(entry.remainingTime.stringFromTimeInterval(precisionSetting: TimeItem.precisionSettings[1])).opacity(0.5)
-                                }
-                            } else {
-                                if entry.isFinished {
-                                    Text("Done").multilineTextAlignment(.leading).opacity(0.5)
-                                } else {
-                                    Text(entry.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
-                                }
-                                
-                            }
-                    }
-                    
-                }
-               
+        VStack(alignment: .leading) {
+            if entry.isPlaceholder {
+                Text("Edit Widget")
+                Text("To Select").opacity(0.5)
+            } else {
                 
-            }.font(.title.bold().monospacedDigit()).padding(5).widgetURL(entry.url)
+                if entry.isStopwatch {
+                    if entry.isRunning {
+                        if entry.isPaused {
+                            Text(entry.remainingTime.stringFromTimeInterval(precisionSetting: TimeItem.precisionSettings[1])).opacity(0.5)
+                        } else {
+                            Text(entry.timeStarted, style: .timer).opacity(0.5).multilineTextAlignment(.leading)
+                        }
+                    } else {
+                        Text("Start").opacity(0.5)
+                    }
+                    Text(entry.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(entry.title)).lineLimit(1)
+                } else {
+                    Text(entry.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(entry.title)).lineLimit(2)
+                    if entry.isPaused {
+                        if entry.remainingTime == 0 {
+                            Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                        } else {
+                            Text(entry.remainingTime.stringFromTimeInterval(precisionSetting: TimeItem.precisionSettings[1])).opacity(0.5)
+                        }
+                    } else {
+                        if entry.isFinished {
+                            Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                        } else {
+                            Text(entry.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
+                        }
+                        
+                    }
+                }
+                
+            }
+            
+            
+        }.font(Font.title.bold().monospacedDigit())
+        .padding(5).widgetURL(entry.url)
     }
     
 }
@@ -161,13 +180,10 @@ struct TimePieceWidgetEntryView : View {
 struct TimePieceWidget: Widget {
     let kind: String = "TimePieceWidget"
     
-    let context = PersistenceController.shared.container.viewContext
-    let request = TimeItem.getAllTimeItems()
-    
-    
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             TimePieceWidgetEntryView(entry: entry)
+            
         }
         .configurationDisplayName("Single Time Item")
         .supportedFamilies([.systemSmall, .systemMedium])

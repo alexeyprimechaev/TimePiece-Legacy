@@ -16,7 +16,7 @@ struct TimeItemSheet: View {
     @ObservedObject var timeItem = TimeItem()
     
     @EnvironmentObject var settings: Settings
-        
+    
     @State var name = ""
     
     @State var currentTime: String = "00:00"
@@ -50,80 +50,80 @@ struct TimeItemSheet: View {
             ScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
-                        
+                    
                     TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused).disabled(!timeItem.isPaused)
                     
-                        if timeItem.isRunning {
-                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
-                        }
-                        
-                        if timeItem.isStopwatch {
-                            if timeItem.isReusable {
-                                PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
-                                PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
-                                PremiumBadge {
-                                        PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
-
-                                }
-
-                                PremiumBadge {
-                                    PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
-                                }
-                            } else {
-                                
-                                PremiumBadge {
-                                    RegularButton(title: Strings.makeReusable) {
-                                        timeItem.makeReusable()
-                                    }
-                                }
+                    if timeItem.isRunning {
+                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                    }
+                    
+                    if timeItem.isStopwatch {
+                        if timeItem.isReusable {
+                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
+                            PremiumBadge {
+                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
                                 
                             }
                             
-                            RegularButton(title: "Convert to Timer", icon: "timer") {
-                                if timeItem.isRunning {
-                                    showingConvertAlert = true
-                                } else {
-                                    timeItem.isStopwatch = false
-                                }
+                            PremiumBadge {
+                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
                         } else {
-                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
                             
-                            if timeItem.isReusable {
-                                PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
-                                PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
-                                PremiumBadge {
-                                        PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
-                                    
+                            PremiumBadge {
+                                RegularButton(title: Strings.makeReusable) {
+                                    timeItem.makeReusable()
                                 }
-
-                                PremiumBadge {
-                                    PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
-                                }
-                            } else {
-                                
-                                PremiumBadge {
-                                    RegularButton(title: Strings.makeReusable) {
-                                        timeItem.makeReusable()
-                                    }
-                                }
-                                
                             }
-                            RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                if timeItem.isRunning {
-                                    showingConvertAlert = true
-                                } else {
-                                    withAnimation {
-                                        timeItem.convertToStopwatch()
-                                    }
-                                }
-                                
-                            }
-                            
-                            
                             
                         }
-
+                        
+                        RegularButton(title: "Convert to Timer", icon: "timer") {
+                            if timeItem.isRunning {
+                                showingConvertAlert = true
+                            } else {
+                                timeItem.isStopwatch = false
+                            }
+                        }
+                    } else {
+                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
+                        
+                        if timeItem.isReusable {
+                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
+                            PremiumBadge {
+                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
+                                
+                            }
+                            
+                            PremiumBadge {
+                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
+                            }
+                        } else {
+                            
+                            PremiumBadge {
+                                RegularButton(title: Strings.makeReusable) {
+                                    timeItem.makeReusable()
+                                }
+                            }
+                            
+                        }
+                        RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                            if timeItem.isRunning {
+                                showingConvertAlert = true
+                            } else {
+                                withAnimation {
+                                    timeItem.convertToStopwatch()
+                                }
+                            }
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    
                     
                 }
                 .alert(isPresented: $showingConvertAlert) {
@@ -146,7 +146,7 @@ struct TimeItemSheet: View {
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                     updateTime()
                 }
-
+                
             }
             .animation(.default)
             
@@ -164,7 +164,7 @@ struct TimeItemSheet: View {
                         } icon: {
                             
                         }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                                                .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
+                                                                                        .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
                     }
                 }
             } else {
@@ -184,19 +184,19 @@ struct TimeItemSheet: View {
                     }
                     Spacer().frame(width:28)
                     PauseButton(color: Color.primary, isPaused: $timeItem.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
-                            if timeItem.isStopwatch {
-                                self.timeItem.togglePause()
-                            } else {
-                                if self.timeItem.remainingTime == 0 {
-                                    if self.timeItem.isReusable {
-                                        self.timeItem.reset()
-                                    } else {
-                                        delete()
-                                    }
+                        if timeItem.isStopwatch {
+                            self.timeItem.togglePause()
+                        } else {
+                            if self.timeItem.remainingTime == 0 {
+                                if self.timeItem.isReusable {
+                                    self.timeItem.reset()
                                 } else {
-                                    self.timeItem.togglePause()
+                                    delete()
                                 }
+                            } else {
+                                self.timeItem.togglePause()
                             }
+                        }
                         
                     }, offTap: {
                         if timeItem.isStopwatch {
@@ -236,11 +236,11 @@ struct TimeItemSheet: View {
                 
                 
                 if timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
-                   
+                    
                     timeItem.togglePause()
                     
                     timeItem.remainingTime = 0
-
+                    
                     
                     
                     
@@ -255,8 +255,8 @@ struct TimeItemSheet: View {
                 }
                 
                 currentTime = timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-
-       
+                
+                
             }
         }
         

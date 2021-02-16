@@ -20,7 +20,7 @@ public class TimeItemPlaceholder: TimeItem {
 
 public class TimeItem: NSManagedObject, Identifiable {
     
-//MARK: - Properties
+    //MARK: - Properties
     
     public var id: NSManagedObjectID {
         objectID
@@ -103,7 +103,7 @@ public class TimeItem: NSManagedObject, Identifiable {
         return formatter
     }()
     
-//MARK: - Functions
+    //MARK: - Functions
     
     
     //MARK: Creation (in context)
@@ -125,7 +125,7 @@ public class TimeItem: NSManagedObject, Identifiable {
         timeItem.timeStarted = Date()
         timeItem.timeFinished = timeItem.timeStarted.addingTimeInterval(timeItem.remainingTime)
         timeItem.notificationIdentifier = UUID()
-    
+        
         // Settings
         timeItem.isReusable.yesNo = reusableSetting
         timeItem.soundSetting = soundSetting
@@ -183,7 +183,7 @@ public class TimeItem: NSManagedObject, Identifiable {
                 recordLog()
             }
             
-           
+            
             
         } else {
             
@@ -268,7 +268,7 @@ public class TimeItem: NSManagedObject, Identifiable {
         try? self.managedObjectContext?.save()
     }
     
-
+    
 }
 
 //MARK: - Unwrappers
@@ -321,7 +321,7 @@ extension TimeItem {
             
         }
     }
-        
+    
     var totalTime: TimeInterval {
         get { totalTimeStored as? TimeInterval ?? 0 }
         set { totalTimeStored = newValue as NSNumber }
@@ -388,7 +388,7 @@ extension TimeItem {
             $0.timeStarted < $1.timeStarted
         }
     }
-
+    
     
 }
 
@@ -493,7 +493,7 @@ extension String {
         } else {
             seconds = Int(self) ?? 0
         }
-
+        
         value = TimeInterval(seconds + 60*minutes + 3600*hours)
         
         return value
@@ -540,7 +540,7 @@ extension TimeInterval {
         let seconds = time % 60
         let minutes = (time / 60) % 60
         let hours = (time / 3600)
-       
+        
         
         return String(format: "%0.2d%0.2d%0.2d",hours,minutes,seconds)
         
@@ -554,7 +554,7 @@ extension TimeInterval {
         let seconds = time % 60
         let minutes = (time / 60) % 60
         let hours = (time / 3600)
-
+        
         
         
         return String(format: "%0.2d%0.2d%0.2d%0.2d",hours,minutes,seconds,ms)
@@ -564,9 +564,9 @@ extension TimeInterval {
     
     //MARK: String From TimeInterval
     func stringFromTimeInterval(precisionSetting: String) -> String {
-
+        
         let time = NSInteger(self)
-
+        
         let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 100)
         let seconds = time % 60
         let minutes = (time / 60) % 60
@@ -598,7 +598,7 @@ extension TimeInterval {
                 return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
             }
         }
-
+        
     }
 }
 
