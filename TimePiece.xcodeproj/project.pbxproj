@@ -11,7 +11,7 @@
 		05138DC825D8250C00516E2D /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3ECD23DF271A00C43A23 /* Styles.swift */; };
 		05138DCD25D8257800516E2D /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 05138DCC25D8257800516E2D /* Introspect */; };
 		05138E2625D8302300516E2D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05138E2525D8302300516E2D /* Intents.framework */; };
-		05138E2925D8302300516E2D /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138E2825D8302300516E2D /* IntentHandler.swift */; };
+		05138E2925D8302300516E2D /* ConfigurationIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05138E2825D8302300516E2D /* ConfigurationIntentHandler.swift */; };
 		05138E2D25D8302300516E2D /* TimePieceWidgetIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 05138E2425D8302300516E2D /* TimePieceWidgetIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		05138E3125D8309100516E2D /* TimePieceWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 052A345425D819410052949A /* TimePieceWidget.intentdefinition */; };
 		05138E3225D8310500516E2D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6924F58BD900C740B3 /* Persistence.swift */; };
@@ -24,7 +24,7 @@
 		05138E3A25D833B800516E2D /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 05138E3925D833B800516E2D /* SwiftyStoreKit */; };
 		052A344F25D819410052949A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807C15AC250185710055227D /* WidgetKit.framework */; };
 		052A345025D819410052949A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807C15AE250185710055227D /* SwiftUI.framework */; };
-		052A345325D819410052949A /* TimePieceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A345225D819410052949A /* TimePieceWidget.swift */; };
+		052A345325D819410052949A /* SingleTimeItemWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A345225D819410052949A /* SingleTimeItemWidget.swift */; };
 		052A345625D819430052949A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 052A345525D819430052949A /* Assets.xcassets */; };
 		052A345825D819430052949A /* TimePieceWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 052A345425D819410052949A /* TimePieceWidget.intentdefinition */; };
 		052A345925D819430052949A /* TimePieceWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 052A345425D819410052949A /* TimePieceWidget.intentdefinition */; };
@@ -38,6 +38,8 @@
 		052A346925D81A4B0052949A /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
 		052A346A25D81A5D0052949A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A346125D819950052949A /* AppGroup.swift */; };
 		052A346C25D81AE90052949A /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 052A346B25D81AE90052949A /* SwiftyStoreKit */; };
+		054F01A125DDCC17002ACCBF /* TimePieceWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */; };
+		054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */; };
 		05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EDD9E025A2296100E78486 /* ContinousPicker.swift */; };
 		05F899F725D956F400A9FB90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
 		80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
@@ -119,15 +121,17 @@
 		0502DA4A25911F4A00CB4A14 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		05138E2425D8302300516E2D /* TimePieceWidgetIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimePieceWidgetIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		05138E2525D8302300516E2D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
-		05138E2825D8302300516E2D /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		05138E2825D8302300516E2D /* ConfigurationIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationIntentHandler.swift; sourceTree = "<group>"; };
 		05138E2A25D8302300516E2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		052A344E25D819410052949A /* TimePieceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimePieceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		052A345225D819410052949A /* TimePieceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceWidget.swift; sourceTree = "<group>"; };
+		052A345225D819410052949A /* SingleTimeItemWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTimeItemWidget.swift; sourceTree = "<group>"; };
 		052A345425D819410052949A /* TimePieceWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TimePieceWidget.intentdefinition; sourceTree = "<group>"; };
 		052A345525D819430052949A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		052A345725D819430052949A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		052A346025D819540052949A /* TimePieceWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetExtension.entitlements; sourceTree = "<group>"; };
 		052A346125D819950052949A /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceWidgets.swift; sourceTree = "<group>"; };
+		054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridWidget.swift; sourceTree = "<group>"; };
 		05B1F91525D836F300C5E68E /* TimePieceWidgetIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetIntent.entitlements; sourceTree = "<group>"; };
 		05EDD9E025A2296100E78486 /* ContinousPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinousPicker.swift; sourceTree = "<group>"; };
 		8012C7AA24057D4200E7798E /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
@@ -217,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				05B1F91525D836F300C5E68E /* TimePieceWidgetIntent.entitlements */,
-				05138E2825D8302300516E2D /* IntentHandler.swift */,
+				05138E2825D8302300516E2D /* ConfigurationIntentHandler.swift */,
 				05138E2A25D8302300516E2D /* Info.plist */,
 			);
 			path = TimePieceWidgetIntent;
@@ -226,7 +230,9 @@
 		052A345125D819410052949A /* TimePieceWidget */ = {
 			isa = PBXGroup;
 			children = (
-				052A345225D819410052949A /* TimePieceWidget.swift */,
+				052A345225D819410052949A /* SingleTimeItemWidget.swift */,
+				054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */,
+				054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */,
 				052A345425D819410052949A /* TimePieceWidget.intentdefinition */,
 				052A345525D819430052949A /* Assets.xcassets */,
 				052A345725D819430052949A /* Info.plist */,
@@ -538,7 +544,7 @@
 				05138E3825D8313000516E2D /* AppGroup.swift in Sources */,
 				05138E3125D8309100516E2D /* TimePieceWidget.intentdefinition in Sources */,
 				05138E3625D8311000516E2D /* NotificationManager.swift in Sources */,
-				05138E2925D8302300516E2D /* IntentHandler.swift in Sources */,
+				05138E2925D8302300516E2D /* ConfigurationIntentHandler.swift in Sources */,
 				05138E3325D8310800516E2D /* TimePiece.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,14 +554,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				052A346725D81A410052949A /* Settings.swift in Sources */,
+				054F01A125DDCC17002ACCBF /* TimePieceWidgets.swift in Sources */,
 				05138DC825D8250C00516E2D /* Styles.swift in Sources */,
+				054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */,
 				052A346925D81A4B0052949A /* LogItem.swift in Sources */,
 				052A346425D819A40052949A /* Persistence.swift in Sources */,
 				052A345825D819430052949A /* TimePieceWidget.intentdefinition in Sources */,
 				052A346A25D81A5D0052949A /* AppGroup.swift in Sources */,
 				052A346625D81A2B0052949A /* NotificationManager.swift in Sources */,
 				052A346825D81A470052949A /* TimePiece.xcdatamodeld in Sources */,
-				052A345325D819410052949A /* TimePieceWidget.swift in Sources */,
+				052A345325D819410052949A /* SingleTimeItemWidget.swift in Sources */,
 				052A346525D81A120052949A /* TimeItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -117,7 +117,7 @@ struct ContentView: View {
                 } else {
                     BottomBarItem(title: Strings.new,icon: "plus") {
                         withAnimation(.default) {
-                            TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
+                            newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
                             appState.activeSheet = 1
                             appState.showingSheet = true
                         }
@@ -127,7 +127,7 @@ struct ContentView: View {
                         
                         Button {
                             withAnimation(.default) {
-                                TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
+                                newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
                                 appState.activeSheet = 1
                                 appState.showingSheet = true
                             }
@@ -137,7 +137,7 @@ struct ContentView: View {
                         
                         Button {
                             withAnimation(.default) {
-                                TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
+                                newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
                                 appState.activeSheet = 1
                                 appState.showingSheet = true
                             }
@@ -147,9 +147,9 @@ struct ContentView: View {
                         Divider()
                         Button {
                             withAnimation(.default) {
-                                TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
+                                newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    timeItems[timeItems.count-1].togglePause()
+                                    newTimeItem.togglePause()
                                 }
                             }
                         } label: {
@@ -215,7 +215,7 @@ struct ContentView: View {
                 }.environmentObject(settings)
                 
             case 1:
-                NewTimeItemSheet(timeItem: timeItems[timeItems.count-1], isAdding: $isAdding) {
+                NewTimeItemSheet(timeItem: newTimeItem, isAdding: $isAdding) {
                     appState.showingSheet = false
                 }.environmentObject(settings)
                 

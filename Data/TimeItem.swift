@@ -141,6 +141,7 @@ public class TimeItem: NSManagedObject, Identifiable {
             print(error)
         }
         
+        WidgetCenter.shared.reloadAllTimelines()
         return timeItem
     }
     
@@ -266,6 +267,7 @@ public class TimeItem: NSManagedObject, Identifiable {
         }
         
         try? self.managedObjectContext?.save()
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     
@@ -512,11 +514,18 @@ extension TimeInterval {
         let hours = (time / 3600)
         
         if hours > 0 {
-            return String(format: "%0.2d%0.2d%0.2d",hours,minutes,seconds)
-        } else if (minutes>0) {
-            return String(format: "%0.2d%0.2d",minutes,seconds)
+            if hours > 9 {
+                return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+            } else {
+                return String(format: "%0.1d:%0.2d:%0.2d",hours,minutes,seconds)
+
+            }
         } else {
-            return String(format: "%0.2d",seconds)
+            if minutes > 9 {
+                return String(format: "%0.2d:%0.2d",minutes,seconds)
+            } else {
+                return String(format: "%0.1d:%0.2d",minutes,seconds)
+            }
         }
     }
     

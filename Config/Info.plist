@@ -29,19 +29,20 @@
 			</array>
 		</dict>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>timepiece</string>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>timepiece</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>ConfigurationIntent</string>
+		<string>MultipleConfigurationIntent</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

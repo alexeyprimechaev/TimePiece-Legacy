@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Introspect
+import WidgetKit
 
 struct TitleEditor: View {
     
@@ -63,6 +64,7 @@ struct TitleEditor: View {
                 }
                 .onChange(of: timeItem.title) { newValue in
                     try? timeItem.managedObjectContext?.save()
+                    WidgetCenter.shared.reloadAllTimelines()
                 }
                 .fontSize(.title)
                 .foregroundColor(Color.clear)

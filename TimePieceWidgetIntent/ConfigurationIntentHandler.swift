@@ -8,9 +8,8 @@
 
 import Intents
 
-class IntentHandler: INExtension, ConfigurationIntentHandling {
-    
-    
+
+class ConfigurationIntentHandler: INExtension, ConfigurationIntentHandling {
     
     
     
