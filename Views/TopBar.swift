@@ -11,6 +11,7 @@ import SwiftUI
 struct TopBar: View {
     
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var settings: Settings
     
     @Binding var isLarge: Bool
     
@@ -41,7 +42,7 @@ struct TopBar: View {
                                 }
                             }
                             Divider()
-                            Picker("", selection: $appState.selectedView) {
+                            Picker("Home View", selection: $settings.selectedView) {
                                 HStack {
                                     Text("Grid")
                                     Image(systemName: "rectangle.grid.2x2")

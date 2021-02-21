@@ -10,13 +10,24 @@ import Foundation
 import SwiftUI
 import SwiftyStoreKit
 
-public let defaultsStored = UserDefaults.standard
+public let defaultsStored = UserDefaults(suiteName: "group.timepiece") ?? UserDefaults.standard
+
+enum ViewType: Int {
+    case classic, grid
+}
+
 
 public class Settings: ObservableObject {
     
     @Published var isBoldTextEnabled: Bool = UIAccessibility.isBoldTextEnabled 
     
     @Published var showingSubscription: Bool = false
+    
+    @Published var selectedView: ViewType = ViewType(rawValue: ((defaultsStored.integer(forKey: "selectedView")))) ?? .grid {
+        willSet {
+            defaultsStored.set(newValue.rawValue, forKey: "selectedView")
+        }
+    }
     
     @Published var hasSeenOnboarding: Bool = ((defaultsStored.value(forKey: "hasSeenOnboarding") ?? false) as! Bool) {
         willSet {

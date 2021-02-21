@@ -19,13 +19,13 @@ struct TimePieceApp: App {
     @Environment(\.scenePhase) var scenePhase
     let persistenceController = PersistenceController.shared
     @FetchRequest(fetchRequest: TimeItem.getAllTimeItems()) var timeItems: FetchedResults<TimeItem>
-    var settings = Settings()
+    @ObservedObject var settings = Settings()
     @ObservedObject var appState = AppState()
     
     var body: some Scene {
         WindowGroup {
             Group {
-                if appState.selectedView == .classic {
+                if settings.selectedView == .classic {
                     ContentView()
                 } else {
                     HomeView()

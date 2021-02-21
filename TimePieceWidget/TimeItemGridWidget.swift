@@ -53,6 +53,25 @@ struct MultipleTimeItemsEntry: TimelineEntry {
 let placeholderSingleTimeItem = SingleTimeItem(kind: .placeholder, date: Date(), title: "Placeholder", totalTime: 300, remainingTime: 300, timeStarted: Date(), timeFinished: Date(), isStopwatch: false, isPaused: true, isRunning: false, uri: nil)
 let newSingleTimeItem = SingleTimeItem(kind: .new, date: Date(), title: "Placeholder", totalTime: 300, remainingTime: 300, timeStarted: Date(), timeFinished: Date(), isStopwatch: false, isPaused: true, isRunning: false, uri: nil)
 
+func fillWithPlaceholders(fill timeItems: [SingleTimeItem], toCount: Int) -> [SingleTimeItem] {
+    
+    var newTimeItems = timeItems
+    
+    if newTimeItems.count > toCount {
+        newTimeItems = Array(timeItems[...toCount])
+    } else if newTimeItems.count < toCount {
+        newTimeItems.append(newSingleTimeItem)
+        var i = newTimeItems.count
+        while i < toCount {
+            newTimeItems.append(placeholderSingleTimeItem)
+            i += 1
+        }
+    }
+    
+    return newTimeItems
+    
+}
+
 struct TimeItemGridProvider: IntentTimelineProvider {
     
     func fetchTimeItems(configuration: MultipleConfigurationIntent) -> [SingleTimeItem] {
@@ -101,26 +120,6 @@ struct TimeItemGridProvider: IntentTimelineProvider {
         return timeItems
     }
     
-    func fillWithPlaceholders(fill timeItems: [SingleTimeItem], toCount: Int) -> [SingleTimeItem] {
-        
-        var newTimeItems = timeItems
-        
-        if newTimeItems.count > toCount {
-            newTimeItems = Array(timeItems[...toCount])
-        } else if newTimeItems.count < toCount {
-            newTimeItems.append(newSingleTimeItem)
-            var i = newTimeItems.count
-            while i < toCount {
-                newTimeItems.append(placeholderSingleTimeItem)
-                i += 1
-            }
-        }
-        
-        return newTimeItems
-        
-    }
-    
-    
     let placeholderMultipleTimeItems = MultipleTimeItemsEntry(date: Date(), timeItems: [placeholderSingleTimeItem,placeholderSingleTimeItem,placeholderSingleTimeItem,placeholderSingleTimeItem], configuration: MultipleConfigurationIntent())
     
     
@@ -132,7 +131,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
         
         var entries = [MultipleTimeItemsEntry]()
         
-        entries.append(MultipleTimeItemsEntry(date: date, timeItems: fillWithPlaceholders(fill: timeItems, toCount: 4), configuration: configuration))
+        entries.append(MultipleTimeItemsEntry(date: date, timeItems: timeItems, configuration: configuration))
         
         timeItems.sort {
             $0.timeFinished < $1.timeFinished
@@ -160,7 +159,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
                 
                 
                 // Append entry for each timer finish (each entry containing finishes for all preceding timers)
-                entries.append(MultipleTimeItemsEntry(date: timeItems[i].timeFinished, timeItems: fillWithPlaceholders(fill: tempTimeItems, toCount: 4), configuration: configuration))
+                entries.append(MultipleTimeItemsEntry(date: timeItems[i].timeFinished, timeItems: tempTimeItems, configuration: configuration))
             }
         }
         
@@ -200,6 +199,8 @@ struct TimeItemGridProvider: IntentTimelineProvider {
 struct TimeItemGridCell: View {
     
     @State var timeItem: SingleTimeItem
+    
+    @EnvironmentObject var settings: Settings
     
     var body: some View {
         Group {
@@ -268,18 +269,50 @@ struct TimeItemGridEntryView: View {
     
     var entry: TimeItemGridProvider.Entry
     
+    @EnvironmentObject var settings: Settings
     
+    @Environment(\.widgetFamily) var family
+    
+    @ViewBuilder
     var body: some View {
-        VStack(spacing: 8) {
-            HStack(spacing: 8) {
-                TimeItemGridCell(timeItem: entry.timeItems[0])
-                TimeItemGridCell(timeItem: entry.timeItems[1])
-            }
-            HStack(spacing: 8) {
-                TimeItemGridCell(timeItem: entry.timeItems[2])
-                TimeItemGridCell(timeItem: entry.timeItems[3])
-            }
-        }.padding(8)
+        
+        
+        switch family {
+        case .systemMedium:
+            VStack(spacing: 8) {
+                HStack(spacing: 8) {
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 4)[0])
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 4)[1])
+                }
+                HStack(spacing: 8) {
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 4)[2])
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 4)[3])
+                }
+            }.padding(8)
+        case .systemLarge:
+            VStack(spacing: 8) {
+                HStack(spacing: 8) {
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[0])
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[1])
+                }
+                HStack(spacing: 8) {
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[2])
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[3])
+                }
+                HStack(spacing: 8) {
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[4])
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[5])
+                }
+                HStack(spacing: 8) {
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[6])
+                    TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[7])
+                }
+            }.padding(8)
+        default:
+            Text("Some other WidgetFamily in the future.")
+        }
+        
+        
     }
     
 }
@@ -287,14 +320,16 @@ struct TimeItemGridEntryView: View {
 struct TimeItemGridWidget: Widget {
     let kind: String = "TimeItemGridWidget"
     
+    @ObservedObject var settings = Settings()
+    
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: MultipleConfigurationIntent.self, provider: TimeItemGridProvider()) { entry in
-            TimeItemGridEntryView(entry: entry)
+            TimeItemGridEntryView(entry: entry).environmentObject(settings)
             
         }
-        .configurationDisplayName("Single Time Item")
+        .configurationDisplayName("Multiple Timers")
         .supportedFamilies([.systemMedium, .systemLarge])
-        .description("Display and quickly access one of your Time Items.")
+        .description("Display and quickly access several of your Timers or Stopwatches")
     }
 }
 

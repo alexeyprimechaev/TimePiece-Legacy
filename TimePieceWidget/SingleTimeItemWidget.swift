@@ -53,7 +53,7 @@ struct SingleTimeItemProvider: IntentTimelineProvider {
         catch let error as NSError {print("error")}
         
         if !results.isEmpty {
-            let timeItem = results[results.count - 1]
+            let timeItem = results.randomElement() ?? results[results.count-1]
             
             if Date() > timeItem.timeFinished && timeItem.isRunning {
                 return SingleTimeItemEntry(isFinished: true, isPlaceholder: false, date: Date(), title: timeItem.title, totalTime: timeItem.totalTime, remainingTime: timeItem.remainingTime, timeStarted: timeItem.timeStarted, timeFinished: timeItem.timeFinished, isStopwatch: timeItem.isStopwatch, isPaused: timeItem.isPaused, isRunning: timeItem.isRunning, uri: timeItem.objectID.uriRepresentation().absoluteString, configuration: ConfigurationIntent())
@@ -185,9 +185,9 @@ struct SingleTimeItemWidget: Widget {
             SingleTimeItemEntryView(entry: entry)
             
         }
-        .configurationDisplayName("Single Time Item")
+        .configurationDisplayName("Single Timer")
         .supportedFamilies([.systemSmall, .systemMedium])
-        .description("Display and quickly access one of your Time Items.")
+        .description("Display and quickly access one of your Timers or Stopwatches")
     }
 }
 
