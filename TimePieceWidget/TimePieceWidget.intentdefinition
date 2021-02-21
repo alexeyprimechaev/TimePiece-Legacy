@@ -35,6 +35,16 @@
 					<key>INEnumValueName</key>
 					<string>running</string>
 				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Recent</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>5BWxey</string>
+					<key>INEnumValueIndex</key>
+					<integer>2</integer>
+					<key>INEnumValueName</key>
+					<string>recent</string>
+				</dict>
 			</array>
 		</dict>
 	</array>
@@ -45,7 +55,7 @@
 	<key>INIntentDefinitionSystemVersion</key>
 	<string>20B29</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12E5220o</string>
+	<string>12E5234g</string>
 	<key>INIntentDefinitionToolsVersion</key>
 	<string>12.5</string>
 	<key>INIntents</key>
@@ -163,6 +173,8 @@
 			<key>INIntentParameters</key>
 			<array>
 				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
 					<key>INIntentParameterDisplayName</key>
 					<string>Time Item Group</string>
 					<key>INIntentParameterDisplayNameID</key>

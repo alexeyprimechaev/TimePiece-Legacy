@@ -178,7 +178,7 @@ struct SingleTimeItemEntryView: View {
 }
 
 struct SingleTimeItemWidget: Widget {
-    let kind: String = "SingleTimePieceWidget"
+    let kind: String = "SingleTimeItemWidget"
     
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: SingleTimeItemProvider()) { entry in

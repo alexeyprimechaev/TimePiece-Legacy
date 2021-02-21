@@ -50,11 +50,7 @@ let placeholderSingleTimeItem = SingleTimeItem(isPlaceholder: true, date: Date()
 
 struct TimeItemGridProvider: IntentTimelineProvider {
     
-    
-    let placeholderMultipleTimeItems = MultipleTimeItemsEntry(date: Date(), timeItems: [placeholderSingleTimeItem,placeholderSingleTimeItem,placeholderSingleTimeItem,placeholderSingleTimeItem], configuration: MultipleConfigurationIntent())
-    
-    
-    func fetchTimeItemWithConfig(date: Date, configuration: MultipleConfigurationIntent) -> MultipleTimeItemsEntry {
+    func fetchTimeItems(configuration: MultipleConfigurationIntent) -> [SingleTimeItem] {
         let context = PersistenceController.shared.container.viewContext
         let request = TimeItem.getAllTimeItems()
         
@@ -84,23 +80,85 @@ struct TimeItemGridProvider: IntentTimelineProvider {
             }
             
             timeItems.sort {
-                $0.timeFinished > $1.timeFinished
+                $0.timeStarted > $1.timeStarted
+            }
+        case .recent:
+            for item in results {
+                let timeItem = SingleTimeItem(isFinished: false, isPlaceholder: false, date: Date(), title: item.title, totalTime: item.totalTime, remainingTime: item.remainingTime, timeStarted: item.timeStarted, timeFinished: item.timeFinished, isStopwatch: item.isStopwatch, isPaused: item.isPaused, isRunning: item.isRunning, uri: item.objectID.uriRepresentation().absoluteString)
+                timeItems.append(timeItem)
+            }
+            
+            timeItems.sort {
+                $0.timeStarted > $1.timeStarted
             }
         }
         
-        if timeItems.count > 4 {
-            timeItems = Array(timeItems[...4])
-        } else if timeItems.count < 4 {
-            var i = timeItems.count
-            while i < 4 {
-                timeItems.append(placeholderSingleTimeItem)
+        return timeItems
+    }
+    
+    func fillWithPlaceholders(fill timeItems: [SingleTimeItem], toCount: Int) -> [SingleTimeItem] {
+        
+        var newTimeItems = timeItems
+        
+        if newTimeItems.count > toCount {
+            newTimeItems = Array(timeItems[...toCount])
+        } else if newTimeItems.count < toCount {
+            var i = newTimeItems.count
+            while i < toCount {
+                newTimeItems.append(placeholderSingleTimeItem)
                 i += 1
             }
         }
         
+        return newTimeItems
+        
+    }
+    
+    
+    let placeholderMultipleTimeItems = MultipleTimeItemsEntry(date: Date(), timeItems: [placeholderSingleTimeItem,placeholderSingleTimeItem,placeholderSingleTimeItem,placeholderSingleTimeItem], configuration: MultipleConfigurationIntent())
+    
+    
+    func provideTimeItemsWithConfig(date: Date, configuration: MultipleConfigurationIntent) -> [MultipleTimeItemsEntry] {
         
         
-        return MultipleTimeItemsEntry(date: date, timeItems: timeItems, configuration: configuration)
+        
+        var timeItems = fetchTimeItems(configuration: configuration)
+        
+        var entries = [MultipleTimeItemsEntry]()
+        
+        entries.append(MultipleTimeItemsEntry(date: date, timeItems: fillWithPlaceholders(fill: timeItems, toCount: 4), configuration: configuration))
+        
+        timeItems.sort {
+            $0.timeFinished < $1.timeFinished
+        }
+        
+        
+        // Start mapping entries to their respective dates
+        for i in 0...timeItems.count-1 {
+            
+            var tempTimeItems = timeItems
+            
+            // Mark all timers that should have finished before or simultaniously with timeItem[i] as finished
+            for j in 0...i {
+                if tempTimeItems[j].isRunning {
+                    tempTimeItems[j].isFinished = true
+                }
+            }
+            
+            // Return the array to its initial sorting
+            
+            tempTimeItems.sort {
+                $0.timeStarted > $1.timeStarted
+            }
+            
+            
+            // Append entry for each timer finish (each entry containing finishes for all preceding timers)
+            entries.append(MultipleTimeItemsEntry(date: timeItems[i].timeFinished, timeItems: fillWithPlaceholders(fill: tempTimeItems, toCount: 4), configuration: configuration))
+        }
+            
+        
+        
+        return entries
         
         
         
@@ -111,20 +169,18 @@ struct TimeItemGridProvider: IntentTimelineProvider {
     
     
     func placeholder(in context: Context) -> MultipleTimeItemsEntry {
-        return fetchTimeItemWithConfig(date: Date(), configuration: MultipleConfigurationIntent())
+        return provideTimeItemsWithConfig(date: Date(), configuration: MultipleConfigurationIntent())[0]
     }
     
     func getSnapshot(for configuration: MultipleConfigurationIntent, in context: Context, completion: @escaping (MultipleTimeItemsEntry) -> ()) {
-        completion(fetchTimeItemWithConfig(date: Date(), configuration: MultipleConfigurationIntent()))
+        completion(provideTimeItemsWithConfig(date: Date(), configuration: MultipleConfigurationIntent())[0])
     }
     
-    func getTimeline(for configuration: MultipleConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: MultipleConfigurationIntent, in context: Context, completion: @escaping (Timeline<MultipleTimeItemsEntry>) -> ()) {
         
         var entries: [MultipleTimeItemsEntry] = []
-        
-        let currentDate = Date()
-        
-        entries.append(fetchTimeItemWithConfig(date: currentDate, configuration: configuration))
+                
+        entries = provideTimeItemsWithConfig(date: Date(), configuration: configuration)
         
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
@@ -138,9 +194,44 @@ struct TimeItemGridCell: View {
     
     var body: some View {
         Link(destination: URL(string: "https://www.apple.com")!) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(timeItem.title)
-                Text(timeItem.timeFinished, style: .timer).opacity(0.5)
+            VStack(alignment: .leading) {
+                if timeItem.isPlaceholder {
+                    Text("Edit Widget")
+                    Text("To Select").opacity(0.5)
+                } else {
+                    
+                    if timeItem.isStopwatch {
+                        if timeItem.isRunning {
+                            if timeItem.isPaused {
+                                Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
+                            } else {
+                                Text(timeItem.timeStarted, style: .timer).opacity(0.5).multilineTextAlignment(.leading)
+                            }
+                        } else {
+                            Text("Start").opacity(0.5)
+                        }
+                        Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title)).lineLimit(1)
+                    } else {
+                        Text(timeItem.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(timeItem.title)).lineLimit(2)
+                        if timeItem.isPaused {
+                            if timeItem.remainingTime == 0 {
+                                Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                            } else {
+                                Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
+                            }
+                        } else {
+                            if timeItem.isFinished {
+                                Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                            } else {
+                                Text(timeItem.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
+                            }
+                            
+                        }
+                    }
+                    
+                }
+                
+                
             }.font(.footnote.bold()).padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color(.systemGroupedBackground)))
         }
         
