@@ -29,17 +29,34 @@ struct HomeView: View {
     
     @State var showingDeleteAlert = false
     
-    var columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+    @State private var scrollOffset: CGFloat = .zero
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var compactColumns = [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)]
+    var regularColumns = [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)]
     
     var body: some View {
-            VStack(spacing: 0) {
-            ScrollView {
-                LazyVGrid(columns: columns, alignment: .leading, spacing: 14) {
-                    ForEach(timeItems) { timeItem in
-                        TimeItemGridCell(timeItem: timeItem)
-                    }
-                }.padding(20)
-                Spacer()
+        VStack(alignment: .leading, spacing: 0) {
+            TopBar(isLarge: $isLarge)
+            TrackableScrollView {
+                scrollOffset = $0
+            } content: {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(Strings.timePiece).fontSize(.title).padding(.bottom, 21).padding(.leading, 7)
+                    LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
+                        ForEach(timeItems) { timeItem in
+                            TimeItemGridCell(timeItem: timeItem)
+                        }
+                    }.padding(7)
+                }.padding(.horizontal, 21).padding(.vertical, 14)
+            }
+            .onChange(of: scrollOffset) { newValue in
+                if newValue <= -32 {
+                    isLarge = false
+                } else if newValue > -32  {
+                    isLarge = true
+                }
             }
             BottomBar {
                 if appState.isInEditing {
@@ -116,7 +133,7 @@ struct HomeView: View {
                 
             }
         }
-            
+        
         
         .onAppear {
             if !settings.hasSeenOnboarding {

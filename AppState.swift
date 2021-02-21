@@ -16,5 +16,10 @@ public class AppState: ObservableObject {
     @Published var newTimeItem = TimeItem()
     @Published var showingSheet = false
     @Published var activeSheet = 2
+    @Published var selectedView: ViewType = .grid
     
+}
+
+enum ViewType {
+    case classic, grid
 }

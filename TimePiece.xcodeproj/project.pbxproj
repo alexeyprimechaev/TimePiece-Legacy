@@ -42,6 +42,9 @@
 		054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */; };
 		05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FD25E2D70A006AE551 /* HomeView.swift */; };
 		05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */; };
+		05DEDA0125E2EC25006AE551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 052A345525D819430052949A /* Assets.xcassets */; };
+		05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0225E2F4DC006AE551 /* TopBar.swift */; };
+		05DEDA0525E2F6AC006AE551 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0425E2F6AC006AE551 /* TrackableScrollView.swift */; };
 		05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EDD9E025A2296100E78486 /* ContinousPicker.swift */; };
 		05F899F725D956F400A9FB90 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
 		80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80150D6724F58BD900C740B3 /* TimePieceApp.swift */; };
@@ -137,6 +140,8 @@
 		05B1F91525D836F300C5E68E /* TimePieceWidgetIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetIntent.entitlements; sourceTree = "<group>"; };
 		05DED9FD25E2D70A006AE551 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridCell.swift; sourceTree = "<group>"; };
+		05DEDA0225E2F4DC006AE551 /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
+		05DEDA0425E2F6AC006AE551 /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		05EDD9E025A2296100E78486 /* ContinousPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinousPicker.swift; sourceTree = "<group>"; };
 		8012C7AA24057D4200E7798E /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		80150D6724F58BD900C740B3 /* TimePieceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceApp.swift; sourceTree = "<group>"; };
@@ -339,6 +344,8 @@
 			children = (
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
 				80612FE923C274DB00BC03F5 /* ContentView.swift */,
+				05DEDA0425E2F6AC006AE551 /* TrackableScrollView.swift */,
+				05DEDA0225E2F4DC006AE551 /* TopBar.swift */,
 				05DED9FD25E2D70A006AE551 /* HomeView.swift */,
 				808A38812512D5480075AC50 /* Editors */,
 				808A38782512D4630075AC50 /* Rows & Badges */,
@@ -532,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80150E3824F593A500C740B3 /* Assets.xcassets in Resources */,
+				05DEDA0125E2EC25006AE551 /* Assets.xcassets in Resources */,
 				80150E3624F5938F00C740B3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05DEDA0525E2F6AC006AE551 /* TrackableScrollView.swift in Sources */,
 				80150DE224F58E7300C740B3 /* NewTimeItemSheet.swift in Sources */,
 				80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */,
 				80150DD624F58E7300C740B3 /* Styles.swift in Sources */,
@@ -585,6 +594,7 @@
 				80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */,
 				80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */,
 				80FEF1AB25191291007BEB49 /* OnboardingSheet.swift in Sources */,
+				05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */,
 				808A388A2512D6B10075AC50 /* InsightRow.swift in Sources */,
 				80C055882516215E002147EC /* EditorBar.swift in Sources */,
 				80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */,

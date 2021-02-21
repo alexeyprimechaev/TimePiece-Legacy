@@ -34,7 +34,6 @@ struct PersonCard: View {
                     Label {
                         Image(icon)
                     } icon: {
-                        
                         Text(description).opacity(0.5).fontSize(.smallTitle)
                     }
                     

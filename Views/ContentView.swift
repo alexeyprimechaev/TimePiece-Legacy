@@ -36,33 +36,12 @@ struct ContentView: View {
     var body: some View {
         
         VStack(spacing: 0) {
-            VStack(spacing: 0) {
-                ZStack {
-                    HStack {
-                        Text(Strings.timePiece).fontSize(.smallTitle).opacity(isLarge ? 0 : 1).padding(14)
-                    }
-                    HStack {
-                        Spacer()
-                        Button {
-                            appState.isInEditing.toggle()
-                            appState.selectedValues = []
-                        } label: {
-                            Label {
-                                Text(appState.isInEditing ? "Done" : "Edit").fontSize(.smallTitle)
-                            } icon: {
-                                
-                            }.foregroundColor(.primary).padding(14).padding(.horizontal, 14)
-                        }
-                    }
-                }.animation(nil)
-                
-                Divider().opacity(isLarge ? 0 : 1)
-            }.animation(.easeOut(duration: 0.2))
+            TopBar(isLarge: $isLarge)
             
             ASCollectionView(
                 sections:
                     [
-                        
+
                         ASCollectionViewSection(id: 0) {
                             Text(Strings.timePiece).fontSize(.title).padding(.bottom, 14).padding(.leading, 7)
                         },
@@ -78,7 +57,7 @@ struct ContentView: View {
             .layout {
                 let fl = AlignedCollectionViewFlowLayout()
                 fl.horizontalAlignment = .leading
-                fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
+                fl.sectionInset = UIEdgeInsets(top: 14, left: 21, bottom: 0, right: 7)
                 fl.minimumInteritemSpacing = 14
                 fl.minimumLineSpacing = 14
                 fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
