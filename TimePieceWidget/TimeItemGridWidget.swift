@@ -11,11 +11,15 @@ import SwiftUI
 import Intents
 import CoreData
 
+enum ItemKind {
+    case placeholder, normal, new
+}
+
 struct SingleTimeItem {
     
     var isFinished = false
     
-    let isPlaceholder: Bool
+    let kind: ItemKind
     let date: Date
     let title: String
     let totalTime: TimeInterval
@@ -46,7 +50,8 @@ struct MultipleTimeItemsEntry: TimelineEntry {
     let configuration: MultipleConfigurationIntent
 }
 
-let placeholderSingleTimeItem = SingleTimeItem(isPlaceholder: true, date: Date(), title: "Placeholder", totalTime: 300, remainingTime: 300, timeStarted: Date(), timeFinished: Date(), isStopwatch: false, isPaused: true, isRunning: false, uri: nil)
+let placeholderSingleTimeItem = SingleTimeItem(kind: .placeholder, date: Date(), title: "Placeholder", totalTime: 300, remainingTime: 300, timeStarted: Date(), timeFinished: Date(), isStopwatch: false, isPaused: true, isRunning: false, uri: nil)
+let newSingleTimeItem = SingleTimeItem(kind: .new, date: Date(), title: "Placeholder", totalTime: 300, remainingTime: 300, timeStarted: Date(), timeFinished: Date(), isStopwatch: false, isPaused: true, isRunning: false, uri: nil)
 
 struct TimeItemGridProvider: IntentTimelineProvider {
     
@@ -67,7 +72,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
         switch configuration.timeItemGroup {
         case .running:
             for item in results {
-                let timeItem = SingleTimeItem(isFinished: false, isPlaceholder: false, date: Date(), title: item.title, totalTime: item.totalTime, remainingTime: item.remainingTime, timeStarted: item.timeStarted, timeFinished: item.timeFinished, isStopwatch: item.isStopwatch, isPaused: item.isPaused, isRunning: item.isRunning, uri: item.objectID.uriRepresentation().absoluteString)
+                let timeItem = SingleTimeItem(isFinished: false, kind: .normal, date: Date(), title: item.title, totalTime: item.totalTime, remainingTime: item.remainingTime, timeStarted: item.timeStarted, timeFinished: item.timeFinished, isStopwatch: item.isStopwatch, isPaused: item.isPaused, isRunning: item.isRunning, uri: item.objectID.uriRepresentation().absoluteString)
                 
                 if timeItem.isRunning {
                     timeItems.append(timeItem)
@@ -75,7 +80,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
             }
         case .unknown:
             for item in results {
-                let timeItem = SingleTimeItem(isFinished: false, isPlaceholder: false, date: Date(), title: item.title, totalTime: item.totalTime, remainingTime: item.remainingTime, timeStarted: item.timeStarted, timeFinished: item.timeFinished, isStopwatch: item.isStopwatch, isPaused: item.isPaused, isRunning: item.isRunning, uri: item.objectID.uriRepresentation().absoluteString)
+                let timeItem = SingleTimeItem(isFinished: false, kind: .normal, date: Date(), title: item.title, totalTime: item.totalTime, remainingTime: item.remainingTime, timeStarted: item.timeStarted, timeFinished: item.timeFinished, isStopwatch: item.isStopwatch, isPaused: item.isPaused, isRunning: item.isRunning, uri: item.objectID.uriRepresentation().absoluteString)
                 timeItems.append(timeItem)
             }
             
@@ -84,7 +89,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
             }
         case .recent:
             for item in results {
-                let timeItem = SingleTimeItem(isFinished: false, isPlaceholder: false, date: Date(), title: item.title, totalTime: item.totalTime, remainingTime: item.remainingTime, timeStarted: item.timeStarted, timeFinished: item.timeFinished, isStopwatch: item.isStopwatch, isPaused: item.isPaused, isRunning: item.isRunning, uri: item.objectID.uriRepresentation().absoluteString)
+                let timeItem = SingleTimeItem(isFinished: false, kind: .normal, date: Date(), title: item.title, totalTime: item.totalTime, remainingTime: item.remainingTime, timeStarted: item.timeStarted, timeFinished: item.timeFinished, isStopwatch: item.isStopwatch, isPaused: item.isPaused, isRunning: item.isRunning, uri: item.objectID.uriRepresentation().absoluteString)
                 timeItems.append(timeItem)
             }
             
@@ -103,6 +108,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
         if newTimeItems.count > toCount {
             newTimeItems = Array(timeItems[...toCount])
         } else if newTimeItems.count < toCount {
+            newTimeItems.append(newSingleTimeItem)
             var i = newTimeItems.count
             while i < toCount {
                 newTimeItems.append(placeholderSingleTimeItem)
@@ -134,28 +140,31 @@ struct TimeItemGridProvider: IntentTimelineProvider {
         
         
         // Start mapping entries to their respective dates
-        for i in 0...timeItems.count-1 {
-            
-            var tempTimeItems = timeItems
-            
-            // Mark all timers that should have finished before or simultaniously with timeItem[i] as finished
-            for j in 0...i {
-                if tempTimeItems[j].isRunning {
-                    tempTimeItems[j].isFinished = true
+        if timeItems.count > 0 {
+            for i in 0...timeItems.count-1 {
+                
+                var tempTimeItems = timeItems
+                
+                // Mark all timers that should have finished before or simultaniously with timeItem[i] as finished
+                for j in 0...i {
+                    if tempTimeItems[j].isRunning {
+                        tempTimeItems[j].isFinished = true
+                    }
                 }
+                
+                // Return the array to its initial sorting
+                
+                tempTimeItems.sort {
+                    $0.timeStarted > $1.timeStarted
+                }
+                
+                
+                // Append entry for each timer finish (each entry containing finishes for all preceding timers)
+                entries.append(MultipleTimeItemsEntry(date: timeItems[i].timeFinished, timeItems: fillWithPlaceholders(fill: tempTimeItems, toCount: 4), configuration: configuration))
             }
-            
-            // Return the array to its initial sorting
-            
-            tempTimeItems.sort {
-                $0.timeStarted > $1.timeStarted
-            }
-            
-            
-            // Append entry for each timer finish (each entry containing finishes for all preceding timers)
-            entries.append(MultipleTimeItemsEntry(date: timeItems[i].timeFinished, timeItems: fillWithPlaceholders(fill: tempTimeItems, toCount: 4), configuration: configuration))
         }
-            
+        
+        
         
         
         return entries
@@ -179,7 +188,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
     func getTimeline(for configuration: MultipleConfigurationIntent, in context: Context, completion: @escaping (Timeline<MultipleTimeItemsEntry>) -> ()) {
         
         var entries: [MultipleTimeItemsEntry] = []
-                
+        
         entries = provideTimeItemsWithConfig(date: Date(), configuration: configuration)
         
         let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -193,47 +202,63 @@ struct TimeItemGridCell: View {
     @State var timeItem: SingleTimeItem
     
     var body: some View {
-        Link(destination: URL(string: "https://www.apple.com")!) {
-            VStack(alignment: .leading) {
-                if timeItem.isPlaceholder {
-                    Text("Edit Widget")
-                    Text("To Select").opacity(0.5)
-                } else {
-                    
-                    if timeItem.isStopwatch {
-                        if timeItem.isRunning {
+        Group {
+            switch timeItem.kind {
+            case .normal:
+                Link(destination: timeItem.url ?? URL(string: "https://apple.com")!) {
+                    VStack(alignment: .leading) {
+                        if timeItem.isStopwatch {
+                            if timeItem.isRunning {
+                                if timeItem.isPaused {
+                                    Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
+                                } else {
+                                    Text(timeItem.timeStarted, style: .timer).opacity(0.5).multilineTextAlignment(.leading)
+                                }
+                            } else {
+                                Text("Start").opacity(0.5)
+                            }
+                            Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title)).lineLimit(1)
+                        } else {
+                            Text(timeItem.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(timeItem.title)).lineLimit(2)
                             if timeItem.isPaused {
-                                Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
+                                if timeItem.remainingTime == 0 {
+                                    Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                                } else {
+                                    Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
+                                }
                             } else {
-                                Text(timeItem.timeStarted, style: .timer).opacity(0.5).multilineTextAlignment(.leading)
+                                if timeItem.isFinished {
+                                    Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                                } else {
+                                    Text(timeItem.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
+                                }
+                                
                             }
-                        } else {
-                            Text("Start").opacity(0.5)
                         }
-                        Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title)).lineLimit(1)
-                    } else {
-                        Text(timeItem.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(timeItem.title)).lineLimit(2)
-                        if timeItem.isPaused {
-                            if timeItem.remainingTime == 0 {
-                                Text("Done").multilineTextAlignment(.leading).opacity(0.5)
-                            } else {
-                                Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
-                            }
-                        } else {
-                            if timeItem.isFinished {
-                                Text("Done").multilineTextAlignment(.leading).opacity(0.5)
-                            } else {
-                                Text(timeItem.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
-                            }
-                            
-                        }
-                    }
-                    
+                        
+                    }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color(.systemGroupedBackground)))
                 }
-                
-                
-            }.font(.footnote.bold()).padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color(.systemGroupedBackground)))
-        }
+            case .new:
+                Link(destination: URL(string: "timepiece://newtimeitem")!) {
+                    VStack(alignment: .leading) {
+                        Label {
+                            Text("New")
+                        } icon: {
+                            Image(systemName: "plus")
+                        }
+                    }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color(.systemGroupedBackground)))
+                }
+            case .placeholder:
+                VStack(alignment: .leading) {
+                    Label {
+                        Text("")
+                    } icon: {
+                        Image(systemName: "")
+                    }
+                }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).opacity(0)
+            }
+        }.font(.footnote.bold())
+        
         
     }
     

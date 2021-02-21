@@ -18,6 +18,7 @@ struct TimePieceApp: App {
     
     @Environment(\.scenePhase) var scenePhase
     let persistenceController = PersistenceController.shared
+    @FetchRequest(fetchRequest: TimeItem.getAllTimeItems()) var timeItems: FetchedResults<TimeItem>
     var settings = Settings()
     var appState = AppState()
     
@@ -68,29 +69,34 @@ struct TimePieceApp: App {
                     }
                 }
                 .onOpenURL { url in
-                    if let objectID = url.absoluteString.replacingOccurrences(of: "timepiece://", with: "") as String? {
-                        
-                        let context = persistenceController.container.viewContext
-                        let request = TimeItem.getAllTimeItems()
-                        
-                        var results = [TimeItem]()
-                        
-                        do { results = try context.fetch(request) }
-                        catch let error as NSError {print("error")}
-                        
-                        if let timeItem = results.first(where: { item in
-                            item.objectID.uriRepresentation().absoluteString == objectID
+                    if url.absoluteString == "timepiece://newtimeitem" {
+                        appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: persistenceController.container.viewContext, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
+                        appState.activeSheet = 1
+                        appState.showingSheet = true
+                    } else {
+                        if let objectID = url.absoluteString.replacingOccurrences(of: "timepiece://", with: "") as String? {
                             
-                        })  {
-                            appState.selectedTimeItem = timeItem
-                            appState.activeSheet = 0
-                            appState.showingSheet = true
-                        } else {
+                            let context = persistenceController.container.viewContext
+                            let request = TimeItem.getAllTimeItems()
+                            
+                            var results = [TimeItem]()
+                            
+                            do { results = try context.fetch(request) }
+                            catch let error as NSError {print("error")}
+                            
+                            if let timeItem = results.first(where: { item in
+                                item.objectID.uriRepresentation().absoluteString == objectID
+                                
+                            })  {
+                                appState.selectedTimeItem = timeItem
+                                appState.activeSheet = 0
+                                appState.showingSheet = true
+                            } else {
+                                
+                            }
                             
                         }
-                        
                     }
-                    
                     
                 }
         }
