@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum TimeDisplayStyle {
-    case simple, labeled
+    case simple, labeled, small
 }
 
 struct TimeDisplay: View {
@@ -20,7 +20,7 @@ struct TimeDisplay: View {
     
     @State var updateTime: () -> Void
     @State var isOpaque = false
-    
+        
     @State var displayStyle: TimeDisplayStyle = .simple
     @State var label: LocalizedStringKey = "Time"
     

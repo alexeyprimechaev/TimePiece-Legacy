@@ -1,0 +1,176 @@
+//
+//  TimeItemGridCell.swift
+//  TimePiece (iOS)
+//
+//  Created by Alexey Primechaev on 2/21/21.
+//  Copyright © 2021 Alexey Primechaev. All rights reserved.
+//
+
+import SwiftUI
+
+struct TimeItemGridCell: View {
+    //MARK: - Properties
+    
+    //MARK: Dynamic Propertiess
+    @ObservedObject var timeItem: TimeItem
+    
+    //MARK: CoreData
+    @Environment(\.managedObjectContext) var context
+    
+    @EnvironmentObject var settings: Settings
+    @EnvironmentObject var appState: AppState
+    
+    @State private var currentTime: String = "00:00"
+    
+    @State private var timeFieldDummy = UITextField()
+    @State private var timeFocusedDummy = false
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Button {
+                if appState.isInEditing {
+                    if appState.selectedValues.contains(timeItem) {
+                        appState.selectedValues.removeAll { $0 == timeItem }
+                    } else {
+                        appState.selectedValues.append(timeItem)
+                    }
+                    
+                } else {
+                    if timeItem.isStopwatch {
+                        self.timeItem.togglePause()
+                    } else {
+                        if self.timeItem.remainingTime == 0 {
+                            if self.timeItem.isReusable {
+                                self.timeItem.reset()
+                            } else {
+                                self.timeItem.remove(from: self.context)
+                            }
+                        } else {
+                            self.timeItem.togglePause()
+                        }
+                    }
+                }
+                
+                
+                try? self.context.save()
+            } label: {
+                
+                Group {
+                    if !timeItem.isStopwatch {
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(timeItem.title.isEmpty ? Strings.timer : LocalizedStringKey(timeItem.title))
+                            ZStack(alignment: .topLeading) {
+                                if timeItem.isRunning {
+                                    if timeItem.remainingTime == 0 {
+                                        Text("Done").opacity(0.5)
+                                    } else {
+                                        if timeItem.isPaused {
+                                            Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
+                                        } else {
+                                            //Text(timeItem.timeFinished, style: .timer).opacity(0.5)
+                                        }
+                                    }
+                                    
+                                }
+                                else {
+                                    Text(timeItem.totalTime.stringFromNumber()).opacity(0.5)
+                                }
+                            }
+                            
+                            
+                            
+                            
+                        }
+                    } else {
+                        VStack(alignment: .leading, spacing: 0) {
+                            
+                            ZStack(alignment: .topLeading) {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    if timeItem.isRunning {
+                                        if timeItem.isPaused {
+                                            Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
+                                        } else {
+                                            //Text(timeItem.timeStarted, style: .timer).opacity(0.5)
+                                        }
+                                    }
+                                    else {
+                                        Text("Start").opacity(0.5)
+                                    }
+                                }.animation(.default)
+                                
+                                
+                            }
+                            Text(timeItem.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(timeItem.title))
+                            
+                            
+                            
+                            
+                        }
+                    }
+                }
+                .onAppear {
+                    currentTime = timeItem.remainingTimeString
+                }
+                .onChange(of: timeItem.remainingTimeString) { newValue in
+                    currentTime = newValue
+                }
+                .animation(nil)
+                .opacity(appState.isInEditing ? 0.5 : 1)
+                .padding(14)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(.systemGray6)))
+                .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
+            }
+            
+            
+            //MARK: Styling
+            .fontSize(.smallTitle)
+            .buttonStyle(TitleButtonStyle())
+        }
+    }
+    
+    func updateTime() {
+        
+        if timeItem.isStopwatch {
+            if !timeItem.isPaused {
+                currentTime = Date().timeIntervalSince(timeItem.timeStarted).editableStringMilliseconds()
+            } else {
+                
+            }
+            
+            
+        } else {
+            if !timeItem.isPaused {
+                
+                
+                if timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
+                    
+                    timeItem.togglePause()
+                    
+                    timeItem.remainingTime = 0
+                    
+                    //AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
+                    
+                }
+                
+                currentTime = timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
+                
+                
+            }
+        }
+        
+        
+        
+    }
+}
+
+extension View {
+    func phoneOnlyStackNavigationView() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return AnyView(self.navigationViewStyle(StackNavigationViewStyle()))
+        } else {
+            return AnyView(self)
+        }
+    }
+}

@@ -1,15 +1,14 @@
 //
-//  ContentView.swift
-//  TimerPlus
+//  HomeView.swift
+//  TimePiece (iOS)
 //
-//  Created by Alexey Primechaev on 1/5/20.
-//  Copyright © 2020 Alexey Primechaev. All rights reserved.
+//  Created by Alexey Primechaev on 2/21/21.
+//  Copyright © 2021 Alexey Primechaev. All rights reserved.
 //
 
 import SwiftUI
-import ASCollectionView
 
-struct ContentView: View {
+struct HomeView: View {
     
     //MARK: - Variable Defenition
     
@@ -30,70 +29,18 @@ struct ContentView: View {
     
     @State var showingDeleteAlert = false
     
-    
-    //MARK: - View
+    var columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
     
     var body: some View {
-        
-        VStack(spacing: 0) {
             VStack(spacing: 0) {
-                ZStack {
-                    HStack {
-                        Text(Strings.timePiece).fontSize(.smallTitle).opacity(isLarge ? 0 : 1).padding(14)
+            ScrollView {
+                LazyVGrid(columns: columns, alignment: .leading, spacing: 14) {
+                    ForEach(timeItems) { timeItem in
+                        TimeItemGridCell(timeItem: timeItem)
                     }
-                    HStack {
-                        Spacer()
-                        Button {
-                            appState.isInEditing.toggle()
-                            appState.selectedValues = []
-                        } label: {
-                            Label {
-                                Text(appState.isInEditing ? "Done" : "Edit").fontSize(.smallTitle)
-                            } icon: {
-                                
-                            }.foregroundColor(.primary).padding(14).padding(.horizontal, 14)
-                        }
-                    }
-                }.animation(nil)
-                
-                Divider().opacity(isLarge ? 0 : 1)
-            }.animation(.easeOut(duration: 0.2))
-            
-            ASCollectionView(
-                sections:
-                    [
-                        
-                        ASCollectionViewSection(id: 0) {
-                            Text(Strings.timePiece).fontSize(.title).padding(.bottom, 14).padding(.leading, 7)
-                        },
-                        //MARK: Timers
-                        ASCollectionViewSection(id: 1, data: timeItems, contextMenuProvider: appState.isInEditing ? nil : contextMenuProvider) { timer, _ in
-                            TimeItemCell(timeItem: timer).environmentObject(settings).environmentObject(appState)
-                            
-                        }
-                    ]
-            )
-            
-            //MARK: Layout Configuration
-            .layout {
-                let fl = AlignedCollectionViewFlowLayout()
-                fl.horizontalAlignment = .leading
-                fl.sectionInset = UIEdgeInsets(top: 0, left: 21, bottom: 0, right: 7)
-                fl.minimumInteritemSpacing = 14
-                fl.minimumLineSpacing = 14
-                fl.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-                return fl
+                }.padding(20)
+                Spacer()
             }
-            .onScroll { scroll, _ in
-                if scroll.y >= 32 {
-                    isLarge = false
-                } else if scroll.y < 32  {
-                    isLarge = true
-                }
-            }
-            .alwaysBounceVertical(true)
-            .ignoresSafeArea(.keyboard)
-            .animation(.default)
             BottomBar {
                 if appState.isInEditing {
                     BottomBarItem(title: "Delete", icon: "trash") {
@@ -168,10 +115,9 @@ struct ContentView: View {
                 
                 
             }
-            
         }
+            
         
-        .ignoresSafeArea(.keyboard)
         .onAppear {
             if !settings.hasSeenOnboarding {
                 appState.activeSheet = 5
@@ -244,128 +190,15 @@ struct ContentView: View {
             
         }
         
-        
-        
-        
     }
     
-    //MARK: - Data Functions
-    
-    
-    
-    //MARK: Delete
     func deleteLast() {
         timeItems[timeItems.count - 1].remove(from: context)
     }
-    
-    //MARK: - CollectionView Functions
-    
-    
-    
-    //MARK: Context Menu
-    func contextMenuProvider(int: Int, timer: TimeItem) -> UIContextMenuConfiguration? {
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
-            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
-            let deleteConfirm = UIAction(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), attributes: settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
-                if !(timer.isRunning) {
-                    timer.remove(from: context)
-                    try? context.save()
-                } else {
-                    timer.reset()
-                }
-                
-            }
-            
-            let deleteConfirmReusable = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
-                timer.remove(from: context)
-                try? context.save()
-                
-            }
-            
-            // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: timer.isRunning ? NSLocalizedString("stop", comment: "Stop") : NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: timer.isRunning ? "stop" : "trash"), options: settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
-            
-            
-            let pause = UIAction(title: timer.isPaused ? NSLocalizedString("start", comment: "Start") : NSLocalizedString("pause", comment: "Pause"), image: UIImage(systemName: timer.isPaused ? "play" : "pause")) { action in
-                if timer.remainingTime == 0 {
-                    if timer.isReusable {
-                        timer.reset()
-                    } else {
-                        timer.remove(from: context)
-                    }
-                } else {
-                    timer.togglePause()
-                }
-            }
-            
-            let makeReusable = UIAction(title: NSLocalizedString("makeReusable", comment: "Make Reusable"), image: UIImage(systemName: "arrow.clockwise")) { action in
-                if settings.isSubscribed {
-                    timer.makeReusable()
-                } else {
-                    appState.activeSheet = 4
-                    appState.showingSheet = true
-                }
-            }
-            
-            let deleteReusable = UIMenu(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), options: settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirmReusable])
-            
-            
-            // The edit menu adds delete as a child, just like an action
-            let edit = UIMenu(title: "Edit...", options: .displayInline, children: timer.isReusable ? [pause, delete] : [pause, makeReusable, deleteReusable])
-            
-            let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-                appState.selectedTimeItem = timer
-                appState.activeSheet = 0
-                appState.showingSheet = true
-            }
-            
-            // Then we add edit as a child of the main menu
-            let mainMenu = UIMenu(title: "", children: [edit, info])
-            return mainMenu
-        }
-        return configuration
-    }
-    
-    //    var dragDropConfig: ASDragDropConfig<TimerItem>
-    //    {
-    //        ASDragDropConfig(dragEnabled: true, dropEnabled: true, reorderingEnabled: true, onMoveItem:  { (from, to) -> Bool in
-    //
-    //            var revisedItems: [ TimerItem ] = timeItems.map{ $0 }
-    //
-    //                // change the order of the items in the array
-    //                revisedItems.move(fromOffsets: IndexSet(integer: from), toOffset: to )
-    //
-    //                // update the userOrder attribute in revisedItems to
-    //                // persist the new order. This is done in reverse order
-    //                // to minimize changes to the indices.
-    //                for reverseIndex in stride( from: revisedItems.count - 1,
-    //                                            through: 0,
-    //                                            by: -1 )
-    //                {
-    //                    revisedItems[ reverseIndex ].order =
-    //                        Int( reverseIndex )
-    //                }
-    //
-    //            return true
-    //        })
-    //            .canDragItem { (indexPath) -> Bool in
-    //                true
-    //            }
-    //            .canMoveItem { (from, to) -> Bool in
-    //                true
-    //            }
-    //
-    //
-    //    }
-    
-    
-    
 }
 
-//MARK: - Previews
-
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
     }
 }
