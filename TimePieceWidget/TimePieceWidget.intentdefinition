@@ -176,7 +176,7 @@
 					<key>INIntentParameterConfigurable</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
-					<string>Time Item Group</string>
+					<string>Group</string>
 					<key>INIntentParameterDisplayNameID</key>
 					<string>DyT6af</string>
 					<key>INIntentParameterDisplayPriority</key>
