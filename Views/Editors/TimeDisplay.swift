@@ -43,38 +43,24 @@ struct TimeDisplay: View {
                     ZStack(alignment: .topLeading) {
                         HStack(spacing: 0) {
                             if hours != "00" {
-                                Text(hours).animation(nil)
+                                Text(Int(hours) ?? 0 > 9 ? hours : String(hours.suffix(1))).animation(nil)
                                     .opacity(isOpaque ? 1 : 0.5)
-                                Dots().opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
+                                Dots(isSmall: displayStyle == .small ? true : false).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                             }
-                            Text(minutes).animation(nil)
+                            Text(Int(hours) ?? 0 > 0 ? Int(minutes) ?? 0 > 9 ? minutes : String(minutes.suffix(1)) : minutes).animation(nil)
                                 .opacity(isOpaque ? 1 : 0.5)
-                            Dots().opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
+                            Dots(isSmall: displayStyle == .small ? true : false).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                             Text(seconds).animation(nil)
                                 .opacity(isOpaque ? 1 : 0.5)
                             
                             if precisionSetting == TimeItem.precisionSettings[0] || (precisionSetting == TimeItem.precisionSettings[2] && hours == "00" && minutes == "00") {
-                                Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
+                                Dots(isMilliseconds: true, isSmall: displayStyle == .small ? true : false).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                                 Text(milliseconds).animation(nil)
                                     .opacity(isOpaque ? 1 : 0.5)
                             }
                             
                         }
                         
-                        HStack(spacing: 0) {
-                            if hours != "00" {
-                                Text("88").animation(nil)
-                                Dots()
-                            }
-                            Text("88")
-                            Dots()
-                            Text("88")
-                            if precisionSetting == TimeItem.precisionSettings[0] || (precisionSetting == TimeItem.precisionSettings[2] && hours == "00" && minutes == "00") {
-                                Dots(isMilliseconds: true).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5)
-                                Text("88").animation(nil)
-                                    .opacity(0.5)
-                            }
-                        }.animation(nil).opacity(0)
                     }
                     if displayStyle == .labeled {
                         Text(label).fontSize(.smallTitle).opacity(0.5).padding(.bottom, 5)
@@ -84,7 +70,7 @@ struct TimeDisplay: View {
                 
                 .transition(.opacity)
                 .animation(isPaused && isRunning ? Animation.easeOut(duration: 0.5).repeatForever() : Animation.linear, value: isPaused)
-                .fontSize(.title)
+                .fontSize(displayStyle == .small ? .smallTitle : .title)
                 .animation(nil)
                 .fixedSize()
                 .onChange(of: timeString) { newValue in

@@ -131,7 +131,15 @@ struct TimeItemGridProvider: IntentTimelineProvider {
         
         var entries = [MultipleTimeItemsEntry]()
         
+//        let soonestEndDate = timeItems
+//                    .map(\.timeFinished)
+//                    .filter { $0 > date }
+//                    .min()
+//        
+//        let nextRefreshDate = soonestEndDate ?? Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
+        
         entries.append(MultipleTimeItemsEntry(date: date, timeItems: timeItems, configuration: configuration))
+//        entries.append(MultipleTimeItemsEntry(date: nextRefreshDate, timeItems: timeItems, configuration: configuration))
         
         timeItems.sort {
             $0.timeFinished < $1.timeFinished

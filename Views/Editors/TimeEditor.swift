@@ -296,10 +296,13 @@ struct Dots: View {
     
     @State var isMilliseconds = false
     
+    @State var isSmall = false
+    
     var body: some View {
-        VStack(spacing: 6) {
-            Circle().frame(width: 5, height: 5).opacity(isMilliseconds ? 0 : 1)
-            Circle().frame(width: 5, height: 5).padding(.top, isMilliseconds ? 8 : 0)
-        }.padding(.vertical, 8).padding(.horizontal, 1).transition(.opacity)
+        VStack(spacing: isSmall ? 3.5 : 6) {
+            Circle().frame(width: isSmall ? 2.5 : 6, height: isSmall ? 2.5 : 6).opacity(isMilliseconds ? 0 : 1)
+            Circle().frame(width: isSmall ? 2.5 : 6, height: isSmall ? 2.5 : 6).padding(.top, isMilliseconds ? 8 : 0)
+        }.padding(.vertical, isSmall ? 4 : 8).padding(.horizontal, 1).transition(.opacity)
+        
     }
 }

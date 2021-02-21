@@ -54,8 +54,7 @@ struct TimeItemGridCell: View {
                 
                 try? self.context.save()
             } label: {
-                
-                Group {
+                    Group {
                     if !timeItem.isStopwatch {
                         VStack(alignment: .leading, spacing: 0) {
                             Text(timeItem.title.isEmpty ? Strings.timer : LocalizedStringKey(timeItem.title))
@@ -67,7 +66,7 @@ struct TimeItemGridCell: View {
                                         if timeItem.isPaused {
                                             Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
                                         } else {
-                                            //Text(timeItem.timeFinished, style: .timer).opacity(0.5)
+                                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, displayStyle: .small, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                                         }
                                     }
                                     
@@ -90,7 +89,7 @@ struct TimeItemGridCell: View {
                                         if timeItem.isPaused {
                                             Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
                                         } else {
-                                            //Text(timeItem.timeStarted, style: .timer).opacity(0.5)
+                                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, displayStyle: .small, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
                                         }
                                     }
                                     else {
@@ -108,6 +107,10 @@ struct TimeItemGridCell: View {
                         }
                     }
                 }
+                
+                .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
+                    self.updateTime()
+                }
                 .onAppear {
                     currentTime = timeItem.remainingTimeString
                 }
@@ -120,6 +123,14 @@ struct TimeItemGridCell: View {
                 .padding(.vertical, 10)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(.systemGray6)))
+                    .overlay(appState.isInEditing ? nil : Button {
+                    appState.selectedTimeItem = timeItem
+                    appState.activeSheet = 0
+                    appState.showingSheet = true
+                    
+                } label: {
+                    Image(systemName: "ellipsis.circle.fill").font(.headline).padding(14).padding(.vertical, 10)
+                }, alignment: .topTrailing)
                 .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
             }
             

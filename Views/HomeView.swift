@@ -34,7 +34,7 @@ struct HomeView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var compactColumns = [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)]
-    var regularColumns = [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)]
+    var regularColumns = [GridItem(.adaptive(minimum: 152, maximum: 252), spacing: 14)]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
