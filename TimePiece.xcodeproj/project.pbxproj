@@ -40,6 +40,7 @@
 		052A346C25D81AE90052949A /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 052A346B25D81AE90052949A /* SwiftyStoreKit */; };
 		054F01A125DDCC17002ACCBF /* TimePieceWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */; };
 		054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */; };
+		056AC76725E3EDCD00472D58 /* SubscriptionPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */; };
 		05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FD25E2D70A006AE551 /* HomeView.swift */; };
 		05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */; };
 		05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0225E2F4DC006AE551 /* TopBar.swift */; };
@@ -136,6 +137,7 @@
 		052A346125D819950052949A /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceWidgets.swift; sourceTree = "<group>"; };
 		054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridWidget.swift; sourceTree = "<group>"; };
+		056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPointView.swift; sourceTree = "<group>"; };
 		05B1F91525D836F300C5E68E /* TimePieceWidgetIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetIntent.entitlements; sourceTree = "<group>"; };
 		05DED9FD25E2D70A006AE551 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridCell.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
 				809D69C42416CB4900896206 /* SubscriptionSheet.swift */,
+				056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */,
 				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
 				8021ADAB23D51F080090BA7F /* NewTimeItemSheet.swift */,
 				8088473A23C2AE79001D1A6E /* TimeItemSheet.swift */,
@@ -600,6 +603,7 @@
 				80150DD224F58E7300C740B3 /* SubscriptionRow.swift in Sources */,
 				80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */,
 				05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */,
+				056AC76725E3EDCD00472D58 /* SubscriptionPointView.swift in Sources */,
 				80150DEE24F58E7300C740B3 /* TimeItemSheet.swift in Sources */,
 				80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */,
 				80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */,
