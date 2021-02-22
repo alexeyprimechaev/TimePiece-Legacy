@@ -30,8 +30,8 @@ struct SubscriptionButton: View {
             action()
         } label: {
             ZStack(alignment: .center) {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .foregroundColor(isAccent ? .white : Color(red: 0.153, green: 0.153, blue: 0.161))
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .foregroundColor(isAccent ? .primary : Color(.systemGray6))
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(title).fontSize(.smallTitle)
@@ -44,7 +44,7 @@ struct SubscriptionButton: View {
                         Text(price).fontSize(.smallTitle)
                         Text(duration).font(.system(size: 12, weight: .medium, design: .default))
                     }
-                }.padding(.horizontal, 14).foregroundColor(isAccent ? .black : .white)
+                }.padding(.horizontal, 14).foregroundColor(isAccent ? (Color(.systemBackground)) : .primary)
             }.frame(height: 66)
         }
         

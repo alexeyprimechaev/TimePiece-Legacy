@@ -41,6 +41,7 @@
 		054F01A125DDCC17002ACCBF /* TimePieceWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */; };
 		054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */; };
 		056AC76725E3EDCD00472D58 /* SubscriptionPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */; };
+		056AC76925E3F00F00472D58 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */; };
 		05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FD25E2D70A006AE551 /* HomeView.swift */; };
 		05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */; };
 		05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0225E2F4DC006AE551 /* TopBar.swift */; };
@@ -72,7 +73,7 @@
 		80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
 		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimeItem.swift */; };
-		80150DEC24F58E7300C740B3 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* SubscriptionSheet.swift */; };
+		80150DEC24F58E7300C740B3 /* OldSubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* OldSubscriptionSheet.swift */; };
 		80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogItemCell.swift */; };
 		80150DEE24F58E7300C740B3 /* TimeItemSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimeItemSheet.swift */; };
 		80150E2524F5900400C740B3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2424F5900400C740B3 /* Introspect */; };
@@ -138,6 +139,7 @@
 		054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceWidgets.swift; sourceTree = "<group>"; };
 		054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridWidget.swift; sourceTree = "<group>"; };
 		056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPointView.swift; sourceTree = "<group>"; };
+		056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
 		05B1F91525D836F300C5E68E /* TimePieceWidgetIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetIntent.entitlements; sourceTree = "<group>"; };
 		05DED9FD25E2D70A006AE551 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridCell.swift; sourceTree = "<group>"; };
@@ -174,7 +176,7 @@
 		80888DA024FAB08400C55895 /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
 		808A38892512D6B10075AC50 /* InsightRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightRow.swift; sourceTree = "<group>"; };
 		809635632401544D00BF297F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		809D69C42416CB4900896206 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
+		809D69C42416CB4900896206 /* OldSubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSubscriptionSheet.swift; sourceTree = "<group>"; };
 		809D9F3124C4929200DB4E94 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		80A14FB42411077000638B64 /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
@@ -316,7 +318,8 @@
 			children = (
 				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
-				809D69C42416CB4900896206 /* SubscriptionSheet.swift */,
+				809D69C42416CB4900896206 /* OldSubscriptionSheet.swift */,
+				056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */,
 				056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */,
 				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
 				8021ADAB23D51F080090BA7F /* NewTimeItemSheet.swift */,
@@ -602,6 +605,7 @@
 				80150DDB24F58E7300C740B3 /* Strings.swift in Sources */,
 				80150DD224F58E7300C740B3 /* SubscriptionRow.swift in Sources */,
 				80150D7C24F58BDD00C740B3 /* TimePieceApp.swift in Sources */,
+				056AC76925E3F00F00472D58 /* SubscriptionSheet.swift in Sources */,
 				05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */,
 				056AC76725E3EDCD00472D58 /* SubscriptionPointView.swift in Sources */,
 				80150DEE24F58E7300C740B3 /* TimeItemSheet.swift in Sources */,
@@ -617,7 +621,7 @@
 				80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */,
 				80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */,
 				80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
-				80150DEC24F58E7300C740B3 /* SubscriptionSheet.swift in Sources */,
+				80150DEC24F58E7300C740B3 /* OldSubscriptionSheet.swift in Sources */,
 				80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */,
 				80150DD524F58E7300C740B3 /* LogItem.swift in Sources */,
 				052A345925D819430052949A /* TimePieceWidget.intentdefinition in Sources */,

@@ -1,15 +1,15 @@
 //
-//  SubscriptionSheet.swift
-//  TimePiece (iOS)
+//  OldSubscriptionSheet.swift
+//  TimePiece
 //
-//  Created by Alexey Primechaev on 2/22/21.
-//  Copyright © 2021 Alexey Primechaev. All rights reserved.
+//  Created by Alexey Primechaev on 3/9/20.
+//  Copyright © 2020 Alexey Primechaev. All rights reserved.
 //
 
 import SwiftUI
 import SwiftyStoreKit
 
-struct SubscriptionSheet: View {
+struct OldSubscriptionSheet: View {
     
     @EnvironmentObject var settings: Settings
     
@@ -20,46 +20,71 @@ struct SubscriptionSheet: View {
     @State var alertText2 = "Some error occured..."
     
     var body: some View {
-        VStack(spacing: 0) {
-            HeaderBar(leadingAction: discard,
-                      leadingTitle: Strings.dismiss,
-                      leadingIcon: "chevron.down",
-                      trailingAction: {})
-            GeometryReader { geometry in
-                ScrollView {
-                    let baseWidth = geometry.size.width-28-56
+        ZStack {
+            Color(red: 0.11, green: 0.11, blue: 0.12)
+                .edgesIgnoringSafeArea(.all)
+            VStack(alignment: .leading, spacing: 0) {
+                
+                HStack {
+                    Button {
+                        self.discard()
+                    } label: {
+                        Label {
+                            Text(Strings.dismiss).fontSize(.smallTitle)
+                        } icon: {
+                            Image(systemName: "chevron.down").font(.headline)
+                        }
+                        .padding(.horizontal, 28)
+                    }
+                    .buttonStyle(RegularButtonStyle())
                     
-                    VStack(spacing: 14) {
-                        HStack(spacing: 14) {
-                            SubscriptionPointView(color: .primary, image: "textformat", text: "Customize Appearance").frame(width: baseWidth * 1/3, height: 112)
-                            SubscriptionPointView(style: .medium,
-                                                  text: "Analyze how you've spent\nyour time",
-                                                  images: ["clock.fill","heart.circle.fill","arrow.right.circle.fill","number.circle.fill"],
-                                                  colors: [Color(.systemTeal), .pink, .purple, .orange])
-                                .frame(width: baseWidth * 2/3 + 14, height: 112)
+                    
+                    Button {
+                        self.restorePurchases()
+                    } label: {
+                        Label {
+                            Text(Strings.restore).fontSize(.smallTitle)
+                        } icon: {
+                            Image(systemName: "arrow.clockwise").font(.headline)
                         }
-                        HStack(spacing: 14) {
-                            SubscriptionPointView().frame(width: baseWidth * 2/3 + 14, height: 238)
-                            VStack(spacing: 14) {
-                                SubscriptionPointView(color: Color(.systemIndigo), image: "ellipsis.circle.fill", text: "Show Milliseconds").frame(width: baseWidth * 1/3, height: 112)
-                                SubscriptionPointView(color: .green, image: "speaker.wave.2.fill", text: "Pick sounds for each timer").frame(width: baseWidth * 1/3, height: 112)
-                                
-                            }
-                        }
-                        HStack(spacing: 14) {
-                            SubscriptionPointView(color: .blue, image: "paperplane.fill", text: "Help develop new features").frame(width: baseWidth * 1/3, height: 112)
-                            SubscriptionPointView(style: .medium,
-                                                  isSFSymbol: false, text: "Support the creators", images: ["lex", "kex"]).frame(width: baseWidth * 2/3 + 14, height: 112)
-                        }
+                        .padding(.horizontal, 28)
+                    }
+                    
+                    
+                    
+                }
+                .frame(height: 52)
+                
+                
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
+                }
+                ScrollView {
+                    VStack(alignment: .center, spacing: 0) {
+                        
+                        HStack(alignment: .bottom, spacing: 4) {
+                            Text(Strings.timePiece)
+                                .fontSize(.title)
+                            
+                            Image("PlusIcon")
+                                .padding(.bottom, 9)
+                        }.padding(7)
+                        SubscribtionPoints {
+                            SubscriptionRow(icon: "arrow.clockwise.circle.fill", title: Strings.sellingPoint1, subtitle: Strings.sellingPoint1Second).tag(0)
+                            SubscriptionRow(icon: "bell.circle.fill", title: Strings.sellingPoint2, subtitle: Strings.sellingPoint2Second).tag(1)
+                            SubscriptionRow(icon: "book.circle.fill", title: Strings.sellingPoint3, subtitle: Strings.sellingPoint3Second).tag(2)
+                            SubscriptionRow(icon: "star.circle.fill", title: Strings.sellingPoint4, subtitle: Strings.sellingPoint4Second).tag(3)
+                            SubscriptionRow(icon: "ellipsis.circle.fill", title: Strings.sellingPoint5, subtitle: Strings.sellingPoint5Second).tag(4)
+                            SubscriptionRow(icon: "heart.circle.fill", title: Strings.sellingPoint6, subtitle: Strings.sellingPoint6Second).tag(5)
+                        }.padding(.bottom, 14)
                         
                         
+                        VStack(spacing: 14) {
+                            SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: purchaseMonthly)
+                            SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, action: purchaseYearly)
+                        }.padding(.trailing, 28).padding(.leading, 21)
                         
-                    }.padding(.top, 14)
-                    Divider().padding(14).padding(.horizontal, 14)
-                    VStack(spacing: 14) {
-                        SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: purchaseMonthly)
-                        SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, action: purchaseYearly)
-                        Text(Strings.subscriptionDetails).fontSize(.secondaryText).multilineTextAlignment(.center)
+                        Text(Strings.subscriptionDetails).fontSize(.secondaryText).padding(14).padding(.trailing, 14).padding(.leading, 21)
                         HStack(spacing: 0) {
                             Spacer()
                             Button {
@@ -73,20 +98,14 @@ struct SubscriptionSheet: View {
                             Spacer()
                             Spacer().frame(width: 21)
                         }
-                    }.padding(.horizontal, 28)
-                    
-                    
+                        .padding(.bottom, 14).padding(.leading, 21)
+                    }
                 }
-            }
-            
-            
-            
-            
-            
-            
-            
-            
+                
+            }.foregroundColor(.white)
         }
+        
+        
     }
     
     func restorePurchases() {
@@ -269,4 +288,6 @@ struct SubscriptionSheet: View {
             }
         }
     }
+    
+    
 }
