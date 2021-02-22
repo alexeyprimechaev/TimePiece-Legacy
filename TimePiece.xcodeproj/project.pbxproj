@@ -42,7 +42,6 @@
 		054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */; };
 		05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FD25E2D70A006AE551 /* HomeView.swift */; };
 		05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */; };
-		05DEDA0125E2EC25006AE551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 052A345525D819430052949A /* Assets.xcassets */; };
 		05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0225E2F4DC006AE551 /* TopBar.swift */; };
 		05DEDA0525E2F6AC006AE551 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0425E2F6AC006AE551 /* TrackableScrollView.swift */; };
 		05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EDD9E025A2296100E78486 /* ContinousPicker.swift */; };
@@ -539,7 +538,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				80150E3824F593A500C740B3 /* Assets.xcassets in Resources */,
-				05DEDA0125E2EC25006AE551 /* Assets.xcassets in Resources */,
 				80150E3624F5938F00C740B3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

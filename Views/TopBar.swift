@@ -52,6 +52,16 @@ struct TopBar: View {
                                     Image(systemName: "textformat")
                                 }.tag(ViewType.classic)
                             }
+                            Divider()
+                            Button {
+                                appState.activeSheet = 4
+                                appState.showingSheet = true
+                            } label: {
+                                HStack {
+                                    Text("Show Subscription")
+                                    Image(systemName: "gear")
+                                }
+                            }
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .foregroundColor(.primary).padding(14).padding(.horizontal, 14).font(.headline)

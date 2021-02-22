@@ -133,46 +133,49 @@ struct SingleTimeItemEntryView: View {
     @State private var currentTime: String = "00:00"
     
     var body: some View {
-        VStack(alignment: .leading) {
-            if entry.isPlaceholder {
-                Text("Edit Widget")
-                Text("To Select").opacity(0.5)
-            } else {
-                
-                if entry.isStopwatch {
-                    if entry.isRunning {
-                        if entry.isPaused {
-                            Text(entry.remainingTime.stringFromNumber()).opacity(0.5)
-                        } else {
-                            Text(entry.timeStarted, style: .timer).opacity(0.5).multilineTextAlignment(.leading)
-                        }
-                    } else {
-                        Text("Start").opacity(0.5)
-                    }
-                    Text(entry.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(entry.title)).lineLimit(1)
+        ZStack {
+            Color("WidgetBackground")
+            VStack(alignment: .leading) {
+                if entry.isPlaceholder {
+                    Text("Edit Widget")
+                    Text("To Select").opacity(0.5)
                 } else {
-                    Text(entry.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(entry.title)).lineLimit(2)
-                    if entry.isPaused {
-                        if entry.remainingTime == 0 {
-                            Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                    
+                    if entry.isStopwatch {
+                        if entry.isRunning {
+                            if entry.isPaused {
+                                Text(entry.remainingTime.stringFromNumber()).opacity(0.5)
+                            } else {
+                                Text(entry.timeStarted, style: .timer).opacity(0.5).multilineTextAlignment(.leading)
+                            }
                         } else {
-                            Text(entry.remainingTime.stringFromNumber()).opacity(0.5)
+                            Text("Start").opacity(0.5)
                         }
+                        Text(entry.title.isEmpty ? "Stopwatch ⏱" : LocalizedStringKey(entry.title)).lineLimit(1)
                     } else {
-                        if entry.isFinished {
-                            Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                        Text(entry.title.isEmpty ? "Timer ⏱" : LocalizedStringKey(entry.title)).lineLimit(2)
+                        if entry.isPaused {
+                            if entry.remainingTime == 0 {
+                                Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                            } else {
+                                Text(entry.remainingTime.stringFromNumber()).opacity(0.5)
+                            }
                         } else {
-                            Text(entry.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
+                            if entry.isFinished {
+                                Text("Done").multilineTextAlignment(.leading).opacity(0.5)
+                            } else {
+                                Text(entry.timeFinished, style: .timer).multilineTextAlignment(.leading).opacity(0.5)
+                            }
+                            
                         }
-                        
                     }
+                    
                 }
                 
-            }
-            
-            
-        }.font(Font.title.bold().monospacedDigit())
-        .padding(5).widgetURL(entry.url)
+                
+            }.font(Font.title.bold().monospacedDigit())
+            .padding(5).widgetURL(entry.url)
+        }
     }
     
 }

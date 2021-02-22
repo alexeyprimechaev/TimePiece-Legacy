@@ -135,7 +135,7 @@ struct TimeItemGridProvider: IntentTimelineProvider {
 //                    .map(\.timeFinished)
 //                    .filter { $0 > date }
 //                    .min()
-//        
+//
 //        let nextRefreshDate = soonestEndDate ?? Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
         
         entries.append(MultipleTimeItemsEntry(date: date, timeItems: timeItems, configuration: configuration))
@@ -245,7 +245,7 @@ struct TimeItemGridCell: View {
                             }
                         }
                         
-                    }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color(.systemGroupedBackground)))
+                    }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color("WidgetSecondaryBackground")))
                 }
             case .new:
                 Link(destination: URL(string: "timepiece://newtimeitem")!) {
@@ -255,7 +255,7 @@ struct TimeItemGridCell: View {
                         } icon: {
                             Image(systemName: "plus")
                         }
-                    }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color(.systemGroupedBackground)))
+                    }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).background(ContainerRelativeShape().foregroundColor(Color("WidgetSecondaryBackground")))
                 }
             case .placeholder:
                 VStack(alignment: .leading) {
@@ -296,7 +296,7 @@ struct TimeItemGridEntryView: View {
                     TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 4)[2])
                     TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 4)[3])
                 }
-            }.padding(8)
+            }.padding(8).background(Color("WidgetBackground"))
         case .systemLarge:
             VStack(spacing: 8) {
                 HStack(spacing: 8) {
@@ -315,7 +315,7 @@ struct TimeItemGridEntryView: View {
                     TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[6])
                     TimeItemGridCell(timeItem: fillWithPlaceholders(fill: entry.timeItems, toCount: 8)[7])
                 }
-            }.padding(8)
+            }.padding(8).background(Color("WidgetBackground"))
         default:
             Text("Some other WidgetFamily in the future.")
         }

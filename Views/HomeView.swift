@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct HomeView: View {
     
@@ -33,6 +34,8 @@ struct HomeView: View {
     
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
+    @State private var dragging: TimeItem?
+    
     var compactColumns = [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)]
     var regularColumns = [GridItem(.adaptive(minimum: 152, maximum: 252), spacing: 14)]
     
@@ -47,6 +50,11 @@ struct HomeView: View {
                     LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
                         ForEach(timeItems) { timeItem in
                             TimeItemGridCell(timeItem: timeItem)
+                                .onDrag {
+                                    self.dragging = timeItem
+                                    return NSItemProvider(object: String(timeItem.order) as NSString)
+                                }
+                                .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
                         }
                     }.padding(7)
                 }.padding(.horizontal, 21).padding(.vertical, 14)
@@ -217,5 +225,43 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+    }
+}
+
+struct DragRelocateDelegate: DropDelegate {
+    let item: TimeItem
+    var listData: FetchedResults<TimeItem>
+    @Binding var current: TimeItem?
+
+    func dropEntered(info: DropInfo) {
+        if item != current {
+            let from = current?.order ?? 0
+            let to = item.order
+
+            var revisedItems: [TimeItem] = listData.map{ $0 }
+
+                // change the order of the items in the array
+                revisedItems.move(fromOffsets: IndexSet(integer: from), toOffset: to )
+
+                // update the userOrder attribute in revisedItems to
+                // persist the new order. This is done in reverse order
+                // to minimize changes to the indices.
+                for reverseIndex in stride( from: revisedItems.count - 1,
+                                            through: 0,
+                                            by: -1 )
+                {
+                    revisedItems[reverseIndex].order =
+                        Int( reverseIndex )
+                }
+        }
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        return DropProposal(operation: .move)
+    }
+
+    func performDrop(info: DropInfo) -> Bool {
+        self.current = nil
+        return true
     }
 }
