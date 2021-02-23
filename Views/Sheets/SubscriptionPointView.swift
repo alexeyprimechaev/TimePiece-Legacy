@@ -68,8 +68,12 @@ struct SubscriptionPointView: View {
                     
                 }
             case .large:
-                Text("No")
-                Spacer()
+                VStack {
+                    Spacer()
+                    Text("Artwork").scaleEffect(hasAppeared ? 1 : 0)
+                        .animation(.easeOut(duration: 0.5).delay(Double.random(in: 0...0.2)), value: hasAppeared)
+                    Spacer()
+                }
             }
         }
         .padding(isSFSymbol ? 20 : 6).frame(maxWidth: .infinity, maxHeight: .infinity).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(.systemGray6))).overlay( Text(text).fontSize(.secondaryText).padding(.bottom, 14).padding(.horizontal, 4).lineLimit(2).multilineTextAlignment(.center), alignment: .bottom)
