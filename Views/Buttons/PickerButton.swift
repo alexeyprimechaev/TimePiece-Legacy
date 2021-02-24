@@ -73,7 +73,6 @@ struct PickerButton: View {
                     }.fixedSize().padding(0)
                 }
                 .padding(7)
-                .background(Color(.systemBackground))
             }
             
             

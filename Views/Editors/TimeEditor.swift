@@ -301,7 +301,7 @@ struct Dots: View {
     var body: some View {
         VStack(spacing: isSmall ? 3.5 : 6) {
             Circle().frame(width: isSmall ? 2.5 : 6, height: isSmall ? 2.5 : 6).opacity(isMilliseconds ? 0 : 1)
-            Circle().frame(width: isSmall ? 2.5 : 6, height: isSmall ? 2.5 : 6).padding(.top, isMilliseconds ? 8 : 0)
+            Circle().frame(width: isSmall ? 2.5 : 6, height: isSmall ? 2.5 : 6).padding(.top, isMilliseconds ? isSmall ? 3 : 8 : 0)
         }.padding(.vertical, isSmall ? 4 : 8).padding(.horizontal, 1).transition(.opacity)
         
     }

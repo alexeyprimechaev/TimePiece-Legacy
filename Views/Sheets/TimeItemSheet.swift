@@ -67,7 +67,7 @@ struct TimeItemSheet: View {
                             }
                             
                             PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
                         } else {
                             
@@ -98,7 +98,7 @@ struct TimeItemSheet: View {
                             }
                             
                             PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
                         } else {
                             

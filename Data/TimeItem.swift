@@ -64,9 +64,9 @@ public class TimeItem: NSManagedObject, Identifiable {
     
     //MARK: Setting Collections
     static let soundSettings = ["short", "long"]
-    static let precisionSettings = ["on", "off", "smart"]
-    static let notificationSettings = ["on", "off"]
-    static let reusableSettings = ["yes", "no"]
+    static let precisionSettings = ["off", "on", "smart"]
+    static let notificationSettings = ["off", "on"]
+    static let reusableSettings = ["no", "yes"]
     
     
     //MARK: Formatters
@@ -242,7 +242,7 @@ public class TimeItem: NSManagedObject, Identifiable {
     
     func convertToStopwatch() {
         isStopwatch = true
-        precisionSetting = TimeItem.precisionSettings[1]
+        precisionSetting = TimeItem.precisionSettings[0]
     }
     
     
@@ -360,7 +360,7 @@ extension TimeItem {
     }
     
     var notificationSetting: String {
-        get { notificationSettingStored ?? TimeItem.notificationSettings[0] }
+        get { notificationSettingStored ?? TimeItem.notificationSettings[1] }
         set { notificationSettingStored = newValue }
     }
     

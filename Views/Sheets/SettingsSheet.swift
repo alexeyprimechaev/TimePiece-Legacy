@@ -56,7 +56,7 @@ struct SettingsSheet: View {
                         }
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $settings.showInLogDefault.yesNo)
+                            PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $settings.showInLogDefault.yesNo)
                         }
                         
                     }
@@ -65,11 +65,11 @@ struct SettingsSheet: View {
                         PickerButton(title: Strings.font, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], controlledValue: $settings.fontDesign.string)
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.monochrome, values: [true.yesNo, false.yesNo], controlledValue: $settings.isMonochrome.yesNo)
+                            PickerButton(title: Strings.monochrome, values: [false.yesNo, true.yesNo], controlledValue: $settings.isMonochrome.yesNo)
                         }
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.logSeparators, values: [true.onOff, false.onOff], controlledValue: $settings.showingDividers.onOff)
+                            PickerButton(title: Strings.logSeparators, values: [false.onOff, true.onOff], controlledValue: $settings.showingDividers.onOff)
                         }
                         
                     }

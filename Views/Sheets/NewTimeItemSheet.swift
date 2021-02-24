@@ -50,7 +50,7 @@ struct NewTimeItemSheet: View {
                         
                         if !timeItem.isStopwatch {
                             PremiumBadge {
-                                PickerButton(title: Strings.reusable, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.isReusable.yesNo)
+                                PickerButton(title: Strings.reusable, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.isReusable.yesNo)
                             }
                         }
                         
@@ -94,7 +94,7 @@ struct NewTimeItemSheet: View {
                                 }
                             }
                             PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [true.yesNo, false.yesNo], controlledValue: $timeItem.showInLog.yesNo)
+                                PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
                         }
                         

@@ -47,13 +47,13 @@ struct TimeDisplay: View {
                                     .opacity(isOpaque ? 1 : 0.5)
                                 Dots(isSmall: displayStyle == .small ? true : false).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                             }
-                            Text(Int(hours) ?? 0 > 0 ? Int(minutes) ?? 0 > 9 ? minutes : String(minutes.suffix(1)) : minutes).animation(nil)
+                            Text(Int(hours) ?? 0 > 0 || Int(minutes) ?? 0 > 9 ? minutes : String(minutes.suffix(1))).animation(nil)
                                 .opacity(isOpaque ? 1 : 0.5)
                             Dots(isSmall: displayStyle == .small ? true : false).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                             Text(seconds).animation(nil)
                                 .opacity(isOpaque ? 1 : 0.5)
                             
-                            if precisionSetting == TimeItem.precisionSettings[0] || (precisionSetting == TimeItem.precisionSettings[2] && hours == "00" && minutes == "00") {
+                            if precisionSetting == TimeItem.precisionSettings[1] || (precisionSetting == TimeItem.precisionSettings[2] && hours == "00" && minutes == "00") {
                                 Dots(isMilliseconds: true, isSmall: displayStyle == .small ? true : false).opacity(isRunning ? isPaused ? 0.25 : 1 : 0.5).transition(.opacity)
                                 Text(milliseconds).animation(nil)
                                     .opacity(isOpaque ? 1 : 0.5)
