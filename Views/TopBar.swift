@@ -13,13 +13,21 @@ struct TopBar: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var settings: Settings
     
-    @Binding var isLarge: Bool
+    @Binding var showDivider: Bool
+    
+    @State var alwaysShowTitle = false
+    
+    @State var title: LocalizedStringKey
     
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
                 HStack {
-                    Text(Strings.timePiece).fontSize(.smallTitle).opacity(isLarge ? 0 : 1).padding(14)
+                    if alwaysShowTitle {
+                        Text(title).fontSize(.smallTitle)
+                    } else {
+                        Text(title).fontSize(.smallTitle).opacity(showDivider ? 0 : 1).padding(14)
+                    }
                 }
                 HStack {
                     Spacer()
@@ -70,7 +78,6 @@ struct TopBar: View {
                 }
             }.animation(nil)
 
-            Divider().opacity(isLarge ? 0 : 1)
         }.animation(.easeOut(duration: 0.2))
     }
 }

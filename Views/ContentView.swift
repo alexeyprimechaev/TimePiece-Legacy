@@ -36,7 +36,8 @@ struct ContentView: View {
     var body: some View {
         
         VStack(spacing: 0) {
-            TopBar(isLarge: $isLarge)
+            TopBar(showDivider: $isLarge, title: Strings.timePiece)
+            Divider().opacity(isLarge ? 0 : 1)
             
             ASCollectionView(
                 sections:

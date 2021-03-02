@@ -41,30 +41,17 @@ struct HomeView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            TopBar(isLarge: $isLarge)
-            TrackableScrollView {
-                scrollOffset = $0
-            } content: {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(Strings.timePiece).fontSize(.title).padding(.bottom, 21).padding(.leading, 7)
-                    LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
-                        ForEach(timeItems) { timeItem in
-                            TimeItemGridCell(timeItem: timeItem)
-                                .onDrag {
-                                    self.dragging = timeItem
-                                    return NSItemProvider(object: String(timeItem.order) as NSString)
-                                }
-                                .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
-                        }
-                    }.padding(7)
-                }.padding(.horizontal, 21).padding(.vertical, 14)
-            }
-            .onChange(of: scrollOffset) { newValue in
-                if newValue <= -32 {
-                    isLarge = false
-                } else if newValue > -32  {
-                    isLarge = true
-                }
+            TitledScrollView(title: "TimePiece") {
+                LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
+                    ForEach(timeItems) { timeItem in
+                        TimeItemGridCell(timeItem: timeItem)
+                            .onDrag {
+                                self.dragging = timeItem
+                                return NSItemProvider(object: String(timeItem.order) as NSString)
+                            }
+                            .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
+                    }
+                }.padding(7)
             }
             BottomBar {
                 if appState.isInEditing {

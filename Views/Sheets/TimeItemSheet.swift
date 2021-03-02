@@ -42,6 +42,7 @@ struct TimeItemSheet: View {
     var body: some View {
         
         VStack(spacing:0) {
+            
             HeaderBar(leadingAction: discard,
                       leadingTitle: Strings.dismiss,
                       leadingIcon: "chevron.down",

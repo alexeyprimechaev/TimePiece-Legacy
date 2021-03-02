@@ -16,9 +16,11 @@ struct PickerButton: View {
     @State var values = [String]()
     @Binding var controlledValue: String
     @State var index = Int()
+    @State private var currentDelta: CGFloat = 0
     
     //MARK: - View
     var body: some View {
+        
         
         if values.count > 3 {
             Menu {
@@ -73,12 +75,62 @@ struct PickerButton: View {
                     }.fixedSize().padding(0)
                 }
                 .padding(7)
+                .gesture(
+                    DragGesture()
+                        .onEnded { gesture in
+                            
+                        }
+                        .onChanged { gesture in
+                            if gesture.translation.width > 52 && currentDelta == 0 {
+                                if index < values.count - 1 {
+                                    index += 1
+                                    controlledValue = values[index]
+                                    lightHaptic()
+                                }
+                                currentDelta = gesture.translation.width
+                            } else if gesture.translation.width < -52 && currentDelta == 0 {
+                                if index < values.count - 1 {
+                                    index += 1
+                                    controlledValue = values[index]
+                                    lightHaptic()
+                                }
+                                currentDelta = gesture.translation.width
+                            } else {
+                            
+                                if gesture.translation.width > currentDelta + 52 {
+                                    if index < values.count - 1 {
+                                        index += 1
+                                        controlledValue = values[index]
+                                        lightHaptic()
+                                    }
+                                    currentDelta = gesture.translation.width
+                                   
+                                }
+                                
+                                if gesture.translation.width < currentDelta - 52 {
+                                    if index > 0 {
+                                        index -= 1
+                                        controlledValue = values[index]
+                                        lightHaptic()
+                                    }
+                                    currentDelta = gesture.translation.width
+                                    
+                                }
+                            }
+                            print(gesture.translation.width)
+                            print(currentDelta)
+                        }
+                )
+                
+                
             }
             
             
             
             //MARK: Styling
             .buttonStyle(TitleButtonStyle())
+            
+            
             
             
             
