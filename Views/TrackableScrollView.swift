@@ -21,7 +21,6 @@ struct TitledScrollView<Content: View>: View {
     @State private var scrollOffset: CGFloat = .zero
     
     let content: Content
-    let header: Content?
     
     init(title: LocalizedStringKey, alwaysSmall: Bool = false, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
@@ -32,21 +31,19 @@ struct TitledScrollView<Content: View>: View {
         }
         
         self.content = content()
-        self.header = nil
     }
     
-    init(@ViewBuilder content: @escaping () -> Content, @ViewBuilder header: @escaping () -> Content) {
+    init(@ViewBuilder content: @escaping () -> Content) {
         self.title = ""
         self.type = .empty
         self.content = content()
-        self.header = header()
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             switch type {
             case .empty:
-                header
+                EmptyView()
             case .small:
                 TopBar(showDivider: $isLarge, alwaysShowTitle: true, title: title)
             case .large:
@@ -62,7 +59,7 @@ struct TitledScrollView<Content: View>: View {
                         Text(title).fontSize(.title).padding(.bottom, 21).padding(.leading, 7)
                     }
                     content
-                }.padding(.horizontal, 21).padding(.vertical, 14)
+                }.padding(.horizontal, 21).padding(.vertical, type == .empty ? 0 : 14)
             }
             .onChange(of: scrollOffset) { newValue in
                 if newValue <= -32 {

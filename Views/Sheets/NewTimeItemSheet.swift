@@ -35,7 +35,7 @@ struct NewTimeItemSheet: View {
                 }, leadingTitle: Strings.discard, leadingIcon: "xmark", leadingIsDestructive: true,
                 trailingAction: {})
             
-            ScrollView {
+            TitledScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
@@ -103,7 +103,7 @@ struct NewTimeItemSheet: View {
                     
                     
                     
-                }.padding(.leading, 21).animation(.default, value: timeItem.isStopwatch)
+                }.animation(.default, value: timeItem.isStopwatch)
             }
             EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timeItem.isStopwatch) {
                 if !timeItem.isStopwatch {

@@ -84,10 +84,9 @@ struct ContentView: View {
                             
                             withAnimation {
                                 for timeItem in appState.selectedValues {
-                                    context.delete(timeItem)
+                                    timeItem.remove(from: context)
                                 }
                             }
-                            try? context.save()
                             appState.isInEditing = false
                         }, secondaryButton: .cancel())
                     }

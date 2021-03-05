@@ -154,6 +154,8 @@ public class TimeItem: NSManagedObject, Identifiable {
         NotificationManager.removePendingNotification(timer: self)
         
         context.delete(self)
+        
+        try? context.save()
     }
     
     //MARK: Toggle Pause

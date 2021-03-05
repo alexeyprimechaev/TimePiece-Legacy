@@ -59,7 +59,7 @@ struct OldSubscriptionSheet: View {
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
                 }
-                ScrollView {
+                TitledScrollView {
                     VStack(alignment: .center, spacing: 0) {
                         
                         HStack(alignment: .bottom, spacing: 4) {
@@ -82,7 +82,7 @@ struct OldSubscriptionSheet: View {
                         VStack(spacing: 14) {
                             SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: purchaseMonthly)
                             SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, action: purchaseYearly)
-                        }.padding(.trailing, 28).padding(.leading, 21)
+                        }.padding(.trailing, 28)
                         
                         Text(Strings.subscriptionDetails).fontSize(.secondaryText).padding(14).padding(.trailing, 14).padding(.leading, 21)
                         HStack(spacing: 0) {
@@ -98,7 +98,7 @@ struct OldSubscriptionSheet: View {
                             Spacer()
                             Spacer().frame(width: 21)
                         }
-                        .padding(.bottom, 14).padding(.leading, 21)
+                        .padding(.bottom, 14)
                     }
                 }
                 

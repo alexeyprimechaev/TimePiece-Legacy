@@ -79,12 +79,8 @@ struct LogSheet: View {
                         Text("This Week").fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
                         Spacer()
                     }
-                    
-                    
-                    if settings.showingDividers {
-                        Divider()
-                    }
-                    ScrollView {
+
+                    TitledScrollView() {
                         VStack(spacing: 14) {
                             Spacer().frame(height: 14)
                             InsightRow(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")
@@ -92,7 +88,7 @@ struct LogSheet: View {
                             InsightRow(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: $dailyAverage, value: $mostPopularTimerCount, subtitle: "Looks like you have good average productivity. Well done, mate!")
                             InsightRow(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: $totalTimersRun, value: $mostPopularTimerCount, subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
                             Spacer()
-                        }.padding(.leading, 21)
+                        }
                     }
                 }.background(Color(UIColor.systemBackground))
                 

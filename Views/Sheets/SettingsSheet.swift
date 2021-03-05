@@ -21,7 +21,7 @@ struct SettingsSheet: View {
                       leadingIcon: "chevron.down",
                       trailingAction: {})
             
-            ScrollView {
+            TitledScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
@@ -75,7 +75,7 @@ struct SettingsSheet: View {
                     }
                     
                     
-                }.padding(.leading, 21).padding(.bottom, 28).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                }.padding(.bottom, 28).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
                 
             }
         }

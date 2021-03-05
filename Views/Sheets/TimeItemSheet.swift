@@ -48,7 +48,7 @@ struct TimeItemSheet: View {
                       leadingIcon: "chevron.down",
                       leadingIsDestructive: false,
                       trailingAction: {})
-            ScrollView {
+            TitledScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
@@ -140,7 +140,6 @@ struct TimeItemSheet: View {
                         }), secondaryButton: .cancel())
                     }
                 }
-                .padding(.leading, 21)
                 .onAppear {
                     currentTime = timeItem.remainingTimeString
                 }

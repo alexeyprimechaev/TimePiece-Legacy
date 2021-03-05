@@ -26,7 +26,7 @@ struct SubscriptionSheet: View {
                       leadingIcon: "chevron.down",
                       trailingAction: {})
             GeometryReader { geometry in
-                ScrollView {
+                TitledScrollView {
                     let baseWidth = geometry.size.width-28-56
                     
                     VStack(spacing: 14) {
@@ -54,7 +54,7 @@ struct SubscriptionSheet: View {
                         
                         
                         
-                    }.padding(.top, 14)
+                    }.padding(.top, 14).padding(.horizontal, 7)
                     Divider().padding(14).padding(.horizontal, 14)
                     VStack(spacing: 14) {
                         SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: purchaseMonthly)
@@ -73,7 +73,7 @@ struct SubscriptionSheet: View {
                             Spacer()
                             Spacer().frame(width: 21)
                         }
-                    }.padding(.horizontal, 28)
+                    }.padding(.horizontal, 7)
                     
                     
                 }
