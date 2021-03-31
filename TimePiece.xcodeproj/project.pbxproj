@@ -676,7 +676,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidgetIntent;
+				PRODUCT_BUNDLE_IDENTIFIER = one.monochrome.timepiece.TimePieceWidgetIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -698,7 +698,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidgetIntent;
+				PRODUCT_BUNDLE_IDENTIFIER = one.monochrome.timepiece.TimePieceWidgetIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -722,7 +722,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = one.monochrome.timepiece.TimePieceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -746,7 +746,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = one.monochrome.timepiece.TimePieceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -774,7 +774,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
+				PRODUCT_BUNDLE_IDENTIFIER = one.monochrome.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
@@ -803,7 +803,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
+				PRODUCT_BUNDLE_IDENTIFIER = one.monochrome.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;

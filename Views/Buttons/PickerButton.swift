@@ -24,9 +24,22 @@ struct PickerButton: View {
         
         if values.count > 3 {
             Menu {
+                //                Picker("", selection: $controlledValue) {
+                //                    ForEach(values, id: \.self) { value in
+                //                        Text(NSLocalizedString(value, comment: "value"))
+                //                    }
+                //                }
                 ForEach(values, id: \.self) { value in
-                    Button(NSLocalizedString(value, comment: "value")) {
+                    Button {
                         controlledValue = value
+                    } label: {
+                        HStack {
+                            Text(NSLocalizedString(value, comment: "value"))
+                            if controlledValue == value {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                        
                     }
                 }
             } label: {
@@ -96,7 +109,7 @@ struct PickerButton: View {
                                 }
                                 currentDelta = gesture.translation.width
                             } else {
-                            
+                                
                                 if gesture.translation.width > currentDelta + 52 {
                                     if index < values.count - 1 {
                                         index += 1
@@ -104,7 +117,7 @@ struct PickerButton: View {
                                         lightHaptic()
                                     }
                                     currentDelta = gesture.translation.width
-                                   
+                                    
                                 }
                                 
                                 if gesture.translation.width < currentDelta - 52 {
@@ -151,6 +164,3 @@ struct PickerButton: View {
         
     }
 }
-
-
-

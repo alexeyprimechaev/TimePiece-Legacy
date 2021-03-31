@@ -193,7 +193,7 @@ struct TimeEditor: View {
                                 .foregroundColor(Color("button.gray"))
                                 .opacity(textField.isFirstResponder || isFocused ? 1 : 0))
                 )
-                Text(label).fontSize(.smallTitle).padding(.bottom, 13).opacity(isFocused ? 1 : 0.5)
+                //Text(label).fontSize(.smallTitle).padding(.bottom, 13).opacity(isFocused ? 1 : 0.5)
             }.animation(.default, value: isFocused)
             //            .background(HStack(spacing: 0) {
             //                Text("00")

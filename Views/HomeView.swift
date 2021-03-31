@@ -40,91 +40,208 @@ struct HomeView: View {
     var regularColumns = [GridItem(.adaptive(minimum: 152, maximum: 252), spacing: 14)]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            TitledScrollView(title: "TimePiece") {
-                LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
-                    ForEach(timeItems) { timeItem in
-                        TimeItemGridCell(timeItem: timeItem)
-                            .onDrag {
-                                self.dragging = timeItem
-                                return NSItemProvider(object: String(timeItem.order) as NSString)
-                            }
-                            .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
-                    }
-                }.padding(7)
-            }
-            BottomBar {
-                if appState.isInEditing {
-                    BottomBarItem(title: "Delete", icon: "trash") {
-                        showingDeleteAlert = true
-                    }.foregroundColor(.red).opacity(appState.selectedValues.isEmpty ? 0.5 : 1).disabled(appState.selectedValues.isEmpty)
-                    .alert(isPresented: $showingDeleteAlert) {
-                        Alert(title: Text("Delete selected Timers?"), primaryButton: .destructive(Text("Delete")) {
-                            
-                            withAnimation {
-                                for timeItem in appState.selectedValues {
-                                    timeItem.remove(from: context)
+        
+        HStack(spacing:0) {
+            VStack(alignment: .leading, spacing: 0) {
+                TitledScrollView(title: "TimePiece") {
+                    LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
+                        ForEach(timeItems) { timeItem in
+                            TimeItemGridCell(timeItem: timeItem)
+                                .onDrag {
+                                    self.dragging = timeItem
+                                    return NSItemProvider(object: String(timeItem.order) as NSString)
                                 }
-                            }
-                            appState.isInEditing = false
-                        }, secondaryButton: .cancel())
-                    }
-                } else {
-                    BottomBarItem(title: Strings.new,icon: "plus") {
-                        withAnimation(.default) {
-                            appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
-                            appState.activeSheet = 1
-                            appState.showingSheet = true
+                                .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
                         }
-                    }
-                    
-                    .contextMenu {
-                        
-                        Button {
+                    }.padding(7)
+                }
+                BottomBar {
+                    if appState.isInEditing {
+                        BottomBarItem(title: "Delete", icon: "trash") {
+                            showingDeleteAlert = true
+                        }.foregroundColor(.red).opacity(appState.selectedValues.isEmpty ? 0.5 : 1).disabled(appState.selectedValues.isEmpty)
+                        .alert(isPresented: $showingDeleteAlert) {
+                            Alert(title: Text("Delete selected Timers?"), primaryButton: .destructive(Text("Delete")) {
+                                
+                                withAnimation {
+                                    for timeItem in appState.selectedValues {
+                                        timeItem.remove(from: context)
+                                    }
+                                }
+                                appState.isInEditing = false
+                            }, secondaryButton: .cancel())
+                        }
+                    } else {
+                        BottomBarItem(title: Strings.new,icon: "plus") {
                             withAnimation(.default) {
                                 appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
                                 appState.activeSheet = 1
                                 appState.showingSheet = true
                             }
-                        } label: {
-                            Label("New Timer", systemImage: "timer")
                         }
                         
-                        Button {
-                            withAnimation(.default) {
-                                appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
-                                appState.activeSheet = 1
-                                appState.showingSheet = true
-                            }
-                        } label: {
-                            Label("New Stopwatch", systemImage: "stopwatch")
-                        }
-                        Divider()
-                        Button {
-                            withAnimation(.default) {
-                                appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    appState.newTimeItem.togglePause()
+                        .contextMenu {
+                            
+                            Button {
+                                withAnimation(.default) {
+                                    appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
+                                    appState.activeSheet = 1
+                                    appState.showingSheet = true
                                 }
+                            } label: {
+                                Label("New Timer", systemImage: "timer")
                             }
-                        } label: {
-                            Label("Start Stopwatch", systemImage: "play.circle")
+                            
+                            Button {
+                                withAnimation(.default) {
+                                    appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
+                                    appState.activeSheet = 1
+                                    appState.showingSheet = true
+                                }
+                            } label: {
+                                Label("New Stopwatch", systemImage: "stopwatch")
+                            }
+                            Divider()
+                            Button {
+                                withAnimation(.default) {
+                                    appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: context, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: true,order: timeItems.count)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        appState.newTimeItem.togglePause()
+                                    }
+                                }
+                            } label: {
+                                Label("Start Stopwatch", systemImage: "play.circle")
+                            }
+                            
                         }
+                        .foregroundColor(.primary)
                         
+                        BottomBarItem(title: Strings.log, icon: "bolt") {
+                            appState.activeSheet = 3
+                            appState.showingSheet = true
+                        }.foregroundColor(.primary)
+                        BottomBarItem(title: Strings.settings, icon: "gear") {
+                            appState.activeSheet = 2
+                            appState.showingSheet = true
+                        }.environmentObject(settings).foregroundColor(.primary)
                     }
-                    .foregroundColor(.primary)
                     
-                    BottomBarItem(title: Strings.log, icon: "bolt") {
-                        appState.activeSheet = 3
-                        appState.showingSheet = true
-                    }.foregroundColor(.primary)
-                    BottomBarItem(title: Strings.settings, icon: "gear") {
-                        appState.activeSheet = 2
-                        appState.showingSheet = true
-                    }.environmentObject(settings).foregroundColor(.primary)
+                    
+                }
+            }
+            
+            if horizontalSizeClass != .compact {
+                if appState.showingSheet {
+                if appState.activeSheet == 0 {
+                    
+                    Divider()
+                    
+                    TimeItemSheet(timeItem: appState.selectedTimeItem) {
+                        appState.showingSheet = false
+                    } delete: {
+                        withAnimation(.default) {
+                            appState.selectedTimeItem.remove(from: context)
+                        }
+                        appState.showingSheet = false
+                    }.environmentObject(settings).frame(maxWidth: 375)
+                    
+                } else {
+                    EmptyView()
+                        .sheet(isPresented: $appState.showingSheet) {
+                            switch appState.activeSheet {
+                                
+                            case 1:
+                                NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
+                                    appState.showingSheet = false
+                                }.environmentObject(settings)
+                                
+                            case 2:
+                                SettingsSheet {
+                                    appState.showingSheet = false
+                                }.environmentObject(settings)
+                            case 3:
+                                LogSheet {
+                                    appState.showingSheet = false
+                                }.environmentObject(settings).environment(\.managedObjectContext, context)
+                            case 4:
+                                SubscriptionSheet {
+                                    appState.showingSheet = false
+                                    settings.showingSubscription = false
+                                }.environmentObject(settings)
+                            case 5:
+                                OnboardingSheet {
+                                    settings.hasSeenOnboarding = true
+                                    appState.showingSheet = false
+                                }.environmentObject(settings)
+                            default:
+                                SettingsSheet {
+                                    appState.showingSheet = false
+                                }.environmentObject(settings)
+                            }
+                        }
+                    
+                }    
                 }
                 
-                
+            } else {
+                EmptyView()
+                    //MARK: Sheet
+                    .sheet(isPresented: $appState.showingSheet) {
+                        if appState.activeSheet == 1 {
+                            if isAdding {
+                                
+                            } else {
+                                withAnimation(.default) {
+                                    deleteLast()
+                                }
+                            }
+                        }
+                        
+                    } content: {
+                        switch appState.activeSheet {
+                        
+                        case 0:
+                            TimeItemSheet(timeItem: appState.selectedTimeItem) {
+                                appState.showingSheet = false
+                            } delete: {
+                                withAnimation(.default) {
+                                    appState.selectedTimeItem.remove(from: context)
+                                }
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                            
+                        case 1:
+                            NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                            
+                        case 2:
+                            SettingsSheet {
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                        case 3:
+                            LogSheet {
+                                appState.showingSheet = false
+                            }.environmentObject(settings).environment(\.managedObjectContext, context)
+                        case 4:
+                            SubscriptionSheet {
+                                appState.showingSheet = false
+                                settings.showingSubscription = false
+                            }.environmentObject(settings)
+                        case 5:
+                            OnboardingSheet {
+                                settings.hasSeenOnboarding = true
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                        default:
+                            SettingsSheet {
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                        }
+                        
+                        
+                        
+                    }
             }
         }
         
@@ -143,63 +260,7 @@ struct HomeView: View {
                 }
             }
         }
-        //MARK: Sheet
-        .sheet(isPresented: $appState.showingSheet) {
-            if appState.activeSheet == 1 {
-                if isAdding {
-                    
-                } else {
-                    withAnimation(.default) {
-                        deleteLast()
-                    }
-                }
-            }
-            
-        } content: {
-            switch appState.activeSheet {
-            
-            case 0:
-                TimeItemSheet(timeItem: appState.selectedTimeItem) {
-                    appState.showingSheet = false
-                } delete: {
-                    withAnimation(.default) {
-                        appState.selectedTimeItem.remove(from: context)
-                    }
-                    appState.showingSheet = false
-                }.environmentObject(settings)
-                
-            case 1:
-                NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
-                    appState.showingSheet = false
-                }.environmentObject(settings)
-                
-            case 2:
-                SettingsSheet {
-                    appState.showingSheet = false
-                }.environmentObject(settings)
-            case 3:
-                LogSheet {
-                    appState.showingSheet = false
-                }.environmentObject(settings).environment(\.managedObjectContext, context)
-            case 4:
-                SubscriptionSheet {
-                    appState.showingSheet = false
-                    settings.showingSubscription = false
-                }.environmentObject(settings)
-            case 5:
-                OnboardingSheet {
-                    settings.hasSeenOnboarding = true
-                    appState.showingSheet = false
-                }.environmentObject(settings)
-            default:
-                SettingsSheet {
-                    appState.showingSheet = false
-                }.environmentObject(settings)
-            }
-            
-            
-            
-        }
+        
         
     }
     
@@ -218,34 +279,34 @@ struct DragRelocateDelegate: DropDelegate {
     let item: TimeItem
     var listData: FetchedResults<TimeItem>
     @Binding var current: TimeItem?
-
+    
     func dropEntered(info: DropInfo) {
         if item != current {
             let from = current?.order ?? 0
             let to = item.order
-
+            
             var revisedItems: [TimeItem] = listData.map{ $0 }
-
-                // change the order of the items in the array
-                revisedItems.move(fromOffsets: IndexSet(integer: from), toOffset: to )
-
-                // update the userOrder attribute in revisedItems to
-                // persist the new order. This is done in reverse order
-                // to minimize changes to the indices.
-                for reverseIndex in stride( from: revisedItems.count - 1,
-                                            through: 0,
-                                            by: -1 )
-                {
-                    revisedItems[reverseIndex].order =
-                        Int( reverseIndex )
-                }
+            
+            // change the order of the items in the array
+            revisedItems.move(fromOffsets: IndexSet(integer: from), toOffset: to )
+            
+            // update the userOrder attribute in revisedItems to
+            // persist the new order. This is done in reverse order
+            // to minimize changes to the indices.
+            for reverseIndex in stride( from: revisedItems.count - 1,
+                                        through: 0,
+                                        by: -1 )
+            {
+                revisedItems[reverseIndex].order =
+                    Int( reverseIndex )
+            }
         }
     }
-
+    
     func dropUpdated(info: DropInfo) -> DropProposal? {
         return DropProposal(operation: .move)
     }
-
+    
     func performDrop(info: DropInfo) -> Bool {
         self.current = nil
         return true

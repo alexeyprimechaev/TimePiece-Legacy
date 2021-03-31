@@ -18,7 +18,6 @@ struct TimePieceApp: App {
     
     @Environment(\.scenePhase) var scenePhase
     let persistenceController = PersistenceController.shared
-    @FetchRequest(fetchRequest: TimeItem.getAllTimeItems()) var timeItems: FetchedResults<TimeItem>
     @ObservedObject var settings = Settings()
     @ObservedObject var appState = AppState()
     
@@ -77,6 +76,15 @@ struct TimePieceApp: App {
             }
             .onOpenURL { url in
                 if url.absoluteString == "timepiece://newtimeitem" {
+                    
+                    let context = persistenceController.container.viewContext
+                    let request = TimeItem.getAllTimeItems()
+                    
+                    var timeItems = [TimeItem]()
+                    
+                    do { timeItems = try context.fetch(request) }
+                    catch _ as NSError {print("error")}
+                    
                     appState.newTimeItem = TimeItem.newTimeItem(totalTime: 0, title: "", context: persistenceController.container.viewContext, reusableSetting: settings.isReusableDefault, soundSetting: settings.soundSettingDefault, precisionSetting: settings.precisionSettingDefault, notificationSetting: settings.notificationSettingDefault, showInLog: settings.showInLogDefault, isStopwatch: false, order: timeItems.count)
                     appState.activeSheet = 1
                     appState.showingSheet = true
@@ -89,7 +97,7 @@ struct TimePieceApp: App {
                         var results = [TimeItem]()
                         
                         do { results = try context.fetch(request) }
-                        catch let error as NSError {print("error")}
+                        catch _ as NSError {print("error")}
                         
                         if let timeItem = results.first(where: { item in
                             item.objectID.uriRepresentation().absoluteString == objectID
@@ -136,6 +144,8 @@ struct TimePieceApp: App {
                     case .failed, .purchasing, .deferred:
                         break // do nothing
                     
+                    @unknown default:
+                        break
                     }
                 }
             }

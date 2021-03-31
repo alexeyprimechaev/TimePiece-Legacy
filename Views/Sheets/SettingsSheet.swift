@@ -27,7 +27,7 @@ struct SettingsSheet: View {
                     
                     Text(Strings.settings).fontSize(.title).padding(7)
                     
-                    Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).fontSize(.title).padding(7)
+                    Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).fontSize(.title).padding(7).foregroundColor(.blue)
                     
                     ListSection(title: Strings.madeInMoscow) {
                         PersonCard(name: Strings.alexey,

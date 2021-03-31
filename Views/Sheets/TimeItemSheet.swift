@@ -33,7 +33,11 @@ struct TimeItemSheet: View {
     @State var timeFieldDummy = UITextField()
     @State var timeFocusedDummy = false
     
+    @State var showingMakeReusableAlert = false
+    
     @State var showingConvertAlert = false
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var discard: () -> Void
     
@@ -45,9 +49,9 @@ struct TimeItemSheet: View {
             
             HeaderBar(leadingAction: discard,
                       leadingTitle: Strings.dismiss,
-                      leadingIcon: "chevron.down",
+                      leadingIcon: horizontalSizeClass == .compact ? "chevron.down" : "chevron.left",
                       leadingIsDestructive: false,
-                      trailingAction: {})
+                      trailingAction: {delete()}, trailingTitle: "Delete")
             TitledScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
@@ -168,22 +172,54 @@ struct TimeItemSheet: View {
                     }
                 }
             } else {
-                HStack {
+                HStack(spacing: 0) {
                     Spacer().frame(width:28)
-                    if timeItem.isReusable {
-                        PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.stop, onTitle: Strings.delete, offIcon: "stop.fill", onIcon: "trash.fill",
+                    if timeItem.isRunning {
+                        if timeItem.isReusable {
+                        PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
                                     onTap: {
                                         timeItem.reset()
                                     },
                                     offTap: {
-                                        delete()
+                                        timeItem.reset()
                                     }
                         )
+                        .disabled(timeItem.isRunning ? false : true)
                     } else {
-                        PauseButton(color: Color.red, isPaused: $timeItem.isReusable, offTitle: Strings.delete, onTitle: Strings.delete, offIcon: "trash.fill", onIcon: "trash.fill", onTap: delete, offTap: delete)
+                        PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
+                                    onTap: {
+                                        showingMakeReusableAlert = true
+                                    },
+                                    offTap: {
+                                        showingMakeReusableAlert = true
+                                    }
+                        )
+                        .disabled(timeItem.isRunning ? false : true)
+                        .alert(isPresented: $showingMakeReusableAlert) {
+                            Alert(title: Text("You can only reset Reusable Timers"), primaryButton: .default(Text("Make Reusable")) {
+                                
+                                withAnimation {
+                                    
+                                    if settings.isSubscribed {
+                                        timeItem.makeReusable()
+                                    } else {
+                                        settings.showingSubscription = true
+                                    }
+                                }
+
+                            }, secondaryButton: .cancel())
+                        }
+                        
+                        .fullScreenCover(isPresented: $settings.showingSubscription) {
+                            SubscriptionSheet {
+                                settings.showingSubscription = false
+                            }.environmentObject(settings)
+                        }
                     }
-                    Spacer().frame(width:28)
-                    PauseButton(color: Color.primary, isPaused: $timeItem.isPaused, offTitle: Strings.start, onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
+                        Spacer().frame(width:14)
+                    }
+                    
+                    PauseButton(color: Color.primary, isPaused: $timeItem.isPaused, offTitle: timeItem.isRunning ? "Start" : timeItem.isStopwatch ? "Start Stopwatch" : "Start Timer", onTitle: Strings.pause, offIcon: "play.fill", onIcon: "pause.fill", onTap: {
                         if timeItem.isStopwatch {
                             self.timeItem.togglePause()
                         } else {
@@ -215,7 +251,7 @@ struct TimeItemSheet: View {
                     })
                     Spacer().frame(width:28)
                     
-                }.padding(.vertical, 7)
+                }.padding(.vertical, 7).padding(.bottom, 7).animation(.default, value: timeItem.isRunning)
             }
             
         }

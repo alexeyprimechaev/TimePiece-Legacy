@@ -44,12 +44,13 @@ struct PauseButton: View {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(Color("button.gray"))
                 Label {
-                    Text(isPaused ? offTitle : onTitle).fontSize(.smallTitle)
+                    Text(isPaused ? offTitle : onTitle).fontSize(.smallTitle).frame(idealWidth: .infinity)
                 } icon: {
                     Image(systemName: isPaused ? offIcon : onIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
                 }
                 .foregroundColor(color)
-            }.frame(height: 52)
+                .opacity(color == .red ? isPaused ? 1 : 0.33 : 1)
+            }.frame(height: 56)
         }
         
         .buttonStyle(PrimaryButtonStyle())

@@ -72,7 +72,7 @@ struct TopBar: View {
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")
-                                .foregroundColor(.primary).padding(14).padding(.horizontal, 14).font(.headline)
+                                .foregroundColor(.primary).padding(14).padding(.horizontal, 14).font(.title2)
                         }
                     }
                 }

@@ -40,18 +40,32 @@ struct HeaderBar: View {
             }
             Spacer()
             if trailingTitle != LocalizedStringKey("") {
-                Button {
-                    trailingAction()
-                } label: {
-                    Label {
-                        Text(trailingTitle).fontSize(.smallTitle)
-                    } icon: {
-                        Image(systemName: trailingIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
+                
+                Menu {
+                    Button {
+                        trailingAction()
+                    } label: {
+                        HStack {
+                            Text(trailingTitle)
+                            Image(systemName: "trash")
+                        }
                     }
-                    .padding(.horizontal, 14)
-                    .foregroundColor(trailingIsDestructive ? .red : .primary)
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .foregroundColor(.primary).padding(.horizontal, 14).font(.title2)
                 }
-                .buttonStyle(RegularButtonStyle())
+//                Button {
+//                    trailingAction()
+//                } label: {
+//                    Label {
+//                        Text(trailingTitle).fontSize(.smallTitle)
+//                    } icon: {
+//                        Image(systemName: trailingIcon).font(.headline).saturation(settings.isMonochrome ? 0 : 1)
+//                    }
+//                    .padding(.horizontal, 14)
+//                    .foregroundColor(trailingIsDestructive ? .red : .primary)
+//                }
+//                .buttonStyle(RegularButtonStyle())
             }
             
             

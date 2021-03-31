@@ -121,6 +121,7 @@ struct TimeItemGridCell: View {
                 .opacity(appState.isInEditing ? 0.5 : 1)
                 .padding(14)
                 .padding(.vertical, 10)
+                
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                 .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(.systemGray6)))
                     .overlay(appState.isInEditing ? nil : Button {
@@ -129,9 +130,11 @@ struct TimeItemGridCell: View {
                     appState.showingSheet = true
                     
                 } label: {
-                    Image(systemName: "ellipsis.circle.fill").font(.headline).padding(14).padding(.vertical, 10)
+                    Image(systemName: "ellipsis").font(.headline).padding(14).padding(.vertical, 10)
                 }, alignment: .topTrailing)
                 .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
+                    .hoverEffect(.lift)
+                    
             }
             
             
