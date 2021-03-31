@@ -15,6 +15,7 @@ public class AppState: ObservableObject {
     @Published var selectedTimeItem = TimeItem()
     @Published var newTimeItem = TimeItem()
     @Published var showingSheet = false
+    @Published var showingSidebar = false
     @Published var activeSheet = 2
     
 }

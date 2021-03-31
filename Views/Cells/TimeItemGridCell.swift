@@ -16,9 +16,11 @@ struct TimeItemGridCell: View {
     
     //MARK: CoreData
     @Environment(\.managedObjectContext) var context
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     @EnvironmentObject var settings: Settings
     @EnvironmentObject var appState: AppState
+    
     
     @State private var currentTime: String = "00:00"
     
@@ -127,13 +129,22 @@ struct TimeItemGridCell: View {
                     .overlay(appState.isInEditing ? nil : Button {
                     appState.selectedTimeItem = timeItem
                     appState.activeSheet = 0
-                    appState.showingSheet = true
+                    if horizontalSizeClass != .compact {
+                        appState.showingSidebar = true
+                    } else {
+                        appState.showingSheet = true
+                    }
+                    
                     
                 } label: {
                     Image(systemName: "ellipsis").font(.headline).padding(14).padding(.vertical, 10)
                 }, alignment: .topTrailing)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(Color.primary, lineWidth: 2)
+                            .foregroundColor(Color("button.gray"))
+                            .opacity(timeItem == appState.selectedTimeItem ? 1 : 0))
                 .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
-                    .hoverEffect(.lift)
                     
             }
             

@@ -37,7 +37,7 @@ struct HomeView: View {
     @State private var dragging: TimeItem?
     
     var compactColumns = [GridItem(.flexible(), spacing: 14), GridItem(.flexible(), spacing: 14)]
-    var regularColumns = [GridItem(.adaptive(minimum: 152, maximum: 252), spacing: 14)]
+    var regularColumns = [GridItem(.adaptive(minimum: 152, maximum: 428), spacing: 14)]
     
     var body: some View {
         
@@ -131,57 +131,61 @@ struct HomeView: View {
             }
             
             if horizontalSizeClass != .compact {
-                if appState.showingSheet {
-                if appState.activeSheet == 0 {
+                if appState.showingSidebar {
                     
                     Divider()
                     
                     TimeItemSheet(timeItem: appState.selectedTimeItem) {
                         appState.showingSheet = false
+                        appState.showingSidebar = false
+                        appState.selectedTimeItem = TimeItem()
                     } delete: {
                         withAnimation(.default) {
                             appState.selectedTimeItem.remove(from: context)
                         }
                         appState.showingSheet = false
+                        appState.showingSidebar = false
                     }.environmentObject(settings).frame(maxWidth: 375)
                     
-                } else {
-                    EmptyView()
-                        .sheet(isPresented: $appState.showingSheet) {
-                            switch appState.activeSheet {
-                                
-                            case 1:
-                                NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
-                                    appState.showingSheet = false
-                                }.environmentObject(settings)
-                                
-                            case 2:
-                                SettingsSheet {
-                                    appState.showingSheet = false
-                                }.environmentObject(settings)
-                            case 3:
-                                LogSheet {
-                                    appState.showingSheet = false
-                                }.environmentObject(settings).environment(\.managedObjectContext, context)
-                            case 4:
-                                SubscriptionSheet {
-                                    appState.showingSheet = false
-                                    settings.showingSubscription = false
-                                }.environmentObject(settings)
-                            case 5:
-                                OnboardingSheet {
-                                    settings.hasSeenOnboarding = true
-                                    appState.showingSheet = false
-                                }.environmentObject(settings)
-                            default:
-                                SettingsSheet {
-                                    appState.showingSheet = false
-                                }.environmentObject(settings)
-                            }
+
+                    
+                }
+                
+                EmptyView()
+                    .sheet(isPresented: $appState.showingSheet) {
+                        switch appState.activeSheet {
+                            
+                        case 1:
+                            NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                            
+                        case 2:
+                            SettingsSheet {
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                        case 3:
+                            LogSheet {
+                                appState.showingSheet = false
+                            }.environmentObject(settings).environment(\.managedObjectContext, context)
+                        case 4:
+                            SubscriptionSheet {
+                                appState.showingSheet = false
+                                settings.showingSubscription = false
+                            }.environmentObject(settings)
+                        case 5:
+                            OnboardingSheet {
+                                settings.hasSeenOnboarding = true
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
+                        default:
+                            SettingsSheet {
+                                appState.showingSheet = false
+                            }.environmentObject(settings)
                         }
                     
-                }    
-                }
+                
+            }
                 
             } else {
                 EmptyView()
