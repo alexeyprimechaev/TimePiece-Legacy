@@ -207,11 +207,15 @@ struct HomeView: View {
                         case 0:
                             TimeItemSheet(timeItem: appState.selectedTimeItem) {
                                 appState.showingSheet = false
+                                appState.showingSidebar = false
+                                appState.selectedTimeItem = TimeItem()
                             } delete: {
                                 withAnimation(.default) {
                                     appState.selectedTimeItem.remove(from: context)
                                 }
                                 appState.showingSheet = false
+                                appState.showingSidebar = false
+                                appState.selectedTimeItem = TimeItem()
                             }.environmentObject(settings)
                             
                         case 1:

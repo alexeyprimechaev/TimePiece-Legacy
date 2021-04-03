@@ -143,7 +143,7 @@ struct TimeItemGridCell: View {
                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                             .stroke(Color.primary, lineWidth: 2)
                             .foregroundColor(Color("button.gray"))
-                            .opacity(timeItem == appState.selectedTimeItem ? 1 : 0))
+                            .opacity(timeItem == appState.selectedTimeItem && horizontalSizeClass != .compact ? 1 : 0))
                 .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
                     
             }

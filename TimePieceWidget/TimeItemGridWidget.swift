@@ -266,7 +266,7 @@ struct TimeItemGridCell: View {
                     }
                 }.padding(.horizontal, 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading).opacity(0)
             }
-        }.font(.footnote.bold())
+        }.font(Font.footnote.bold())
         
         
     }
