@@ -125,17 +125,12 @@ struct TimeItemGridCell: View {
                 .padding(.vertical, 10)
                 
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(.systemGray6)))
+                    .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(timeItem.isRunning ? .systemGray5 : .systemGray6)))
                     .overlay(appState.isInEditing ? nil : Button {
                     appState.selectedTimeItem = timeItem
                     appState.activeSheet = 0
-                    if horizontalSizeClass != .compact {
-                        appState.showingSidebar = true
-                    } else {
-                        appState.showingSheet = true
-                    }
-                    
-                    
+                    appState.showingSidebar = true
+                    appState.showingSheet = true
                 } label: {
                     Image(systemName: "ellipsis").font(.headline).padding(14).padding(.vertical, 10)
                 }, alignment: .topTrailing)
@@ -143,6 +138,7 @@ struct TimeItemGridCell: View {
                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                             .stroke(Color.primary, lineWidth: 2)
                             .opacity(timeItem == appState.selectedTimeItem && horizontalSizeClass != .compact ? 1 : 0))
+                    
                 .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
                     
             }
