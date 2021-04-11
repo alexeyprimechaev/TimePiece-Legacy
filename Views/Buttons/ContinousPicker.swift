@@ -18,20 +18,20 @@ struct ContinousPicker: View {
     
     @State var selectedValue = 0
     
-    @State var isContinous = false
+    @State var isContinous = true
     
     @State var width: CGFloat = 30
     
     var body: some View {
         
         Button {
-            isContinous = false
-            if selectedValue < values.count-1 {
-                selectedValue+=1
-            } else {
-                selectedValue = 0
-            }
-            value = values[selectedValue]
+//            isContinous = false
+//            if selectedValue < values.count-1 {
+//                selectedValue+=1
+//            } else {
+//                selectedValue = 0
+//            }
+//            value = values[selectedValue]
         } label: {
             
             HStack(alignment: .bottom, spacing: 7) {
@@ -58,28 +58,43 @@ struct ContinousPicker: View {
                     )
                     
                     Label {
-                        Text("\(Int(120*value))m").fontSize(.smallTitle).padding(.bottom, 5).fixedSize()
+                        if value < 0.15 {
+                            Text("Off").fontSize(.smallTitle).padding(.bottom, 5)
+                        } else if value < 0.30 {
+                            Text("5m").fontSize(.smallTitle).padding(.bottom, 5)
+                        } else if value < 0.45 {
+                            Text("10m").fontSize(.smallTitle).padding(.bottom, 5)
+                        } else if value < 0.60 {
+                            Text("15m").fontSize(.smallTitle).padding(.bottom, 5)
+                        } else if value < 0.75 {
+                            Text("30m").fontSize(.smallTitle).padding(.bottom, 5)
+                        } else if value < 0.9 {
+                            Text("45m").fontSize(.smallTitle).padding(.bottom, 5)
+                        } else {
+                            Text("1h").fontSize(.smallTitle).padding(.bottom, 5)
+                        }
+                        //Text("\(Int(120*value))m").fontSize(.smallTitle).padding(.bottom, 5).fixedSize().animation(nil)
                     } icon: {
                         Image(systemName: "rays").font(.headline)
                     }
                     
                     
                 } else {
-                    Text("Tap Me Every")
-                        .fontSize(.title)
-                        .lineLimit(1)
-                        .opacity(0.5)
-                        .padding(0)
-                        .fixedSize()
-                    HStack(spacing: 7) {
-                        ForEach(values, id: \.self) { value in
-                            Text(valuesLabels[value] ?? "Text")
-                                .fixedSize()
-                                .padding(.bottom, 5)
-                                .opacity(self.value == value ? 1 : 0.5)
-                                .lineLimit(1)
-                        }.fontSize(.smallTitle).fixedSize()
-                    }.fixedSize().padding(0)
+//                    Text("Tap Me Every")
+//                        .fontSize(.title)
+//                        .lineLimit(1)
+//                        .opacity(0.5)
+//                        .padding(0)
+//                        .fixedSize()
+//                    HStack(spacing: 7) {
+//                        ForEach(values, id: \.self) { value in
+//                            Text(valuesLabels[value] ?? "Text")
+//                                .fixedSize()
+//                                .padding(.bottom, 5)
+//                                .opacity(self.value == value ? 1 : 0.5)
+//                                .lineLimit(1)
+//                        }.fontSize(.smallTitle).fixedSize()
+//                    }.fixedSize().padding(0)
                 }
             }
             .padding(7)

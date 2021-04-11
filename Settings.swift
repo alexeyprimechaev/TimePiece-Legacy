@@ -13,7 +13,7 @@ import SwiftyStoreKit
 public let defaultsStored = UserDefaults(suiteName: "group.timepiece") ?? UserDefaults.standard
 
 enum ViewType: Int {
-    case classic, grid
+    case grid, classic
 }
 
 

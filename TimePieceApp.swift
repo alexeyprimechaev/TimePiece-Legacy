@@ -62,9 +62,9 @@ struct TimePieceApp: App {
                     
                     //MARK: Удолить на релизе
                     settings.isSubscribed = true
-                    //                        if settings.isSubscribed {
-                    //                            settings.validateSubscription()
-                    //                        }
+//                                            if settings.isSubscribed {
+//                                                settings.validateSubscription()
+//                                            }
                     
                     
                     

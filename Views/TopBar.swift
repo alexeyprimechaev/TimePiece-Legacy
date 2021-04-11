@@ -24,7 +24,7 @@ struct TopBar: View {
             ZStack {
                 HStack {
                     if alwaysShowTitle {
-                        Text(title).fontSize(.smallTitle)
+                        Text(title).fontSize(.smallTitle).opacity(showDivider ? 0 : 1).padding(14)
                     } else {
                         Text(title).fontSize(.smallTitle).opacity(showDivider ? 0 : 1).padding(14)
                     }
@@ -55,7 +55,12 @@ struct TopBar: View {
                                     Text("Grid")
                                     Image(systemName: "rectangle.grid.2x2")
                                 }.tag(ViewType.grid)
-                                HStack {
+                                Button {
+                                    if !settings.isSubscribed {
+                                        appState.activeSheet = 4
+                                        appState.showingSheet = true
+                                    }
+                                } label: {
                                     Text("Classic")
                                     Image(systemName: "textformat")
                                 }.tag(ViewType.classic)
@@ -71,8 +76,8 @@ struct TopBar: View {
                                 }
                             }
                         } label: {
-                            Image(systemName: "rectangle.grid.2x2")
-                                .foregroundColor(.primary).padding(14).padding(.horizontal, 14).font(.title2)
+                            Image(systemName: "ellipsis.circle")
+                                .foregroundColor(.primary).padding(10).padding(.horizontal, 18).font(.title2)
                         }
                     }
                 }

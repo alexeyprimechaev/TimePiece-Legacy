@@ -71,7 +71,6 @@ struct SubscriptionSheet: View {
                             }
                             
                             Spacer()
-                            Spacer().frame(width: 21)
                         }
                     }.padding(.horizontal, 7)
                     

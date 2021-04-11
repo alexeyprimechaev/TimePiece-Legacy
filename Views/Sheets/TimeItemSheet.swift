@@ -65,6 +65,9 @@ struct TimeItemSheet: View {
                     if timeItem.isStopwatch {
                         if timeItem.isReusable {
                             PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                            if timeItem.notificationSetting == TimeItem.notificationSettings[1] {
+                                ContinousPicker()
+                            }
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
                                 PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
@@ -74,23 +77,36 @@ struct TimeItemSheet: View {
                             PremiumBadge {
                                 PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
-                        } else {
-                            
                             PremiumBadge {
-                                RegularButton(title: Strings.makeReusable) {
-                                    timeItem.makeReusable()
+                                RegularButton(title: "Convert to Timer", icon: "timer") {
+                                    if timeItem.isRunning {
+                                        showingConvertAlert = true
+                                    } else {
+                                        timeItem.isStopwatch = false
+                                    }
+                                }
+                            }
+                        } else {
+                            VStack(alignment: .leading, spacing: 7) {
+                                PremiumBadge {
+                                    RegularButton(title: Strings.makeReusable) {
+                                        timeItem.makeReusable()
+                                    }
+                                }
+                                PremiumBadge {
+                                    RegularButton(title: "Convert to Timer", icon: "timer") {
+                                        if timeItem.isRunning {
+                                            showingConvertAlert = true
+                                        } else {
+                                            timeItem.isStopwatch = false
+                                        }
+                                    }
                                 }
                             }
                             
+                            
                         }
                         
-                        RegularButton(title: "Convert to Timer", icon: "timer") {
-                            if timeItem.isRunning {
-                                showingConvertAlert = true
-                            } else {
-                                timeItem.isStopwatch = false
-                            }
-                        }
                     } else {
                         TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
                         
@@ -105,25 +121,45 @@ struct TimeItemSheet: View {
                             PremiumBadge {
                                 PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.showInLog.yesNo)
                             }
-                        } else {
                             
                             PremiumBadge {
-                                RegularButton(title: Strings.makeReusable) {
-                                    timeItem.makeReusable()
+                                RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                                    if timeItem.isRunning {
+                                        showingConvertAlert = true
+                                    } else {
+                                        withAnimation {
+                                            timeItem.convertToStopwatch()
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            
+                        } else {
+                            
+                            VStack(alignment: .leading, spacing: 7) {
+                                PremiumBadge {
+                                    RegularButton(title: Strings.makeReusable) {
+                                        timeItem.makeReusable()
+                                    }
+                                }
+                                
+                                PremiumBadge {
+                                    RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                                        if timeItem.isRunning {
+                                            showingConvertAlert = true
+                                        } else {
+                                            withAnimation {
+                                                timeItem.convertToStopwatch()
+                                            }
+                                        }
+                                        
+                                    }
                                 }
                             }
                             
                         }
-                        RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                            if timeItem.isRunning {
-                                showingConvertAlert = true
-                            } else {
-                                withAnimation {
-                                    timeItem.convertToStopwatch()
-                                }
-                            }
-                            
-                        }
+                        
                         
                         
                         
@@ -146,6 +182,10 @@ struct TimeItemSheet: View {
                 }
                 .onAppear {
                     currentTime = timeItem.remainingTimeString
+                }
+                .onAppear {
+                    print("isSubscribed")
+                    print(settings.isSubscribed)
                 }
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                     updateTime()
@@ -176,46 +216,46 @@ struct TimeItemSheet: View {
                     Spacer().frame(width:28)
                     if timeItem.isRunning {
                         if timeItem.isReusable {
-                        PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
-                                    onTap: {
-                                        timeItem.reset()
-                                    },
-                                    offTap: {
-                                        timeItem.reset()
-                                    }
-                        )
-                        .disabled(timeItem.isRunning ? false : true)
-                    } else {
-                        PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
-                                    onTap: {
-                                        showingMakeReusableAlert = true
-                                    },
-                                    offTap: {
-                                        showingMakeReusableAlert = true
-                                    }
-                        )
-                        .disabled(timeItem.isRunning ? false : true)
-                        .alert(isPresented: $showingMakeReusableAlert) {
-                            Alert(title: Text("You can only reset Reusable Timers"), primaryButton: .default(Text("Make Reusable")) {
-                                
-                                withAnimation {
+                            PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
+                                        onTap: {
+                                            timeItem.reset()
+                                        },
+                                        offTap: {
+                                            timeItem.reset()
+                                        }
+                            )
+                            .disabled(timeItem.isRunning ? false : true)
+                        } else {
+                            PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
+                                        onTap: {
+                                            showingMakeReusableAlert = true
+                                        },
+                                        offTap: {
+                                            showingMakeReusableAlert = true
+                                        }
+                            )
+                            .disabled(timeItem.isRunning ? false : true)
+                            .alert(isPresented: $showingMakeReusableAlert) {
+                                Alert(title: Text("You can only reset Reusable Timers"), primaryButton: .default(Text("Make Reusable")) {
                                     
-                                    if settings.isSubscribed {
-                                        timeItem.makeReusable()
-                                    } else {
-                                        settings.showingSubscription = true
+                                    withAnimation {
+                                        
+                                        if settings.isSubscribed {
+                                            timeItem.makeReusable()
+                                        } else {
+                                            settings.showingSubscription = true
+                                        }
                                     }
-                                }
-
-                            }, secondaryButton: .cancel())
+                                    
+                                }, secondaryButton: .cancel())
+                            }
+                            
+                            .fullScreenCover(isPresented: $settings.showingSubscription) {
+                                SubscriptionSheet {
+                                    settings.showingSubscription = false
+                                }.environmentObject(settings)
+                            }
                         }
-                        
-                        .fullScreenCover(isPresented: $settings.showingSubscription) {
-                            SubscriptionSheet {
-                                settings.showingSubscription = false
-                            }.environmentObject(settings)
-                        }
-                    }
                         Spacer().frame(width:14)
                     }
                     
