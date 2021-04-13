@@ -13,29 +13,70 @@ struct ContinousPicker: View {
     @State var value: Float = 0
     @State var startValue: Float = 0
     
-    @State var values: [Float] = [0.15, 0.35, 0.5, 1]
+    @State var index = 0
+    
+    @State var values: [Float] = [0.0, 0.20, 0.35, 0.50, 0.65, 0.8, 1]
     @State var valuesLabels: [Float: String] = [0.15:"5m", 0.35:"15m", 0.5:"30m", 1:"1h"]
     
     @State var selectedValue = 0
     
-    @State var isContinous = true
+    @State var isContinous = false
     
     @State var width: CGFloat = 30
+    
     
     var body: some View {
         
         Button {
-//            isContinous = false
-//            if selectedValue < values.count-1 {
-//                selectedValue+=1
-//            } else {
-//                selectedValue = 0
-//            }
-//            value = values[selectedValue]
+            
+            if isContinous {
+                
+                print("here")
+                var smallestDist: Float = 1
+                var index: Int = 1
+                
+                for i in 0...values.count-1 {
+                    if abs(values[i] - self.value) < smallestDist {
+                        smallestDist = abs(values[i] - self.value)
+                        index = i
+                    }
+                }
+                
+                self.index = index
+                self.value = values[self.index]
+                startValue = self.value
+                
+                print(self.index)
+                print(self.value)
+                
+                isContinous = false
+                
+                if self.index < values.count - 1 {
+                    self.index += 1
+                    value = values[self.index]
+                    startValue = values[self.index]
+                } else {
+                    self.index = 0
+                    value = values[self.index]
+                    startValue = values[self.index]
+                }
+                
+            } else {
+                print("there")
+                if index < values.count - 1 {
+                    index += 1
+                    value = values[index]
+                    startValue = values[index]
+                } else {
+                    index = 0
+                    value = values[index]
+                    startValue = values[index]
+                }
+            }
+            
         } label: {
             
             HStack(alignment: .bottom, spacing: 7) {
-                if isContinous {
                     HStack(spacing: 0) {
                         Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(value), height: 40).opacity(0.5)
                         Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(1-value), height: 40).opacity(0.35)
@@ -79,23 +120,7 @@ struct ContinousPicker: View {
                     }
                     
                     
-                } else {
-//                    Text("Tap Me Every")
-//                        .fontSize(.title)
-//                        .lineLimit(1)
-//                        .opacity(0.5)
-//                        .padding(0)
-//                        .fixedSize()
-//                    HStack(spacing: 7) {
-//                        ForEach(values, id: \.self) { value in
-//                            Text(valuesLabels[value] ?? "Text")
-//                                .fixedSize()
-//                                .padding(.bottom, 5)
-//                                .opacity(self.value == value ? 1 : 0.5)
-//                                .lineLimit(1)
-//                        }.fontSize(.smallTitle).fixedSize()
-//                    }.fixedSize().padding(0)
-                }
+                
             }
             .padding(7)
             .gesture(DragGesture(minimumDistance: 1, coordinateSpace: .local)
