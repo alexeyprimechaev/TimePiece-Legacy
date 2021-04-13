@@ -37,8 +37,8 @@ struct ContinousPicker: View {
             HStack(alignment: .bottom, spacing: 7) {
                 if isContinous {
                     HStack(spacing: 0) {
-                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(value), height: 40)
-                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(1-value), height: 40).opacity(0.5)
+                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(value), height: 40).opacity(0.5)
+                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(1-value), height: 40).opacity(0.35)
                     }.mask(
                         Text("Tap Me Every")
                             .fontSize(.title)
@@ -100,20 +100,14 @@ struct ContinousPicker: View {
             .padding(7)
             .gesture(DragGesture(minimumDistance: 1, coordinateSpace: .local)
                         
-                        .onChanged { value in
+                        .onChanged { newValue in
                             isContinous = true
-                            
-                            let delta = Float(value.translation.width/width)
-                            print("delta \(delta)")
-                            print("value \(self.value)")
-                            print("start value \(startValue)")
-                            self.value = min(max(0, (startValue + delta)), 1)
-                            print("newValue \(self.value)")
-                            
+                            let delta = Float(newValue.translation.width/width)
+                            value = min(max(0, startValue + delta), 1)
                         }
                         
                         .onEnded { endValue in
-                            startValue = min(max(0, Float(endValue.location.x/width)), 1)
+                            startValue = value
                         }
             )
             
