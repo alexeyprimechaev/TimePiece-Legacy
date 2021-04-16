@@ -66,7 +66,7 @@ struct TimeItemSheet: View {
                         if timeItem.isReusable {
                             PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
                             if timeItem.notificationSetting == TimeItem.notificationSettings[1] {
-                                ContinousPicker()
+                                ContinousPicker(values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             }
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
