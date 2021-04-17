@@ -25,6 +25,8 @@ struct SubscriptionPointView: View {
     @State var images = [String]()
     @State var colors = [Color]()
     
+    @State var spacerWidth: CGFloat = 40
+    
     @ViewBuilder
     var body: some View {
         Group {
@@ -69,14 +71,68 @@ struct SubscriptionPointView: View {
                 }
             case .large:
                 VStack {
-                    Spacer()
-                    Text("Artwork").scaleEffect(hasAppeared ? 1 : 0)
-                        .animation(.easeOut(duration: 0.5).delay(Double.random(in: 0...0.2)), value: hasAppeared)
-                    Spacer()
+                    if isSFSymbol {
+                        Spacer().frame(height: 30)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            ScrollViewReader { scrollView in
+                                HStack {
+                                    Spacer().frame(width: spacerWidth)
+                            
+                                    VStack(spacing: 5) {
+                                    HStack {
+                                        ForEach(0...5, id: \.self) { _ in
+                                            ForEach(0...8, id: \.self) { i in
+                                                Text(images[i]).scaleEffect(hasAppeared ? 1 : 0.6)
+                                                    .animation(.easeOut(duration: 0.3).delay(Double.random(in: 0.2...0.6)), value: hasAppeared)
+                                            }
+                                        }
+                                    }
+                                    HStack {
+                                        Text(images[0]).opacity(0)
+                                        ForEach(0...5, id: \.self) { _ in
+                                            ForEach(9...17, id: \.self) { i in
+                                                Text(images[i]).scaleEffect(hasAppeared ? 1 : 0.6)
+                                                    .animation(.easeOut(duration: 0.3).delay(Double.random(in: 0.2...0.6)), value: hasAppeared)
+                                            }
+                                        }
+                                    }
+                                    HStack {
+                                        ForEach(0...5, id: \.self) { _ in
+                                            ForEach(18...26, id: \.self) { i in
+                                                Text(images[i]).scaleEffect(hasAppeared ? 1 : 0.6)
+                                                    .animation(.easeOut(duration: 0.3).delay(Double.random(in: 0.2...0.6)), value: hasAppeared)
+                                            }
+                                        }
+                                    }
+                                }.font(.largeTitle)
+                                }
+                                .onAppear {
+                                    scrollView.scrollTo(6)
+                                }
+                            }
+                        }
+                        .disabled(true)
+                        .animation(.linear(duration: 60).repeatForever(autoreverses: false))
+                        .onAppear {
+                            spacerWidth = 1000
+                        }
+                        .scaleEffect(hasAppeared ? 1 : 0.8)
+                        .animation(.easeOut(duration: 0.5), value: hasAppeared)
+                        Spacer()
+                    } else {
+                        Spacer().frame(height: 22)
+                        Image(image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 136)
+                            
+                        Spacer()
+                    }
                 }
             }
         }
-        .padding(isSFSymbol ? 20 : 6).frame(maxWidth: .infinity, maxHeight: .infinity).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(UIColor.systemGray6))).overlay( Text(text).fontSize(.secondaryText).padding(.bottom, 14).padding(.horizontal, 4).lineLimit(2).multilineTextAlignment(.center), alignment: .bottom)
+        .padding(style == .large ? 0 : isSFSymbol ? 20 : 6).frame(maxWidth: .infinity, maxHeight: .infinity).background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(.systemGray6))).overlay( Text(text).fontSize(.secondaryText).padding(.bottom, 14).padding(.horizontal, 4).lineLimit(2).multilineTextAlignment(.center), alignment: .bottom)
+        .clipped()
         .onAppear {
             hasAppeared = true
         }

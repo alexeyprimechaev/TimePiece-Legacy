@@ -129,8 +129,14 @@ struct TimeItemGridCell: View {
                     .overlay(appState.isInEditing ? nil : Button {
                     appState.selectedTimeItem = timeItem
                     appState.activeSheet = 0
-                    appState.showingSidebar = true
-                    appState.showingSheet = true
+                        
+                        if horizontalSizeClass == .compact {
+                            appState.showingSheet = true
+                        } else {
+                            appState.showingSidebar = true
+                        }
+                    
+                    
                 } label: {
                     Image(systemName: "ellipsis").font(.headline).padding(14).padding(.vertical, 10)
                 }, alignment: .topTrailing)
