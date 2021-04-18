@@ -45,13 +45,25 @@ struct TimeItemSheet: View {
     
     var body: some View {
         
+        
         VStack(spacing:0) {
             
-            HeaderBar(leadingAction: discard,
-                      leadingTitle: Strings.dismiss,
-                      leadingIcon: horizontalSizeClass == .compact ? "chevron.down" : "chevron.left",
-                      leadingIsDestructive: false,
-                      trailingAction: {delete()}, trailingTitle: "Delete")
+            HeaderBar {
+                RegularButton(title: Strings.dismiss, icon: "chevron.down") {
+                    discard()
+                }
+            } trailingItems: {
+                RegularButton(title: Strings.delete, icon: "trash") {
+                    delete()
+                }
+            }
+            
+//
+//            HeaderBar(leadingAction: discard,
+//                      leadingTitle: Strings.dismiss,
+//                      leadingIcon: horizontalSizeClass == .compact ? "chevron.down" : "chevron.left",
+//                      leadingIsDestructive: false,
+//                      trailingAction: {delete()}, trailingTitle: "Delete")
             TitledScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
@@ -89,7 +101,7 @@ struct TimeItemSheet: View {
                         } else {
                             VStack(alignment: .leading, spacing: 7) {
                                 PremiumBadge {
-                                    RegularButton(title: Strings.makeReusable) {
+                                    RegularButton(title: Strings.makeReusable, icon: "arrow.clockwise") {
                                         timeItem.makeReusable()
                                     }
                                 }
@@ -139,7 +151,7 @@ struct TimeItemSheet: View {
                             
                             VStack(alignment: .leading, spacing: 7) {
                                 PremiumBadge {
-                                    RegularButton(title: Strings.makeReusable) {
+                                    RegularButton(title: Strings.makeReusable, icon: "arrow.clockwise") {
                                         timeItem.makeReusable()
                                     }
                                 }

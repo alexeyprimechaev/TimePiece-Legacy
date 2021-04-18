@@ -19,15 +19,26 @@ struct SubscriptionSheet: View {
     @State var alertText1 = "Failed"
     @State var alertText2 = "Some error occured..."
     
+    @State var hasFinishedLoading = true
+    
     var body: some View {
         VStack(spacing: 0) {
-            HeaderBar(leadingAction: discard,
-                      leadingTitle: Strings.dismiss,
-                      leadingIcon: "chevron.down",
-                      trailingAction: {self.restorePurchases()},
-                      trailingTitle: Strings.restore,
-                      trailingIcon: "arrow.clockwise",
-                      trailingIsHidden: true)
+            HeaderBar(showingMenu: false) {
+                RegularButton(title: Strings.dismiss, icon: "chevron.down") {
+                    discard()
+                }
+            } trailingItems: {
+                RegularButton(title: Strings.restore, icon: "arrow.clockwise", hasFinishedLoading: $hasFinishedLoading) {
+                    restorePurchases()
+                }
+            }
+//            HeaderBar(leadingAction: discard,
+//                      leadingTitle: Strings.dismiss,
+//                      leadingIcon: "chevron.down",
+//                      trailingAction: {self.restorePurchases()},
+//                      trailingTitle: Strings.restore,
+//                      trailingIcon: "arrow.clockwise",
+//                      trailingIsHidden: true)
             GeometryReader { geometry in
                 TitledScrollView {
                     let baseWidth = geometry.size.width-28-56
@@ -93,10 +104,11 @@ struct SubscriptionSheet: View {
     }
     
     func restorePurchases() {
+        self.hasFinishedLoading = false
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "b82d97a08dd74422a5116ac3779653e6")
         
         var monthly = false
-        var yearly = true
+        var yearly = false
         
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             switch result {
@@ -118,6 +130,11 @@ struct SubscriptionSheet: View {
                     } else {
                         self.settings.isSubscribed = false
                     }
+                    print("monthly purchased")
+                    self.alertText1 = "Success"
+                    self.alertText2 = "Subscription valid until \(expiryDate)"
+                    self.showingAlert = true
+                    self.discard()
                     
                 case .expired(let expiryDate, let items):
                     //print("\(productIdMonthly) is expired since \(expiryDate)\n\(items)\n")
@@ -127,6 +144,7 @@ struct SubscriptionSheet: View {
                     } else {
                         self.settings.isSubscribed = false
                     }
+                    print("monthly expired")
                     self.alertText1 = "Failed"
                     self.alertText2 = "Subscription has expired on \(TimeItem.createdAtFormatter.string(from: expiryDate))"
                     self.showingAlert = true
@@ -138,6 +156,7 @@ struct SubscriptionSheet: View {
                     } else {
                         self.settings.isSubscribed = false
                     }
+                    print("monthly not purchased")
                     self.alertText1 = "Failed"
                     self.alertText2 = "You have never purchased \(productIdMonthly)"
                     self.showingAlert = true
@@ -159,6 +178,12 @@ struct SubscriptionSheet: View {
                     } else {
                         self.settings.isSubscribed = false
                     }
+                    print("yearly purchased")
+                    self.alertText1 = "Success"
+                    self.alertText2 = "Subscription valid until \(expiryDate)"
+                    self.showingAlert = true
+                    self.discard()
+                    
                 case .expired(let expiryDate, let items):
                     //print("\(purchaseResultYearly) is expired since \(expiryDate)\n\(items)\n")
                     yearly = false
@@ -167,6 +192,7 @@ struct SubscriptionSheet: View {
                     } else {
                         self.settings.isSubscribed = false
                     }
+                    print("yearly expired")
                     self.alertText1 = "Failed"
                     self.alertText2 = "Subscription has expired on \(TimeItem.createdAtFormatter.string(from: expiryDate))"
                     self.showingAlert = true
@@ -177,25 +203,30 @@ struct SubscriptionSheet: View {
                     } else {
                         self.settings.isSubscribed = false
                     }
+                    print("yearly not purchased")
                     self.alertText1 = "Failed"
                     self.alertText2 = "You have never purchased \(purchaseResultYearly)"
                     self.showingAlert = true
                     
                 }
+                self.hasFinishedLoading = true
                 
             case .error(let error):
                 print("Receipt verification failed: \(error)")
+                self.hasFinishedLoading = true
             }
         }
     }
     
     func purchaseMonthly() {
+        self.hasFinishedLoading = false
         SwiftyStoreKit.purchaseProduct("timepiecesubscription", quantity: 1, atomically: true) { result in
             switch result {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 self.settings.isSubscribed = true
                 self.discard()
+                self.hasFinishedLoading = true
             case .error(let error):
                 switch error.code {
                 case .unknown:
@@ -227,15 +258,18 @@ struct SubscriptionSheet: View {
                     print((error as NSError).localizedDescription)
                     self.showingAlert = true
                 }
+                self.hasFinishedLoading = true
             }
         }
     }
     
     func purchaseYearly() {
+        self.hasFinishedLoading = false
         SwiftyStoreKit.purchaseProduct("timepieceyearly", quantity: 1, atomically: true) { result in
             switch result {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
+                self.hasFinishedLoading = true
                 self.settings.isSubscribed = true
                 self.discard()
             case .error(let error):
@@ -269,6 +303,7 @@ struct SubscriptionSheet: View {
                     print((error as NSError).localizedDescription)
                     self.showingAlert = true
                 }
+                self.hasFinishedLoading = true
             }
         }
     }

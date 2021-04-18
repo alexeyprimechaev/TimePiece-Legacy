@@ -16,10 +16,11 @@ struct SettingsSheet: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
-            HeaderBar(leadingAction: discard,
-                      leadingTitle: Strings.dismiss,
-                      leadingIcon: "chevron.down",
-                      trailingAction: {})
+            HeaderBar {
+                RegularButton(title: Strings.discard, icon: "chevron.down") {
+                    discard()
+                }
+            }
             
             TitledScrollView {
                 

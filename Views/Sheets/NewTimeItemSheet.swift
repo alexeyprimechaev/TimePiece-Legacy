@@ -28,12 +28,12 @@ struct NewTimeItemSheet: View {
     
     var body: some View {
         VStack(spacing:0) {
-            HeaderBar(
-                leadingAction: {
+            HeaderBar {
+                RegularButton(title: Strings.discard, icon: "xmark") {
                     isAdding = false
                     discard()
-                }, leadingTitle: Strings.discard, leadingIcon: "xmark", leadingIsDestructive: true,
-                trailingAction: {})
+                }
+            }
             
             TitledScrollView {
                 

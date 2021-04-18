@@ -64,10 +64,11 @@ struct LogSheet: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HeaderBar(leadingAction: discard,
-                      leadingTitle: Strings.dismiss,
-                      leadingIcon: "chevron.down",
-                      trailingAction: {})
+            HeaderBar {
+                RegularButton(title: Strings.dismiss, icon: "chevron.down") {
+                    discard()
+                }
+            }
             Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
                 Text("Trends").tag(0)
                 Text("Log").tag(1)
