@@ -90,7 +90,10 @@ struct TimeEditor: View {
                             keyboardMode = 0
                         }
                     }
-                    .onChange(of: string) { newValue in
+                    .onChange(of: string) { value in
+                        let newValue = value.filter { ("0"..."9").contains($0) }
+                        string = value.filter { ("0"..."9").contains($0) }
+                        print(newValue)
                         switch keyboardMode {
                         case 1:
                             if string.count > 2 {
@@ -193,7 +196,7 @@ struct TimeEditor: View {
                                 .foregroundColor(Color("button.gray"))
                                 .opacity(textField.isFirstResponder || isFocused ? 1 : 0))
                 )
-                //Text(label).fontSize(.smallTitle).padding(.bottom, 13).opacity(isFocused ? 1 : 0.5)
+                Text(label).fontSize(.smallTitle).padding(.bottom, 13).opacity(isFocused ? 1 : 0.5)
             }.animation(.default, value: isFocused)
             //            .background(HStack(spacing: 0) {
             //                Text("00")

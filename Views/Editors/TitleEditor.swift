@@ -39,10 +39,10 @@ struct TitleEditor: View {
                     Text((timeItem.totalTime).stringFromTimeInterval(precisionSetting: timeItem.precisionSetting))
                         .fontSize(.title)
                 }
-//                Text(title)
-//                    .fontSize(.smallTitle)
-//                    .padding(.bottom, 5)
-//                    .opacity(timeItem.title.count == 0 && title == Strings.title ? 1 : 0.5)
+                Text(title)
+                    .fontSize(.smallTitle)
+                    .padding(.bottom, 5)
+                    .opacity(timeItem.title.count == 0 && title == Strings.title ? 1 : 0.5)
             }
             if title == Strings.title {
                 TextField("", text: $timeItem.title) { (editingChanged) in

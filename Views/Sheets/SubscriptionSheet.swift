@@ -53,7 +53,7 @@ struct SubscriptionSheet: View {
                                 .frame(width: baseWidth * 2/3 + 14, height: 112)
                         }
                         HStack(spacing: 14) {
-                            SubscriptionPointView(style: .large, isSFSymbol: true, text: "Reusable timers for your favorite activities.", images: ["🍳","🥓","🍵","🥩","🍲","🫖","📚", "📱","💻","🏢", "⏲","🍅","⏱", "✈️","🚙","🪥","🧺","🧹","🪣","🚿","🛁","🏃🏼‍♀️","🏋🏿","💪","⚽️","🧘🏿","🏈"]).frame(width: baseWidth * 2/3 + 14, height: 238)
+                            SubscriptionPointView(style: .large, isSFSymbol: true, text: "Reuse timers for your favorite activities", images: ["🍳","🥓","🍵","🥩","🍲","🫖","📚", "📱","💻","🏢", "⏲","🍅","⏱", "✈️","🚙","🪥","🧺","🧹","🪣","🚿","🛁","🏃🏼‍♀️","🏋🏿","💪","⚽️","🧘🏿","🏈"]).frame(width: baseWidth * 2/3 + 14, height: 238)
                             VStack(spacing: 14) {
                                 SubscriptionPointView(color: Color(.systemIndigo), image: "ellipsis.circle.fill", text: "Show Milliseconds").frame(width: baseWidth * 1/3, height: 112)
                                 SubscriptionPointView(color: .green, image: "speaker.wave.2.fill", text: "Pick sounds for each timer").frame(width: baseWidth * 1/3, height: 112)

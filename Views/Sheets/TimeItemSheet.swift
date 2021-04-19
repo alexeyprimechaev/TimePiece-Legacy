@@ -77,9 +77,6 @@ struct TimeItemSheet: View {
                     if timeItem.isStopwatch {
                         if timeItem.isReusable {
                             PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
-                            if timeItem.notificationSetting == TimeItem.notificationSettings[1] {
-                                ContinousPicker(values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
-                            }
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
                                 PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
