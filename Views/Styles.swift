@@ -65,6 +65,7 @@ struct RegularButtonStyle: ButtonStyle {
         configuration.label
             .opacity(configuration.isPressed ? 0.33 : 1.0)
             .animation(.easeOut(duration: 0.2))
+            .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
     
 }

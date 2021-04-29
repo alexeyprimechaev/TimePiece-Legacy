@@ -88,7 +88,7 @@ private struct TrackableScrollView<Content: View>: View {
     ScrollView {
       offsetReader
       content()
-        .padding(.top, -8)
+        .padding(.top, -21)
     }
     .coordinateSpace(name: "frameLayer")
     .onPreferenceChange(OffsetPreferenceKey.self, perform: onOffsetChange)

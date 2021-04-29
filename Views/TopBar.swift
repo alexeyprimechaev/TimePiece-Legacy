@@ -83,6 +83,6 @@ struct TopBar: View {
                 }
             }.animation(nil)
 
-        }.animation(.easeOut(duration: 0.2))
+        }.animation(.easeOut(duration: 0.2)).frame(height: 52)
     }
 }

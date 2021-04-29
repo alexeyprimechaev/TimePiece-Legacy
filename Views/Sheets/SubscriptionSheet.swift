@@ -19,7 +19,9 @@ struct SubscriptionSheet: View {
     @State var alertText1 = "Failed"
     @State var alertText2 = "Some error occured..."
     
-    @State var hasFinishedLoading = true
+    @State var hasFinishedRestoring = true
+    @State var hasFinishedMonthly = true
+    @State var hasFinishedYearly = true
     
     var body: some View {
         VStack(spacing: 0) {
@@ -28,7 +30,7 @@ struct SubscriptionSheet: View {
                     discard()
                 }
             } trailingItems: {
-                RegularButton(title: Strings.restore, icon: "arrow.clockwise", hasFinishedLoading: $hasFinishedLoading) {
+                RegularButton(title: Strings.restore, icon: "arrow.clockwise", hasFinishedLoading: $hasFinishedRestoring) {
                     restorePurchases()
                 }
             }
@@ -71,8 +73,8 @@ struct SubscriptionSheet: View {
                     }.padding(.top, 14).padding(.horizontal, 7)
                     Divider().padding(14).padding(.horizontal, 14)
                     VStack(spacing: 14) {
-                        SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, action: purchaseMonthly)
-                        SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, action: purchaseYearly)
+                        SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, hasFinishedLoading: $hasFinishedMonthly, action: purchaseMonthly)
+                        SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, hasFinishedLoading: $hasFinishedYearly, action: purchaseYearly)
                         Text(Strings.subscriptionDetails).fontSize(.secondaryText).multilineTextAlignment(.center)
                         HStack(spacing: 0) {
                             Spacer()
@@ -91,6 +93,9 @@ struct SubscriptionSheet: View {
                     
                 }
             }
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text(alertText1), message: Text(alertText2), dismissButton: .default(Text("Okay")))
+            }
             
             
             
@@ -104,7 +109,7 @@ struct SubscriptionSheet: View {
     }
     
     func restorePurchases() {
-        self.hasFinishedLoading = false
+        self.hasFinishedRestoring = false
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "b82d97a08dd74422a5116ac3779653e6")
         
         var monthly = false
@@ -209,24 +214,26 @@ struct SubscriptionSheet: View {
                     self.showingAlert = true
                     
                 }
-                self.hasFinishedLoading = true
+                self.hasFinishedRestoring = true
                 
             case .error(let error):
                 print("Receipt verification failed: \(error)")
-                self.hasFinishedLoading = true
+                self.hasFinishedRestoring = true
             }
+            self.showingAlert = true
+            print("mdems")
         }
     }
     
     func purchaseMonthly() {
-        self.hasFinishedLoading = false
+        self.hasFinishedMonthly = false
         SwiftyStoreKit.purchaseProduct("timepiecesubscription", quantity: 1, atomically: true) { result in
             switch result {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 self.settings.isSubscribed = true
                 self.discard()
-                self.hasFinishedLoading = true
+                self.hasFinishedMonthly = true
             case .error(let error):
                 switch error.code {
                 case .unknown:
@@ -258,18 +265,18 @@ struct SubscriptionSheet: View {
                     print((error as NSError).localizedDescription)
                     self.showingAlert = true
                 }
-                self.hasFinishedLoading = true
+                self.hasFinishedMonthly = true
             }
         }
     }
     
     func purchaseYearly() {
-        self.hasFinishedLoading = false
+        self.hasFinishedYearly = false
         SwiftyStoreKit.purchaseProduct("timepieceyearly", quantity: 1, atomically: true) { result in
             switch result {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
-                self.hasFinishedLoading = true
+                self.hasFinishedYearly = true
                 self.settings.isSubscribed = true
                 self.discard()
             case .error(let error):
@@ -303,7 +310,7 @@ struct SubscriptionSheet: View {
                     print((error as NSError).localizedDescription)
                     self.showingAlert = true
                 }
-                self.hasFinishedLoading = true
+                self.hasFinishedYearly = true
             }
         }
     }

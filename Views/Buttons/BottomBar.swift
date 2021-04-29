@@ -53,7 +53,7 @@ struct BottomBarItem: View {
             }
             .lineLimit(1)
             .padding(14)
-            .background(RoundedRectangle(cornerRadius: 12, style: .continuous).foregroundColor(Color(.systemBackground)))
+            .background(RoundedRectangle(cornerRadius: 12, style: .continuous).foregroundColor(.clear))
             
         }
         
