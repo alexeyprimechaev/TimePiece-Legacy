@@ -73,7 +73,6 @@
 		80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
 		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimeItem.swift */; };
-		80150DEC24F58E7300C740B3 /* OldSubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D69C42416CB4900896206 /* OldSubscriptionSheet.swift */; };
 		80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogItemCell.swift */; };
 		80150DEE24F58E7300C740B3 /* TimeItemSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088473A23C2AE79001D1A6E /* TimeItemSheet.swift */; };
 		80150E2524F5900400C740B3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 80150E2424F5900400C740B3 /* Introspect */; };
@@ -175,7 +174,6 @@
 		80888DA024FAB08400C55895 /* TimeDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
 		808A38892512D6B10075AC50 /* InsightRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightRow.swift; sourceTree = "<group>"; };
 		809635632401544D00BF297F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		809D69C42416CB4900896206 /* OldSubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSubscriptionSheet.swift; sourceTree = "<group>"; };
 		809D9F3124C4929200DB4E94 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		80A14FB42411077000638B64 /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
@@ -316,7 +314,6 @@
 			children = (
 				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
-				809D69C42416CB4900896206 /* OldSubscriptionSheet.swift */,
 				056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */,
 				056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */,
 				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
@@ -618,7 +615,6 @@
 				80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */,
 				80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */,
 				80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
-				80150DEC24F58E7300C740B3 /* OldSubscriptionSheet.swift in Sources */,
 				80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */,
 				80150DD524F58E7300C740B3 /* LogItem.swift in Sources */,
 				052A345925D819430052949A /* TimePieceWidget.intentdefinition in Sources */,

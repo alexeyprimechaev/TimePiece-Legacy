@@ -104,7 +104,7 @@ struct SubscriptionSheet: View {
             
             
             
-        }
+        }.background(Color("secondaryBackground").ignoresSafeArea(.all))
         
     }
     

@@ -152,13 +152,18 @@ struct ContentView: View {
         
         .ignoresSafeArea(.keyboard)
         .onAppear {
-            if !settings.hasSeenOnboarding {
-                appState.activeSheet = 5
-                appState.showingSheet = true
+            if settings.isSubscribed {
+                if !settings.hasSeenOnboarding {
+                    appState.activeSheet = 5
+                    appState.showingSheet = true
+                } else {
+                    appState.activeSheet = 3
+                }
             } else {
-                appState.activeSheet = 3
+                settings.selectedView = .grid
+                appState.activeSheet = 4
+                appState.showingSheet = true
             }
-            
             if timeItems.count > 0 {
                 for i in 0...timeItems.count-1 {
                     timeItems[i].order = i
