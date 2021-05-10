@@ -1,13 +1,111 @@
 //
 //  LogSheet.swift
-//  TimePiece
+//  TimePiece (iOS)
 //
-//  Created by Alexey Primechaev on 4/6/20.
-//  Copyright © 2020 Alexey Primechaev. All rights reserved.
+//  Created by Alexey Primechaev on 5/10/21.
+//  Copyright © 2021 Alexey Primechaev. All rights reserved.
 //
 
 import SwiftUI
-import ASCollectionView
+
+extension Sequence {
+    func group<GroupingType: Hashable>(by key: (Iterator.Element) -> GroupingType) -> [[Iterator.Element]] {
+        var groups: [GroupingType: [Iterator.Element]] = [:]
+        var groupsOrder: [GroupingType] = []
+        forEach { element in
+            let key = key(element)
+            if case nil = groups[key]?.append(element) {
+                groups[key] = [element]
+                groupsOrder.append(key)
+            }
+        }
+        return groupsOrder.map { groups[$0]! }
+    }
+}
+
+
+extension Date {
+    
+    var startOfWeek: Date {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
+        return gregorian.date(byAdding: .day, value: 1, to: sunday ?? Date()) ?? Date()
+    }
+    
+    var endOfWeek: Date {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))
+        return gregorian.date(byAdding: .day, value: 7, to: sunday ?? Date()) ?? Date()
+    }
+    
+    var week: DateComponents {
+        get {
+            let calendar = Calendar.current
+            let component = calendar.dateComponents([.weekOfYear, .year], from: self)
+            
+            return component
+        }
+    }
+    
+    var month: DateComponents {
+        get {
+            let calendar = Calendar.current
+            let component = calendar.dateComponents([.month, .year], from: self)
+            
+            return component
+        }
+    }
+    var year: DateComponents {
+        get {
+            let calendar = Calendar.current
+            let component = calendar.dateComponents([.year], from: self)
+            
+            return component
+        }
+    }
+    var day: DateComponents {
+        get {
+            
+            let calendar = Calendar.current
+            let component = calendar.dateComponents([.day, .year, .month], from: self)
+            
+            
+            print(component)
+            return component
+        }
+    }
+}
+
+func logItemsGrouped(_ result: FetchedResults<LogItem>, by segment: LogSegment) -> [[LogItem]] {
+    switch segment {
+    case .weeks:
+        return logItemWeeks(result)
+    case .days:
+        return logItemDays(result)
+    case .months:
+        return logItemMonths(result)
+    case .years:
+        return logItemYears(result)
+    }
+}
+
+func logItemWeeks(_ result: FetchedResults<LogItem>)-> [[LogItem]]{
+    return result.group { $0.timeStarted.week }.sorted { $0[0].timeStarted > $1[0].timeStarted }
+}
+
+func logItemMonths(_ result: FetchedResults<LogItem>)-> [[LogItem]]{
+    return result.group { $0.timeStarted.month }.sorted { $0[0].timeStarted > $1[0].timeStarted }
+}
+
+func logItemYears(_ result: FetchedResults<LogItem>)-> [[LogItem]]{
+    return result.group { $0.timeStarted.year }.sorted { $0[0].timeStarted > $1[0].timeStarted }
+}
+
+func logItemDays(_ result: FetchedResults<LogItem>)-> [[LogItem]]{
+    return result.group { $0.timeStarted.day }.sorted { $0[0].timeStarted > $1[0].timeStarted }
+}
+
+
 
 struct LogSheet: View {
     
@@ -15,203 +113,43 @@ struct LogSheet: View {
     @EnvironmentObject var settings: Settings
     @FetchRequest(fetchRequest: LogItem.getAllLogItems()) var logItems: FetchedResults<LogItem>
     
-    @State private var selectedScreen = 0
+    @State var selectedSegment: LogSegment = .days
     
-    @State private var totalTimeSpent = "00:00"
-    @State private var mostPopularTimer = "No Timer"
-    @State private var mostPopularTimerCount = "Ran 0 Times"
-    @State private var dailyAverage = "00:00"
-    @State private var totalTimersRun = "0"
-    
-    var discard: () -> Void
-    
-    func update(_ result : FetchedResults<LogItem>)-> [[LogItem]]{
-        return  Dictionary(grouping: result){ (element : LogItem)  in
-            TimeItem.dateFormatter.string(from: element.timeStarted)
-        }.values.sorted { $0[0].timeStarted > $1[0].timeStarted }
-    }
-    
-    
-    var sections: [ASTableViewSection<Int>]
-    {
-        update(logItems).enumerated().map
-        { i, section in
-            ASTableViewSection(
-                id: i + 1,
-                data: section,
-                contextMenuProvider: contextMenuProvider)
-            { item, _ in
-                LogItemCell(logItem: item)
-            }
-            .sectionHeader
-            {
-                VStack(spacing: 0)
-                {
-                    HStack() {
-                        Text(TimeItem.dateFormatter.string(from: section[0].timeStarted)).fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
-                        Spacer()
-                    }
-                    
-                    if settings.showingDividers {
-                        Divider()
-                    }
-                }.background(Color(UIColor.systemBackground))
-            }
-        }
-    }
-    
+    var discard: () -> ()
     
     
     var body: some View {
-        VStack(spacing: 0) {
+        
+        
+        VStack(spacing:0) {
             HeaderBar {
                 RegularButton(title: Strings.dismiss, icon: "chevron.down") {
                     discard()
                 }
             }
-            Picker(selection: $selectedScreen, label: Text("What is your favorite color?")) {
-                Text("Trends").tag(0)
-                Text("Log").tag(1)
-            }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 28).padding(.vertical, 7)
-            if selectedScreen == 0 {
-                VStack(spacing: 0)
-                {
-                    HStack {
-                        Text("This Week").fontSize(.title).padding(7).padding(.leading, 21).padding(.vertical, 7)
-                        Spacer()
-                    }
+            Picker(selection: $selectedSegment, label: Text("What is your favorite color?")) {
+                ForEach(LogSegment.allCases, id: \.self) { value in
+                                    Text(value.rawValue)
+                                        .tag(value)
+                                }
 
-                    TitledScrollView() {
-                        VStack(spacing: 14) {
-                            Spacer().frame(height: 14)
-                            InsightRow(icon: "clock.fill", color: Color(.systemTeal), title: "Total Time Spent", item: $totalTimeSpent, value: $mostPopularTimerCount, subtitle: "Good job tracking your time this week! Be sure to track all your activities next week. Great!")
-                            InsightRow(icon: "heart.circle.fill", color: Color(.systemPink), title: "Most Popular Timer", item: $mostPopularTimer, value: $mostPopularTimerCount, showingValue: true, subtitle: "Wow! You've really run this Timer a lot, haven't you. Hope you're doing something productive.")
-                            InsightRow(icon: "arrow.right.circle.fill", color: Color(.systemPurple), title: "Daily Average", item: $dailyAverage, value: $mostPopularTimerCount, subtitle: "Looks like you have good average productivity. Well done, mate!")
-                            InsightRow(icon: "number.circle.fill", color: Color(.systemOrange), title: "Total Timers Run", item: $totalTimersRun, value: $mostPopularTimerCount, subtitle: "That's a lot of Timers! Keep tracking your activities to be more aware of your time-spending.")
-                            Spacer()
-                        }
+            }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 28).padding(.vertical, 7).accentColor(.primary)
+            TitledScrollView {
+                VStack {
+                    ForEach(logItemsGrouped(logItems, by: selectedSegment) , id: \.self) { logItemSection in
+                        LogSection(segment: selectedSegment , logItemSection: logItemSection)
+                        
                     }
-                }.background(Color(UIColor.systemBackground))
-                
-            } else {
-                
-//                                List(update(logItems), id: \.self) { section in
-//                                    ForEach(section) { logItem in
-//                                        LogView(logItem: logItem)
-//                                    }
-//                                }
-                
-
+                }.padding(.top, 14)
                 
                 
             }
-            
-            
-        }.onAppear {
-            self.settings.hasSeenTrends = true
-            self.calculateValues(logItems: self.logItems)
+        }
+        .onAppear {
+            UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.primary)
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.systemBackground], for: .selected)
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color.primary)], for: .normal)
         }
         
     }
-    
-    func clearLog() {
-        if logItems.count > 0 {
-            for i in 0...logItems.count-1 {
-                context.delete(logItems[i])
-                
-            }
-        }
-    }
-    
-    func contextMenuProvider(int: Int, logItem: LogItem) -> UIContextMenuConfiguration? {
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (suggestedActions) -> UIMenu? in
-            let deleteCancel = UIAction(title: "Cancel", image: UIImage(systemName: "xmark")) { action in }
-            let deleteConfirm = UIAction(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), attributes: self.settings.isMonochrome ? UIMenuElement.Attributes() : .destructive) { action in
-                withAnimation(.default) {
-                    context.delete(logItem)
-                }
-                
-            }
-            
-            
-            // The delete sub-menu is created like the top-level menu, but we also specify an image and options
-            let delete = UIMenu(title: NSLocalizedString("delete", comment: "Delete"), image: UIImage(systemName: "trash"), options: self.settings.isMonochrome ? UIMenu.Options() : .destructive, children: [deleteCancel, deleteConfirm])
-            
-            
-            
-            
-            let info = UIAction(title: NSLocalizedString("showDetails", comment: "Show Details"), image: UIImage(systemName: "ellipsis")) { action in
-            }
-            
-            // Then we add edit as a child of the main menu
-            let mainMenu = UIMenu(title: "", children: [delete])
-            return mainMenu
-        }
-        return configuration
-    }
-    
-    func onSwipeToDelete(logItem: LogItem, completionHandler: (Bool) -> Void) {
-        withAnimation(.default) {
-            context.delete(logItem)
-        }
-    }
-    
-    func calculateValues(logItems: FetchedResults<LogItem>) {
-        let logItemsThisWeek = logItems.filter {
-            $0.timeFinished > Date().addingTimeInterval(-604800)
-        }
-        
-        totalTimersRun = String(logItemsThisWeek.count)
-        
-        mostPopularTimer = mostFrequent(array: logItemsThisWeek)?.value ?? ""
-        mostPopularTimerCount = "Ran \(String(mostFrequent(array: logItemsThisWeek)?.count ?? 0)) Times"
-        
-        totalTimeSpent = totalTime(array: logItemsThisWeek)
-        
-        dailyAverage = averageTime(array: logItemsThisWeek)
-        
-        // logItem.timeFinished.timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
-        
-        
-        
-        
-    }
-    
-    
-    func mostFrequent(array: [LogItem]) -> (value: String, count: Int)? {
-        
-        let counts = array.reduce(into: [:]) { $0[$1.title, default: 0] += 1 }
-        
-        if let (value, count) = counts.max(by: { $0.1 < $1.1 }) {
-            return (value, count)
-        }
-        
-        // array was empty
-        return nil
-    }
-    
-    func totalTime(array: [LogItem]) -> String {
-        var sum: TimeInterval = 0
-        
-        for i in 0..<array.count {
-            sum += array[i].timeFinished.timeIntervalSince(array[i].timeStarted)
-        }
-        
-        return sum.relativeStringFromNumber()
-    }
-    
-    func averageTime(array: [LogItem]) -> String {
-        var sum: TimeInterval = 0
-        
-        for i in 0..<array.count {
-            sum += array[i].timeFinished.timeIntervalSince(array[i].timeStarted)
-        }
-        
-        return (sum/7).relativeStringFromNumber()
-    }
-    
-    
-    
 }
-
-

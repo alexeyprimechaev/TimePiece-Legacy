@@ -135,7 +135,7 @@ struct ContentView: View {
                     }
                     .foregroundColor(.primary)
                     
-                    BottomBarItem(title: Strings.log, icon: "bolt") {
+                    BottomBarItem(title: Strings.log, icon: "tray") {
                         appState.activeSheet = 3
                         appState.showingSheet = true
                     }.foregroundColor(.primary)

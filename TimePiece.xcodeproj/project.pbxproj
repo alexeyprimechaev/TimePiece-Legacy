@@ -38,6 +38,7 @@
 		052A346925D81A4B0052949A /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7A8243B627600AF516E /* LogItem.swift */; };
 		052A346A25D81A5D0052949A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A346125D819950052949A /* AppGroup.swift */; };
 		052A346C25D81AE90052949A /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 052A346B25D81AE90052949A /* SwiftyStoreKit */; };
+		054802EA2649CCF400AE84D4 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054802E92649CCF400AE84D4 /* LogSheet.swift */; };
 		054F01A125DDCC17002ACCBF /* TimePieceWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */; };
 		054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */; };
 		056AC76725E3EDCD00472D58 /* SubscriptionPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */; };
@@ -70,7 +71,7 @@
 		80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 		80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
-		80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* LogSheet.swift */; };
+		80150DE924F58E7300C740B3 /* EldenLogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* EldenLogSheet.swift */; };
 		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimeItem.swift */; };
 		80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogItemCell.swift */; };
@@ -134,6 +135,7 @@
 		052A345725D819430052949A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		052A346025D819540052949A /* TimePieceWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetExtension.entitlements; sourceTree = "<group>"; };
 		052A346125D819950052949A /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		054802E92649CCF400AE84D4 /* LogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheet.swift; sourceTree = "<group>"; };
 		054F01A025DDCC17002ACCBF /* TimePieceWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePieceWidgets.swift; sourceTree = "<group>"; };
 		054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridWidget.swift; sourceTree = "<group>"; };
 		056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPointView.swift; sourceTree = "<group>"; };
@@ -156,7 +158,7 @@
 		8043381C24F6836700958666 /* TimePiece.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePiece.entitlements; sourceTree = "<group>"; };
 		804E17B124087B71003F5001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
-		8055D7AA243B62ED00AF516E /* LogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheet.swift; sourceTree = "<group>"; };
+		8055D7AA243B62ED00AF516E /* EldenLogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EldenLogSheet.swift; sourceTree = "<group>"; };
 		8055D7AE243B697800AF516E /* LogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemCell.swift; sourceTree = "<group>"; };
 		805DB84124D4831E00178B5B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		805DB84324D485F600178B5B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -312,7 +314,8 @@
 		808A386C2512D1F80075AC50 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				8055D7AA243B62ED00AF516E /* LogSheet.swift */,
+				8055D7AA243B62ED00AF516E /* EldenLogSheet.swift */,
+				054802E92649CCF400AE84D4 /* LogSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
 				056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */,
 				056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */,
@@ -612,6 +615,7 @@
 				80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */,
 				80150DD324F58E7300C740B3 /* TimeItemCell.swift in Sources */,
 				80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */,
+				054802EA2649CCF400AE84D4 /* LogSheet.swift in Sources */,
 				80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */,
 				80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */,
 				80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */,
@@ -621,7 +625,7 @@
 				80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */,
 				80150DD124F58E7300C740B3 /* Settings.swift in Sources */,
 				05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */,
-				80150DE924F58E7300C740B3 /* LogSheet.swift in Sources */,
+				80150DE924F58E7300C740B3 /* EldenLogSheet.swift in Sources */,
 				80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */,
 				80150DD724F58E7300C740B3 /* PremiumBadge.swift in Sources */,
 				05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */,

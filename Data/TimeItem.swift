@@ -77,8 +77,8 @@ public class TimeItem: NSManagedObject, Identifiable {
     }()
     static let dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.doesRelativeDateFormatting = true
+        formatter.dateFormat = "MMM dd"
+        formatter.doesRelativeDateFormatting = false
         return formatter
     }()
     static let currentTimeFormatter: DateFormatter = {
