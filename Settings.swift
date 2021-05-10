@@ -19,6 +19,9 @@ enum ViewType: Int {
 
 public class Settings: ObservableObject {
     
+    let appVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "App Version"
+    let appBuild: String = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "App Version"
+    
     @Published var isBoldTextEnabled: Bool = UIAccessibility.isBoldTextEnabled 
     
     @Published var showingSubscription: Bool = false

@@ -176,6 +176,7 @@ struct TimeItemSheet: View {
                     
                     
                 }
+                .padding(.top, 14)
                 .alert(isPresented: $showingConvertAlert) {
                     if timeItem.isStopwatch {
                         return Alert(title: Text("Convert to Timer?"), message: Text("Converting will reset the Stopwatch"), primaryButton: .default(Text("Convert"), action:  {

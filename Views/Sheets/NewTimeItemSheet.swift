@@ -103,7 +103,7 @@ struct NewTimeItemSheet: View {
                     
                     
                     
-                }.animation(.default, value: timeItem.isStopwatch)
+                }.padding(.top, 14).animation(.default, value: timeItem.isStopwatch)
             }
             EditorBar(titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused, showSwitcher: $timeItem.isStopwatch) {
                 if !timeItem.isStopwatch {
@@ -115,9 +115,9 @@ struct NewTimeItemSheet: View {
                             Text(Strings.add).fontSize(.smallTitle)
                         } icon: {
                             Image(systemName: "plus").font(.headline)
-                        }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        }.padding(.horizontal, 14).padding(.vertical, 7).opacity(timeItem.totalTime == 0 ? 0.33 : 1).animation(.easeOut(duration: 0.2), value: timeItem.totalTime == 0).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                                                                                         .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
-                    }
+                    }.disabled(timeItem.totalTime == 0)
                     Button {
                         isAdding = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -132,9 +132,9 @@ struct NewTimeItemSheet: View {
                             Text(Strings.start).fontSize(.smallTitle)
                         } icon: {
                             Image(systemName: "play").font(.headline)
-                        }.padding(.horizontal, 14).padding(.vertical, 7).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        }.padding(.horizontal, 14).padding(.vertical, 7).opacity(timeItem.totalTime == 0 ? 0.33 : 1).animation(.easeOut(duration: 0.2), value: timeItem.totalTime == 0).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                                                                                         .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
-                    }
+                    }.disabled(timeItem.totalTime == 0)
                 } else {
                     
                     Spacer()

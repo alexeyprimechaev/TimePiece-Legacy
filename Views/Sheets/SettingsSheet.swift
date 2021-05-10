@@ -74,9 +74,18 @@ struct SettingsSheet: View {
                         }
                         
                     }
+                    HStack {
+                        Spacer()
+                        VStack(alignment: .center, spacing: 5) {
+                            Divider().padding(.horizontal, 84).padding(.vertical, 14)
+                            Text(settings.appVersion + " “The Return”").fontWeight(.medium).opacity(0.5)
+                            Text("Build " + settings.appBuild).opacity(0.5)
+                        }.font(.system(.body, design: .monospaced))
+                        Spacer()
+                    }
                     
                     
-                }.padding(.bottom, 28).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                }.padding(.top, 21).padding(.bottom, 28).frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
                 
             }
         }

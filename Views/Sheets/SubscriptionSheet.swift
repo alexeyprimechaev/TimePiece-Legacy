@@ -70,7 +70,7 @@ struct SubscriptionSheet: View {
                         
                         
                         
-                    }.padding(.top, 14).padding(.horizontal, 7)
+                    }.padding(.top, 21).padding(.horizontal, 7)
                     Divider().padding(14).padding(.horizontal, 14)
                     VStack(spacing: 14) {
                         SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, hasFinishedLoading: $hasFinishedMonthly, action: purchaseMonthly)
