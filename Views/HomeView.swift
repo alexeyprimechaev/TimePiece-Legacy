@@ -221,9 +221,6 @@ struct HomeView: View {
                         case 1:
                             NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
                                 appState.showingSheet = false
-                                if appState.newTimeItem.totalTime == 0 && !appState.newTimeItem.isStopwatch {
-                                    appState.newTimeItem.remove(from: context)
-                                }
                             }.environmentObject(settings)
                             
                         case 2:

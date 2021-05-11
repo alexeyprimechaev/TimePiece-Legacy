@@ -44,6 +44,7 @@
 		056AC76725E3EDCD00472D58 /* SubscriptionPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */; };
 		056AC76925E3F00F00472D58 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */; };
 		057B2E07264ACA33006858AA /* LogSectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B2E06264ACA33006858AA /* LogSectionSheet.swift */; };
+		057B2E0D264AF27A006858AA /* technoFree.wav in Resources */ = {isa = PBXBuildFile; fileRef = 057B2E0C264AF27A006858AA /* technoFree.wav */; };
 		05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FD25E2D70A006AE551 /* HomeView.swift */; };
 		05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */; };
 		05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0225E2F4DC006AE551 /* TopBar.swift */; };
@@ -142,6 +143,7 @@
 		056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPointView.swift; sourceTree = "<group>"; };
 		056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
 		057B2E06264ACA33006858AA /* LogSectionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSectionSheet.swift; sourceTree = "<group>"; };
+		057B2E0C264AF27A006858AA /* technoFree.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = technoFree.wav; sourceTree = "<group>"; };
 		05B1F91525D836F300C5E68E /* TimePieceWidgetIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetIntent.entitlements; sourceTree = "<group>"; };
 		05DED9FD25E2D70A006AE551 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridCell.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		80612FD623C274DB00BC03F5 = {
 			isa = PBXGroup;
 			children = (
+				057B2E0C264AF27A006858AA /* technoFree.wav */,
 				052A346025D819540052949A /* TimePieceWidgetExtension.entitlements */,
 				808A386A2512D1B60075AC50 /* Config */,
 				808A386B2512D1D10075AC50 /* Data */,
@@ -544,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80150E3824F593A500C740B3 /* Assets.xcassets in Resources */,
+				057B2E0D264AF27A006858AA /* technoFree.wav in Resources */,
 				80150E3624F5938F00C740B3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -685,7 +689,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidgetIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -709,7 +713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidgetIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -735,7 +739,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -761,7 +765,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -776,12 +780,11 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -790,10 +793,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SDKROOT = iphoneos;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -806,12 +809,11 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -820,10 +822,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SDKROOT = iphoneos;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -29,7 +29,7 @@ struct NewTimeItemSheet: View {
     var body: some View {
         VStack(spacing:0) {
             HeaderBar {
-                RegularButton(title: Strings.discard, icon: "xmark") {
+                RegularButton(title: Strings.discard, icon: "xmark", isDestructive: true) {
                     isAdding = false
                     discard()
                 }
