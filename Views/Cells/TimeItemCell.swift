@@ -32,11 +32,11 @@ struct TimeItemCell: View {
         
         
         Button {
-            if appState.isInEditing {
-                if appState.selectedValues.contains(timeItem) {
-                    appState.selectedValues.removeAll { $0 == timeItem }
+            if appState.editingHomeScreen {
+                if appState.selectedTimeItems.contains(timeItem) {
+                    appState.selectedTimeItems.removeAll { $0 == timeItem }
                 } else {
-                    appState.selectedValues.append(timeItem)
+                    appState.selectedTimeItems.append(timeItem)
                 }
                 
             } else {
@@ -125,9 +125,9 @@ struct TimeItemCell: View {
                 currentTime = newValue
             }
             .animation(nil)
-            .opacity(appState.isInEditing ? 0.5 : 1)
+            .opacity(appState.editingHomeScreen ? 0.5 : 1)
             
-            .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
+            .overlay(appState.editingHomeScreen ? Image(systemName: appState.selectedTimeItems.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
         }
         
         

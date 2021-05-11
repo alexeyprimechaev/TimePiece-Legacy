@@ -30,11 +30,11 @@ struct TimeItemGridCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             Button {
-                if appState.isInEditing {
-                    if appState.selectedValues.contains(timeItem) {
-                        appState.selectedValues.removeAll { $0 == timeItem }
+                if appState.editingHomeScreen {
+                    if appState.selectedTimeItems.contains(timeItem) {
+                        appState.selectedTimeItems.removeAll { $0 == timeItem }
                     } else {
-                        appState.selectedValues.append(timeItem)
+                        appState.selectedTimeItems.append(timeItem)
                     }
                     
                 } else {
@@ -120,13 +120,13 @@ struct TimeItemGridCell: View {
                     currentTime = newValue
                 }
                 .animation(nil)
-                .opacity(appState.isInEditing ? 0.5 : 1)
+                .opacity(appState.editingHomeScreen ? 0.5 : 1)
                 .padding(14)
                 .padding(.vertical, 10)
                 
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(timeItem.isRunning ? .systemGray5 : .systemGray6)))
-                    .overlay(appState.isInEditing ? nil : Button {
+                    .overlay(appState.editingHomeScreen ? nil : Button {
                     appState.selectedTimeItem = timeItem
                     appState.activeSheet = 0
                         
@@ -145,7 +145,7 @@ struct TimeItemGridCell: View {
                             .stroke(Color.primary, lineWidth: 2)
                             .opacity(timeItem == appState.selectedTimeItem && horizontalSizeClass != .compact ? 1 : 0))
                     
-                .overlay(appState.isInEditing ? Image(systemName: appState.selectedValues.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
+                .overlay(appState.editingHomeScreen ? Image(systemName: appState.selectedTimeItems.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
                     
             }
             

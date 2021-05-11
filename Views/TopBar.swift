@@ -31,18 +31,18 @@ struct TopBar: View {
                 }
                 HStack {
                     Spacer()
-                    if appState.isInEditing {
+                    if appState.editingHomeScreen {
                         Button {
-                            appState.isInEditing.toggle()
-                            appState.selectedValues = []
+                            appState.editingHomeScreen.toggle()
+                            appState.selectedTimeItems = []
                         } label: {
                             Text("Done").foregroundColor(.primary)
                         }.foregroundColor(.primary).padding(14).padding(.horizontal, 14)
                     } else {
                         Menu {
                             Button {
-                                appState.isInEditing.toggle()
-                                appState.selectedValues = []
+                                appState.editingHomeScreen.toggle()
+                                appState.selectedTimeItems = []
                             } label: {
                                 HStack {
                                     Text("Select")

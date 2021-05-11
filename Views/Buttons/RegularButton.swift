@@ -14,6 +14,7 @@ struct RegularButton: View {
     @State var icon = "arrow.clockwise"
     
     @State var isDestructive = false
+    @State var isFlipped = false
     
     @State var supportsLoading = false
     @Binding var hasFinishedLoading: Bool
@@ -27,6 +28,16 @@ struct RegularButton: View {
         self.isDestructive = isDestructive
         self.supportsLoading = false
         self._hasFinishedLoading = Binding.constant(true)
+        self.action = action
+    }
+    
+    init(title: LocalizedStringKey, icon: String, isDestructive: Bool = false, isFlipped: Bool, action: @escaping () -> Void) {
+        self.title = title
+        self.icon = icon
+        self.isDestructive = isDestructive
+        self.supportsLoading = false
+        self._hasFinishedLoading = Binding.constant(true)
+        self.isFlipped = isFlipped
         self.action = action
     }
     
@@ -45,6 +56,16 @@ struct RegularButton: View {
             self.action()
         } label: {
             if hasFinishedLoading {
+                if isFlipped {
+                    Label {
+                        
+                        Image(systemName: icon).font(.headline)
+                    } icon: {
+                        Text(title).fontSize(.smallTitle)
+                    }
+                    .padding(.vertical, 14)
+                    .padding(.horizontal, 7)
+                } else {
                 Label {
                     Text(title).fontSize(.smallTitle)
                 } icon: {
@@ -52,6 +73,8 @@ struct RegularButton: View {
                 }
                 .padding(.vertical, 14)
                 .padding(.horizontal, 7)
+                }
+                
             } else {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())

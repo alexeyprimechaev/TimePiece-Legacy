@@ -56,19 +56,19 @@ struct HomeView: View {
                     }.padding(7)
                 }
                 BottomBar {
-                    if appState.isInEditing {
+                    if appState.editingHomeScreen {
                         BottomBarItem(title: "Delete", icon: "trash") {
                             showingDeleteAlert = true
-                        }.foregroundColor(.red).opacity(appState.selectedValues.isEmpty ? 0.5 : 1).disabled(appState.selectedValues.isEmpty)
+                        }.foregroundColor(.red).opacity(appState.selectedTimeItems.isEmpty ? 0.5 : 1).disabled(appState.selectedTimeItems.isEmpty)
                         .alert(isPresented: $showingDeleteAlert) {
                             Alert(title: Text("Delete selected Timers?"), primaryButton: .destructive(Text("Delete")) {
                                 
                                 withAnimation {
-                                    for timeItem in appState.selectedValues {
+                                    for timeItem in appState.selectedTimeItems {
                                         timeItem.remove(from: context)
                                     }
                                 }
-                                appState.isInEditing = false
+                                appState.editingHomeScreen = false
                             }, secondaryButton: .cancel())
                         }
                     } else {
@@ -167,7 +167,7 @@ struct HomeView: View {
                         case 3:
                             LogSheet {
                                 appState.showingSheet = false
-                            }.environmentObject(settings).environment(\.managedObjectContext, context)
+                            }.environmentObject(settings).environmentObject(appState).environment(\.managedObjectContext, context)
                         case 4:
                             SubscriptionSheet {
                                 appState.showingSheet = false
@@ -233,7 +233,7 @@ struct HomeView: View {
                         case 3:
                             LogSheet {
                                 appState.showingSheet = false
-                            }.environmentObject(settings).environment(\.managedObjectContext, context)
+                            }.environmentObject(settings).environmentObject(appState).environment(\.managedObjectContext, context)
                         case 4:
                             SubscriptionSheet {
                                 appState.showingSheet = false

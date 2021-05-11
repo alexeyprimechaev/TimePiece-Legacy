@@ -219,13 +219,20 @@ public class TimeItem: NSManagedObject, Identifiable {
     func recordLog() {
         if !isPaused {
             if showInLog {
-                let logItemOwned = LogItem(context: self.managedObjectContext!)
-                logItemOwned.title = title
-                logItemOwned.timeStarted = Date()
-                logItemOwned.timeFinished = timeFinished
-                logItemOwned.isStopwatch = isStopwatch
-                logItemOwned.isDone = false
-                logItemOwned.origin = self
+                if Date().timeIntervalSince(logItems.last?.timeStarted ?? Date().addingTimeInterval(-120)) < 60 {
+                    logItems.last?.timeFinished = timeFinished
+                    logItems.last?.isDone = false
+                    logItems.last?.origin = self
+                    logItems.last?.isStopwatch = isStopwatch
+                } else {
+                    let logItemOwned = LogItem(context: self.managedObjectContext!)
+                    logItemOwned.title = title
+                    logItemOwned.timeStarted = Date()
+                    logItemOwned.timeFinished = timeFinished
+                    logItemOwned.isStopwatch = isStopwatch
+                    logItemOwned.isDone = false
+                    logItemOwned.origin = self
+                }
             }
         } else {
             
@@ -234,7 +241,8 @@ public class TimeItem: NSManagedObject, Identifiable {
             }
             logItems.last?.isDone = true
         }
-        
+        print("uhuhu")
+        print(logItems.count)
         dump(logItems)
     }
     
@@ -365,6 +373,7 @@ extension TimeItem {
         get { notificationSettingStored ?? TimeItem.notificationSettings[1] }
         set { notificationSettingStored = newValue }
     }
+    
     
     //MARK: Helpers
     
@@ -540,7 +549,7 @@ extension TimeInterval {
         let minutes = (time / 60) % 60
         let hours = (time / 3600)
         
-        return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+        return hours == 0 ? minutes == 0 ? String(format: "%0.2ds",seconds) : String(format: "%0.2dm",minutes) : String(format: "%0.2dh %0.2dm",hours,minutes)
         
     }
     

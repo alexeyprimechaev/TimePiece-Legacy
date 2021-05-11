@@ -47,7 +47,7 @@ struct ContentView: View {
                             Text(Strings.timePiece).fontSize(.title).padding(.bottom, 14).padding(.leading, 7)
                         },
                         //MARK: Timers
-                        ASCollectionViewSection(id: 1, data: timeItems, contextMenuProvider: appState.isInEditing ? nil : contextMenuProvider) { timer, _ in
+                        ASCollectionViewSection(id: 1, data: timeItems, contextMenuProvider: appState.editingHomeScreen ? nil : contextMenuProvider) { timer, _ in
                             TimeItemCell(timeItem: timer).environmentObject(settings).environmentObject(appState)
                             
                         }
@@ -75,19 +75,19 @@ struct ContentView: View {
             .ignoresSafeArea(.keyboard)
             .animation(.default)
             BottomBar {
-                if appState.isInEditing {
+                if appState.editingHomeScreen {
                     BottomBarItem(title: "Delete", icon: "trash") {
                         showingDeleteAlert = true
-                    }.foregroundColor(.red).opacity(appState.selectedValues.isEmpty ? 0.5 : 1).disabled(appState.selectedValues.isEmpty)
+                    }.foregroundColor(.red).opacity(appState.selectedTimeItems.isEmpty ? 0.5 : 1).disabled(appState.selectedTimeItems.isEmpty)
                     .alert(isPresented: $showingDeleteAlert) {
                         Alert(title: Text("Delete selected Timers?"), primaryButton: .destructive(Text("Delete")) {
                             
                             withAnimation {
-                                for timeItem in appState.selectedValues {
+                                for timeItem in appState.selectedTimeItems {
                                     timeItem.remove(from: context)
                                 }
                             }
-                            appState.isInEditing = false
+                            appState.editingHomeScreen = false
                         }, secondaryButton: .cancel())
                     }
                 } else {
@@ -211,7 +211,7 @@ struct ContentView: View {
             case 3:
                 LogSheet {
                     appState.showingSheet = false
-                }.environmentObject(settings).environment(\.managedObjectContext, context)
+                }.environmentObject(settings).environmentObject(appState).environment(\.managedObjectContext, context)
             case 4:
                 SubscriptionSheet {
                     appState.showingSheet = false
