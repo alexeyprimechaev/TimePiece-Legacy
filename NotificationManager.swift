@@ -43,7 +43,7 @@ public class NotificationManager {
             let content = UNMutableNotificationContent()
             content.title = "\(timeItem.title == "" ? NSLocalizedString("timer", comment: "Timer") : timeItem.title) is done"
             content.subtitle = "Tap to view"
-            content.sound = UNNotificationSound.default
+            content.sound = timeItem.soundSetting == "short" ? UNNotificationSound.default : UNNotificationSound.defaultCritical
             badgeCount += 1
             content.badge = NSNumber(value: badgeCount)
             
