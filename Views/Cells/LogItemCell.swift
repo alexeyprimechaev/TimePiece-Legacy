@@ -140,8 +140,11 @@ struct LogSection: View {
             if isCompact {
                 HStack {
                     Spacer()
-                    RegularButton(title: "View All", icon: "chevron.right", isFlipped: true) {
-                        self.showingSheet = true
+                    PremiumBadge(noLabel: true) {
+                        RegularButton(title: "View All", icon: "chevron.right", isFlipped: true) {
+                                self.showingSheet = true
+                            
+                        }
                     }.sheet(isPresented: $showingSheet) {
                         LogSectionSheet(logItemSection: logItemSection, segment: segment) {
                             self.showingSheet = false
@@ -257,20 +260,20 @@ struct LogHeader: View {
             }.fontSize(.title2)
             HStack(spacing: 14) {
                 Label {
-                    Text(totalTimers)
-                } icon: {
-                    Image(systemName: "number.circle.fill").foregroundColor(.orange).padding(.trailing, -3)
-                }
-                Label {
                     Text(mostFrequent)
                 } icon: {
                     Image(systemName: "heart.fill").foregroundColor(.red).padding(.trailing, -3)
                 }
                 Label {
-                    Text(averageTimeSpent)
+                    Text(totalTimers)
                 } icon: {
-                    Image(systemName: "plusminus.circle.fill").foregroundColor(.purple).padding(.trailing, -3)
+                    Image(systemName: "number.circle.fill").foregroundColor(.orange).padding(.trailing, -3)
                 }
+//                Label {
+//                    Text(averageTimeSpent)
+//                } icon: {
+//                    Image(systemName: "plusminus.circle.fill").foregroundColor(.purple).padding(.trailing, -3)
+//                }
                 Label {
                     Text(totalTimeSpent)
                 } icon: {

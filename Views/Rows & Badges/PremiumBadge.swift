@@ -12,19 +12,26 @@ struct PremiumBadge<Content:View>: View {
     
     let content: Content
     
-    init(@ViewBuilder content: @escaping () -> Content) {
+    var noLabel: Bool
+    
+    init(noLabel: Bool = false, @ViewBuilder content: @escaping () -> Content) {
         self.content = content()
+        self.noLabel = noLabel
     }
     
     @EnvironmentObject var settings: Settings
     
     var body: some View {
         VStack(alignment: .leading, spacing: -4) {
-            if !settings.isSubscribed {
-                HStack(alignment: .center, spacing: 0) {
-                    Image(systemName: "star.fill").font(.system(size: 9, weight: .semibold, design: settings.fontDesign)).padding(.trailing, 3)
-                    Text("PREMIUM").font(.system(size: 13, weight: .semibold, design: settings.fontDesign))
-                }.padding(.leading, 9)
+            if noLabel {
+                
+            } else {
+                if !settings.isSubscribed {
+                    HStack(alignment: .center, spacing: 0) {
+                        Image(systemName: "star.fill").font(.system(size: 9, weight: .semibold, design: settings.fontDesign)).padding(.trailing, 3)
+                        Text("PREMIUM").font(.system(size: 13, weight: .semibold, design: settings.fontDesign))
+                    }.padding(.leading, 9)
+                }
             }
             content.disabled(!settings.isSubscribed)
         }.onTapGesture {

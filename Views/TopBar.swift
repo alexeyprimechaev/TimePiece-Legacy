@@ -57,24 +57,23 @@ struct TopBar: View {
                                 }.tag(ViewType.grid)
                                 Button {
                                     if !settings.isSubscribed {
-                                        appState.activeSheet = 4
-                                        appState.showingSheet = true
+                                        settings.showingSubscription = true
                                     }
                                 } label: {
                                     Text("Classic")
                                     Image(systemName: "textformat")
                                 }.tag(ViewType.classic)
                             }
-                            Divider()
-                            Button {
-                                appState.activeSheet = 4
-                                appState.showingSheet = true
-                            } label: {
-                                HStack {
-                                    Text("Show Subscription")
-                                    Image(systemName: "gear")
-                                }
-                            }
+//                            Divider()
+//                            Button {
+//                                appState.activeSheet = 4
+//                                appState.showingSheet = true
+//                            } label: {
+//                                HStack {
+//                                    Text("Show Subscription")
+//                                    Image(systemName: "gear")
+//                                }
+//                            }
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .foregroundColor(.primary).padding(10).padding(.horizontal, 18).font(.title2)

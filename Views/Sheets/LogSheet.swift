@@ -176,6 +176,14 @@ struct LogSheet: View {
                 
             }
         }
+        .onChange(of: selectedSegment) { newValue in
+            if settings.isSubscribed {
+                
+            } else {
+                self.selectedSegment = .weeks
+                settings.showingSubscription = true
+            }
+        }
         .onAppear {
             UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.primary)
             UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.systemBackground], for: .selected)

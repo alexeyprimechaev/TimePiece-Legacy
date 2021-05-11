@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SettingsSheet: View {
     
@@ -17,7 +18,7 @@ struct SettingsSheet: View {
     var body: some View {
         VStack(alignment: .leading, spacing:0) {
             HeaderBar {
-                RegularButton(title: Strings.discard, icon: "chevron.down") {
+                RegularButton(title: "Back", icon: "chevron.down") {
                     discard()
                 }
             }
@@ -28,7 +29,12 @@ struct SettingsSheet: View {
                     
                     Text(Strings.settings).fontSize(.title).padding(7)
                     
-                    Link("Send Feedback", destination: URL(string: "mailto:monochromestudios@icloud.com")!).fontSize(.title).padding(7).foregroundColor(.blue)
+                    Button {
+                        SKStoreReviewController.requestReview()
+                    } label: {
+                        Text("Rate App").fontSize(.title).padding(7).foregroundColor(.blue)
+                    }.buttonStyle(TitleButtonStyle())
+                    
                     
                     ListSection(title: Strings.madeInMoscow) {
                         PersonCard(name: Strings.alexey,
@@ -63,14 +69,12 @@ struct SettingsSheet: View {
                     }
                     
                     ListSection(title: Strings.visuals) {
-                        PickerButton(title: Strings.font, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], controlledValue: $settings.fontDesign.string)
-                        
                         PremiumBadge {
-                            PickerButton(title: Strings.monochrome, values: [false.yesNo, true.yesNo], controlledValue: $settings.isMonochrome.yesNo)
+                            PickerButton(title: Strings.font, values: [Font.Design.default.string, Font.Design.rounded.string, Font.Design.serif.string, Font.Design.monospaced.string], controlledValue: $settings.fontDesign.string)
                         }
                         
                         PremiumBadge {
-                            PickerButton(title: Strings.logSeparators, values: [false.onOff, true.onOff], controlledValue: $settings.showingDividers.onOff)
+                            PickerButton(title: Strings.monochrome, values: [false.yesNo, true.yesNo], controlledValue: $settings.isMonochrome.yesNo)
                         }
                         
                     }
