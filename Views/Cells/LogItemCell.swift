@@ -230,7 +230,7 @@ struct LogHeader: View {
             } else if (self.sectionDate.week.weekOfYear ?? 0 + 1) == (Date().week.weekOfYear ?? 0) {
                 self.title = "Last Week"
             } else {
-                self.title = "Week "+TimeItem.weekFormatter.string(from: self.sectionDate)
+                self.title = ""
             }
             print("problemo")
         case .months:

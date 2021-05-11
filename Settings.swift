@@ -44,13 +44,13 @@ public class Settings: ObservableObject {
         }
     }
     
-    @Published var hasSeenTrends: Bool = ((defaultsStored.value(forKey: "hasSeenTrends") ?? false) as! Bool) {
+    @Published var hasSeenTrends: Bool = ((defaultsStored.value(forKey: "hasSeenTrends") ?? true) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "hasSeenTrends")
         }
     }
     
-    @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? true) as! Bool) {
+    @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? false) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "isSubscribed")
         }
