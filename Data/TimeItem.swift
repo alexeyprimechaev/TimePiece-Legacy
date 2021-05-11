@@ -81,6 +81,24 @@ public class TimeItem: NSManagedObject, Identifiable {
         formatter.doesRelativeDateFormatting = false
         return formatter
     }()
+    static let monthFormatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "MMM YYYY"
+        formatter.doesRelativeDateFormatting = false
+        return formatter
+    }()
+    static let yearFormatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "YYYY"
+        formatter.doesRelativeDateFormatting = false
+        return formatter
+    }()
+    static let weekFormatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "w Y"
+        formatter.doesRelativeDateFormatting = false
+        return formatter
+    }()
     static let currentTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"

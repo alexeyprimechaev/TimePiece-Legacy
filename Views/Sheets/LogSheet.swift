@@ -125,16 +125,9 @@ struct LogSheet: View {
         
         
         VStack(alignment: .leading, spacing:0) {
-            HeaderBar(showingMenu: true) {
+            HeaderBar {
                 RegularButton(title: Strings.dismiss, icon: "chevron.down") {
                     discard()
-                }
-            } trailingItems: {
-                Picker("wow", selection: $selectedSegment) {
-                    ForEach(LogSegment.allCases, id: \.self) { value in
-                                        Text(value.rawValue)
-                                            .tag(value)
-                                    }
                 }
             }
             Text("Log").fontSize(.title).padding(.horizontal, 28).padding(.bottom, 7)
@@ -144,35 +137,35 @@ struct LogSheet: View {
                                         .tag(value)
                                 }
 
-            }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 24).padding(.vertical, 7).accentColor(.primary)
+            }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal, 28).padding(.vertical, 7).accentColor(.primary)
             TitledScrollView {
                 VStack {
                     switch selectedSegment {
                     case .weeks:
                         LazyVStack {
                             ForEach(logItemsGrouped(logItems, by: .weeks) , id: \.self) { logItemSection in
-                                LogSection(segment: .weeks, logItemSection: logItemSection).environmentObject(appState)
+                                LogSection(segment: .weeks, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                                 
                             }
                         }
                     case .days:
                         LazyVStack {
                         ForEach(logItemsGrouped(logItems, by: .days) , id: \.self) { logItemSection in
-                            LogSection(segment: .days, logItemSection: logItemSection).environmentObject(appState)
+                            LogSection(segment: .days, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                             
                         }
                         }
                     case .months:
                         LazyVStack {
                         ForEach(logItemsGrouped(logItems, by: .months) , id: \.self) { logItemSection in
-                            LogSection(segment: .months, logItemSection: logItemSection).environmentObject(appState)
+                            LogSection(segment: .months, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                             
                         }
                         }
                     case .years:
                         LazyVStack {
                         ForEach(logItemsGrouped(logItems, by: .years) , id: \.self) { logItemSection in
-                            LogSection(segment: .years, logItemSection: logItemSection).environmentObject(appState)
+                            LogSection(segment: .years, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                             
                         }
                         }

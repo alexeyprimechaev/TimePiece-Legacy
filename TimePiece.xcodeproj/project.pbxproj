@@ -43,6 +43,7 @@
 		054F01A325DDCC89002ACCBF /* TimeItemGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */; };
 		056AC76725E3EDCD00472D58 /* SubscriptionPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */; };
 		056AC76925E3F00F00472D58 /* SubscriptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */; };
+		057B2E07264ACA33006858AA /* LogSectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057B2E06264ACA33006858AA /* LogSectionSheet.swift */; };
 		05DED9FE25E2D70A006AE551 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FD25E2D70A006AE551 /* HomeView.swift */; };
 		05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */; };
 		05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DEDA0225E2F4DC006AE551 /* TopBar.swift */; };
@@ -140,6 +141,7 @@
 		054F01A225DDCC89002ACCBF /* TimeItemGridWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridWidget.swift; sourceTree = "<group>"; };
 		056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPointView.swift; sourceTree = "<group>"; };
 		056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSheet.swift; sourceTree = "<group>"; };
+		057B2E06264ACA33006858AA /* LogSectionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSectionSheet.swift; sourceTree = "<group>"; };
 		05B1F91525D836F300C5E68E /* TimePieceWidgetIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePieceWidgetIntent.entitlements; sourceTree = "<group>"; };
 		05DED9FD25E2D70A006AE551 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05DED9FF25E2D736006AE551 /* TimeItemGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeItemGridCell.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			children = (
 				8055D7AA243B62ED00AF516E /* EldenLogSheet.swift */,
 				054802E92649CCF400AE84D4 /* LogSheet.swift */,
+				057B2E06264ACA33006858AA /* LogSectionSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
 				056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */,
 				056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */,
@@ -590,6 +593,7 @@
 				05DEDA0525E2F6AC006AE551 /* TrackableScrollView.swift in Sources */,
 				80150DE224F58E7300C740B3 /* NewTimeItemSheet.swift in Sources */,
 				80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */,
+				057B2E07264ACA33006858AA /* LogSectionSheet.swift in Sources */,
 				80150DD624F58E7300C740B3 /* Styles.swift in Sources */,
 				0502DA4B25911F4A00CB4A14 /* AppState.swift in Sources */,
 				80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */,

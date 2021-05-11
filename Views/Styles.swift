@@ -12,7 +12,7 @@ import SwiftUI
 
 
 public enum FontSize {
-    case title, smallTitle, secondaryText
+    case title, title2, smallTitle, secondaryText
 }
 
 //MARK: Small Title Style
@@ -26,11 +26,25 @@ struct FontStyle: ViewModifier {
     @State var changeDesign = true
     
     func body(content: Content) -> some View {
-        content
-            
-            .font(fontSize == .title ? Font.system(.largeTitle, design: changeDesign ? settings.fontDesign : .default).bold().monospacedDigit() : fontSize == .smallTitle ? Font.system(.headline, design: changeDesign ? settings.fontDesign : .default).monospacedDigit() : .system(size: 13, weight: .medium, design: changeDesign ? settings.fontDesign : .default))
-            .saturation(settings.isMonochrome ? 0 : 1)
         
+        switch fontSize {
+        case .title:
+            content
+                .font(Font.system(.largeTitle, design: changeDesign ? settings.fontDesign : .default).bold().monospacedDigit())
+                .saturation(settings.isMonochrome ? 0 : 1)
+        case .smallTitle:
+            content
+                .font(Font.system(.headline, design: changeDesign ? settings.fontDesign : .default).monospacedDigit())
+        case .secondaryText:
+            content
+                .font(Font.system(size: 13, weight: .medium, design: changeDesign ? settings.fontDesign : .default))
+        case .title2:
+            content
+                .font(Font.system(.title2, design: changeDesign ? settings.fontDesign : .default).bold())
+        }
+        
+        
+           
     }
 }
 

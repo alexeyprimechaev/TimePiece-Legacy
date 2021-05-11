@@ -20,7 +20,16 @@ struct LogItemCell: View {
     
     var body: some View {
         Button {
-            appState.showingLogTotal.toggle()
+            if appState.editingLogScreen {
+                if appState.selectedLogItems.contains(logItem) {
+                    appState.selectedLogItems.removeAll { $0 == logItem }
+                } else {
+                    appState.selectedLogItems.append(logItem)
+                }
+                
+            } else {
+                appState.showingLogTotal.toggle()
+            }
         } label: {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
@@ -42,7 +51,7 @@ struct LogItemCell: View {
         .padding(14)
         
         
-        .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(.systemGray6)))
+        .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color("button.gray")))
         
         .onAppear {
             currentTime = Date().timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
@@ -52,6 +61,7 @@ struct LogItemCell: View {
             currentTime = Date().timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
         }
         }.buttonStyle(RegularButtonStyle())
+        .overlay(appState.editingLogScreen ? Image(systemName: appState.selectedLogItems.contains(logItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
     }
     
 }
@@ -72,6 +82,10 @@ struct LogSection: View {
     @State var segment: LogSegment
     @State var logItemSection: [LogItem]
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var settings: Settings
+    
+    @State var isCompact: Bool
+    @State var showingSheet = false
     
     private var totalTimers: Binding<String> { Binding (
         get: { String(self.logItemSection.count) },
@@ -97,24 +111,42 @@ struct LogSection: View {
         )
     }
     
-    init(segment: LogSegment, logItemSection: [LogItem]) {
+    init(segment: LogSegment, logItemSection: [LogItem], isCompact: Bool) {
         self.segment = segment
         self.logItemSection = logItemSection
+        self.isCompact = isCompact
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             LogHeader(sectionDate: logItemSection[0].timeStarted, segment: segment, totalTimers: totalTimers, mostFrequent: mostFrequent, totalTimeSpent: totalTimeSpent, averageTimeSpent: averageTimeSpent)
+                .padding(.horizontal, isCompact ? 0 : 21)
             Spacer().frame(height: 0)
-            LazyVStack(alignment: .leading, spacing: 7) {
-                ForEach(logItemSection) { logItem in
-                    LogItemCell(logItem: logItem).environmentObject(appState)
+            if !isCompact {
+                TitledScrollView {
+                    LazyVStack(alignment: .leading, spacing: 7) {
+                        ForEach(isCompact ? [LogItem](logItemSection.prefix(3)) : logItemSection) { logItem in
+                            LogItemCell(logItem: logItem).environmentObject(appState)
+                        }
+                    }.padding(.horizontal, 7).padding(.vertical, 14)
                 }
+            } else {
+                LazyVStack(alignment: .leading, spacing: 7) {
+                    ForEach(isCompact ? [LogItem](logItemSection.prefix(3)) : logItemSection) { logItem in
+                        LogItemCell(logItem: logItem).environmentObject(appState)
+                    }
+                }.padding(.horizontal, 7)
             }
-            HStack {
-                Spacer()
-                RegularButton(title: "View All", icon: "chevron.right", isFlipped: true) {
-                    
+            if isCompact {
+                HStack {
+                    Spacer()
+                    RegularButton(title: "View All", icon: "chevron.right", isFlipped: true) {
+                        self.showingSheet = true
+                    }.sheet(isPresented: $showingSheet) {
+                        LogSectionSheet(logItemSection: logItemSection, segment: segment) {
+                            self.showingSheet = false
+                        }.environmentObject(appState).environmentObject(settings)
+                    }
                 }
             }
         }
@@ -182,20 +214,26 @@ struct LogHeader: View {
         
         switch segment {
         case .days:
-            self.title = "Day"
+            if sectionDate.day == Date().day {
+                self.title = "Today"
+            } else if (self.sectionDate.day.day ?? 0) + 1 == (Date().day.day ?? 0) {
+                self.title = "Yesterday"
+            } else {
+                self.title = TimeItem.dateFormatter.string(from: self.sectionDate)
+            }
         case .weeks:
             if Date().week == sectionDate.week {
                 self.title = "This Week"
-            } else if Date().week.weekOfYear ?? 0 - 1 == sectionDate.week.weekOfYear {
+            } else if (self.sectionDate.week.weekOfYear ?? 0 + 1) == (Date().week.weekOfYear ?? 0) {
                 self.title = "Last Week"
             } else {
-                self.title = ""
+                self.title = "Week "+TimeItem.weekFormatter.string(from: self.sectionDate)
             }
             print("problemo")
         case .months:
-            self.title = "Month"
+            self.title = TimeItem.monthFormatter.string(from: self.sectionDate)
         case .years:
-            self.title = "Year"
+            self.title = TimeItem.yearFormatter.string(from: self.sectionDate)
         }
         
     }
@@ -216,7 +254,7 @@ struct LogHeader: View {
                         Text(sectionDate.endOfWeek, formatter: TimeItem.dateFormatter)
                     }.opacity(0.5)
                 }
-            }.font(.title2.bold())
+            }.fontSize(.title2)
             HStack(spacing: 14) {
                 Label {
                     Text(totalTimers)
