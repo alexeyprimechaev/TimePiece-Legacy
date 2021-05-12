@@ -158,12 +158,12 @@ struct HomeView: View {
                         case 1:
                             NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
                                 appState.showingSheet = false
-                            }.environmentObject(settings)
+                            }.environmentObject(settings).environmentObject(appState)
                             
                         case 2:
                             SettingsSheet {
                                 appState.showingSheet = false
-                            }.environmentObject(settings)
+                            }.environmentObject(settings).environmentObject(appState)
                         case 3:
                             LogSheet {
                                 appState.showingSheet = false
@@ -172,16 +172,16 @@ struct HomeView: View {
                             SubscriptionSheet {
                                 appState.showingSheet = false
                                 settings.showingSubscription = false
-                            }.environmentObject(settings)
+                            }.environmentObject(settings).environmentObject(appState)
                         case 5:
                             OnboardingSheet {
                                 settings.hasSeenOnboarding = true
                                 appState.showingSheet = false
-                            }.environmentObject(settings)
+                            }.environmentObject(settings).environmentObject(appState)
                         default:
                             SettingsSheet {
                                 appState.showingSheet = false
-                            }.environmentObject(settings)
+                            }.environmentObject(settings).environmentObject(appState)
                         }
                     
                 
@@ -217,16 +217,19 @@ struct HomeView: View {
                                 appState.showingSidebar = false
                                 appState.selectedTimeItem = TimeItem()
                             }.environmentObject(settings)
+                            .environmentObject(appState)
                             
                         case 1:
                             NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
                                 appState.showingSheet = false
                             }.environmentObject(settings)
+                            .environmentObject(appState)
                             
                         case 2:
                             SettingsSheet {
                                 appState.showingSheet = false
                             }.environmentObject(settings)
+                            .environmentObject(appState)
                         case 3:
                             LogSheet {
                                 appState.showingSheet = false
@@ -236,15 +239,18 @@ struct HomeView: View {
                                 appState.showingSheet = false
                                 settings.showingSubscription = false
                             }.environmentObject(settings)
+                            .environmentObject(appState)
                         case 5:
                             OnboardingSheet {
                                 settings.hasSeenOnboarding = true
                                 appState.showingSheet = false
                             }.environmentObject(settings)
+                            .environmentObject(appState)
                         default:
                             SettingsSheet {
                                 appState.showingSheet = false
                             }.environmentObject(settings)
+                            .environmentObject(appState)
                         }
                         
                         

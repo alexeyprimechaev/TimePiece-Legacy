@@ -170,6 +170,8 @@ struct LogSheet: View {
                         }
                         }
                     }
+                    
+                    PremiumBadge(noLabel: true){}
 
                 }.padding(.top, 14)
                 

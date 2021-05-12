@@ -30,7 +30,7 @@ struct SubscriptionSheet: View {
                     discard()
                 }
             } trailingItems: {
-                RegularButton(title: Strings.restore, icon: "arrow.clockwise", hasFinishedLoading: $hasFinishedRestoring) {
+                LoadingRegularButton(title: Strings.restore, icon: "arrow.clockwise", hasFinishedLoading: $hasFinishedRestoring) {
                     restorePurchases()
                 }
             }

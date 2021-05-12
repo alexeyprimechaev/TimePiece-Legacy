@@ -21,6 +21,21 @@ struct SettingsSheet: View {
                 RegularButton(title: "Back", icon: "chevron.down") {
                     discard()
                 }
+            } trailingItems: {
+                
+                RegularButton(title: "Rate App", icon: "star") {
+                    SKStoreReviewController.requestReview()
+                }
+                
+                Link(destination: URL(string: "mailto:monochromestudios@icloud.com")!) {
+                    
+                    Label {
+                        Text("Contact Us").fontSize(.smallTitle).padding(7)
+                    } icon: {
+                        Image(systemName: "envelope").font(.headline)
+                    }
+                }
+                
             }
             
             TitledScrollView {
@@ -29,11 +44,6 @@ struct SettingsSheet: View {
                     
                     Text(Strings.settings).fontSize(.title).padding(7)
                     
-                    Button {
-                        SKStoreReviewController.requestReview()
-                    } label: {
-                        Text("Rate App").fontSize(.title).padding(7).foregroundColor(.blue)
-                    }.buttonStyle(TitleButtonStyle())
                     
                     
                     ListSection(title: Strings.madeInMoscow) {
@@ -78,6 +88,15 @@ struct SettingsSheet: View {
                         }
                         
                     }
+                    
+                    Button {
+                        SKStoreReviewController.requestReview()
+                    } label: {
+                        Text("Rate App").fontSize(.title).padding(7).foregroundColor(.blue)
+                    }.buttonStyle(TitleButtonStyle())
+                    
+                    Link("Contact Us", destination: URL(string: "mailto:monochromestudios@icloud.com")!).fontSize(.title).padding(7).foregroundColor(.blue)
+                    
                     HStack {
                         Spacer()
                         VStack(alignment: .center, spacing: 5) {

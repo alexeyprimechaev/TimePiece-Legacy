@@ -255,13 +255,14 @@ public class TimeItem: NSManagedObject, Identifiable {
         } else {
             
             if remainingTime > 0 {
-                logItems.last?.timeFinished = Date()
+                if isStopwatch {
+                    logItems.last?.timeFinished = Date()
+                } else {
+                    logItems.last?.timeFinished = timeFinished
+                }
             }
             logItems.last?.isDone = true
         }
-        print("uhuhu")
-        print(logItems.count)
-        dump(logItems)
     }
     
     func makeReusable() {

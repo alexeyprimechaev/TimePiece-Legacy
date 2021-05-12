@@ -683,7 +683,7 @@
 				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidgetIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -707,7 +707,7 @@
 				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidgetIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -733,7 +733,7 @@
 				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -759,7 +759,7 @@
 				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -788,7 +788,7 @@
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -817,7 +817,7 @@
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

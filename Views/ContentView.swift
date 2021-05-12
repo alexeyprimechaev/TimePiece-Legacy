@@ -202,7 +202,7 @@ struct ContentView: View {
             case 1:
                 NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
                     appState.showingSheet = false
-                }.environmentObject(settings)
+                }.environmentObject(settings).environmentObject(appState)
                 
             case 2:
                 SettingsSheet {
