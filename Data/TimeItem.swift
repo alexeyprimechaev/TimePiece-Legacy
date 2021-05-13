@@ -286,14 +286,31 @@ public class TimeItem: NSManagedObject, Identifiable {
         isRunning = false
         isPaused = true
         
+        if showInLog {
+            print("logDebug")
+            print(logItems.last?.title)
+            print(logItems.last?.timeStarted)
+            print(logItems.last?.timeFinished)
+            if remainingTime > 0 {
+                print(">0")
+                logItems.last?.timeFinished = Date()
+                logItems.last?.isDone = true
+            } else {
+                print("<=0")
+                logItems.last?.timeFinished = timeFinished
+                logItems.last?.isDone = true
+            }
+            
+            print(logItems.last?.title)
+            print(logItems.last?.timeStarted)
+            print(logItems.last?.timeFinished)
+            print(logItems.last?.isDone)
+        }
+        
         timeStarted = Date()
         remainingTime = totalTime
         timeFinished = timeStarted.addingTimeInterval(remainingTime)
         
-        if showInLog {
-            logItems.last?.timeFinished = Date()
-            logItems.last?.isDone = true
-        }
         
         try? self.managedObjectContext?.save()
         WidgetCenter.shared.reloadAllTimelines()

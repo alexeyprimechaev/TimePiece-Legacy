@@ -50,7 +50,7 @@ public class Settings: ObservableObject {
         }
     }
     
-    @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? false) as! Bool) {
+    @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? true) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "isSubscribed")
         }
