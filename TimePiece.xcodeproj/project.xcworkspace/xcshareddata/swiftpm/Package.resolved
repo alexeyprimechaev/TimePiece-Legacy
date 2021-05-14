@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/ra1028/DifferenceKit",
         "state": {
           "branch": null,
-          "revision": "14c66681e12a38b81045f44c6c29724a0d4b0e72",
-          "version": "1.1.5"
+          "revision": "62745d7780deef4a023a792a1f8f763ec7bf9705",
+          "version": "1.2.0"
         }
       },
       {
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/timbersoftware/SwiftUI-Introspect.git",
         "state": {
           "branch": "master",
-          "revision": "5c501bf4a581e683b96a4915bb2566e88a264c95",
+          "revision": "72a509c93166540c0adf8323fd2652daade7f9f6",
           "version": null
         }
       },
@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/bizz84/SwiftyStoreKit.git",
         "state": {
           "branch": "master",
-          "revision": "e518abea746857ea2b3348ade9e9143d88d7e431",
+          "revision": "a66728353fc097cc3d375dad3a156e3dfde718c8",
           "version": null
         }
       }

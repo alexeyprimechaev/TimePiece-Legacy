@@ -680,7 +680,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TimePieceWidgetIntent/TimePieceWidgetIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidgetIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -689,7 +689,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidgetIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -704,7 +704,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TimePieceWidgetIntent/TimePieceWidgetIntent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidgetIntent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -713,7 +713,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidgetIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -730,7 +730,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimePieceWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -739,7 +739,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -756,7 +756,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimePieceWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				INFOPLIST_FILE = TimePieceWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -765,7 +765,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece.TimePieceWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -784,7 +784,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
@@ -793,7 +793,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SDKROOT = iphoneos;
@@ -813,7 +813,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = Config/TimePiece.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
@@ -822,7 +822,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.monochromedev.timepiece;
 				PRODUCT_NAME = TimePiece;
 				SDKROOT = iphoneos;

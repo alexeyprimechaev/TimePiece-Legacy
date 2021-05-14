@@ -33,7 +33,7 @@ struct SubscriptionButton: View {
         } label: {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .foregroundColor(isAccent ? .primary : Color(.systemGray6))
+                    .foregroundColor(isAccent ? .primary : Color("button.gray"))
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(title).fontSize(.smallTitle)

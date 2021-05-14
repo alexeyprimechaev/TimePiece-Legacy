@@ -48,7 +48,7 @@ struct HomeView: View {
                         ForEach(timeItems) { timeItem in
                             TimeItemGridCell(timeItem: timeItem)
                                 .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                                .opacity(self.dragging?.id == timeItem.id ? 0 : 1)
+                                //.opacity(self.dragging?.id == timeItem.id ? 0 : 1)
                                 .onDrag {
                                     self.dragging = timeItem
                                     return NSItemProvider(object: String(timeItem.order) as NSString)
@@ -264,8 +264,11 @@ struct HomeView: View {
         
         .onAppear {
             
+            
             if settings.isFirstLaunch {
-                TimeItem.prefillData(context: context)
+                if timeItems.count == 0 {
+                    TimeItem.prefillData(context: context)
+                }
                 settings.isFirstLaunch = false
             }
             
@@ -319,8 +322,14 @@ struct DragRelocateDelegate: DropDelegate {
         }
     }
     
+    
     func dropUpdated(info: DropInfo) -> DropProposal? {
+        print("meks")
         return DropProposal(operation: .move)
+    }
+    
+    func dropExited(info: DropInfo) {
+        print("keks")
     }
     
     func performDrop(info: DropInfo) -> Bool {
@@ -328,3 +337,5 @@ struct DragRelocateDelegate: DropDelegate {
         return true
     }
 }
+
+
