@@ -77,6 +77,8 @@ struct RegularButton: View {
     
     @State var supportsLoading = false
     
+    @EnvironmentObject var settings: Settings
+    
     var action: () -> Void
     
     
@@ -124,6 +126,7 @@ struct RegularButton: View {
         }
         .foregroundColor(isDestructive ? .red : nil)
         .buttonStyle(RegularButtonStyle())
+        .saturation(settings.isMonochrome ? 0 : 1)
     }
 }
 

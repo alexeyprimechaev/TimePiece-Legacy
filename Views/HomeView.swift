@@ -261,12 +261,12 @@ struct HomeView: View {
         
         
         .onAppear {
-            if !settings.hasSeenOnboarding {
-                appState.activeSheet = 5
-                appState.showingSheet = true
-            } else {
-                appState.activeSheet = 3
+            
+            if settings.isFirstLaunch {
+                TimeItem.prefillData(context: context)
+                settings.isFirstLaunch = false
             }
+            
             
             if timeItems.count > 0 {
                 for i in 0...timeItems.count-1 {

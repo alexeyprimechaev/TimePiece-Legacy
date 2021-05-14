@@ -32,6 +32,18 @@ public class Settings: ObservableObject {
         }
     }
     
+    @Published var isFirstLaunch: Bool = ((defaultsStored.value(forKey: "isFirstLaunch") ?? true) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "isFirstLaunch")
+        }
+    }
+    
+    @Published var askToMakeReusable: Bool = ((defaultsStored.value(forKey: "askToMakeReusable") ?? true) as! Bool) {
+        willSet {
+            defaultsStored.set(newValue, forKey: "askToMakeReusable")
+        }
+    }
+    
     @Published var hasSeenOnboarding: Bool = ((defaultsStored.value(forKey: "hasSeenOnboarding") ?? true) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "hasSeenOnboarding")
@@ -50,7 +62,7 @@ public class Settings: ObservableObject {
         }
     }
     
-    @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? true) as! Bool) {
+    @Published var isSubscribed: Bool = ((defaultsStored.value(forKey: "isSubscribed") ?? false) as! Bool) {
         willSet {
             defaultsStored.set(newValue, forKey: "isSubscribed")
         }

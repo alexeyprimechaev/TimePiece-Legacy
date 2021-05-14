@@ -16,7 +16,7 @@ struct TimeEditor: View {
     
     @Binding var timeString: String
     @State var becomeFirstResponder = false
-    @State var label = "Edit Time"
+    @State var label = ""
     
     @State private var keyboardMode: Int = 0
     

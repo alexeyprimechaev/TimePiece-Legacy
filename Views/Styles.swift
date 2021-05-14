@@ -35,12 +35,15 @@ struct FontStyle: ViewModifier {
         case .smallTitle:
             content
                 .font(Font.system(.headline, design: changeDesign ? settings.fontDesign : .default).monospacedDigit())
+                .saturation(settings.isMonochrome ? 0 : 1)
         case .secondaryText:
             content
                 .font(Font.system(size: 13, weight: .medium, design: changeDesign ? settings.fontDesign : .default))
+                .saturation(settings.isMonochrome ? 0 : 1)
         case .title2:
             content
                 .font(Font.system(.title2, design: changeDesign ? settings.fontDesign : .default).bold())
+                .saturation(settings.isMonochrome ? 0 : 1)
         }
         
         
@@ -50,12 +53,9 @@ struct FontStyle: ViewModifier {
 
 //MARK: Application Functions
 extension View {
-    
     func fontSize(_ size: FontSize = .title, changeDesign: Bool = true) -> some View {
         return self.modifier(FontStyle(fontSize: size))
     }
-    
-    
 }
 
 
@@ -75,11 +75,11 @@ struct RegularButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         
-        
         configuration.label
             .opacity(configuration.isPressed ? 0.33 : 1.0)
             .animation(.easeOut(duration: 0.2))
             .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        
     }
     
 }
@@ -87,7 +87,6 @@ struct RegularButtonStyle: ButtonStyle {
 struct PrimaryButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
-        
         
         configuration.label
             .opacity(configuration.isPressed ? 0.5 : 1.0)
@@ -99,6 +98,7 @@ struct PrimaryButtonStyle: ButtonStyle {
                 }
                 
             }
+        
     }
     
 }

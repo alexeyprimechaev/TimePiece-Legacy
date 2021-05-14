@@ -27,6 +27,8 @@ struct TimeItemGridCell: View {
     @State private var timeFieldDummy = UITextField()
     @State private var timeFocusedDummy = false
     
+    @State private var showingAlert = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             Button {
