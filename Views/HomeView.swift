@@ -47,6 +47,8 @@ struct HomeView: View {
                     LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
                         ForEach(timeItems) { timeItem in
                             TimeItemGridCell(timeItem: timeItem)
+                                .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                .opacity(self.dragging?.id == timeItem.id ? 0 : 1)
                                 .onDrag {
                                     self.dragging = timeItem
                                     return NSItemProvider(object: String(timeItem.order) as NSString)

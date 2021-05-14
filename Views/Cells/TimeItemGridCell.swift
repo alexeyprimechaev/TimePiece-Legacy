@@ -155,6 +155,8 @@ struct TimeItemGridCell: View {
             //MARK: Styling
             .fontSize(.smallTitle)
             .buttonStyle(TitleButtonStyle())
+            
+            
         }.lineLimit(1)
 
     }
