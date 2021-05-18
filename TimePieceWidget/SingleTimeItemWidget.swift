@@ -135,7 +135,11 @@ struct SingleTimeItemEntryView: View {
     var body: some View {
         ZStack {
             Color("WidgetBackground")
-            VStack(alignment: .leading) {
+            HStack {
+                if entry.isRunning {
+                    Spacer()
+                }
+                VStack(alignment: .leading) {
                 if entry.isPlaceholder {
                     Text("Edit Widget")
                     Text("To Select").opacity(0.5)
@@ -174,6 +178,7 @@ struct SingleTimeItemEntryView: View {
                 
                 
             }.font(Font.title.bold().monospacedDigit())
+            }
             .padding(5).widgetURL(entry.url)
         }
     }

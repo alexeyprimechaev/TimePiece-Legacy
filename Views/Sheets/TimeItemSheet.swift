@@ -10,8 +10,23 @@ import SwiftUI
 import Introspect
 import AVFoundation
 import CoreData
+import AVFoundation
+
+public var audioPlayer: AVAudioPlayer?
+
+public func playSound(sound: String, type: String) {
+    if let path = Bundle.main.path(forResource: sound, ofType: type) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            audioPlayer?.play()
+        } catch {
+            print("ERROR")
+        }
+    }
+}
 
 struct TimeItemSheet: View {
+    
     
     @ObservedObject var timeItem = TimeItem()
     
@@ -68,7 +83,7 @@ struct TimeItemSheet: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     
-                    TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused).disabled(!timeItem.isPaused)
+                    TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused)
                     
                     if timeItem.isRunning {
                         TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
@@ -331,8 +346,12 @@ struct TimeItemSheet: View {
                     
                     
                     
-                    
-                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
+                    if timeItem.soundSetting == TimeItem.soundSettings[0] {
+                        AudioServicesPlaySystemSound(1007)
+                    } else {
+                        playSound(sound: "technoFree", type: "wav")
+                    }
+//                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
                     
                     
                     

@@ -71,6 +71,16 @@ struct TitleButtonStyle: ButtonStyle {
     
 }
 
+struct CellButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .opacity(configuration.isPressed ? 0.5 : 1.0)
+            .animation(.easeOut(duration: 0.2))
+    }
+    
+}
+
 struct RegularButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {

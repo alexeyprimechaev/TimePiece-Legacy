@@ -161,7 +161,7 @@ struct TimeItemCell: View {
                     
                     timeItem.remainingTime = 0
                     
-                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
+//                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
                     
                 }
                 

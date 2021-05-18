@@ -21,6 +21,8 @@ struct SubscriptionButton: View {
     
     @State var isAccent = false
     
+    @State var isFree = false
+    
     @Binding var hasFinishedLoading: Bool
     
     
@@ -35,23 +37,31 @@ struct SubscriptionButton: View {
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .foregroundColor(isAccent ? .primary : Color("button.gray"))
                 HStack {
-                    VStack(alignment: .leading, spacing: 4) {
+                    
+                    if isFree {
+                        Spacer()
+                    }
+                    
+                    VStack(alignment: isFree ? .center : .leading, spacing: 4) {
                         Text(title).fontSize(.smallTitle)
                         Text(promo).font(.system(size: 12, weight: .medium, design: .default))
                     }
                     
                     Spacer()
                     
-                    if hasFinishedLoading {
-                        VStack(alignment: .trailing, spacing: 4) {
-                            Text(price).fontSize(.smallTitle)
-                            Text(duration).font(.system(size: 12, weight: .medium, design: .default))
+                    if !isFree {
+                        if hasFinishedLoading {
+                            VStack(alignment: .trailing, spacing: 4) {
+                                Text(price).fontSize(.smallTitle)
+                                Text(duration).font(.system(size: 12, weight: .medium, design: .default))
+                            }
+                        } else {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: isAccent ? Color(.systemBackground) : .primary))
+                                .padding(.trailing, 7)
                         }
-                    } else {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: isAccent ? Color(.systemBackground) : .primary))
-                            .padding(.trailing, 7)
                     }
+                    
                 }.padding(.horizontal, 14).foregroundColor(isAccent ? (Color(.systemBackground)) : .primary)
             }.frame(height: 66)
         }

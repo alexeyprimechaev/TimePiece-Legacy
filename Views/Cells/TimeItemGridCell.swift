@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct TimeItemGridCell: View {
     //MARK: - Properties
@@ -32,6 +33,7 @@ struct TimeItemGridCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             Button {
+                mediumHaptic()
                 if appState.editingHomeScreen {
                     if appState.selectedTimeItems.contains(timeItem) {
                         appState.selectedTimeItems.removeAll { $0 == timeItem }
@@ -154,7 +156,7 @@ struct TimeItemGridCell: View {
             
             //MARK: Styling
             .fontSize(.smallTitle)
-            .buttonStyle(TitleButtonStyle())
+            .buttonStyle(CellButtonStyle())
             
             
         }.lineLimit(1)
@@ -181,7 +183,11 @@ struct TimeItemGridCell: View {
                     
                     timeItem.remainingTime = 0
                     
-                    //AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
+                    if timeItem.soundSetting == TimeItem.soundSettings[0] {
+                        AudioServicesPlaySystemSound(1007)
+                    } else {
+                        playSound(sound: "technoFree", type: "wav")
+                    }
                     
                 }
                 
