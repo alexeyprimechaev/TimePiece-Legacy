@@ -261,7 +261,6 @@ struct HomeView: View {
             }
         }
         
-        
         .onAppear {
             
             
@@ -285,12 +284,6 @@ struct HomeView: View {
     
     func deleteLast() {
         timeItems[timeItems.count - 1].remove(from: context)
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
     }
 }
 
@@ -339,3 +332,8 @@ struct DragRelocateDelegate: DropDelegate {
 }
 
 
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView().environmentObject(Settings()).environmentObject(AppState())
+    }
+}

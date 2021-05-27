@@ -68,4 +68,3 @@ struct EditorBar<Content:View>: View {
     }
 }
 
-

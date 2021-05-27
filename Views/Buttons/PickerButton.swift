@@ -117,3 +117,11 @@ struct PickerButton: View {
         
     }
 }
+
+struct PickerButton_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        PickerButton(title: "Picker", values: ["One","Two","Three"], controlledValue: .constant("One"), index: 0)
+            .previewLayout(.sizeThatFits).environmentObject(Settings())
+    }
+}

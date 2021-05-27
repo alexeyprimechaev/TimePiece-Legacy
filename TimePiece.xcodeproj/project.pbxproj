@@ -89,6 +89,7 @@
 		808A388A2512D6B10075AC50 /* InsightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A38892512D6B10075AC50 /* InsightRow.swift */; };
 		80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeEditor.swift */; };
 		80C055882516215E002147EC /* EditorBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C055872516215E002147EC /* EditorBar.swift */; };
+		80D5950F26602A65002E3826 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5950E26602A65002E3826 /* NotificationView.swift */; };
 		80FEF1AB25191291007BEB49 /* OnboardingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -189,6 +190,7 @@
 		80C055872516215E002147EC /* EditorBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorBar.swift; sourceTree = "<group>"; };
 		80D343B22443717F00BA76B1 /* TimerPlus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerPlus.xcdatamodel; sourceTree = "<group>"; };
 		80D343B42443723800BA76B1 /* SettingsSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSheet.swift; sourceTree = "<group>"; };
+		80D5950E26602A65002E3826 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		80F355132418068F009ABFAD /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
 		80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheet.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				802A026C23CFBA5600512B39 /* TitleEditor.swift */,
+				80D5950E26602A65002E3826 /* NotificationView.swift */,
 				80B4137824F80FFB0089BF7A /* TimeEditor.swift */,
 				80888DA024FAB08400C55895 /* TimeDisplay.swift */,
 			);
@@ -619,6 +622,7 @@
 				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
 				052A346225D819950052949A /* AppGroup.swift in Sources */,
 				80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */,
+				80D5950F26602A65002E3826 /* NotificationView.swift in Sources */,
 				80150DD324F58E7300C740B3 /* TimeItemCell.swift in Sources */,
 				80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */,
 				054802EA2649CCF400AE84D4 /* LogSheet.swift in Sources */,

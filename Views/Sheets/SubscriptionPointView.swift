@@ -141,7 +141,8 @@ struct SubscriptionPointView: View {
 }
 
 struct SubscriptionPointView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        SubscriptionPointView()
+        SubscriptionPointView(style: .small).environmentObject(Settings()).frame(width: 120, height: 120, alignment: .center)
     }
 }
