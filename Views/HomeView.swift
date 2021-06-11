@@ -153,113 +153,109 @@ struct HomeView: View {
                     
                 }
                 
-                EmptyView()
-                    .sheet(isPresented: $appState.showingSheet) {
-                        switch appState.activeSheet {
-                            
-                        case 1:
-                            NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
-                                appState.showingSheet = false
-                            }.environmentObject(settings).environmentObject(appState)
-                            
-                        case 2:
-                            SettingsSheet {
-                                appState.showingSheet = false
-                            }.environmentObject(settings).environmentObject(appState)
-                        case 3:
-                            LogSheet {
-                                appState.showingSheet = false
-                            }.environmentObject(settings).environmentObject(appState).environment(\.managedObjectContext, context)
-                        case 4:
-                            SubscriptionSheet {
-                                appState.showingSheet = false
-                                settings.showingSubscription = false
-                            }.environmentObject(settings).environmentObject(appState)
-                        case 5:
-                            OnboardingSheet {
-                                settings.hasSeenOnboarding = true
-                                appState.showingSheet = false
-                            }.environmentObject(settings).environmentObject(appState)
-                        default:
-                            SettingsSheet {
-                                appState.showingSheet = false
-                            }.environmentObject(settings).environmentObject(appState)
-                        }
                     
                 
             }
-                
-            } else {
-                EmptyView()
-                    //MARK: Sheet
-                    .sheet(isPresented: $appState.showingSheet) {
-                        if appState.activeSheet == 1 {
-                            if isAdding {
-                                
-                            } else {
-                                withAnimation(.default) {
-                                    deleteLast()
-                                }
-                            }
-                        }
-                        
-                    } content: {
-                        switch appState.activeSheet {
-                        
-                        case 0:
-                            TimeItemSheet(timeItem: appState.selectedTimeItem) {
-                                appState.showingSheet = false
-                                appState.showingSidebar = false
-                                appState.selectedTimeItem = TimeItem()
-                            } delete: {
-                                withAnimation(.default) {
-                                    appState.selectedTimeItem.remove(from: context)
-                                }
-                                appState.showingSheet = false
-                                appState.showingSidebar = false
-                                appState.selectedTimeItem = TimeItem()
-                            }.environmentObject(settings)
-                            .environmentObject(appState)
-                            
-                        case 1:
-                            NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
-                                appState.showingSheet = false
-                            }.environmentObject(settings)
-                            .environmentObject(appState)
-                            
-                        case 2:
-                            SettingsSheet {
-                                appState.showingSheet = false
-                            }.environmentObject(settings)
-                            .environmentObject(appState)
-                        case 3:
-                            LogSheet {
-                                appState.showingSheet = false
-                            }.environmentObject(settings).environmentObject(appState).environment(\.managedObjectContext, context)
-                        case 4:
-                            SubscriptionSheet {
-                                appState.showingSheet = false
-                                settings.showingSubscription = false
-                            }.environmentObject(settings)
-                            .environmentObject(appState)
-                        case 5:
-                            OnboardingSheet {
-                                settings.hasSeenOnboarding = true
-                                appState.showingSheet = false
-                            }.environmentObject(settings)
-                            .environmentObject(appState)
-                        default:
-                            SettingsSheet {
-                                appState.showingSheet = false
-                            }.environmentObject(settings)
-                            .environmentObject(appState)
-                        }
-                        
-                        
-                        
-                    }
-            }
+            
         }
+        
+        .sheet(isPresented: $appState.showingSheet) {
+            if appState.activeSheet == 1 {
+                if isAdding {
+                    
+                } else {
+                    withAnimation(.default) {
+                        deleteLast()
+                    }
+                }
+            }
+        } content: {
+            if horizontalSizeClass != .compact {
+            switch appState.activeSheet {
+                
+            case 1:
+                NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
+                    appState.showingSheet = false
+                }.environmentObject(settings).environmentObject(appState)
+                
+            case 2:
+                SettingsSheet {
+                    appState.showingSheet = false
+                }.environmentObject(settings).environmentObject(appState)
+            case 3:
+                LogSheet {
+                    appState.showingSheet = false
+                }.environmentObject(settings).environmentObject(appState).environment(\.managedObjectContext, context)
+            case 4:
+                SubscriptionSheet {
+                    appState.showingSheet = false
+                    settings.showingSubscription = false
+                }.environmentObject(settings).environmentObject(appState)
+            case 5:
+                OnboardingSheet {
+                    settings.hasSeenOnboarding = true
+                    appState.showingSheet = false
+                }.environmentObject(settings).environmentObject(appState)
+            default:
+                SettingsSheet {
+                    appState.showingSheet = false
+                }.environmentObject(settings).environmentObject(appState)
+            }
+            } else {
+                switch appState.activeSheet {
+                
+                case 0:
+                    TimeItemSheet(timeItem: appState.selectedTimeItem) {
+                        appState.showingSheet = false
+                        appState.showingSidebar = false
+                        appState.selectedTimeItem = TimeItem()
+                    } delete: {
+                        withAnimation(.default) {
+                            appState.selectedTimeItem.remove(from: context)
+                        }
+                        appState.showingSheet = false
+                        appState.showingSidebar = false
+                        appState.selectedTimeItem = TimeItem()
+                    }.environmentObject(settings)
+                    .environmentObject(appState)
+                    
+                case 1:
+                    NewTimeItemSheet(timeItem: appState.newTimeItem, isAdding: $isAdding) {
+                        appState.showingSheet = false
+                    }.environmentObject(settings)
+                    .environmentObject(appState)
+                    
+                case 2:
+                    SettingsSheet {
+                        appState.showingSheet = false
+                    }.environmentObject(settings)
+                    .environmentObject(appState)
+                case 3:
+                    LogSheet {
+                        appState.showingSheet = false
+                    }.environmentObject(settings).environmentObject(appState).environment(\.managedObjectContext, context)
+                case 4:
+                    SubscriptionSheet {
+                        appState.showingSheet = false
+                        settings.showingSubscription = false
+                    }.environmentObject(settings)
+                    .environmentObject(appState)
+                case 5:
+                    OnboardingSheet {
+                        settings.hasSeenOnboarding = true
+                        appState.showingSheet = false
+                    }.environmentObject(settings)
+                    .environmentObject(appState)
+                default:
+                    SettingsSheet {
+                        appState.showingSheet = false
+                    }.environmentObject(settings)
+                    .environmentObject(appState)
+                }
+            }
+        
+    
+}
         
         .onAppear {
             

@@ -23,7 +23,7 @@ struct TimeItemGridCell: View {
     @EnvironmentObject var appState: AppState
     
     
-    @State private var currentTime: String = "00:00"
+    @State private var currentTime: String = "00:x00"
     
     @State private var timeFieldDummy = UITextField()
     @State private var timeFocusedDummy = false

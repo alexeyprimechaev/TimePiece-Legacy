@@ -102,7 +102,8 @@ struct RegularButton: View {
     
     var body: some View {
         
-        Button {
+        
+        Button(role: isDestructive ? .destructive : nil) {
             self.action()
         } label: {
                 if isFlipped {

@@ -68,7 +68,7 @@ struct TimeItemSheet: View {
                     discard()
                 }
             } trailingItems: {
-                RegularButton(title: Strings.delete, icon: "trash") {
+                RegularButton(title: Strings.delete, icon: "trash", isDestructive: true) {
                     delete()
                 }
             }

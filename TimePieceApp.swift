@@ -27,7 +27,7 @@ struct TimePieceApp: App {
                 if settings.selectedView == .classic {
                     ContentView()
                 } else {
-                    HomeView().notification(title: "Eggs 🍳", timeFinished: Date())
+                    HomeView().notification()
                 }
             }
             .environment(\.managedObjectContext, persistenceController.container.viewContext)

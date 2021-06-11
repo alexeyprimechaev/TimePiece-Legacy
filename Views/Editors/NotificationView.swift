@@ -9,18 +9,46 @@
 import SwiftUI
 import Combine
 
-struct NotificationView: View {
+struct NotificationsView: View {
     
-    @State var title: String
-    @State var timeFinished: Date
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(fetchRequest: TimeItem.getAllTimeItems()) var timeItems: FetchedResults<TimeItem>
+    
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    
     
     var body: some View {
+        
+        if let timeItem: TimeItem = timeItems.filter{$0.isRunning == true}.filter{$0.remainingTime == 0}.reversed().first {
+            NotificationView(timeItem: timeItem)
+        } else {
+            EmptyView()
+        }
+                
+                    
+            
+        
+    }
+}
+
+struct NotificationView: View {
+    
+    @ObservedObject var timeItem: TimeItem
+    
+    @State private var timeout = 0.0
+    
+    @State private var show = true
+    
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    
+    var body: some View {
+        if show {
         HStack {
             VStack(alignment: .leading) {
-                Text(title)
+                Text(timeItem.title)
             }
             Spacer()
-            Text("Finished at \(TimeItem.currentTimeFormatter.string(from: timeFinished))").opacity(0.5).fontSize(.smallTitle)
+            Text("Finished at \(TimeItem.currentTimeFormatter.string(from: timeItem.timeFinished))").opacity(0.5).fontSize(.smallTitle)
         }
         .padding(14)
         .padding(.vertical, 7)
@@ -28,53 +56,51 @@ struct NotificationView: View {
         .padding(.vertical, 7)
         .padding(.horizontal, 28)
         
+    .onReceive(timer, perform: { _ in
+        timeout += 1
+        print("hey")
+        if timeout > 2 {
+            show = false
+            self.timer.upstream.connect().cancel()
+        }
+    })
+        } else {
+            EmptyView()
+        }
+        
+        
     }
 }
 
+
 struct NotificationModifier: ViewModifier {
-    
-    @State var title: String
-    @State var timeFinished: Date
-    
-    @State private var timeout = 0.0
-    
-    @State private var show = false
-    
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+
+
 
     func body(content: Content) -> some View {
         ZStack(alignment: .top) {
             content
-            if show {
-                    NotificationView(title: title, timeFinished: Date())
-                        .transition(.move(edge: .top))
-                        .animation(.default)
-                        
-            }
-        }.onReceive(timer, perform: { _ in
-            timeout += 1
-            print("hey")
-            if timeout > 2 {
-                show = true
-            }
-            if timeout > 5 {
-                show = false
-                self.timer.upstream.connect().cancel()
-            }
-        })
+                .zIndex(0)
+            NotificationsView()
+                .zIndex(1)
+                .animation(.default)
+                .transition(AnyTransition.opacity.animation(.default).combined(with: .move(edge: .top))) 
+
+        
+        }
     }
-    
+
 }
 
 extension View {
-    func notification(title: String, timeFinished: Date) -> some View {
-        self.modifier(NotificationModifier(title: title, timeFinished: timeFinished))
+    func notification() -> some View {
+        self.modifier(NotificationModifier())
     }
 }
 
-struct NotificationView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotificationView(title: "Eggs 🍳", timeFinished: Date())
-            .previewLayout(.sizeThatFits).environmentObject(Settings())
-    }
-}
+//struct NotificationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NotificationView()
+//            .previewLayout(.sizeThatFits).environmentObject(Settings())
+//    }
+//}

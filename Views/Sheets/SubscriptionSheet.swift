@@ -9,6 +9,12 @@
 import SwiftUI
 import SwiftyStoreKit
 
+struct SubscriptionSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        SubscriptionSheet(discard: {}).environmentObject(Settings()).environmentObject(AppState())
+    }
+}
+
 struct SubscriptionSheet: View {
     
     @EnvironmentObject var settings: Settings
@@ -22,6 +28,7 @@ struct SubscriptionSheet: View {
     @State var hasFinishedRestoring = true
     @State var hasFinishedMonthly = true
     @State var hasFinishedYearly = true
+    
     
     var body: some View {
         VStack(spacing: 0) {

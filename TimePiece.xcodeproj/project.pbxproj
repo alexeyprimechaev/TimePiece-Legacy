@@ -90,6 +90,7 @@
 		80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeEditor.swift */; };
 		80C055882516215E002147EC /* EditorBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C055872516215E002147EC /* EditorBar.swift */; };
 		80D5950F26602A65002E3826 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5950E26602A65002E3826 /* NotificationView.swift */; };
+		80FBF8802673E473009DBECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FBF87E2673E473009DBECF /* Assets.xcassets */; };
 		80FEF1AB25191291007BEB49 /* OnboardingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +194,7 @@
 		80D5950E26602A65002E3826 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		80DC3ECD23DF271A00C43A23 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		80F355132418068F009ABFAD /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
+		80FBF87E2673E473009DBECF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -324,6 +326,7 @@
 				057B2E06264ACA33006858AA /* LogSectionSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
 				056AC76825E3F00F00472D58 /* SubscriptionSheet.swift */,
+				80FBF87E2673E473009DBECF /* Assets.xcassets */,
 				056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */,
 				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
 				8021ADAB23D51F080090BA7F /* NewTimeItemSheet.swift */,
@@ -550,6 +553,7 @@
 				80150E3824F593A500C740B3 /* Assets.xcassets in Resources */,
 				057B2E0D264AF27A006858AA /* technoFree.wav in Resources */,
 				80150E3624F5938F00C740B3 /* Localizable.strings in Resources */,
+				80FBF8802673E473009DBECF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,7 +796,7 @@
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -804,7 +808,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -821,7 +825,7 @@
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -833,7 +837,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
