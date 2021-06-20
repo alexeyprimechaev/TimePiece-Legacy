@@ -23,13 +23,7 @@ struct TimePieceApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Group {
-                if settings.selectedView == .classic {
-                    ContentView()
-                } else {
-                    HomeView().notification()
-                }
-            }
+            HomeView().notification()
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
             .environmentObject(settings)
             .environmentObject(appState)

@@ -69,7 +69,6 @@
 		80150DDC24F58E7300C740B3 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8027EDB624C9F29200F9310D /* AlignedCollectionViewFlowLayout.swift */; };
 		80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A184F2402CEB6005B4D19 /* RegularButton.swift */; };
 		80150DE224F58E7300C740B3 /* NewTimeItemSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8021ADAB23D51F080090BA7F /* NewTimeItemSheet.swift */; };
-		80150DE324F58E7300C740B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FE923C274DB00BC03F5 /* ContentView.swift */; };
 		80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 		80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
@@ -175,7 +174,6 @@
 		805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditors.swift; sourceTree = "<group>"; };
 		805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPrimaryActions.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
-		80612FE923C274DB00BC03F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80612FF323C274DF00BC03F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				80DC3ECD23DF271A00C43A23 /* Styles.swift */,
-				80612FE923C274DB00BC03F5 /* ContentView.swift */,
 				05DEDA0425E2F6AC006AE551 /* TrackableScrollView.swift */,
 				05DEDA0225E2F4DC006AE551 /* TopBar.swift */,
 				05DED9FD25E2D70A006AE551 /* HomeView.swift */,
@@ -644,7 +641,6 @@
 				80150DD824F58E7300C740B3 /* NotificationManager.swift in Sources */,
 				80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */,
 				80150DD924F58E7300C740B3 /* BottomBar.swift in Sources */,
-				80150DE324F58E7300C740B3 /* ContentView.swift in Sources */,
 				805B4E52267FA212005F4EA6 /* DetailPrimaryActions.swift in Sources */,
 				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
 				052A346225D819950052949A /* AppGroup.swift in Sources */,

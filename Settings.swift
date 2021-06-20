@@ -25,12 +25,7 @@ public class Settings: ObservableObject {
     @Published var isBoldTextEnabled: Bool = UIAccessibility.isBoldTextEnabled 
     
     @Published var showingSubscription: Bool = false
-    
-    @Published var selectedView: ViewType = ViewType(rawValue: ((defaultsStored.integer(forKey: "selectedView")))) ?? .grid {
-        willSet {
-            defaultsStored.set(newValue.rawValue, forKey: "selectedView")
-        }
-    }
+
     
     @Published var isFirstLaunch: Bool = ((defaultsStored.value(forKey: "isFirstLaunch") ?? true) as! Bool) {
         willSet {

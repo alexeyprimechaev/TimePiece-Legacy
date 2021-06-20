@@ -50,21 +50,7 @@ struct TopBar: View {
                                 }
                             }
                             Divider()
-                            Picker("Home View", selection: $settings.selectedView) {
-                                HStack {
-                                    Text("Grid")
-                                    Image(systemName: "rectangle.grid.2x2")
-                                }.tag(ViewType.grid)
-                                Button {
-                                    if !settings.isSubscribed {
-                                        settings.showingSubscription = true
-                                    }
-                                } label: {
-                                    Text("Classic")
-                                    Image(systemName: "textformat")
-                                }.tag(ViewType.classic)
-                            }
-                            if settings.selectedView == .grid {
+
                                 Picker("Sections", selection: $appState.showSections) {
                                     HStack {
                                         Text("Default")
@@ -78,7 +64,7 @@ struct TopBar: View {
                                     }.tag(true)
                                 }
                                 
-                            }
+                            
                             
                             Divider()
                             Button {
