@@ -13,11 +13,8 @@ struct SheetActions: View {
     @ObservedObject var timeItem: TimeItem
     
     @State var showLogSheet = false
-    
     @State var addingComment = false
-    
     @State var showingConvertAlert = false
-    
     @State var addedTime = 0
     
     var body: some View {
