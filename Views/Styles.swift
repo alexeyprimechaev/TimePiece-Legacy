@@ -123,7 +123,17 @@ public func mediumHaptic() {
     generator.impactOccurred()
 }
 
+public func hardHaptic() {
+    let generator = UIImpactFeedbackGenerator(style: .heavy)
+    generator.impactOccurred()
+}
+
 public func lightHaptic() {
     let generator = UIImpactFeedbackGenerator(style: .light)
+    generator.impactOccurred()
+}
+
+public func softHaptic() {
+    let generator = UIImpactFeedbackGenerator(style: .soft)
     generator.impactOccurred()
 }

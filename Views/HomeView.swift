@@ -44,18 +44,74 @@ struct HomeView: View {
         HStack(spacing:0) {
             VStack(alignment: .leading, spacing: 0) {
                 TitledScrollView(title: "TimePiece") {
-                    LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
-                        ForEach(timeItems) { timeItem in
-                            TimeItemGridCell(timeItem: timeItem)
-                                .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                                //.opacity(self.dragging?.id == timeItem.id ? 0 : 1)
-                                .onDrag {
-                                    self.dragging = timeItem
-                                    return NSItemProvider(object: String(timeItem.order) as NSString)
+                    if appState.showSections {
+                        VStack(alignment: .leading, spacing: 0) {
+                            if timeItems.filter{$0.isRunning == true && $0.remainingTime == 0}.count > 0 {
+                                Text("Finished").fontSize(.smallTitle).padding(7)
+                                LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
+                                    ForEach(timeItems.filter{$0.isRunning == true && $0.remainingTime == 0}) { timeItem in
+                                        TimeItemGridCell(timeItem: timeItem)
+                                            .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                            //.opacity(self.dragging?.id == timeItem.id ? 0 : 1)
+                                            .onDrag {
+                                                self.dragging = timeItem
+                                                return NSItemProvider(object: String(timeItem.order) as NSString)
+                                            }
+                                            .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
+                                    }
+                                }.padding(7)
+                                Divider().padding(7).padding(.vertical, 7)
+                            }
+                            if timeItems.filter{$0.isRunning == true && $0.remainingTime != 0}.count > 0 {
+                                Text("Active").fontSize(.smallTitle).padding(7)
+                                LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
+                                    ForEach(timeItems.filter{$0.isRunning == true && $0.remainingTime != 0}) { timeItem in
+                                        TimeItemGridCell(timeItem: timeItem)
+                                            .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                            //.opacity(self.dragging?.id == timeItem.id ? 0 : 1)
+                                            .onDrag {
+                                                self.dragging = timeItem
+                                                return NSItemProvider(object: String(timeItem.order) as NSString)
+                                            }
+                                            .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
+                                    }
+                                }.padding(7)
+                                Divider().padding(7).padding(.vertical, 7)
+                            }
+                            
+                            if timeItems.count == timeItems.filter{$0.isRunning != true}.count {
+                                
+                            } else {
+                            Text("Saved").fontSize(.smallTitle).padding(7)
+                            }
+                            LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
+                                ForEach(timeItems.filter{$0.isRunning != true}) { timeItem in
+                                    TimeItemGridCell(timeItem: timeItem)
+                                        .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                        //.opacity(self.dragging?.id == timeItem.id ? 0 : 1)
+                                        .onDrag {
+                                            self.dragging = timeItem
+                                            return NSItemProvider(object: String(timeItem.order) as NSString)
+                                        }
+                                        .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
                                 }
-                                .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
+                            }.padding(7)
                         }
-                    }.padding(7)
+                        
+                    } else {
+                        LazyVGrid(columns: horizontalSizeClass == .compact ? compactColumns : regularColumns, alignment: .leading, spacing: 14) {
+                            ForEach(timeItems) { timeItem in
+                                TimeItemGridCell(timeItem: timeItem)
+                                    .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                    //.opacity(self.dragging?.id == timeItem.id ? 0 : 1)
+                                    .onDrag {
+                                        self.dragging = timeItem
+                                        return NSItemProvider(object: String(timeItem.order) as NSString)
+                                    }
+                                    .onDrop(of: [UTType.text], delegate: DragRelocateDelegate(item: timeItem, listData: timeItems, current: $dragging))
+                            }
+                        }.padding(7)
+                    }
                 }
                 BottomBar {
                     if appState.editingHomeScreen {

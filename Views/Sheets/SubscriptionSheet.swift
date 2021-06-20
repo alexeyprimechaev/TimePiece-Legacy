@@ -80,8 +80,8 @@ struct SubscriptionSheet: View {
                     }.padding(.top, 21).padding(.horizontal, 7)
                     Divider().padding(14).padding(.horizontal, 14)
                     VStack(alignment: .leading, spacing: 14) {
-                        SubscriptionButton(title: "🆕 Get For Free 🆓", promo: "Provide feedback and get the app for free", price: "", duration: "", isAccent: true, isFree: true, hasFinishedLoading: Binding.constant(true), action: openGoogleForm)
-                        SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: false, hasFinishedLoading: $hasFinishedMonthly, action: purchaseMonthly)
+                        //SubscriptionButton(title: "🆕 Get For Free 🆓", promo: "Provide feedback and get the app for free", price: "", duration: "", isAccent: true, isFree: true, hasFinishedLoading: Binding.constant(true), action: openGoogleForm)
+                        SubscriptionButton(title: Strings.subscription1, promo: Strings.subscription1Second, price: "\(settings.monthlyPrice)", duration: Strings.subscription1Period, isAccent: true, hasFinishedLoading: $hasFinishedMonthly, action: purchaseMonthly)
                         SubscriptionButton(title: Strings.subscription2, promo: Strings.subscription2Second, price: "\(settings.yearlyPrice)", duration: Strings.subscription2Period, isAccent: false, hasFinishedLoading: $hasFinishedYearly, action: purchaseYearly)
                         
                         Text(Strings.subscriptionDetails).fontSize(.secondaryText).multilineTextAlignment(.center)

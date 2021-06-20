@@ -64,16 +64,32 @@ struct TopBar: View {
                                     Image(systemName: "textformat")
                                 }.tag(ViewType.classic)
                             }
-//                            Divider()
-//                            Button {
-//                                appState.activeSheet = 4
-//                                appState.showingSheet = true
-//                            } label: {
-//                                HStack {
-//                                    Text("Show Subscription")
-//                                    Image(systemName: "gear")
-//                                }
-//                            }
+                            if settings.selectedView == .grid {
+                                Picker("Sections", selection: $appState.showSections) {
+                                    HStack {
+                                        Text("Default")
+                                    }.tag(false)
+                                    Button {
+                                        if !settings.isSubscribed {
+                                            settings.showingSubscription = true
+                                        }
+                                    } label: {
+                                        Text("Groupped")
+                                    }.tag(true)
+                                }
+                                
+                            }
+                            
+                            Divider()
+                            Button {
+                                appState.activeSheet = 4
+                                appState.showingSheet = true
+                            } label: {
+                                HStack {
+                                    Text("Show Subscription")
+                                    Image(systemName: "gear")
+                                }
+                            }
                         } label: {
                             Image(systemName: "ellipsis.circle")
                                 .foregroundColor(.primary).padding(10).padding(.horizontal, 18).font(.title2)

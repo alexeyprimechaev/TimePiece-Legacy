@@ -35,7 +35,12 @@ struct TimeItemSheet: View {
     @State var name = ""
     
     @State var currentTime: String = "00:00"
-    @State var totalTime: String = "00:00"
+    @State var totalTime: String = "000000"
+    
+    @State var picking: String = "Off"
+    
+    @State var addingComment = false
+    @State var showSettings = false
     
     @State var titleField = UITextField()
     @State var timeField = UITextField()
@@ -45,12 +50,16 @@ struct TimeItemSheet: View {
     @State var titleFocused = false
     @State var timeFocused = false
     
+    @State var showLogSheet = false
+    
     @State var timeFieldDummy = UITextField()
     @State var timeFocusedDummy = false
     
     @State var showingMakeReusableAlert = false
     
     @State var showingConvertAlert = false
+    
+    @State var addedTime: TimeInterval = 0
     
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
@@ -90,7 +99,14 @@ struct TimeItemSheet: View {
                     }
                     
                     if timeItem.isStopwatch {
-                        if timeItem.isReusable {
+                        if timeItem.isRunning {
+                            RegularButton(title: "Show Settings", icon: "ellipsis") {
+                                showSettings.toggle()
+                            }.opacity(showSettings ? 0.5 : 1)
+                        }
+                        
+                        if !timeItem.isRunning || showSettings {
+                            if timeItem.isReusable {
                             PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
@@ -98,18 +114,14 @@ struct TimeItemSheet: View {
                                 
                             }
                             
-                            PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.showInLog.yesNo)
-                            }
-                            PremiumBadge {
-                                RegularButton(title: "Convert to Timer", icon: "timer") {
-                                    if timeItem.isRunning {
-                                        showingConvertAlert = true
-                                    } else {
-                                        timeItem.isStopwatch = false
-                                    }
-                                }
-                            }
+
+                            
+                                ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1])
+                            
+                            
+                            
+                            
+                            
                         } else {
                             VStack(alignment: .leading, spacing: 7) {
                                 PremiumBadge {
@@ -126,9 +138,42 @@ struct TimeItemSheet: View {
                                         }
                                     }
                                 }
+                                
                             }
                             
                             
+                        }
+                        }
+                        
+                        if timeItem.isReusable {
+                            PremiumBadge {
+                                RegularButton(title: "Convert to Timer", icon: "timer") {
+                                    if timeItem.isRunning {
+                                        showingConvertAlert = true
+                                    } else {
+                                        timeItem.isStopwatch = false
+                                    }
+                                }
+                            }
+                            PremiumBadge {
+                                RegularButton(title: "Show in Log", icon: "gobackward") {
+                                    showLogSheet = true
+                                }
+                            }
+                            
+                            if timeItem.comment == "" {
+                                
+                            }
+                            
+                            if !addingComment {
+                            PremiumBadge {
+                                RegularButton(title: "Add Comment", icon: "plus.bubble") {
+                                    addingComment = true
+                                }
+                            }
+                            } else {
+                                TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
+                            }
                         }
                         
                     } else {
@@ -142,9 +187,7 @@ struct TimeItemSheet: View {
                                 
                             }
                             
-                            PremiumBadge {
-                                PickerButton(title: Strings.showInLog, values: [false.yesNo, true.yesNo], controlledValue: $timeItem.showInLog.yesNo)
-                            }
+                           
                             
                             PremiumBadge {
                                 RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
@@ -156,6 +199,41 @@ struct TimeItemSheet: View {
                                         }
                                     }
                                     
+                                }
+                            }
+                            
+                            if timeItem.isRunning {
+                                
+                                PremiumBadge {
+                                    Menu {
+                                        RegularButton(title: "1 minute", icon: "") {
+                                            timeItem.addTime(time: 60)
+                                        }
+                                        
+                                        RegularButton(title: "5 minutes", icon: "") {
+                                            timeItem.addTime(time: 300)
+                                        }
+                                        RegularButton(title: "10 minutes", icon: "") {
+                                            timeItem.addTime(time: 600)
+                                        }
+                                    } label: {
+                                        RegularButton(title: "Add Time...", icon: "plus.circle") {
+                                            
+                                        }
+                                    }
+                                }
+                            } else {
+                                RegularButton(title: "Show in Log", icon: "gobackward") {
+                                    showLogSheet = true
+                                }
+                                if !addingComment {
+                                PremiumBadge {
+                                    RegularButton(title: "Add Comment", icon: "plus.bubble") {
+                                        addingComment = true
+                                    }
+                                }
+                                } else {
+                                    TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
                                 }
                             }
                             
@@ -178,6 +256,32 @@ struct TimeItemSheet: View {
                                             }
                                         }
                                         
+                                    }
+                                }
+                                
+                                
+                                if timeItem.isRunning {
+                                    
+                                    PremiumBadge {
+                                        Menu {
+                                            RegularButton(title: "1 minute", icon: "") {
+                                                addedTime += 60
+                                                timeItem.addTime(time: 60)
+                                            }
+                                            
+                                            RegularButton(title: "5 minutes", icon: "") {
+                                                addedTime += 300
+                                                timeItem.addTime(time: 300)
+                                            }
+                                            RegularButton(title: "10 minutes", icon: "") {
+                                                addedTime += 60
+                                                timeItem.addTime(time: 600)
+                                            }
+                                        } label: {
+                                            RegularButton(title: "Add Time...", icon: "plus.circle") {
+                                                
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -207,6 +311,7 @@ struct TimeItemSheet: View {
                 }
                 .onAppear {
                     currentTime = timeItem.remainingTimeString
+                    totalTime = timeItem.editableTimeString
                 }
                 .onAppear {
                     print("isSubscribed")
@@ -214,6 +319,10 @@ struct TimeItemSheet: View {
                 }
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
                     updateTime()
+                }
+                
+                .sheet(isPresented: $showLogSheet) {
+                    LogSheet(title: timeItem.title, discard: {showLogSheet = false})
                 }
                 
             }
@@ -327,6 +436,7 @@ struct TimeItemSheet: View {
         if timeItem.isStopwatch {
             if !timeItem.isPaused {
                 currentTime = Date().timeIntervalSince(timeItem.timeStarted).editableStringMilliseconds()
+                
             } else {
                 
             }

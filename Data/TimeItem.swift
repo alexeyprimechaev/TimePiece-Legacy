@@ -53,6 +53,7 @@ public class TimeItem: NSManagedObject, Identifiable {
     @NSManaged private var timeStartedStored: Date?
     @NSManaged private var timeFinishedStored: Date?
     @NSManaged private var titleStored: String?
+    @NSManaged private var commentStored: String?
     @NSManaged private var notificationIdentifierStored: UUID?
     @NSManaged private var logItem: NSSet?
     
@@ -183,6 +184,15 @@ public class TimeItem: NSManagedObject, Identifiable {
         context.delete(self)
         
         try? context.save()
+    }
+    
+    func addTime(time: TimeInterval) {
+        timeFinished = timeFinished.addingTimeInterval(time)
+        print("remainingTime\(remainingTime)")
+        remainingTime = remainingTime + time
+        totalTime += time
+        print("remainingTime\(remainingTime)")
+        NotificationManager.scheduleNotification(timeItem: self)
     }
     
     //MARK: Toggle Pause
@@ -344,6 +354,11 @@ extension TimeItem {
     var isStopwatch: Bool {
         get { isStopwatchStored?.boolValue ?? false }
         set { isStopwatchStored = newValue as NSNumber }
+    }
+    
+    var comment: String {
+        get { commentStored ?? "" }
+        set { commentStored = newValue }
     }
     
     var isPaused: Bool {

@@ -101,7 +101,7 @@ struct TimeItemGridCell: View {
                                     else {
                                         Text("Start").opacity(0.5)
                                     }
-                                }.animation(.default)
+                                }
                                 
                                 
                             }
@@ -123,7 +123,6 @@ struct TimeItemGridCell: View {
                 .onChange(of: timeItem.remainingTimeString) { newValue in
                     currentTime = newValue
                 }
-                .animation(nil)
                 .opacity(appState.editingHomeScreen ? 0.5 : 1)
                 .padding(14)
                 .padding(.vertical, 10)

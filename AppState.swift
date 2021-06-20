@@ -20,5 +20,6 @@ public class AppState: ObservableObject {
     @Published var showingSidebar = false
     @Published var activeSheet = 2
     @Published var showingLogTotal = true
+    @Published var showSections = false
     
 }

@@ -10,69 +10,72 @@ import SwiftUI
 
 struct ContinousPicker: View {
     
-    @State private var floatValue: Float = 0.20
-    @State private var startFloatValue: Float = 0.35
+    @State var value: Float
+    @State private var startValue: Float = 0.20
     
     @State private var index = Int()
     
     
-    @State var values = [String]()
-    @Binding var controlledValue: String
-    @State private var floatValues = [Float]()
-    
-    @State var selectedValue = 3
-    
+    @State var presetValues: [Float]
+        
     @State var isContinous = false
     
     @State var width: CGFloat = 30
     
+    @State var increment: Float = 0
+    
+    @State var stoppedInteracting = false
+    
+    @State var delay = 2
+    
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         
         Button {
             
+            stoppedInteracting = true
+            delay = 3
+            
             if isContinous {
                 
-                print("here")
                 var smallestDist: Float = 1
                 var index: Int = 1
                 
-                for i in 0...values.count-1 {
-                    if abs(floatValues[i] - self.floatValue) < smallestDist {
-                        smallestDist = abs(floatValues[i] - self.floatValue)
+                for i in 0...presetValues.count-1 {
+                    if abs(presetValues[i] - self.value) < smallestDist {
+                        smallestDist = abs(presetValues[i] - self.value)
                         index = i
                     }
                 }
                 
                 self.index = index
-                self.floatValue = floatValues[self.index]
-                startFloatValue = self.floatValue
+                self.value = presetValues[self.index]
+                startValue = self.value
                 
-                print(self.index)
-                print(self.floatValue)
+
                 
                 isContinous = false
                 
-                if self.index < values.count - 1 {
+                if self.index < presetValues.count - 1 {
                     self.index += 1
-                    floatValue = floatValues[self.index]
-                    floatValue = floatValues[self.index]
+                    value = presetValues[self.index]
+                    value = presetValues[self.index]
                 } else {
                     self.index = 0
-                    floatValue = floatValues[self.index]
-                    startFloatValue = floatValues[self.index]
+                    value = presetValues[self.index]
+                    startValue = presetValues[self.index]
                 }
                 
             } else {
-                print("there")
-                if index < values.count - 1 {
+                if index < presetValues.count - 1 {
                     index += 1
-                    floatValue = floatValues[index]
-                    startFloatValue = floatValues[index]
+                    value = presetValues[index]
+                    startValue = presetValues[index]
                 } else {
                     index = 0
-                    floatValue = floatValues[index]
-                    startFloatValue = floatValues[index]
+                    value = presetValues[index]
+                    startValue = presetValues[index]
                 }
             }
             
@@ -80,8 +83,8 @@ struct ContinousPicker: View {
             
             HStack(alignment: .bottom, spacing: 7) {
                     HStack(spacing: 0) {
-                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(floatValue), height: 40).opacity(0.5)
-                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(1-floatValue), height: 40).opacity(0.35)
+                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(value), height: 40).opacity(delay > 0 && stoppedInteracting == true ? 1 : 0.5)
+                        Rectangle().foregroundColor(.primary).frame(width: width*CGFloat(1-value), height: 40).opacity(0.5)
                     }.mask(
                         Text("Tap Me Every")
                             .fontSize(.title)
@@ -91,8 +94,6 @@ struct ContinousPicker: View {
                                 GeometryReader { geometry in
                                     Spacer()
                                         .onAppear {
-                                            print("fucko")
-                                            print(geometry.size.width)
                                             width = geometry.size.width
                                         }
                                     
@@ -101,9 +102,9 @@ struct ContinousPicker: View {
                     )
                     
                     Label {
-                        Text(controlledValue).fontSize(.smallTitle).padding(.bottom, 5).animation(nil)
+                        Text("\(Int(value*120))m").fontSize(.smallTitle).padding(.bottom, 5).animation(nil)
                     } icon: {
-                        Image(systemName: "rays").font(.headline)
+                        Image(systemName: "rays").font(.headline).rotationEffect(Angle(degrees: Double(value*360)))
                     }
                     
                     
@@ -112,25 +113,54 @@ struct ContinousPicker: View {
             .padding(7)
             .gesture(DragGesture(minimumDistance: 1, coordinateSpace: .local)
                         .onChanged { newValue in
+                            stoppedInteracting = true
+                            delay = 3
                             isContinous = true
                             let delta = Float(newValue.translation.width/width)
-                            floatValue = min(max(0, startFloatValue + delta), 1)
+                            value = min(max(0, startValue + delta), 1)
                         }
                         
                         .onEnded { endValue in
-                            startFloatValue = floatValue
+                            stoppedInteracting = true
+                            delay = 3
+                            startValue = value
                         }
             )
             
-            .onChange(of: floatValue) { newValue in
-                for i in 0...floatValues.count-1 {
-                    if newValue == floatValues[i] {
-                        regularHaptic()
+            .onChange(of: value) { _ in
+                
+                //lightHaptic()
+                increment = (value*120) - (value*120).truncatingRemainder(dividingBy: 10)
+                
+                for i in 0...presetValues.count-1 {
+                    if (value*120) == (presetValues[i]*120) {
+                        hardHaptic()
                     }
-                    if newValue >= floatValues[i] {
-                        controlledValue = values[i]
-                    }
+                    
                 }
+            }
+            
+            .onChange(of: increment) { _ in
+                print(increment)
+                if 8 < increment && increment < 118 {
+                    lightHaptic()
+                }
+                
+            }
+            
+            .onReceive(timer) { _ in
+                if stoppedInteracting {
+                    if delay > 0 {
+                        delay -= 1
+                    }
+                    
+                } else {
+                    
+                }
+            }
+            
+            .onAppear {
+                startValue = value
             }
             
             
@@ -138,31 +168,7 @@ struct ContinousPicker: View {
         }
         
         
-        .onAppear {
-            
-            for i in 0...values.count-1 {
-                if controlledValue == values[i] {
-                    index = i
-                    break
-                }
-                if i == values.count-1 {
-                    controlledValue = values[0]
-                }
-            }
-            print("values.count")
-            print(values.count)
-            let increment = Float(1.0/Float(values.count))
-            print(increment)
-            print(values.count)
-            
-            for i in 0...values.count-1 {
-                floatValues.append(Float(i)*increment)
-                print("bebeb")
-                print(floatValues)
-            }
-            
-            floatValue = floatValues[index]
-        }
+        
         .buttonStyle(TitleButtonStyle())
         
         

@@ -45,7 +45,7 @@ struct NotificationView: View {
         if show {
         HStack {
             VStack(alignment: .leading) {
-                Text(timeItem.title)
+                Text(timeItem.title.isEmpty ? timeItem.isStopwatch ? "Stopwatch ⏱" : Strings.timer : LocalizedStringKey(timeItem.title)).fontSize(.smallTitle)
             }
             Spacer()
             Text("Finished at \(TimeItem.currentTimeFormatter.string(from: timeItem.timeFinished))").opacity(0.5).fontSize(.smallTitle)

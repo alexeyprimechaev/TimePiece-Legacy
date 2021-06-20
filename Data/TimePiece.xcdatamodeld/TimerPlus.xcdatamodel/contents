@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18153" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19141.11" systemVersion="21A5248p" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="LogItem" representedClassName=".LogItem" syncable="YES">
         <attribute name="isDoneStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isStopwatchStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -9,6 +9,7 @@
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeItem" inverseName="logItem" inverseEntity="TimeItem"/>
     </entity>
     <entity name="TimeItem" representedClassName=".TimeItem" syncable="YES">
+        <attribute name="commentStored" optional="YES" attributeType="String"/>
         <attribute name="createdAtStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isPausedStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isReusableStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -29,6 +30,6 @@
     </entity>
     <elements>
         <element name="LogItem" positionX="0" positionY="0" width="128" height="119"/>
-        <element name="TimeItem" positionX="0" positionY="0" width="128" height="284"/>
+        <element name="TimeItem" positionX="0" positionY="0" width="128" height="299"/>
     </elements>
 </model>
