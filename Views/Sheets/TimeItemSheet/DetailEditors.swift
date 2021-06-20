@@ -9,7 +9,7 @@
 import SwiftUI
 import AVFoundation
 
-struct SheetEditorss: View {
+struct DetailEditors: View {
     
     @ObservedObject var timeItem: TimeItem
     

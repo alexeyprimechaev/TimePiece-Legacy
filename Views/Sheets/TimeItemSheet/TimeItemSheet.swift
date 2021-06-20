@@ -55,15 +55,15 @@ struct TimeItemSheet: View {
         
             TitledScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    SheetEditorss(timeItem: timeItem, titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused)
-                    SheetPickers(timeItem: timeItem)
-                    SheetActions(timeItem: timeItem)
+                    DetailEditors(timeItem: timeItem, titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused)
+                    DetailPickers(timeItem: timeItem)
+                    DetailActions(timeItem: timeItem)
                 }
                 .padding(.top, 14)
                 
             }
             
-            BottomActions(timeItem: timeItem, titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused)
+            DetailPrimaryActions(timeItem: timeItem, titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused)
             
         }
     }

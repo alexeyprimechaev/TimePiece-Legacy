@@ -84,11 +84,11 @@
 		80150E3624F5938F00C740B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80B91C8624C8A04F0017F8B9 /* Localizable.strings */; };
 		80150E3824F593A500C740B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80612FEB23C274DF00BC03F5 /* Assets.xcassets */; };
 		8043381D24F6836A00958666 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809D9F3124C4929200DB4E94 /* CloudKit.framework */; };
-		805B4E4A267F9BDD005F4EA6 /* SheetActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E49267F9BDD005F4EA6 /* SheetActions.swift */; };
-		805B4E4C267F9DB3005F4EA6 /* SheetPickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4B267F9DB3005F4EA6 /* SheetPickers.swift */; };
+		805B4E4A267F9BDD005F4EA6 /* DetailActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E49267F9BDD005F4EA6 /* DetailActions.swift */; };
+		805B4E4C267F9DB3005F4EA6 /* DetailPickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4B267F9DB3005F4EA6 /* DetailPickers.swift */; };
 		805B4E4E267F9EB2005F4EA6 /* SheetEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4D267F9EB2005F4EA6 /* SheetEditors.swift */; };
-		805B4E50267F9EC0005F4EA6 /* SheetEditorss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4F267F9EC0005F4EA6 /* SheetEditorss.swift */; };
-		805B4E52267FA212005F4EA6 /* BottomActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E51267FA212005F4EA6 /* BottomActions.swift */; };
+		805B4E50267F9EC0005F4EA6 /* DetailEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */; };
+		805B4E52267FA212005F4EA6 /* DetailPrimaryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */; };
 		80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DA024FAB08400C55895 /* TimeDisplay.swift */; };
 		808A388A2512D6B10075AC50 /* InsightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A38892512D6B10075AC50 /* InsightRow.swift */; };
 		80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeEditor.swift */; };
@@ -169,11 +169,11 @@
 		804E17B124087B71003F5001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		8055D7AE243B697800AF516E /* LogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemCell.swift; sourceTree = "<group>"; };
-		805B4E49267F9BDD005F4EA6 /* SheetActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetActions.swift; sourceTree = "<group>"; };
-		805B4E4B267F9DB3005F4EA6 /* SheetPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetPickers.swift; sourceTree = "<group>"; };
+		805B4E49267F9BDD005F4EA6 /* DetailActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActions.swift; sourceTree = "<group>"; };
+		805B4E4B267F9DB3005F4EA6 /* DetailPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPickers.swift; sourceTree = "<group>"; };
 		805B4E4D267F9EB2005F4EA6 /* SheetEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SheetEditors.swift; path = "../../Library/Developer/Xcode/DerivedData/TimePiece-bygmchaltlomqtbxtihzhvfmdetl/SourcePackages/checkouts/SwiftUI-Introspect/SheetEditors.swift"; sourceTree = "<group>"; };
-		805B4E4F267F9EC0005F4EA6 /* SheetEditorss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetEditorss.swift; sourceTree = "<group>"; };
-		805B4E51267FA212005F4EA6 /* BottomActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomActions.swift; sourceTree = "<group>"; };
+		805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditors.swift; sourceTree = "<group>"; };
+		805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPrimaryActions.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		80612FE923C274DB00BC03F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -264,6 +264,18 @@
 			path = TimePieceWidget;
 			sourceTree = "<group>";
 		};
+		805B4E53267FA363005F4EA6 /* TimeItemSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8088473A23C2AE79001D1A6E /* TimeItemSheet.swift */,
+				805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */,
+				805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */,
+				805B4E4B267F9DB3005F4EA6 /* DetailPickers.swift */,
+				805B4E49267F9BDD005F4EA6 /* DetailActions.swift */,
+			);
+			path = TimeItemSheet;
+			sourceTree = "<group>";
+		};
 		80612FD623C274DB00BC03F5 = {
 			isa = PBXGroup;
 			children = (
@@ -338,11 +350,7 @@
 				056AC76625E3EDCD00472D58 /* SubscriptionPointView.swift */,
 				80D343B42443723800BA76B1 /* SettingsSheet.swift */,
 				8021ADAB23D51F080090BA7F /* NewTimeItemSheet.swift */,
-				8088473A23C2AE79001D1A6E /* TimeItemSheet.swift */,
-				805B4E51267FA212005F4EA6 /* BottomActions.swift */,
-				805B4E4F267F9EC0005F4EA6 /* SheetEditorss.swift */,
-				805B4E4B267F9DB3005F4EA6 /* SheetPickers.swift */,
-				805B4E49267F9BDD005F4EA6 /* SheetActions.swift */,
+				805B4E53267FA363005F4EA6 /* TimeItemSheet */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -613,7 +621,7 @@
 			files = (
 				05DEDA0525E2F6AC006AE551 /* TrackableScrollView.swift in Sources */,
 				80150DE224F58E7300C740B3 /* NewTimeItemSheet.swift in Sources */,
-				805B4E50267F9EC0005F4EA6 /* SheetEditorss.swift in Sources */,
+				805B4E50267F9EC0005F4EA6 /* DetailEditors.swift in Sources */,
 				80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */,
 				057B2E07264ACA33006858AA /* LogSectionSheet.swift in Sources */,
 				80150DD624F58E7300C740B3 /* Styles.swift in Sources */,
@@ -622,7 +630,7 @@
 				80150E3424F5926D00C740B3 /* TimePiece.xcdatamodeld in Sources */,
 				80FEF1AB25191291007BEB49 /* OnboardingSheet.swift in Sources */,
 				05DEDA0325E2F4DC006AE551 /* TopBar.swift in Sources */,
-				805B4E4C267F9DB3005F4EA6 /* SheetPickers.swift in Sources */,
+				805B4E4C267F9DB3005F4EA6 /* DetailPickers.swift in Sources */,
 				808A388A2512D6B10075AC50 /* InsightRow.swift in Sources */,
 				80C055882516215E002147EC /* EditorBar.swift in Sources */,
 				80150D8024F58BDD00C740B3 /* Persistence.swift in Sources */,
@@ -637,13 +645,13 @@
 				80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */,
 				80150DD924F58E7300C740B3 /* BottomBar.swift in Sources */,
 				80150DE324F58E7300C740B3 /* ContentView.swift in Sources */,
-				805B4E52267FA212005F4EA6 /* BottomActions.swift in Sources */,
+				805B4E52267FA212005F4EA6 /* DetailPrimaryActions.swift in Sources */,
 				80150DCE24F58E7300C740B3 /* PersonCard.swift in Sources */,
 				052A346225D819950052949A /* AppGroup.swift in Sources */,
 				80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */,
 				80D5950F26602A65002E3826 /* NotificationView.swift in Sources */,
 				80150DD324F58E7300C740B3 /* TimeItemCell.swift in Sources */,
-				805B4E4A267F9BDD005F4EA6 /* SheetActions.swift in Sources */,
+				805B4E4A267F9BDD005F4EA6 /* DetailActions.swift in Sources */,
 				80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */,
 				805B4E4E267F9EB2005F4EA6 /* SheetEditors.swift in Sources */,
 				054802EA2649CCF400AE84D4 /* LogSheet.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SheetActions: View {
+struct DetailActions: View {
     
     @ObservedObject var timeItem: TimeItem
     

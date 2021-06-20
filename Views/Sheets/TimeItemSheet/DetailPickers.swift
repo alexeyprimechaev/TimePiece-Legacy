@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SheetPickers: View {
+struct DetailPickers: View {
     
     @ObservedObject var timeItem: TimeItem
     
