@@ -82,220 +82,18 @@ struct TimeItemSheet: View {
                 }
             }
             
-//
-//            HeaderBar(leadingAction: discard,
-//                      leadingTitle: Strings.dismiss,
-//                      leadingIcon: horizontalSizeClass == .compact ? "chevron.down" : "chevron.left",
-//                      leadingIsDestructive: false,
-//                      trailingAction: {delete()}, trailingTitle: "Delete")
+            //
+            //            HeaderBar(leadingAction: discard,
+            //                      leadingTitle: Strings.dismiss,
+            //                      leadingIcon: horizontalSizeClass == .compact ? "chevron.down" : "chevron.left",
+            //                      leadingIsDestructive: false,
+            //                      trailingAction: {delete()}, trailingTitle: "Delete")
             TitledScrollView {
                 
                 VStack(alignment: .leading, spacing: 14) {
-                    
-                    TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused)
-                    
-                    if timeItem.isRunning {
-                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
-                    }
-                    
-                    if timeItem.isStopwatch {
-                        if timeItem.isRunning {
-                            RegularButton(title: "Show Settings", icon: "ellipsis") {
-                                showSettings.toggle()
-                            }.opacity(showSettings ? 0.5 : 1)
-                        }
-                        
-                        if !timeItem.isRunning || showSettings {
-                            if timeItem.isReusable {
-                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
-                            PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
-                                
-                            }
-                            
-
-                            
-                            ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1])
-                            
-                            
-                            
-                            
-                            
-                        } else {
-                            VStack(alignment: .leading, spacing: 7) {
-                                PremiumBadge {
-                                    RegularButton(title: Strings.makeReusable, icon: "arrow.clockwise") {
-                                        timeItem.makeReusable()
-                                    }
-                                }
-                                PremiumBadge {
-                                    RegularButton(title: "Convert to Timer", icon: "timer") {
-                                        if timeItem.isRunning {
-                                            showingConvertAlert = true
-                                        } else {
-                                            timeItem.isStopwatch = false
-                                        }
-                                    }
-                                }
-                                
-                            }
-                            
-                            
-                        }
-                        }
-                        
-                        if timeItem.isReusable {
-                            PremiumBadge {
-                                RegularButton(title: "Convert to Timer", icon: "timer") {
-                                    if timeItem.isRunning {
-                                        showingConvertAlert = true
-                                    } else {
-                                        timeItem.isStopwatch = false
-                                    }
-                                }
-                            }
-                            PremiumBadge {
-                                RegularButton(title: "Show in Log", icon: "gobackward") {
-                                    showLogSheet = true
-                                }
-                            }
-                            
-                            if timeItem.comment == "" {
-                                
-                            }
-                            
-                            if !addingComment {
-                            PremiumBadge {
-                                RegularButton(title: "Add Comment", icon: "plus.bubble") {
-                                    addingComment = true
-                                }
-                            }
-                            } else {
-                                TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
-                            }
-                        }
-                        
-                    } else {
-                        TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
-                        
-                        if timeItem.isReusable {
-                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
-                            if timeItem.notificationSetting == TimeItem.notificationSettings[1] {
-                                ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1])
-                            }
-                            PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
-                            PremiumBadge {
-                                PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
-                                
-                            }
-                            
-                           
-                            
-                            PremiumBadge {
-                                RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                    if timeItem.isRunning {
-                                        showingConvertAlert = true
-                                    } else {
-                                        withAnimation {
-                                            timeItem.convertToStopwatch()
-                                        }
-                                    }
-                                    
-                                }
-                            }
-                            
-                            if timeItem.isRunning {
-                                
-                                PremiumBadge {
-                                    Menu {
-                                        RegularButton(title: "1 minute", icon: "") {
-                                            timeItem.addTime(time: 60)
-                                        }
-                                        
-                                        RegularButton(title: "5 minutes", icon: "") {
-                                            timeItem.addTime(time: 300)
-                                        }
-                                        RegularButton(title: "10 minutes", icon: "") {
-                                            timeItem.addTime(time: 600)
-                                        }
-                                    } label: {
-                                        RegularButton(title: "Add Time...", icon: "plus.circle") {
-                                            
-                                        }
-                                    }
-                                }
-                            } else {
-                                RegularButton(title: "Show in Log", icon: "gobackward") {
-                                    showLogSheet = true
-                                }
-                                if !addingComment {
-                                PremiumBadge {
-                                    RegularButton(title: "Add Comment", icon: "plus.bubble") {
-                                        addingComment = true
-                                    }
-                                }
-                                } else {
-                                    TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
-                                }
-                            }
-                            
-                        } else {
-                            
-                            VStack(alignment: .leading, spacing: 7) {
-                                PremiumBadge {
-                                    RegularButton(title: Strings.makeReusable, icon: "arrow.clockwise") {
-                                        timeItem.makeReusable()
-                                    }
-                                }
-                                
-                                PremiumBadge {
-                                    RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
-                                        if timeItem.isRunning {
-                                            showingConvertAlert = true
-                                        } else {
-                                            withAnimation {
-                                                timeItem.convertToStopwatch()
-                                            }
-                                        }
-                                        
-                                    }
-                                }
-                                
-                                
-                                if timeItem.isRunning {
-                                    
-                                    PremiumBadge {
-                                        Menu {
-                                            RegularButton(title: "1 minute", icon: "") {
-                                                addedTime += 60
-                                                timeItem.addTime(time: 60)
-                                            }
-                                            
-                                            RegularButton(title: "5 minutes", icon: "") {
-                                                addedTime += 300
-                                                timeItem.addTime(time: 300)
-                                            }
-                                            RegularButton(title: "10 minutes", icon: "") {
-                                                addedTime += 60
-                                                timeItem.addTime(time: 600)
-                                            }
-                                        } label: {
-                                            RegularButton(title: "Add Time...", icon: "plus.circle") {
-                                                
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            
-                        }
-                        
-                        
-                        
-                        
-                    }
-                    
-                    
+                    editors
+                    pickers
+                    actions
                 }
                 .padding(.top, 14)
                 .alert(isPresented: $showingConvertAlert) {
@@ -354,43 +152,43 @@ struct TimeItemSheet: View {
                         if timeItem.isReusable {
                             PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
                                         onTap: {
-                                            timeItem.reset()
-                                        },
+                                timeItem.reset()
+                            },
                                         offTap: {
-                                            timeItem.reset()
-                                        }
+                                timeItem.reset()
+                            }
                             )
-                            .disabled(timeItem.isRunning ? false : true)
+                                .disabled(timeItem.isRunning ? false : true)
                         } else {
                             PauseButton(color: Color.red, isPaused: $timeItem.isRunning, offTitle: timeItem.remainingTime == 0 ? Strings.reset : Strings.reset, onTitle: Strings.reset, offIcon: "stop.fill", onIcon: "stop.fill",
                                         onTap: {
-                                            showingMakeReusableAlert = true
-                                        },
+                                showingMakeReusableAlert = true
+                            },
                                         offTap: {
-                                            showingMakeReusableAlert = true
-                                        }
+                                showingMakeReusableAlert = true
+                            }
                             )
-                            .disabled(timeItem.isRunning ? false : true)
-                            .alert(isPresented: $showingMakeReusableAlert) {
-                                Alert(title: Text("You can only reset Reusable Timers"), primaryButton: .default(Text("Make Reusable")) {
-                                    
-                                    withAnimation {
+                                .disabled(timeItem.isRunning ? false : true)
+                                .alert(isPresented: $showingMakeReusableAlert) {
+                                    Alert(title: Text("You can only reset Reusable Timers"), primaryButton: .default(Text("Make Reusable")) {
                                         
-                                        if settings.isSubscribed {
-                                            timeItem.makeReusable()
-                                        } else {
-                                            settings.showingSubscription = true
+                                        withAnimation {
+                                            
+                                            if settings.isSubscribed {
+                                                timeItem.makeReusable()
+                                            } else {
+                                                settings.showingSubscription = true
+                                            }
                                         }
-                                    }
-                                    
-                                }, secondaryButton: .cancel())
-                            }
+                                        
+                                    }, secondaryButton: .cancel())
+                                }
                             
-                            .fullScreenCover(isPresented: $settings.showingSubscription) {
-                                SubscriptionSheet {
-                                    settings.showingSubscription = false
-                                }.environmentObject(settings)
-                            }
+                                .fullScreenCover(isPresented: $settings.showingSubscription) {
+                                    SubscriptionSheet {
+                                        settings.showingSubscription = false
+                                    }.environmentObject(settings)
+                                }
                         }
                         Spacer().frame(width:14)
                     }
@@ -433,7 +231,202 @@ struct TimeItemSheet: View {
         }
     }
     
+    @ViewBuilder var editors: some View {
+        TitleEditor(title: Strings.title, timeItem: timeItem, textField: $titleField, isFocused: $titleFocused)
+        
+        if timeItem.isRunning {
+            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+        }
+        
+        if timeItem.isStopwatch {
+            
+
+            
+        } else {
+            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
+            
+        }
+    }
     
+    @ViewBuilder var pickers: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            if timeItem.isStopwatch {
+                if timeItem.isReusable {
+                    PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
+                    PremiumBadge {
+                        PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
+                        
+                    }
+                    ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1]).transition(.opacity)
+                }
+            } else {
+                if timeItem.isReusable {
+                    PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                    if timeItem.notificationSetting == TimeItem.notificationSettings[1] {
+                        ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1]).transition(.opacity)
+                    }
+                    PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
+                    PremiumBadge {
+                        PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder var actions: some View {
+        if timeItem.isStopwatch {
+            VStack(alignment: .leading, spacing: 7) {
+                if !timeItem.isReusable {
+                    PremiumBadge {
+                        RegularButton(title: Strings.makeReusable, icon: "arrow.clockwise") {
+                            timeItem.makeReusable()
+                        }
+                    }
+                    PremiumBadge {
+                        RegularButton(title: "Convert to Timer", icon: "timer") {
+                            if timeItem.isRunning {
+                                showingConvertAlert = true
+                            } else {
+                                timeItem.isStopwatch = false
+                            }
+                        }
+                    }
+                } else {
+                    PremiumBadge {
+                        RegularButton(title: "Convert to Timer", icon: "timer") {
+                            if timeItem.isRunning {
+                                showingConvertAlert = true
+                            } else {
+                                timeItem.isStopwatch = false
+                            }
+                        }
+                    }
+                    PremiumBadge {
+                        RegularButton(title: "Show in Log", icon: "gobackward") {
+                            showLogSheet = true
+                        }
+                    }
+                    
+                    if timeItem.comment == "" {
+                        
+                    }
+                    
+                    if !addingComment {
+                        PremiumBadge {
+                            RegularButton(title: "Add Comment", icon: "plus.bubble") {
+                                addingComment = true
+                            }
+                        }
+                    } else {
+                        TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
+                    }
+                }
+                
+            }
+        } else {
+            if timeItem.isReusable {
+                PremiumBadge {
+                    RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                        if timeItem.isRunning {
+                            showingConvertAlert = true
+                        } else {
+                            withAnimation {
+                                timeItem.convertToStopwatch()
+                            }
+                        }
+                        
+                    }
+                }
+                
+                if timeItem.isRunning {
+                    
+                    PremiumBadge {
+                        Menu {
+                            RegularButton(title: "1 minute", icon: "") {
+                                timeItem.addTime(time: 60)
+                            }
+                            
+                            RegularButton(title: "5 minutes", icon: "") {
+                                timeItem.addTime(time: 300)
+                            }
+                            RegularButton(title: "10 minutes", icon: "") {
+                                timeItem.addTime(time: 600)
+                            }
+                        } label: {
+                            RegularButton(title: "Add Time...", icon: "plus.circle") {
+                                
+                            }
+                        }
+                    }
+                } else {
+                    RegularButton(title: "Show in Log", icon: "gobackward") {
+                        showLogSheet = true
+                    }
+                    if !addingComment {
+                        PremiumBadge {
+                            RegularButton(title: "Add Comment", icon: "plus.bubble") {
+                                addingComment = true
+                            }
+                        }
+                    } else {
+                        TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
+                    }
+                }
+                
+            } else {
+                
+                VStack(alignment: .leading, spacing: 7) {
+                    PremiumBadge {
+                        RegularButton(title: Strings.makeReusable, icon: "arrow.clockwise") {
+                            timeItem.makeReusable()
+                        }
+                    }
+                    
+                    PremiumBadge {
+                        RegularButton(title: "Convert to Stopwatch", icon: "stopwatch") {
+                            if timeItem.isRunning {
+                                showingConvertAlert = true
+                            } else {
+                                withAnimation {
+                                    timeItem.convertToStopwatch()
+                                }
+                            }
+                            
+                        }
+                    }
+                    
+                    
+                    if timeItem.isRunning {
+                        
+                        PremiumBadge {
+                            Menu {
+                                RegularButton(title: "1 minute", icon: "") {
+                                    addedTime += 60
+                                    timeItem.addTime(time: 60)
+                                }
+                                
+                                RegularButton(title: "5 minutes", icon: "") {
+                                    addedTime += 300
+                                    timeItem.addTime(time: 300)
+                                }
+                                RegularButton(title: "10 minutes", icon: "") {
+                                    addedTime += 60
+                                    timeItem.addTime(time: 600)
+                                }
+                            } label: {
+                                RegularButton(title: "Add Time...", icon: "plus.circle") {
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
     
     func updateTime() {
         
@@ -465,7 +458,7 @@ struct TimeItemSheet: View {
                     } else {
                         playSound(sound: "technoFree", type: "wav")
                     }
-//                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
+                    //                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
                     
                     
                     

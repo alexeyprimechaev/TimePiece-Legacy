@@ -73,7 +73,6 @@
 		80150DE424F58E7300C740B3 /* SubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */; };
 		80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F355132418068F009ABFAD /* HeaderBar.swift */; };
 		80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ACD6B623CBE435000C49DC /* PauseButton.swift */; };
-		80150DE924F58E7300C740B3 /* EldenLogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AA243B62ED00AF516E /* EldenLogSheet.swift */; };
 		80150DEA24F58E7300C740B3 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801FFBB123CF9AF50040A12C /* PickerButton.swift */; };
 		80150DEB24F58E7300C740B3 /* TimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80612FFB23C2766B00BC03F5 /* TimeItem.swift */; };
 		80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055D7AE243B697800AF516E /* LogItemCell.swift */; };
@@ -164,7 +163,6 @@
 		8043381C24F6836700958666 /* TimePiece.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimePiece.entitlements; sourceTree = "<group>"; };
 		804E17B124087B71003F5001 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8055D7A8243B627600AF516E /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
-		8055D7AA243B62ED00AF516E /* EldenLogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EldenLogSheet.swift; sourceTree = "<group>"; };
 		8055D7AE243B697800AF516E /* LogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemCell.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		80612FE923C274DB00BC03F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 		808A386C2512D1F80075AC50 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				8055D7AA243B62ED00AF516E /* EldenLogSheet.swift */,
 				054802E92649CCF400AE84D4 /* LogSheet.swift */,
 				057B2E06264ACA33006858AA /* LogSectionSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
@@ -639,7 +636,6 @@
 				80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */,
 				80150DD124F58E7300C740B3 /* Settings.swift in Sources */,
 				05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */,
-				80150DE924F58E7300C740B3 /* EldenLogSheet.swift in Sources */,
 				80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */,
 				80150DD724F58E7300C740B3 /* PremiumBadge.swift in Sources */,
 				05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */,
