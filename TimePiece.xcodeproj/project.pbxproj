@@ -88,6 +88,8 @@
 		805B4E4E267F9EB2005F4EA6 /* SheetEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4D267F9EB2005F4EA6 /* SheetEditors.swift */; };
 		805B4E50267F9EC0005F4EA6 /* DetailEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */; };
 		805B4E52267FA212005F4EA6 /* DetailPrimaryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */; };
+		805B4E55267FBCBD005F4EA6 /* CommentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E54267FBCBD005F4EA6 /* CommentSheet.swift */; };
+		805B4E59267FC5CD005F4EA6 /* SummaryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E58267FC5CD005F4EA6 /* SummaryMenu.swift */; };
 		80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DA024FAB08400C55895 /* TimeDisplay.swift */; };
 		808A388A2512D6B10075AC50 /* InsightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A38892512D6B10075AC50 /* InsightRow.swift */; };
 		80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeEditor.swift */; };
@@ -173,6 +175,8 @@
 		805B4E4D267F9EB2005F4EA6 /* SheetEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SheetEditors.swift; path = "../../Library/Developer/Xcode/DerivedData/TimePiece-bygmchaltlomqtbxtihzhvfmdetl/SourcePackages/checkouts/SwiftUI-Introspect/SheetEditors.swift"; sourceTree = "<group>"; };
 		805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditors.swift; sourceTree = "<group>"; };
 		805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPrimaryActions.swift; sourceTree = "<group>"; };
+		805B4E54267FBCBD005F4EA6 /* CommentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheet.swift; sourceTree = SOURCE_ROOT; };
+		805B4E58267FC5CD005F4EA6 /* SummaryMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMenu.swift; sourceTree = "<group>"; };
 		8060E0212482D50600F6F74D /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		80612FEB23C274DF00BC03F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80612FEE23C274DF00BC03F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 		808A386C2512D1F80075AC50 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
+				805B4E54267FBCBD005F4EA6 /* CommentSheet.swift */,
 				054802E92649CCF400AE84D4 /* LogSheet.swift */,
 				057B2E06264ACA33006858AA /* LogSectionSheet.swift */,
 				80FEF1AA25191291007BEB49 /* OnboardingSheet.swift */,
@@ -356,6 +361,7 @@
 		808A386D2512D31E0075AC50 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				805B4E58267FC5CD005F4EA6 /* SummaryMenu.swift */,
 				80C055872516215E002147EC /* EditorBar.swift */,
 				8060E0212482D50600F6F74D /* BottomBar.swift */,
 				80F355132418068F009ABFAD /* HeaderBar.swift */,
@@ -617,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DEDA0525E2F6AC006AE551 /* TrackableScrollView.swift in Sources */,
+				805B4E55267FBCBD005F4EA6 /* CommentSheet.swift in Sources */,
 				80150DE224F58E7300C740B3 /* NewTimeItemSheet.swift in Sources */,
 				805B4E50267F9EC0005F4EA6 /* DetailEditors.swift in Sources */,
 				80150DD424F58E7300C740B3 /* SettingsSheet.swift in Sources */,
@@ -665,6 +672,7 @@
 				05DEDA0025E2D736006AE551 /* TimeItemGridCell.swift in Sources */,
 				80150DCF24F58E7300C740B3 /* TitleEditor.swift in Sources */,
 				80150DCD24F58E7300C740B3 /* ListSection.swift in Sources */,
+				805B4E59267FC5CD005F4EA6 /* SummaryMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

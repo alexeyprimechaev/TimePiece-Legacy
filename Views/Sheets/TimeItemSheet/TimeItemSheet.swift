@@ -43,22 +43,33 @@ struct TimeItemSheet: View {
         
         VStack(spacing:0) {
             
-            HeaderBar {
+            HeaderBar(showingMenu: timeItem.isRunning ? false : true) {
                 RegularButton(title: Strings.dismiss, icon: "chevron.down") {
                     discard()
                 }
             } trailingItems: {
-                RegularButton(title: Strings.delete, icon: "trash", isDestructive: true) {
-                    delete()
+                if timeItem.isRunning {
+                    SummaryMenu(timeItem: timeItem) {
+                        delete()
+                    }
+                } else {
+                    RegularButton(title: Strings.delete, icon: "trash", isDestructive: true) {
+                        delete()
+                    }
                 }
-            }
+            }.animation(.default, value: timeItem.isRunning).transition(.slide)
         
             TitledScrollView {
                 VStack(alignment: .leading, spacing: 14) {
                     DetailEditors(timeItem: timeItem, titleField: $titleField, timeField: $timeField, titleFocused: $titleFocused, timeFocused: $timeFocused)
-                    DetailPickers(timeItem: timeItem)
-                    DetailActions(timeItem: timeItem)
-                }
+                    
+                    if !timeItem.isRunning {
+                        DetailPickers(timeItem: timeItem)
+
+                    }
+                    DetailActions(timeItem: timeItem, presentation: timeItem.isRunning ? .compact : .normal)
+                }.animation(.default, value: timeItem.isRunning)
+                
                 .padding(.top, 14)
                 
             }

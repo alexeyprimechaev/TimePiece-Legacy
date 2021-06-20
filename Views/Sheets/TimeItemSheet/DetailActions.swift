@@ -8,15 +8,21 @@
 
 import SwiftUI
 
+enum ActionsPresentation {
+    case normal, compact
+}
+
 struct DetailActions: View {
     
     @ObservedObject var timeItem: TimeItem
     
-    @State var showLogSheet = false
-    @State var addingComment = false
-    @State var showingConvertAlert = false
-    @State var addedTime = 0
+    @State private var showLogSheet = false
+    @State private var addingComment = false
+    @State private var showingConvertAlert = false
+    @State private var addedTime = 0
     
+    @State var presentation: ActionsPresentation = .normal
+            
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
             if timeItem.isStopwatch {
@@ -51,19 +57,8 @@ struct DetailActions: View {
                         }
                     }
                     
-                    if timeItem.comment == "" {
-                        
-                    }
                     
-                    if !addingComment {
-                        PremiumBadge {
-                            RegularButton(title: "Add Comment", icon: "plus.bubble") {
-                                addingComment = true
-                            }
-                        }
-                    } else {
-                        TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
-                    }
+                    
                 }
                 
             
@@ -79,6 +74,13 @@ struct DetailActions: View {
                             }
                         }
                         
+                    }
+                }
+                
+                
+                PremiumBadge {
+                    RegularButton(title: "Show in Log", icon: "gobackward") {
+                        showLogSheet = true
                     }
                 }
                 
@@ -101,19 +103,6 @@ struct DetailActions: View {
                                 
                             }
                         }
-                    }
-                } else {
-                    RegularButton(title: "Show in Log", icon: "gobackward") {
-                        showLogSheet = true
-                    }
-                    if !addingComment {
-                        PremiumBadge {
-                            RegularButton(title: "Add Comment", icon: "plus.bubble") {
-                                addingComment = true
-                            }
-                        }
-                    } else {
-                        TextEditor(text: $timeItem.comment).fontSize(.secondaryText)
                     }
                 }
                 
@@ -167,9 +156,20 @@ struct DetailActions: View {
                 
             }
         }
+            if timeItem.comment.count == 0 {
+                PremiumBadge {
+                    RegularButton(title: "Add Comment", icon: "plus.bubble") {
+                        addingComment = true
+                    }
+                }
+            }
         }
+        .animation(.default, value: timeItem.isRunning)
         .sheet(isPresented: $showLogSheet) {
             LogSheet(title: timeItem.title, discard: {showLogSheet = false})
+        }
+        .sheet(isPresented: $addingComment) {
+            CommentSheet(comment: $timeItem.comment)
         }
         .alert(isPresented: $showingConvertAlert) {
             if timeItem.isStopwatch {

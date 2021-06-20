@@ -19,6 +19,8 @@ struct DetailEditors: View {
     @Binding var titleFocused: Bool
     @Binding var timeFocused: Bool
     
+    @State var addingComment = false
+    
         
     @State var currentTime: String = "00:00"
     
@@ -38,6 +40,19 @@ struct DetailEditors: View {
         
         if !timeItem.isStopwatch {
             TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
+        }
+        
+        if timeItem.comment.count > 0 {
+            Text(timeItem.comment).lineLimit(timeItem.isRunning ? nil : 3).fontSize(timeItem.isRunning ? .title2 : .comment)
+                .padding(7)
+                .onTapGesture {
+                    addingComment = true
+                }.sheet(isPresented: $addingComment) {
+                    CommentSheet(comment: $timeItem.comment)
+                }
+            Divider().padding(7).padding(.bottom, -7)
+            
+                
         }
     }
     
