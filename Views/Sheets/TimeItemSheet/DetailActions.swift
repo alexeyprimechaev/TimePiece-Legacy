@@ -41,6 +41,7 @@ struct DetailActions: View {
                             }
                         }
                     }
+                    
                 } else {
                     PremiumBadge {
                         RegularButton(title: "Convert to Timer", icon: "timer") {
@@ -54,6 +55,14 @@ struct DetailActions: View {
                     PremiumBadge {
                         RegularButton(title: "Show in Log", icon: "gobackward") {
                             showLogSheet = true
+                        }
+                    }
+                    
+                    if timeItem.comment.count == 0 {
+                        PremiumBadge {
+                            RegularButton(title: "Add Comment", icon: "plus.bubble") {
+                                addingComment = true
+                            }
                         }
                     }
                     
@@ -81,6 +90,13 @@ struct DetailActions: View {
                 PremiumBadge {
                     RegularButton(title: "Show in Log", icon: "gobackward") {
                         showLogSheet = true
+                    }
+                }
+                if timeItem.comment.count == 0 {
+                    PremiumBadge {
+                        RegularButton(title: "Add Comment", icon: "plus.bubble") {
+                            addingComment = true
+                        }
                     }
                 }
                 
@@ -126,6 +142,8 @@ struct DetailActions: View {
                             
                         }
                     }
+                
+                
                     
                     
                     if timeItem.isRunning {
@@ -156,13 +174,7 @@ struct DetailActions: View {
                 
             }
         }
-            if timeItem.comment.count == 0 {
-                PremiumBadge {
-                    RegularButton(title: "Add Comment", icon: "plus.bubble") {
-                        addingComment = true
-                    }
-                }
-            }
+            
         }
         .animation(.default, value: timeItem.isRunning)
         .sheet(isPresented: $showLogSheet) {
