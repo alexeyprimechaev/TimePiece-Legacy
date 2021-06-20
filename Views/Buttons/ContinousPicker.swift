@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContinousPicker: View {
     
-    @State var value: Float
+    @Binding var value: Float
     @State private var startValue: Float = 0.20
     
     @State private var index = Int()

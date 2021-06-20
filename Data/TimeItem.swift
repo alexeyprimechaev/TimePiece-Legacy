@@ -50,6 +50,7 @@ public class TimeItem: NSManagedObject, Identifiable {
     @NSManaged private var isRunningStored: NSNumber?
     @NSManaged private var remainingTimeStored: NSNumber?
     @NSManaged private var totalTimeStored: NSNumber?
+    @NSManaged private var tapMeEveryStored: NSNumber?
     @NSManaged private var timeStartedStored: Date?
     @NSManaged private var timeFinishedStored: Date?
     @NSManaged private var titleStored: String?
@@ -344,6 +345,16 @@ extension TimeItem {
     var order: Int {
         get { orderStored?.intValue ?? 0 }
         set { orderStored = NSNumber(value: newValue) }
+    }
+    
+    var tapMeEvery: Int {
+        get { tapMeEveryStored?.intValue ?? 0 }
+        set { tapMeEveryStored = NSNumber(value: newValue) }
+    }
+    
+    var tapMeEveryFloat: Float {
+        get { Float(tapMeEvery)/120 }
+        set { tapMeEvery = Int(newValue*120) }
     }
     
     var createdAt: Date {

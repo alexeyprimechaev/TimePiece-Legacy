@@ -22,6 +22,7 @@
         <attribute name="remainingTimeStored" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="showInLogStored" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="soundSettingStored" optional="YES" attributeType="String"/>
+        <attribute name="tapMeEveryStored" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timeFinishedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timeStartedStored" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="titleStored" optional="YES" attributeType="String"/>
@@ -30,6 +31,6 @@
     </entity>
     <elements>
         <element name="LogItem" positionX="0" positionY="0" width="128" height="119"/>
-        <element name="TimeItem" positionX="0" positionY="0" width="128" height="299"/>
+        <element name="TimeItem" positionX="0" positionY="0" width="128" height="314"/>
     </elements>
 </model>

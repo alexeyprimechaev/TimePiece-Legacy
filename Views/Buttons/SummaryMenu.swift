@@ -37,15 +37,44 @@ struct SummaryMenu: View {
                 }
             }
             Menu {
-                Text("Off")
-                Text("15m")
-                Text("30m")
-                Text("60m")
-                Text("2h")
+                Button {
+                    timeItem.tapMeEvery = 0
+                } label: {
+                    Text("Off")
+                }
+                
+                Button {
+                    timeItem.tapMeEvery = 15
+                } label: {
+                    Text("15m")
+                }
+                Button {
+                    timeItem.tapMeEvery = 30
+                } label: {
+                    Text("30m")
+                }
+                Button {
+                    timeItem.tapMeEvery = 60
+                } label: {
+                    Text("60m")
+                }
+                Button {
+                    timeItem.tapMeEvery = 90
+                } label: {
+                    Text("1h 30m")
+                }
+                Button {
+                    timeItem.tapMeEvery = 120
+                } label: {
+                    Text("2h")
+                }
 
             } label: {
                 Label {
-                    Text("Tap Me Every")
+                    VStack {
+                        Text("Tap Me Every")
+                        Text("3032")
+                    }
                 } icon: {
                     Image(systemName: "30.circle")
                 }
@@ -70,15 +99,42 @@ struct SummaryMenu: View {
                     Image(systemName: timeItem.soundSetting == TimeItem.soundSettings[1] ?  "speaker.wave.3" : "speaker.wave.1")
                 }
             }
+            Menu {
+                Picker("Milliseconds", selection: $timeItem.precisionSetting) {
+                    Label {
+                        Text(NSLocalizedString(TimeItem.precisionSettings[0], comment: "value"))
+                    } icon: {
+                        Image(systemName: "")
+                    }.tag(TimeItem.precisionSettings[0])
+                    Label {
+                        Text(NSLocalizedString(TimeItem.precisionSettings[1], comment: "value"))
+                    } icon: {
+                        Image(systemName: "")
+                    }.tag(TimeItem.precisionSettings[1])
+                    if !timeItem.isStopwatch {
+                        Label {
+                            Text(NSLocalizedString(TimeItem.precisionSettings[1], comment: "value"))
+                        } icon: {
+                            Image(systemName: "")
+                        }.tag(TimeItem.precisionSettings[2])
+                    }
+                }
+            } label: {
+                Label {
+                    Text("Milliseconds")
+                } icon: {
+                    Image(systemName: "ellipsis")
+                }
+            }
             Divider()
-            DetailActions(timeItem: timeItem)
+            //DetailActions(timeItem: timeItem)
             RegularButton(title: Strings.delete, icon: "trash", isDestructive: true) {
                 delete()
             }
         } label: {
             HStack {
                 Image(systemName: timeItem.notificationSetting == TimeItem.notificationSettings[1] ?  "bell.fill" : "bell.slash.fill")
-                Text("30m").fontSize(.secondaryText)
+                Text("\(timeItem.tapMeEvery)m").fontSize(.secondaryText)
                 Image(systemName: timeItem.soundSetting == TimeItem.soundSettings[1] ?  "speaker.wave.3.fill" : "speaker.wave.1.fill")
                 Image(systemName: "ellipsis")
             }.font(.headline).imageScale(.small).fixedSize()
