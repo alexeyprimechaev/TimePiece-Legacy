@@ -35,7 +35,7 @@ struct ContinousPicker: View {
         Button {
             
             stoppedInteracting = true
-            delay = 3
+            delay = 2
             
             if isContinous {
                 
@@ -102,7 +102,18 @@ struct ContinousPicker: View {
                     )
                     
                     Label {
-                        Text("\(Int(value*120))m").fontSize(.smallTitle).padding(.bottom, 5).animation(nil)
+                        Group {
+                            if Int(value*120) == 0 {
+                                Text("Off")
+                            } else if Int(value*120) > 60 && Int(value*120) < 120 {
+                                Text("\(Int(value*120)/60)h \(Int(value*120)%60)m")
+                            } else if Int(value*120) == 120 {
+                                Text("\(Int(value*120)/60)h")
+                            } else {
+                                Text("\(Int(value*120))m")
+                            }
+                        }.fontSize(.smallTitle).padding(.bottom, 5)
+                        
                     } icon: {
                         Image(systemName: "rays").font(.headline).rotationEffect(Angle(degrees: Double(value*360)))
                     }
@@ -114,7 +125,7 @@ struct ContinousPicker: View {
             .gesture(DragGesture(minimumDistance: 1, coordinateSpace: .local)
                         .onChanged { newValue in
                             stoppedInteracting = true
-                            delay = 3
+                            delay = 2
                             isContinous = true
                             let delta = Float(newValue.translation.width/width)
                             value = min(max(0, startValue + delta), 1)
@@ -122,7 +133,7 @@ struct ContinousPicker: View {
                         
                         .onEnded { endValue in
                             stoppedInteracting = true
-                            delay = 3
+                            delay = 2
                             startValue = value
                         }
             )
@@ -141,7 +152,6 @@ struct ContinousPicker: View {
             }
             
             .onChange(of: increment) { _ in
-                print(increment)
                 if 8 < increment && increment < 118 {
                     lightHaptic()
                 }

@@ -107,7 +107,6 @@ struct TimeItemSheet: View {
                         
                         if !timeItem.isRunning || showSettings {
                             if timeItem.isReusable {
-                            PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
                                 PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings.dropLast(), controlledValue: $timeItem.precisionSetting)
@@ -116,7 +115,7 @@ struct TimeItemSheet: View {
                             
 
                             
-                                ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1])
+                            ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1])
                             
                             
                             
@@ -181,6 +180,9 @@ struct TimeItemSheet: View {
                         
                         if timeItem.isReusable {
                             PickerButton(title: Strings.notification, values: TimeItem.notificationSettings, controlledValue: $timeItem.notificationSetting)
+                            if timeItem.notificationSetting == TimeItem.notificationSettings[1] {
+                                ContinousPicker(value: 0.25, presetValues: [0, 0.125,0.25,0.50,0.75,1])
+                            }
                             PickerButton(title: Strings.sound, values: TimeItem.soundSettings, controlledValue: $timeItem.soundSetting)
                             PremiumBadge {
                                 PickerButton(title: Strings.milliseconds, values: TimeItem.precisionSettings, controlledValue: $timeItem.precisionSetting)
@@ -431,6 +433,8 @@ struct TimeItemSheet: View {
         }
     }
     
+    
+    
     func updateTime() {
         
         if timeItem.isStopwatch {
@@ -478,6 +482,8 @@ struct TimeItemSheet: View {
     }
     
 }
+
+
 
 struct TimerDetailView_Previews: PreviewProvider {
     static var previews: some View {
