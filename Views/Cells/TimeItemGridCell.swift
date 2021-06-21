@@ -114,7 +114,7 @@ struct TimeItemGridCell: View {
                     }
                 }
                 
-                .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { time in
+                    .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
                     self.updateTime()
                 }
                 .onAppear {

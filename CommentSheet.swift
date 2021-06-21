@@ -33,7 +33,7 @@ struct CommentSheet: View {
             }.fontSize(.title2).padding(.horizontal, 21)
             Spacer()
             EditorBar(titleField: .constant(UITextField()), timeField: .constant(UITextField()), titleFocused: .constant(false), timeFocused: .constant(false), showSwitcher: .constant(true), button: {
-                Text("\(localComment.count)/280").fontSize(.secondaryText)
+//                Text("\(localComment.count)/280").fontSize(.secondaryText)
                 Spacer()
                 Button {
                     comment = localComment
@@ -51,10 +51,10 @@ struct CommentSheet: View {
             localComment = comment
         }
         .onChange(of: localComment) { newValue in
-            if newValue.count > 280 {
-                lightHaptic()
-                localComment = String(newValue.prefix(280))
-            }
+//            if newValue.count > 280 {
+//                lightHaptic()
+//                localComment = String(newValue.prefix(280))
+//            }
         }
     }
 }

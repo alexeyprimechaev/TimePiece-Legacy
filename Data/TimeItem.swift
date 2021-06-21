@@ -166,12 +166,12 @@ public class TimeItem: NSManagedObject, Identifiable {
     }
     
     static func prefillData(context: NSManagedObjectContext) {
-        newTimeItem(totalTime: 300, title: "Eggs 🍳", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: soundSettings[1], showInLog: true, isStopwatch: false, order: 1)
-        newTimeItem(totalTime: 120, title: "Bacon 🥓", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: soundSettings[1], showInLog: true, isStopwatch: false, order: 2)
-        newTimeItem(totalTime: 60*45, title: "Laundry 🧺", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: soundSettings[1], showInLog: true, isStopwatch: false, order: 3)
-        newTimeItem(totalTime: 210, title: "Tea 🍵", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: soundSettings[1], showInLog: true, isStopwatch: false, order: 4)
-        newTimeItem(totalTime: 60*60*2.5, title: "Homework 📚", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: soundSettings[1], showInLog: true, isStopwatch: false, order: 5)
-        newTimeItem(totalTime: 120, title: "", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: soundSettings[1], showInLog: true, isStopwatch: true, order: 6)
+        newTimeItem(totalTime: 300, title: "Eggs 🍳", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: notificationSettings[1], showInLog: true, isStopwatch: false, order: 1)
+        newTimeItem(totalTime: 120, title: "Bacon 🥓", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: notificationSettings[1], showInLog: true, isStopwatch: false, order: 2)
+        newTimeItem(totalTime: 60*45, title: "Laundry 🧺", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: notificationSettings[1], showInLog: true, isStopwatch: false, order: 3)
+        newTimeItem(totalTime: 210, title: "Tea 🍵", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: notificationSettings[1], showInLog: true, isStopwatch: false, order: 4)
+        newTimeItem(totalTime: 60*60*2.5, title: "Homework 📚", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: notificationSettings[1], showInLog: true, isStopwatch: false, order: 5)
+        newTimeItem(totalTime: 120, title: "", context: context, reusableSetting: reusableSettings[0], soundSetting: soundSettings[0], precisionSetting: soundSettings[0], notificationSetting: notificationSettings[1], showInLog: true, isStopwatch: true, order: 6)
     }
     
     
