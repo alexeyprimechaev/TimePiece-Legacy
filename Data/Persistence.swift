@@ -28,10 +28,18 @@ struct PersistenceController {
     }
     
     init(inMemory: Bool = false) {
+        
         container = NSPersistentCloudKitContainer(name: "TimePiece")
         
-        let description = container.persistentStoreDescriptions.first
-        description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        let storeURL = AppGroup.group.containerURL.appendingPathComponent("TimePiece.sqlite")
+        print("URL TUT")
+        print(storeURL)
+        let description = NSPersistentStoreDescription(url: storeURL)
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        
+        container.persistentStoreDescriptions = [description]
+        
+        
         
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
@@ -56,3 +64,5 @@ struct PersistenceController {
         container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
     }
 }
+
+

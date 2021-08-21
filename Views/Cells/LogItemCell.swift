@@ -33,7 +33,7 @@ struct LogItemCell: View {
         } label: {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
-                Text(logItem.origin?.title ?? logItem.title == "" ? Strings.timer : LocalizedStringKey(logItem.title))
+                Text(logItem.origin?.title ?? logItem.title == "" ? logItem.isStopwatch ? "Stopwatch ⏱" : Strings.timer : LocalizedStringKey(logItem.title))
                 Spacer()
                 
                 

@@ -210,7 +210,6 @@ public class TimeItem: NSManagedObject, Identifiable {
                     remainingTime = timeFinished.timeIntervalSince(timeStarted)
                     isPaused = true
                 }
-                recordLog()
             } else {
                 if isPaused {
                     isRunning = true
@@ -221,7 +220,6 @@ public class TimeItem: NSManagedObject, Identifiable {
                     remainingTime = timeFinished.timeIntervalSince(timeStarted)
                     isPaused = true
                 }
-                recordLog()
             }
             
             
@@ -246,22 +244,22 @@ public class TimeItem: NSManagedObject, Identifiable {
                 isPaused = true
             }
             
-            recordLog()
             
         }
+        recordLog()
         
         try? self.managedObjectContext?.save()
         WidgetCenter.shared.reloadAllTimelines()
     }
     
     func recordLog() {
+        logItems.last?.isStopwatch = isStopwatch
         if !isPaused {
             if showInLog {
-                if Date().timeIntervalSince(logItems.last?.timeStarted ?? Date().addingTimeInterval(-120)) < 60 {
+                if Date().timeIntervalSince(logItems.last?.timeStarted ?? Date().addingTimeInterval(-60)) < 30 {
                     logItems.last?.timeFinished = timeFinished
                     logItems.last?.isDone = false
                     logItems.last?.origin = self
-                    logItems.last?.isStopwatch = isStopwatch
                 } else {
                     let logItemOwned = LogItem(context: self.managedObjectContext!)
                     logItemOwned.title = title
@@ -273,13 +271,8 @@ public class TimeItem: NSManagedObject, Identifiable {
                 }
             }
         } else {
-            
             if remainingTime > 0 {
-                if isStopwatch {
-                    logItems.last?.timeFinished = Date()
-                } else {
-                    logItems.last?.timeFinished = timeFinished
-                }
+                logItems.last?.timeFinished = Date()
             }
             logItems.last?.isDone = true
         }
