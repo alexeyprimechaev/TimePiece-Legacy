@@ -11,6 +11,9 @@ import AVFoundation
 
 struct DetailEditors: View {
     
+    @EnvironmentObject var settings: Settings
+    @EnvironmentObject var appState: AppState
+    
     @ObservedObject var timeItem: TimeItem
     
     @Binding var titleField: UITextField
@@ -48,7 +51,7 @@ struct DetailEditors: View {
                 .onTapGesture {
                     addingComment = true
                 }.sheet(isPresented: $addingComment) {
-                    CommentSheet(comment: $timeItem.comment)
+                    CommentSheet(comment: $timeItem.comment).environmentObject(settings).environmentObject(appState)
                 }
             Divider().padding(7).padding(.bottom, -7)
             

@@ -14,6 +14,9 @@ enum ActionsPresentation {
 
 struct DetailActions: View {
     
+    @EnvironmentObject var settings: Settings
+    @EnvironmentObject var appState: AppState
+    
     @ObservedObject var timeItem: TimeItem
     
     @State private var showLogSheet = false
@@ -178,10 +181,10 @@ struct DetailActions: View {
         }
         .animation(.default, value: timeItem.isRunning)
         .sheet(isPresented: $showLogSheet) {
-            LogSheet(title: timeItem.title, discard: {showLogSheet = false})
+            LogSheet(title: timeItem.title, discard: {showLogSheet = false}).environmentObject(settings).environmentObject(appState)
         }
         .sheet(isPresented: $addingComment) {
-            CommentSheet(comment: $timeItem.comment)
+            CommentSheet(comment: $timeItem.comment).environmentObject(settings).environmentObject(appState)
         }
         .alert(isPresented: $showingConvertAlert) {
             if timeItem.isStopwatch {

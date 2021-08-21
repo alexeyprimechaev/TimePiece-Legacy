@@ -85,7 +85,6 @@
 		8043381D24F6836A00958666 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809D9F3124C4929200DB4E94 /* CloudKit.framework */; };
 		805B4E4A267F9BDD005F4EA6 /* DetailActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E49267F9BDD005F4EA6 /* DetailActions.swift */; };
 		805B4E4C267F9DB3005F4EA6 /* DetailPickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4B267F9DB3005F4EA6 /* DetailPickers.swift */; };
-		805B4E4E267F9EB2005F4EA6 /* SheetEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4D267F9EB2005F4EA6 /* SheetEditors.swift */; };
 		805B4E50267F9EC0005F4EA6 /* DetailEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */; };
 		805B4E52267FA212005F4EA6 /* DetailPrimaryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */; };
 		805B4E55267FBCBD005F4EA6 /* CommentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E54267FBCBD005F4EA6 /* CommentSheet.swift */; };
@@ -172,7 +171,6 @@
 		8055D7AE243B697800AF516E /* LogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemCell.swift; sourceTree = "<group>"; };
 		805B4E49267F9BDD005F4EA6 /* DetailActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActions.swift; sourceTree = "<group>"; };
 		805B4E4B267F9DB3005F4EA6 /* DetailPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPickers.swift; sourceTree = "<group>"; };
-		805B4E4D267F9EB2005F4EA6 /* SheetEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SheetEditors.swift; path = "../../Library/Developer/Xcode/DerivedData/TimePiece-bygmchaltlomqtbxtihzhvfmdetl/SourcePackages/checkouts/SwiftUI-Introspect/SheetEditors.swift"; sourceTree = "<group>"; };
 		805B4E4F267F9EC0005F4EA6 /* DetailEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditors.swift; sourceTree = "<group>"; };
 		805B4E51267FA212005F4EA6 /* DetailPrimaryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPrimaryActions.swift; sourceTree = "<group>"; };
 		805B4E54267FBCBD005F4EA6 /* CommentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheet.swift; sourceTree = SOURCE_ROOT; };
@@ -281,7 +279,6 @@
 		80612FD623C274DB00BC03F5 = {
 			isa = PBXGroup;
 			children = (
-				805B4E4D267F9EB2005F4EA6 /* SheetEditors.swift */,
 				057B2E0C264AF27A006858AA /* technoFree.wav */,
 				052A346025D819540052949A /* TimePieceWidgetExtension.entitlements */,
 				808A386A2512D1B60075AC50 /* Config */,
@@ -656,7 +653,6 @@
 				80150DD324F58E7300C740B3 /* TimeItemCell.swift in Sources */,
 				805B4E4A267F9BDD005F4EA6 /* DetailActions.swift in Sources */,
 				80150DE624F58E7300C740B3 /* PauseButton.swift in Sources */,
-				805B4E4E267F9EB2005F4EA6 /* SheetEditors.swift in Sources */,
 				054802EA2649CCF400AE84D4 /* LogSheet.swift in Sources */,
 				80150DED24F58E7300C740B3 /* LogItemCell.swift in Sources */,
 				80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */,
@@ -731,7 +727,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -755,7 +751,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -781,7 +777,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -807,7 +803,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -824,7 +820,7 @@
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -836,7 +832,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -853,7 +849,7 @@
 				DEVELOPMENT_TEAM = W7F94ZP22K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Config/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -865,7 +861,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -11,7 +11,7 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
     
-    let container: NSPersistentCloudKitContainer
+    let container: NSPersistentContainer
     
     func saveContext () {
         let context = container.viewContext
@@ -28,15 +28,10 @@ struct PersistenceController {
     }
     
     init(inMemory: Bool = false) {
-        
-        let storeURL = AppGroup.group.containerURL.appendingPathComponent("TimePiece.sqlite")
-        let description = NSPersistentStoreDescription(url: storeURL)
-        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-        
         container = NSPersistentCloudKitContainer(name: "TimePiece")
-        container.persistentStoreDescriptions = [description]
         
-        
+        let description = container.persistentStoreDescriptions.first
+        description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")

@@ -40,9 +40,9 @@ struct CommentSheet: View {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Label {
-                        Text("Save").fontSize(.smallTitle)
+                        Text("Add").fontSize(.smallTitle)
                     } icon: {
-                        Image(systemName: "square.and.arrow.down").font(.headline)
+                        Image(systemName: "plus.bubble").font(.headline)
                     }.padding(.horizontal, 14).padding(.vertical, 7).opacity(comment != localComment ? 1: 0.33).animation(.easeOut(duration: 0.2), value: comment == localComment).background(RoundedRectangle(cornerRadius: 8, style: .continuous)
                                                                                     .foregroundColor(Color("button.gray"))).padding(.vertical, 7)
                 }.disabled(comment == localComment)
