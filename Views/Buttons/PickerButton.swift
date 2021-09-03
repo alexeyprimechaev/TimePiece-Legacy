@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import ASCollectionView
 
 struct PickerButton: View {
     
@@ -23,11 +22,6 @@ struct PickerButton: View {
         
         if values.count > 3 {
             Menu {
-                //                Picker("", selection: $controlledValue) {
-                //                    ForEach(values, id: \.self) { value in
-                //                        Text(NSLocalizedString(value, comment: "value"))
-                //                    }
-                //                }
                 ForEach(values, id: \.self) { value in
                     Button {
                         controlledValue = value

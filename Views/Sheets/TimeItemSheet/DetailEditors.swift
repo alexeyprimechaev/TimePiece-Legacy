@@ -35,14 +35,20 @@ struct DetailEditors: View {
             }
         
         if timeItem.isRunning {
-            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, isOpaque: true, displayStyle: .labeled, label: timeItem.isStopwatch ? Strings.total : Strings.left, precisionSetting: $timeItem.precisionSetting, textField: .constant(UITextField()), isFocused: .constant(false))
+            TimeDisplay(timeItem: timeItem, timeString: $currentTime, isOpaque: true, displayStyle: .labeled, label: Strings.total)
                 .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
-                    updateTime()
+                    currentTime = ClockUI.updateTime(timeItem: timeItem, currentTime)
                 }
         }
         
         if !timeItem.isStopwatch {
-            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $timeItem.editableTimeString, updateTime: {updateTime()}, isOpaque: true, displayStyle: .labeled, label: Strings.total, precisionSetting: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused)
+                VStack {
+                    if timeItem.isRunning == false {
+                        TimeEditor(timeString: $timeItem.editableTimeString, textField: $timeField, isFocused: $timeFocused).disabled(timeItem.isRunning)
+                    } else {
+                        TimeDisplay(timeItem: timeItem, timeString: $timeItem.editableTimeString, isOpaque: true, displayStyle: .labeled, label: Strings.total)
+                    }
+                }
         }
         
         if timeItem.comment.count > 0 {
@@ -59,51 +65,7 @@ struct DetailEditors: View {
         }
     }
     
-    func updateTime() {
-        
-        if timeItem.isStopwatch {
-            if !timeItem.isPaused {
-                currentTime = Date().timeIntervalSince(timeItem.timeStarted).editableStringMilliseconds()
-                
-            } else {
-                
-            }
-            
-            
-        } else {
-            if !timeItem.isPaused {
-                
-                
-                if timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
-                    
-                    timeItem.togglePause()
-                    
-                    timeItem.remainingTime = 0
-                    
-                    
-                    
-                    
-                    
-                    if timeItem.soundSetting == TimeItem.soundSettings[0] {
-                        AudioServicesPlaySystemSound(1007)
-                    } else {
-                        playSound(sound: "technoFree", type: "wav")
-                    }
-                    //                    AudioServicesPlaySystemSound(timeItem.soundSetting == TimeItem.soundSettings[0] ? 1007 : 1036)
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                currentTime = timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-                
-                
-            }
-        }
-        
-    }
+    
 }
 
 

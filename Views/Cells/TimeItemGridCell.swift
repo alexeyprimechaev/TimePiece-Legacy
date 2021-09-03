@@ -23,10 +23,7 @@ struct TimeItemGridCell: View {
     @EnvironmentObject var appState: AppState
     
     
-    @State private var currentTime: String = "00:x00"
-    
-    @State private var timeFieldDummy = UITextField()
-    @State private var timeFocusedDummy = false
+    @State private var currentTime: String = "00:00"
     
     @State private var showingAlert = false
     
@@ -72,7 +69,7 @@ struct TimeItemGridCell: View {
                                         if timeItem.isPaused {
                                             Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
                                         } else {
-                                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, displayStyle: .small, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                                            TimeDisplay(timeItem: timeItem, timeString: $currentTime, displayStyle: .small)
                                         }
                                     }
                                     
@@ -95,7 +92,7 @@ struct TimeItemGridCell: View {
                                         if timeItem.isPaused {
                                             Text(timeItem.remainingTime.stringFromNumber()).opacity(0.5)
                                         } else {
-                                            TimeDisplay(isPaused: $timeItem.isPaused, isRunning: $timeItem.isRunning, timeString: $currentTime, updateTime: updateTime, displayStyle: .small, precisionSetting: $timeItem.precisionSetting, textField: $timeFieldDummy, isFocused: $timeFocusedDummy)
+                                            TimeDisplay(timeItem: timeItem, timeString: $currentTime, displayStyle: .small)
                                         }
                                     }
                                     else {
@@ -114,8 +111,8 @@ struct TimeItemGridCell: View {
                     }
                 }
                 
-                    .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
-                    self.updateTime()
+                .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
+                    currentTime = ClockUI.updateTime(timeItem: timeItem, currentTime)
                 }
                 .onAppear {
                     currentTime = timeItem.remainingTimeString
@@ -162,43 +159,6 @@ struct TimeItemGridCell: View {
 
     }
     
-    func updateTime() {
-        
-        if timeItem.isStopwatch {
-            if !timeItem.isPaused {
-                currentTime = Date().timeIntervalSince(timeItem.timeStarted).editableStringMilliseconds()
-            } else {
-                
-            }
-            
-            
-        } else {
-            if !timeItem.isPaused {
-                
-                
-                if timeItem.timeFinished.timeIntervalSince(Date()) <= 0 {
-                    
-                    timeItem.togglePause()
-                    
-                    timeItem.remainingTime = 0
-                    
-                    if timeItem.soundSetting == TimeItem.soundSettings[0] {
-                        AudioServicesPlaySystemSound(1007)
-                    } else {
-                        playSound(sound: "technoFree", type: "wav")
-                    }
-                    
-                }
-                
-                currentTime = timeItem.timeFinished.timeIntervalSince(Date()).editableStringMilliseconds()
-                
-                
-            }
-        }
-        
-        
-        
-    }
 }
 
 extension View {

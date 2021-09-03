@@ -191,7 +191,7 @@ public class TimeItem: NSManagedObject, Identifiable {
         timeFinished = timeFinished.addingTimeInterval(time)
         print("remainingTime\(remainingTime)")
         remainingTime = remainingTime + time
-        totalTime += time
+        currentTotalTime += time
         print("remainingTime\(remainingTime)")
         NotificationManager.scheduleNotification(timeItem: self)
     }
@@ -403,6 +403,11 @@ extension TimeItem {
         set { totalTimeStored = newValue as NSNumber }
     }
     
+    var currentTotalTime: TimeInterval {
+        get {  totalTime }
+        set { }
+    }
+    
     var timeStarted: Date {
         get { timeStartedStored ?? Date() }
         set { timeStartedStored = newValue }
@@ -455,6 +460,11 @@ extension TimeItem {
             totalTime = newValue.stringToTimeInterval()
             remainingTime = newValue.stringToTimeInterval()
         }
+    }
+    
+    var editableCurrentTimeString: String {
+        get { currentTotalTime.editableString() }
+        set {}
     }
     
     var logItems: [LogItem] {
