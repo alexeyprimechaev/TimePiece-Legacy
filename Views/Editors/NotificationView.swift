@@ -104,3 +104,4 @@ extension View {
 //            .previewLayout(.sizeThatFits).environmentObject(Settings())
 //    }
 //}
+

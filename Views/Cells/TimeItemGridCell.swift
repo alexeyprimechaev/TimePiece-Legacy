@@ -111,8 +111,8 @@ struct TimeItemGridCell: View {
                     }
                 }
                 
-                .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
-                    currentTime = ClockUI.updateTime(timeItem: timeItem, currentTime)
+                .onReceive(Clock.regular) { time in
+                    currentTime = Clock.updateTime(timeItem: timeItem, currentTime)
                 }
                 .onAppear {
                     currentTime = timeItem.remainingTimeString

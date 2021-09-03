@@ -57,7 +57,7 @@ struct LogItemCell: View {
             currentTime = Date().timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
         }
         
-        .onReceive(Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()) { time in
+        .onReceive(Clock.regular) { time in
             currentTime = Date().timeIntervalSince(logItem.timeStarted).relativeStringFromNumber()
         }
         }.buttonStyle(RegularButtonStyle())

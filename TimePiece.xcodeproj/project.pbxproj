@@ -89,7 +89,7 @@
 		805B4E59267FC5CD005F4EA6 /* SummaryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B4E58267FC5CD005F4EA6 /* SummaryMenu.swift */; };
 		80888DA124FAB08400C55895 /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DA024FAB08400C55895 /* TimeDisplay.swift */; };
 		808A388A2512D6B10075AC50 /* InsightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A38892512D6B10075AC50 /* InsightRow.swift */; };
-		80B0BC5D26E2E5C000F0B21E /* UpdateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0BC5C26E2E5C000F0B21E /* UpdateTime.swift */; };
+		80B0BC5D26E2E5C000F0B21E /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0BC5C26E2E5C000F0B21E /* Clock.swift */; };
 		80B4137924F80FFB0089BF7A /* TimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B4137824F80FFB0089BF7A /* TimeEditor.swift */; };
 		80C055882516215E002147EC /* EditorBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C055872516215E002147EC /* EditorBar.swift */; };
 		80D5950F26602A65002E3826 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5950E26602A65002E3826 /* NotificationView.swift */; };
@@ -188,7 +188,7 @@
 		809D9F3124C4929200DB4E94 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		80A14FB42411077000638B64 /* PersonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCard.swift; sourceTree = "<group>"; };
 		80ACD6B623CBE435000C49DC /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
-		80B0BC5C26E2E5C000F0B21E /* UpdateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTime.swift; sourceTree = "<group>"; };
+		80B0BC5C26E2E5C000F0B21E /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		80B4137824F80FFB0089BF7A /* TimeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEditor.swift; sourceTree = "<group>"; };
 		80B62E72244DF13C001D4D9E /* SubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionButton.swift; sourceTree = "<group>"; };
 		80B6BF1C2418205900815793 /* SubscriptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRow.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 				80B91C8724C8A1BE0017F8B9 /* Strings.swift */,
 				80B91C8624C8A04F0017F8B9 /* Localizable.strings */,
 				80612FFB23C2766B00BC03F5 /* TimeItem.swift */,
-				80B0BC5C26E2E5C000F0B21E /* UpdateTime.swift */,
+				80B0BC5C26E2E5C000F0B21E /* Clock.swift */,
 				8055D7A8243B627600AF516E /* LogItem.swift */,
 				80150D6924F58BD900C740B3 /* Persistence.swift */,
 				80D343B12443717F00BA76B1 /* TimePiece.xcdatamodeld */,
@@ -652,7 +652,7 @@
 				80150DD524F58E7300C740B3 /* LogItem.swift in Sources */,
 				057B2E0E264B144C006858AA /* TimePieceWidget.intentdefinition in Sources */,
 				80150DDE24F58E7300C740B3 /* RegularButton.swift in Sources */,
-				80B0BC5D26E2E5C000F0B21E /* UpdateTime.swift in Sources */,
+				80B0BC5D26E2E5C000F0B21E /* Clock.swift in Sources */,
 				80150DD124F58E7300C740B3 /* Settings.swift in Sources */,
 				05EDD9E125A2296100E78486 /* ContinousPicker.swift in Sources */,
 				80150DE524F58E7300C740B3 /* HeaderBar.swift in Sources */,

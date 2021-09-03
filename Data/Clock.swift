@@ -1,6 +1,6 @@
 //
-//  UpdateTime.swift
-//  UpdateTime
+//  Clock.swift
+//  Clock
 //
 //  Created by Alexey Primechaev on 9/4/21.
 //  Copyright © 2021 Alexey Primechaev. All rights reserved.
@@ -8,8 +8,18 @@
 
 import Foundation
 import AVFoundation
+import SwiftUI
 
-struct ClockUI {
+
+
+
+
+struct Clock {
+    
+    static let regular = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
+    
+    static let precise = Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()
+    
     
     static func updateTime(timeItem: TimeItem, _ currentTimeOld: String) -> String {
         
@@ -61,3 +71,4 @@ struct ClockUI {
         
     }
 }
+

@@ -36,8 +36,8 @@ struct DetailEditors: View {
         
         if timeItem.isRunning {
             TimeDisplay(timeItem: timeItem, timeString: $currentTime, isOpaque: true, displayStyle: .labeled, label: Strings.total)
-                .onReceive(Timer.publish(every: 0.015, on: .main, in: .common).autoconnect()) { time in
-                    currentTime = ClockUI.updateTime(timeItem: timeItem, currentTime)
+                .onReceive(Clock.precise) { time in
+                    currentTime = Clock.updateTime(timeItem: timeItem, currentTime)
                 }
         }
         
