@@ -144,29 +144,29 @@ struct LogSheet: View {
                 VStack {
                     switch selectedSegment {
                     case .weeks:
-                        LazyVStack {
-                            ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .weeks) , id: \.self) { logItemSection in
+                        VStack {
+                            ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .weeks), id: \.first?.id) { logItemSection in
                                 LogSection(segment: .weeks, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                                 
                             }
                         }
                     case .days:
-                        LazyVStack {
-                        ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .days) , id: \.self) { logItemSection in
+                        VStack {
+                            ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .days), id: \.first?.id) { logItemSection in
                             LogSection(segment: .days, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                             
                         }
                         }
                     case .months:
-                        LazyVStack {
-                        ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .months) , id: \.self) { logItemSection in
+                        VStack {
+                        ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .months), id: \.first?.id) { logItemSection in
                             LogSection(segment: .months, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                             
                         }
                         }
                     case .years:
-                        LazyVStack {
-                        ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .years) , id: \.self) { logItemSection in
+                        VStack {
+                        ForEach(logItemsGrouped(title == "" ? logItems.filter{ $0.title == $0.title } : logItems.filter{$0.title == title}, by: .years), id: \.first?.id) { logItemSection in
                             LogSection(segment: .years, logItemSection: logItemSection, isCompact: true).environmentObject(appState).environmentObject(settings)
                             
                         }

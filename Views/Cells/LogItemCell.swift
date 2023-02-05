@@ -124,14 +124,14 @@ struct LogSection: View {
             Spacer().frame(height: 0)
             if !isCompact {
                 TitledScrollView {
-                    LazyVStack(alignment: .leading, spacing: 7) {
+                    VStack(alignment: .leading, spacing: 7) {
                         ForEach(isCompact ? [LogItem](logItemSection.prefix(3)) : logItemSection) { logItem in
                             LogItemCell(logItem: logItem).environmentObject(appState)
                         }
                     }.padding(.horizontal, 7).padding(.vertical, 14)
                 }
             } else {
-                LazyVStack(alignment: .leading, spacing: 7) {
+                VStack(alignment: .leading, spacing: 7) {
                     ForEach(isCompact ? [LogItem](logItemSection.prefix(3)) : logItemSection) { logItem in
                         LogItemCell(logItem: logItem).environmentObject(appState)
                     }

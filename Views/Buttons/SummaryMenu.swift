@@ -136,7 +136,6 @@ struct SummaryMenu: View {
                 Image(systemName: timeItem.notificationSetting == TimeItem.notificationSettings[1] ?  "bell.fill" : "bell.slash.fill")
                 Text("\(timeItem.tapMeEvery)m").fontSize(.secondaryText)
                 Image(systemName: timeItem.soundSetting == TimeItem.soundSettings[1] ?  "speaker.wave.3.fill" : "speaker.wave.1.fill")
-                Image(systemName: "ellipsis")
             }.font(.headline).imageScale(.small).fixedSize()
         }
     }

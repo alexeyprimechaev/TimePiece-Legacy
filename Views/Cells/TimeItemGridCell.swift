@@ -57,7 +57,7 @@ struct TimeItemGridCell: View {
                 
                 try? self.context.save()
             } label: {
-                    Group {
+                Group {
                     if !timeItem.isStopwatch {
                         VStack(alignment: .leading, spacing: 0) {
                             Text(timeItem.title.isEmpty ? Strings.timer : LocalizedStringKey(timeItem.title))
@@ -123,30 +123,29 @@ struct TimeItemGridCell: View {
                 .opacity(appState.editingHomeScreen ? 0.5 : 1)
                 .padding(14)
                 .padding(.vertical, 10)
-                
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                    .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(timeItem.isRunning ? .systemGray5 : .systemGray6)))
-                    .overlay(appState.editingHomeScreen ? nil : Button {
+                .background(RoundedRectangle(cornerRadius: 16, style: .continuous).foregroundColor(Color(timeItem.isRunning ? .systemGray5 : .systemGray6)))
+                .overlay(appState.editingHomeScreen ? nil : Button {
                     appState.selectedTimeItem = timeItem
                     appState.activeSheet = 0
-                        
-                        if horizontalSizeClass == .compact {
-                            appState.showingSheet = true
-                        } else {
-                            appState.showingSidebar = true
-                        }
+                    
+                    if horizontalSizeClass == .compact {
+                        appState.showingSheet = true
+                    } else {
+                        appState.showingSidebar = true
+                    }
                     
                     
                 } label: {
                     Image(systemName: "ellipsis").font(.headline).padding(14).padding(.vertical, 10)
                 }, alignment: .topTrailing)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .stroke(Color.primary, lineWidth: 2)
-                            .opacity(timeItem == appState.selectedTimeItem && horizontalSizeClass != .compact ? 1 : 0))
-                    
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .stroke(Color.primary, lineWidth: 2)
+                        .opacity(timeItem == appState.selectedTimeItem && horizontalSizeClass != .compact ? 1 : 0))
+                
                 .overlay(appState.editingHomeScreen ? Image(systemName: appState.selectedTimeItems.contains(timeItem) ? "checkmark.circle.fill" : "circle").font(.title2).padding(7) : nil, alignment: .topTrailing)
-                    
+                
             }
             
             
@@ -156,7 +155,7 @@ struct TimeItemGridCell: View {
             
             
         }.lineLimit(1)
-
+        
     }
     
 }
