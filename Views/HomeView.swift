@@ -356,6 +356,7 @@ struct DragRelocateDelegate: DropDelegate {
             var revisedItems: [TimeItem] = listData.map{ $0 }
             
             // change the order of the items in the array
+            
             revisedItems.move(fromOffsets: IndexSet(integer: from), toOffset: to )
             
             // update the userOrder attribute in revisedItems to
